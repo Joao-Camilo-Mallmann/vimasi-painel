@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-dark: #121212;
+  --color-secondary-dark: #1a1a1a;
+  --color-accent-gold: #e4c7aa;
+  --color-accent-red: #d32f2f;
+  --font-anton: "Anton", sans-serif;
+  --font-arimo: "Arimo", sans-serif;
+}
+
+@layer base {
+  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+
+  body {
+    @apply bg-primary-dark text-gray-200 font-arimo;
+    margin: 0;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+  .glass-strong {
+    @apply bg-black/40 backdrop-blur-2xl border-b border-white/5;
+  }
+}
