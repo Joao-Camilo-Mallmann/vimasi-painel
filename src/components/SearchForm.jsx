@@ -43,13 +43,20 @@ export default function SearchForm({ onSearch }) {
             name="tipo"
             value={formData.tipo}
             onChange={handleChange}
-            className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors shadow-inner cursor-pointer"
+            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors shadow-inner cursor-pointer"
           >
-            <option value="" className="text-gray-900">
+            <option
+              value=""
+              className="bg-zinc-800 text-white border-none outline-none"
+            >
               Todos
             </option>
             {tiposDisponiveis.map((t, idx) => (
-              <option key={idx} value={t} className="text-gray-900">
+              <option
+                key={idx}
+                value={t}
+                className="bg-zinc-800 text-white border-none outline-none"
+              >
                 {t}
               </option>
             ))}
@@ -68,7 +75,7 @@ export default function SearchForm({ onSearch }) {
             value={formData.interno}
             onChange={handleChange}
             placeholder="0.00"
-            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:border-accent-gold transition-colors shadow-inner w-full"
+            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors shadow-inner w-full"
           />
         </div>
 
@@ -84,14 +91,14 @@ export default function SearchForm({ onSearch }) {
             value={formData.externo}
             onChange={handleChange}
             placeholder="0.00"
-            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:border-accent-gold transition-colors shadow-inner w-full"
+            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors shadow-inner w-full"
           />
         </div>
 
-        {/* ALTURA */}
+        {/* ALTURA TOTAL */}
         <div className="flex flex-col gap-2 flex-1">
           <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1">
-            Altura
+            Alt. Total
           </label>
           <input
             type="number"
@@ -100,9 +107,25 @@ export default function SearchForm({ onSearch }) {
             value={formData.altura}
             onChange={handleChange}
             placeholder="0.00"
-            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:border-accent-gold transition-colors shadow-inner w-full"
+            className="bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors shadow-inner w-full"
           />
         </div>
+
+        {/* ALTURA BASE (CONDICIONAL PARA ZW) */}
+        {formData.tipo === 'ZW' && (
+          <div className="flex flex-col gap-2 flex-1 animate-fade-in-up">
+            <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1 text-accent-gold">Alt. Base</label>
+            <input 
+              type="number" 
+              step="0.01"
+              name="alturaBase"
+              value={formData.alturaBase || ''}
+              onChange={handleChange}
+              placeholder="0.00"
+              className="bg-black/40 border border-accent-gold/40 rounded-xl px-4 py-3 text-white text-xl font-mono focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors shadow-inner w-full"
+            />
+          </div>
+        )}
 
         {/* TOLERANCIA */}
         <div className="flex flex-col gap-2 w-full md:w-28 flex-none">
@@ -113,14 +136,38 @@ export default function SearchForm({ onSearch }) {
             name="tolerancia"
             value={formData.tolerancia}
             onChange={handleChange}
-            className="bg-black/20 border border-white/5 rounded-xl px-3 py-3 text-gray-400 text-sm focus:outline-none focus:border-accent-gold transition-colors appearance-none cursor-pointer text-center"
+            className="bg-black/40 border border-white/20 rounded-xl px-3 py-3 text-gray-300 text-sm focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors cursor-pointer text-center"
           >
-            <option value="0">± 0.0</option>
-            <option value="0.2">± 0.2</option>
-            <option value="0.5">± 0.5</option>
-            <option value="1.0">± 1.0</option>
-            <option value="1.5">± 1.5</option>
-            <option value="2.0">± 2.0</option>
+            <option
+              value="0"
+              className="bg-zinc-800 text-white border-none outline-none"
+            >
+              ± 0.0
+            </option>
+            <option
+              value="0.2"
+              className="bg-zinc-800 text-white border-none outline-none"
+            >
+              ± 0.2
+            </option>
+            <option
+              value="0.5"
+              className="bg-zinc-800 text-white border-none outline-none"
+            >
+              ± 0.5
+            </option>
+            <option
+              value="1.0"
+              className="bg-zinc-800 text-white border-none outline-none"
+            >
+              ± 1.0
+            </option>
+            <option value="1.5" className="bg-zinc-800 text-white">
+              ± 1.5
+            </option>
+            <option value="2.0" className="bg-zinc-800 text-white">
+              ± 2.0
+            </option>
           </select>
         </div>
 

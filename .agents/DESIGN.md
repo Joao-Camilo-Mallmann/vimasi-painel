@@ -139,3 +139,6 @@ Proper layering is critical to prevent visual collapse. Adhere strictly to this 
 
 *   **Focus States:** Never remove outlines without providing an alternative. `focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent`.
 *   **Contrast Rules:** Text placed directly over photography MUST have an intervening `bg-linear-to-t` dark gradient or a `.glass` layer behind it to ensure reading contrast.
+*   **Native Form Elements (Selects & Dropdowns):**
+    *   **Color Scheme:** The application MUST explicitly define `color-scheme: dark;` on the `body` element in the global CSS. This forces the browser to render native UI components (like `<select>` dropdown menus and scrollbars) using the operating system's dark theme, preventing thick, bright borders on dark surfaces.
+    *   **Option Styling:** Native `<option>` elements inside dropdowns must be explicitly styled to match the dark theme (e.g., `className="bg-zinc-900 text-white"`). Never rely on inherited text colors without defining the background, as native dropdowns can render light backgrounds on some OS configurations.

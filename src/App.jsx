@@ -1,5 +1,5 @@
+import { Check, Copy, Loader2 } from "lucide-react";
 import { useState } from "react";
-import ResultCard from "./components/ResultCard";
 import SearchForm from "./components/SearchForm";
 import DatabaseService from "./services/DatabaseService";
 
@@ -7,10 +7,18 @@ function App() {
   const [resultados, setResultados] = useState([]);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(null);
+
+  const handleCopy = (codigo) => {
+    navigator.clipboard.writeText(codigo);
+    setCopiedCode(codigo);
+  };
 
   const handleSearch = async (params) => {
     setLoading(true);
+    setSearched(false);
     try {
+      await new Promise((resolve) => setTimeout(resolve, 400));
       const results = await DatabaseService.buscarPecas(params);
       setResultados(results);
       setSearched(true);
@@ -32,7 +40,7 @@ function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="/src/assets/shared/logo.png"
+              src="/src/assets/logo.png"
               alt="Vimasi"
               className="h-10 object-contain drop-shadow-md"
             />
@@ -48,8 +56,11 @@ function App() {
           {/* Results Area */}
           <div className="mt-16 max-w-6xl mx-auto relative z-10">
             {loading ? (
-              <div className="text-center text-accent-gold font-mono animate-pulse">
-                CARREGANDO BASE DE DADOS...
+              <div className="glass rounded-xl p-10 flex flex-col items-center justify-center gap-4 text-accent-gold animate-fade-in-up">
+                <Loader2 size={32} className="animate-spin" />
+                <p className="font-mono text-sm tracking-widest">
+                  BUSCANDO NO ESTOQUE...
+                </p>
               </div>
             ) : searched && resultados.length === 0 ? (
               <div className="glass rounded-xl p-10 text-center">
@@ -75,21 +86,74 @@ function App() {
                       <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
                         <th className="p-4 pl-6">Código</th>
                         <th className="p-4 text-center">Tipo</th>
-                        <th className="p-4 text-right">Ø Interno <span className="text-gray-500 lowercase font-normal ml-1">mm</span></th>
-                        <th className="p-4 text-right">Ø Externo <span className="text-gray-500 lowercase font-normal ml-1">mm</span></th>
-                        <th className="p-4 text-right">Alt. Base <span className="text-gray-500 lowercase font-normal ml-1">mm</span></th>
-                        <th className="p-4 text-right pr-6">Alt. Total <span className="text-gray-500 lowercase font-normal ml-1">mm</span></th>
+                        <th className="p-4 text-right">
+                          Ø Interno{" "}
+                          <span className="text-gray-500 lowercase font-normal ml-1">
+                            mm
+                          </span>
+                        </th>
+                        <th className="p-4 text-right">
+                          Ø Externo{" "}
+                          <span className="text-gray-500 lowercase font-normal ml-1">
+                            mm
+                          </span>
+                        </th>
+                        <th className="p-4 text-right">
+                          Alt. Base{" "}
+                          <span className="text-gray-500 lowercase font-normal ml-1">
+                            mm
+                          </span>
+                        </th>
+                        <th className="p-4 text-right pr-6">
+                          Alt. Total{" "}
+                          <span className="text-gray-500 lowercase font-normal ml-1">
+                            mm
+                          </span>
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5 text-gray-200">
                       {resultados.map((peca, idx) => (
-                        <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                          <td className="p-4 pl-6 font-anton text-accent-gold text-xl tracking-wide">{peca.Codigo}</td>
-                          <td className="p-4 text-center"><span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5">{peca.Tipo}</span></td>
-                          <td className="p-4 text-right font-mono text-lg">{Number(peca.Interno).toFixed(2)}</td>
-                          <td className="p-4 text-right font-mono text-lg">{Number(peca.Externo).toFixed(2)}</td>
-                          <td className="p-4 text-right font-mono text-lg text-gray-400 group-hover:text-gray-200 transition-colors">{Number(peca.AlturaBase).toFixed(2)}</td>
-                          <td className="p-4 text-right font-mono text-lg pr-6 font-bold">{Number(peca.AlturaTotal).toFixed(2)}</td>
+                        <tr
+                          key={idx}
+                          className="hover:bg-white/5 transition-colors group animate-fade-in-up"
+                          style={{ animationDelay: `${idx * 0.05}s` }}
+                        >
+                          <td className="p-4 pl-6">
+                            <div className="flex items-center gap-3">
+                              <button
+                                onClick={() => handleCopy(peca.Codigo)}
+                                className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95"
+                                title="Copiar código"
+                              >
+                                {copiedCode === peca.Codigo ? (
+                                  <Check size={14} className="text-green-400" />
+                                ) : (
+                                  <Copy size={14} />
+                                )}
+                              </button>
+                              <span className="font-anton text-accent-gold text-xl tracking-wide">
+                                {peca.Codigo}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5">
+                              {peca.Tipo}
+                            </span>
+                          </td>
+                          <td className="p-4 text-right font-mono text-lg">
+                            {Number(peca.Interno).toFixed(2)}
+                          </td>
+                          <td className="p-4 text-right font-mono text-lg">
+                            {Number(peca.Externo).toFixed(2)}
+                          </td>
+                          <td className="p-4 text-right font-mono text-lg text-gray-400 group-hover:text-gray-200 transition-colors">
+                            {Number(peca.AlturaBase).toFixed(2)}
+                          </td>
+                          <td className="p-4 text-right font-mono text-lg pr-6 font-bold">
+                            {Number(peca.AlturaTotal).toFixed(2)}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
