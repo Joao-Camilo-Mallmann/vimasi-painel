@@ -80,7 +80,7 @@ function App() {
                     </span>
                   </div>
                 )}
-                <div className="overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
+                <div className="hidden md:block overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
                   <table className="w-full text-left border-collapse whitespace-nowrap">
                     <thead>
                       <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
@@ -158,6 +158,57 @@ function App() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+
+                {/* Mobile Cards View */}
+                <div className="grid grid-cols-1 gap-4 md:hidden">
+                  {resultados.map((peca, idx) => (
+                    <div
+                      key={idx}
+                      className="glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border border-white/5"
+                      style={{ animationDelay: `${idx * 0.05}s` }}
+                    >
+                      <div className="flex justify-between items-center border-b border-white/10 pb-3">
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => handleCopy(peca.Codigo)}
+                            className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95"
+                            title="Copiar código"
+                          >
+                            {copiedCode === peca.Codigo ? (
+                              <Check size={16} className="text-green-400" />
+                            ) : (
+                              <Copy size={16} />
+                            )}
+                          </button>
+                          <span className="font-anton text-accent-gold text-2xl tracking-wide">
+                            {peca.Codigo}
+                          </span>
+                        </div>
+                        <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5 text-gray-300">
+                          {peca.Tipo}
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
+                        <div className="flex flex-col">
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Interno</span>
+                          <span className="font-mono text-white/90 text-lg">{Number(peca.Interno).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Externo</span>
+                          <span className="font-mono text-white/90 text-lg">{Number(peca.Externo).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Base</span>
+                          <span className="font-mono text-gray-400 text-lg">{Number(peca.AlturaBase).toFixed(2)} <span className="text-sm text-gray-600">mm</span></span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Total</span>
+                          <span className="font-mono text-white text-lg font-bold">{Number(peca.AlturaTotal).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
