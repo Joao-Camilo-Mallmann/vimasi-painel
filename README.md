@@ -1,10 +1,12 @@
 # Vimasi Painel - Busca de Estoque (MVP)
 
-Um sistema de busca ultrarrápido, limpo e profissional focado em dimensões técnicas de peças (como selos e conjuntos ZW), desenhado especificamente para a **Vimasi**. 
+An ultra-fast search engine for wiper seals and all other parts from the PDF catalog, allowing precise filtering by internal size, external size, and height. Designed specifically for **Vimasi**.
 
 A aplicação não necessita de banco de dados externo ou backend, tornando-a incrivelmente veloz, com dados sendo carregados diretamente de uma base estática embarcada.
 
-![Vimasi Busca](https://via.placeholder.com/800x400.png?text=Vimasi+Painel+-+Busca+Dimensional)
+**🔗 Acessar o sistema:** [https://painel.vimasi-vedacoes.com/](https://painel.vimasi-vedacoes.com/)
+
+![Vimasi Busca](docs/print-home.png)
 
 ## 🚀 Funcionalidades Principais
 
