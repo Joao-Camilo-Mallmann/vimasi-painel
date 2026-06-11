@@ -14,6 +14,8 @@ class DatabaseService {
       Papa.parse(csvData, {
         header: true,
         dynamicTyping: true,
+        delimiter: ';',
+        comments: '#',
         complete: (results) => {
           this.data = results.data;
           this.loaded = true;

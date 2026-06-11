@@ -2,6 +2,7 @@ import { Check, Copy, Loader2 } from "lucide-react";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
 import DatabaseService from "./services/DatabaseService";
+import { getTipoBadgeStyle } from "./utils/tipoStyles";
 
 function App() {
   const [resultados, setResultados] = useState([]);
@@ -138,7 +139,10 @@ function App() {
                             </div>
                           </td>
                           <td className="p-4 text-center">
-                            <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5">
+                            <span
+                              className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                              style={getTipoBadgeStyle(peca.Tipo)}
+                            >
                               {peca.Tipo}
                             </span>
                           </td>
@@ -185,26 +189,49 @@ function App() {
                             {peca.Codigo}
                           </span>
                         </div>
-                        <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5 text-gray-300">
+                        <span
+                          className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                          style={getTipoBadgeStyle(peca.Tipo)}
+                        >
                           {peca.Tipo}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
                         <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Interno</span>
-                          <span className="font-mono text-white/90 text-lg">{Number(peca.Interno).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                            Ø Interno
+                          </span>
+                          <span className="font-mono text-white/90 text-lg">
+                            {Number(peca.Interno).toFixed(2)}{" "}
+                            <span className="text-sm text-gray-500">mm</span>
+                          </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Externo</span>
-                          <span className="font-mono text-white/90 text-lg">{Number(peca.Externo).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                            Ø Externo
+                          </span>
+                          <span className="font-mono text-white/90 text-lg">
+                            {Number(peca.Externo).toFixed(2)}{" "}
+                            <span className="text-sm text-gray-500">mm</span>
+                          </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Base</span>
-                          <span className="font-mono text-gray-400 text-lg">{Number(peca.AlturaBase).toFixed(2)} <span className="text-sm text-gray-600">mm</span></span>
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                            Alt. Base
+                          </span>
+                          <span className="font-mono text-gray-400 text-lg">
+                            {Number(peca.AlturaBase).toFixed(2)}{" "}
+                            <span className="text-sm text-gray-600">mm</span>
+                          </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Total</span>
-                          <span className="font-mono text-white text-lg font-bold">{Number(peca.AlturaTotal).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
+                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                            Alt. Total
+                          </span>
+                          <span className="font-mono text-white text-lg font-bold">
+                            {Number(peca.AlturaTotal).toFixed(2)}{" "}
+                            <span className="text-sm text-gray-500">mm</span>
+                          </span>
                         </div>
                       </div>
                     </div>
