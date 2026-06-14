@@ -1,8 +1,7 @@
-# Vimasi Painel - Busca de Estoque (MVP)
+# Vimasi Painel - Busca de Estoque
+An ultra-fast search engine for wiper seals, O-rings, Chevron gaskets, and all 20 categories from the PDF catalog (over 6,000 parts). Allows precise filtering by dimensions like internal/external sizes, height, diameter, and thickness depending on the part type. Designed specifically for **Vimasi**.
 
-An ultra-fast search engine for wiper seals and all other parts from the PDF catalog, allowing precise filtering by internal size, external size, and height. Designed specifically for **Vimasi**.
-
-A aplicação não necessita de banco de dados externo ou backend, tornando-a incrivelmente veloz, com dados sendo carregados diretamente de uma base estática embarcada.
+A aplicação não necessita de banco de dados externo ou backend, tornando-a incrivelmente veloz, com dados sendo carregados dinamicamente de arquivos CSV estáticos embarcados.
 
 **🔗 Acessar o sistema:** [https://painel.vimasi-vedacoes.com/](https://painel.vimasi-vedacoes.com/)
 
@@ -10,10 +9,10 @@ A aplicação não necessita de banco de dados externo ou backend, tornando-a in
 
 ## 🚀 Funcionalidades Principais
 
-* **Busca Dimensional Inteligente**: Filtre as peças cruzando diâmetro interno (Ø), diâmetro externo (Ø) e altura.
+* **Busca Dimensional Inteligente e Global**: Filtre as peças cruzando dimensões. Busque em todas as 20 categorias simultaneamente ou filtre por uma específica.
 * **Tolerância Dinâmica**: Permite estipular margens de erro (ex: ± 0.2mm, ± 0.5mm) para localizar peças equivalentes ou substitutas.
-* **Mapeamento de Tipos via CSV**: O sistema varre seu banco de dados na inicialização e cria um menu "Tipo" de peças de forma automática (ZW, WS, etc.).
-* **Inputs Condicionais**: Selecionar "ZW" faz surgir de forma elegante o campo "Alt. Base" (Altura Base), mantendo a interface limpa até ser necessário.
+* **Formulário Dinâmico**: O formulário se adapta à categoria selecionada (ex: O-Ring mostra "Diâmetro" e "Espessura", ZW mostra "Alt. Base", Fita Guia mostra "Comprimento").
+* **Tabela Adaptativa**: As colunas da tabela de resultados ajustam-se para exibir apenas as dimensões pertinentes aos tipos sendo visualizados.
 * **Botão "QUERO" (Cópia Rápida)**: Cada peça encontrada conta com um pequeno botão que copia imediatamente seu código para a área de transferência com confirmação visual (✅ Copiado).
 * **UI/UX Premium (Glassmorphism)**: Interface construída usando conceitos modernos, fundos escuros de alto contraste e micro-animações (stagger animations) para não cansar a vista e manter uma apresentação de alto nível técnico.
 * **Totalmente Responsivo**: Layout que se adequa do celular à telas de monitores ultrawide num formato "Dashboard".
@@ -42,11 +41,12 @@ Certifique-se de ter o [Bun](https://bun.sh/) instalado na sua máquina.
 
 ## 📁 Banco de Dados (CSV)
 
-O banco de dados é gerido localmente em:
-`src/data/data.csv`
+O banco de dados é gerido localmente em múltiplos arquivos CSV na pasta:
+`src/data/data_*.csv`
 
-Para adicionar novos produtos, basta abrir o `data.csv` no Excel (ou editor de texto) e incluir novas linhas respeitando os cabeçalhos:
-`Codigo,Tipo,Externo,Interno,AlturaBase,AlturaTotal`
+O sistema suporta 20 categorias de peças, cada uma em seu próprio arquivo (ex: `data_oring_de_pu.csv`, `data_conjunto_zw.csv`).
+
+Para adicionar novos produtos, basta abrir o CSV da categoria correspondente no Excel (ou editor de texto) e incluir novas linhas respeitando os cabeçalhos. O arquivo de configuração central encontra-se em `src/config/categories.js`.
 
 ## ☁️ Como Fazer o Deploy (GitHub Pages)
 
