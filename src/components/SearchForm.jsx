@@ -2,7 +2,6 @@ import { Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import CATEGORIES, { FIELD_DEFS, getFieldsForTipo } from "../config/categories";
 import DatabaseService from "../services/DatabaseService";
-import { getTipoBadgeStyle } from "../utils/tipoStyles";
 
 export default function SearchForm({ onSearch }) {
   const [tiposDisponiveis, setTiposDisponiveis] = useState([]);
@@ -20,7 +19,7 @@ export default function SearchForm({ onSearch }) {
   // Campos de busca dinâmicos baseados no tipo selecionado
   const activeFields = useMemo(
     () => getFieldsForTipo(formData.tipo),
-    [formData.tipo]
+    [formData.tipo],
   );
 
   const handleChange = (e) => {
@@ -47,10 +46,7 @@ export default function SearchForm({ onSearch }) {
 
   return (
     <div className="glass rounded-2xl p-4 md:p-6 w-full max-w-6xl mx-auto relative z-10">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-full"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
         {/* Linha 1: Tipo + Tolerância */}
         <div className="flex flex-col md:flex-row items-end gap-4 w-full">
           {/* TIPO */}
@@ -92,7 +88,10 @@ export default function SearchForm({ onSearch }) {
             const def = FIELD_DEFS[fieldKey];
             if (!def) return null;
             return (
-              <div key={fieldKey} className="flex flex-col gap-2 flex-1 animate-fade-in-up">
+              <div
+                key={fieldKey}
+                className="flex flex-col gap-2 flex-1 animate-fade-in-up"
+              >
                 <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1">
                   {def.label}
                   {def.unit && (
@@ -125,19 +124,36 @@ export default function SearchForm({ onSearch }) {
               onChange={handleChange}
               className="bg-black/40 border border-white/20 rounded-xl px-3 py-3 text-gray-300 text-sm focus:outline-none focus:ring-0 focus:border-accent-gold transition-colors cursor-pointer text-center"
             >
-              <option value="0" className="bg-zinc-900 text-white">± 0.0</option>
-              <option value="0.2" className="bg-zinc-900 text-white">± 0.2</option>
-              <option value="0.5" className="bg-zinc-900 text-white">± 0.5</option>
-              <option value="1.0" className="bg-zinc-900 text-white">± 1.0</option>
-              <option value="1.5" className="bg-zinc-900 text-white">± 1.5</option>
-              <option value="2.0" className="bg-zinc-900 text-white">± 2.0</option>
-              <option value="3.0" className="bg-zinc-900 text-white">± 3.0</option>
-              <option value="4.0" className="bg-zinc-900 text-white">± 4.0</option>
-              <option value="5.0" className="bg-zinc-900 text-white">± 5.0</option>
-              <option value="7.0" className="bg-zinc-900 text-white">± 7.0</option>
-              <option value="10.0" className="bg-zinc-900 text-white">± 10.0</option>
-              <option value="15.0" className="bg-zinc-900 text-white">± 15.0</option>
-              <option value="20.0" className="bg-zinc-900 text-white">± 20.0</option>
+              <option value="0" className="bg-zinc-900 text-white">
+                ± 0.0
+              </option>
+              <option value="0.5" className="bg-zinc-900 text-white">
+                ± 0.5
+              </option>
+              <option value="1.0" className="bg-zinc-900 text-white">
+                ± 1.0
+              </option>
+              <option value="1.5" className="bg-zinc-900 text-white">
+                ± 1.5
+              </option>
+              <option value="2.0" className="bg-zinc-900 text-white">
+                ± 2.0
+              </option>
+              <option value="2.5" className="bg-zinc-900 text-white">
+                ± 2.5
+              </option>
+              <option value="3.0" className="bg-zinc-900 text-white">
+                ± 3.0
+              </option>
+              <option value="4.0" className="bg-zinc-900 text-white">
+                ± 4.0
+              </option>
+              <option value="5.0" className="bg-zinc-900 text-white">
+                ± 5.0
+              </option>
+              <option value="10.0" className="bg-zinc-900 text-white">
+                ± 10.0
+              </option>
             </select>
           </div>
 
@@ -152,7 +168,6 @@ export default function SearchForm({ onSearch }) {
             </button>
           </div>
         </div>
-
       </form>
     </div>
   );
