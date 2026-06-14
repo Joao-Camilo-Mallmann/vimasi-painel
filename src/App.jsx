@@ -1,13 +1,79 @@
 import { Check, Copy, Loader2 } from "lucide-react";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
+import CATEGORIES, { FIELD_DEFS, getCategoryByTipo, getFieldsForTipo } from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
+import { getTipoBadgeStyle } from "./utils/tipoStyles";
+
+/**
+ * Retorna as colunas de dimensão a renderizar na tabela,
+ * baseado no tipo selecionado (ou união para "Todos").
+ */
+function getDisplayColumns(tipo) {
+  if (tipo) {
+    const cat = getCategoryByTipo(tipo);
+    if (cat) {
+      // Retornar todas as colunas exceto Codigo e Tipo
+      return cat.columns
+        .filter((c) => c !== "Codigo" && c !== "Tipo")
+        .map((csvCol) => {
+          // Encontrar o FIELD_DEF correspondente
+          const fieldKey = Object.entries(
+            Object.fromEntries(
+              Object.entries({
+                interno: "Interno",
+                externo: "Externo",
+                alturaBase: "AlturaBase",
+                alturaTotal: "AlturaTotal",
+                altura: "Altura",
+                diametro: "Diametro",
+                espessura: "Espessura",
+                largura: "Largura",
+                comprimento: "Comprimento",
+                v: "V",
+                dim1: "Dim1",
+                dim2: "Dim2",
+                dim3: "Dim3",
+              })
+            )
+          ).find(([, csv]) => csv === csvCol);
+          const def = fieldKey ? FIELD_DEFS[fieldKey[0]] : null;
+          return {
+            csvCol,
+            label: def?.label || csvCol,
+            unit: def?.unit || "mm",
+          };
+        });
+    }
+  }
+  // Busca global: mostrar as colunas mais universais
+  return [
+    { csvCol: "Interno", label: "Ø Interno", unit: "mm" },
+    { csvCol: "Externo", label: "Ø Externo", unit: "mm" },
+    { csvCol: "Altura", label: "Altura", unit: "mm" },
+    { csvCol: "AlturaBase", label: "Alt. Base", unit: "mm" },
+    { csvCol: "AlturaTotal", label: "Alt. Total", unit: "mm" },
+    { csvCol: "Diametro", label: "Diâmetro", unit: "mm" },
+    { csvCol: "Espessura", label: "Espessura", unit: "mm" },
+  ];
+}
+
+/**
+ * Verifica se uma coluna tem dados relevantes nos resultados.
+ */
+function columnHasData(results, csvCol) {
+  return results.some((r) => {
+    const val = r[csvCol];
+    return val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+  });
+}
 
 function App() {
   const [resultados, setResultados] = useState([]);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
+  const [searchTipo, setSearchTipo] = useState("");
 
   const handleCopy = (codigo) => {
     navigator.clipboard.writeText(codigo);
@@ -17,6 +83,7 @@ function App() {
   const handleSearch = async (params) => {
     setLoading(true);
     setSearched(false);
+    setSearchTipo(params.tipo || "");
     try {
       await new Promise((resolve) => setTimeout(resolve, 400));
       const results = await DatabaseService.buscarPecas(params);
@@ -28,6 +95,13 @@ function App() {
       setLoading(false);
     }
   };
+
+  // Colunas dinâmicas para a tabela
+  const allColumns = getDisplayColumns(searchTipo);
+  // Filtrar colunas sem dados (só em busca global)
+  const visibleColumns = searchTipo
+    ? allColumns
+    : allColumns.filter((col) => columnHasData(resultados, col.csvCol));
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-primary-dark">
@@ -80,44 +154,30 @@ function App() {
                     </span>
                   </div>
                 )}
+
+                {/* Desktop Table */}
                 <div className="hidden md:block overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
                   <table className="w-full text-left border-collapse whitespace-nowrap">
                     <thead>
                       <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
                         <th className="p-4 pl-6">Código</th>
                         <th className="p-4 text-center">Tipo</th>
-                        <th className="p-4 text-right">
-                          Ø Interno{" "}
-                          <span className="text-gray-500 lowercase font-normal ml-1">
-                            mm
-                          </span>
-                        </th>
-                        <th className="p-4 text-right">
-                          Ø Externo{" "}
-                          <span className="text-gray-500 lowercase font-normal ml-1">
-                            mm
-                          </span>
-                        </th>
-                        <th className="p-4 text-right">
-                          Alt. Base{" "}
-                          <span className="text-gray-500 lowercase font-normal ml-1">
-                            mm
-                          </span>
-                        </th>
-                        <th className="p-4 text-right pr-6">
-                          Alt. Total{" "}
-                          <span className="text-gray-500 lowercase font-normal ml-1">
-                            mm
-                          </span>
-                        </th>
+                        {visibleColumns.map((col) => (
+                          <th key={col.csvCol} className="p-4 text-right">
+                            {col.label}{" "}
+                            <span className="text-gray-500 lowercase font-normal ml-1">
+                              {col.unit}
+                            </span>
+                          </th>
+                        ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5 text-gray-200">
                       {resultados.map((peca, idx) => (
                         <tr
-                          key={idx}
+                          key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
                           className="hover:bg-white/5 transition-colors group animate-fade-in-up"
-                          style={{ animationDelay: `${idx * 0.05}s` }}
+                          style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
                         >
                           <td className="p-4 pl-6">
                             <div className="flex items-center gap-3">
@@ -138,22 +198,29 @@ function App() {
                             </div>
                           </td>
                           <td className="p-4 text-center">
-                            <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5">
+                            <span
+                              className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                              style={getTipoBadgeStyle(peca.Tipo)}
+                            >
                               {peca.Tipo}
                             </span>
                           </td>
-                          <td className="p-4 text-right font-mono text-lg">
-                            {Number(peca.Interno).toFixed(2)}
-                          </td>
-                          <td className="p-4 text-right font-mono text-lg">
-                            {Number(peca.Externo).toFixed(2)}
-                          </td>
-                          <td className="p-4 text-right font-mono text-lg text-gray-400 group-hover:text-gray-200 transition-colors">
-                            {Number(peca.AlturaBase).toFixed(2)}
-                          </td>
-                          <td className="p-4 text-right font-mono text-lg pr-6 font-bold">
-                            {Number(peca.AlturaTotal).toFixed(2)}
-                          </td>
+                          {visibleColumns.map((col) => {
+                            const val = peca[col.csvCol];
+                            const hasVal = val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+                            return (
+                              <td
+                                key={col.csvCol}
+                                className={`p-4 text-right font-mono text-lg ${
+                                  hasVal
+                                    ? "text-gray-200"
+                                    : "text-gray-600"
+                                }`}
+                              >
+                                {hasVal ? Number(val).toFixed(2) : "—"}
+                              </td>
+                            );
+                          })}
                         </tr>
                       ))}
                     </tbody>
@@ -164,9 +231,9 @@ function App() {
                 <div className="grid grid-cols-1 gap-4 md:hidden">
                   {resultados.map((peca, idx) => (
                     <div
-                      key={idx}
+                      key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
                       className="glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border border-white/5"
-                      style={{ animationDelay: `${idx * 0.05}s` }}
+                      style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
                     >
                       <div className="flex justify-between items-center border-b border-white/10 pb-3">
                         <div className="flex items-center gap-3">
@@ -185,27 +252,30 @@ function App() {
                             {peca.Codigo}
                           </span>
                         </div>
-                        <span className="bg-black/30 px-3 py-1 rounded-md text-xs font-mono border border-white/5 text-gray-300">
+                        <span
+                          className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                          style={getTipoBadgeStyle(peca.Tipo)}
+                        >
                           {peca.Tipo}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
-                        <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Interno</span>
-                          <span className="font-mono text-white/90 text-lg">{Number(peca.Interno).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Ø Externo</span>
-                          <span className="font-mono text-white/90 text-lg">{Number(peca.Externo).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Base</span>
-                          <span className="font-mono text-gray-400 text-lg">{Number(peca.AlturaBase).toFixed(2)} <span className="text-sm text-gray-600">mm</span></span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">Alt. Total</span>
-                          <span className="font-mono text-white text-lg font-bold">{Number(peca.AlturaTotal).toFixed(2)} <span className="text-sm text-gray-500">mm</span></span>
-                        </div>
+                        {visibleColumns.map((col) => {
+                          const val = peca[col.csvCol];
+                          const hasVal = val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+                          if (!hasVal && !searchTipo) return null; // Em busca global, ocultar colunas vazias
+                          return (
+                            <div key={col.csvCol} className="flex flex-col">
+                              <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                                {col.label}
+                              </span>
+                              <span className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}>
+                                {hasVal ? Number(val).toFixed(2) : "—"}{" "}
+                                <span className="text-sm text-gray-500">{col.unit}</span>
+                              </span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   ))}
