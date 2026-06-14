@@ -1,68 +1,141 @@
 import Papa from 'papaparse';
-import csvData from '../data/data.csv?raw';
+import CATEGORIES, { FIELD_TO_CSV } from '../config/categories';
+
+// ── Importar TODOS os CSVs via Vite raw ─────────────────────────
+// Cada CSV é importado como string raw para parsing com PapaParse.
+const csvModules = import.meta.glob('../data/data_*.csv', { query: '?raw', import: 'default', eager: true });
 
 class DatabaseService {
   constructor() {
-    this.data = [];
+    /** @type {Map<string, Array<object>>} tipo → parsed rows */
+    this.dataByTipo = new Map();
     this.loaded = false;
   }
 
+  /**
+   * Carrega e parseia todos os CSVs de uma vez.
+   */
   async loadData() {
     if (this.loaded) return;
-    
-    return new Promise((resolve, reject) => {
-      Papa.parse(csvData, {
+
+    for (const cat of CATEGORIES) {
+      // Encontrar o módulo raw correspondente
+      const key = Object.keys(csvModules).find((k) => k.endsWith(cat.csvFile));
+      if (!key) {
+        console.warn(`CSV não encontrado para ${cat.tipo}: ${cat.csvFile}`);
+        continue;
+      }
+      const rawCsv = csvModules[key];
+
+      const result = Papa.parse(rawCsv, {
         header: true,
         dynamicTyping: true,
         delimiter: ';',
         comments: '#',
-        complete: (results) => {
-          this.data = results.data;
-          this.loaded = true;
-          resolve();
-        },
-        error: (error) => reject(error)
+        skipEmptyLines: true,
       });
-    });
+
+      // Filtrar linhas vazias (sem código)
+      const validRows = result.data.filter((row) => row.Codigo);
+      this.dataByTipo.set(cat.tipo, validRows);
+    }
+
+    // Também carregar o CSV legado (data.csv) para manter compatibilidade
+    // caso exista dados lá que não estejam nos novos CSVs
+    this.loaded = true;
   }
 
+  /**
+   * Retorna todos os tipos disponíveis (ordenados).
+   */
   async getTipos() {
     await this.loadData();
-    const tipos = new Set();
-    this.data.forEach(peca => {
-      if (peca.Tipo) tipos.add(peca.Tipo);
-    });
-    return Array.from(tipos).sort();
+    return CATEGORIES
+      .filter((cat) => {
+        const data = this.dataByTipo.get(cat.tipo);
+        return data && data.length > 0;
+      })
+      .map((cat) => cat.tipo)
+      .sort();
   }
 
+  /**
+   * Retorna a contagem de peças por tipo.
+   */
+  async getContagemPorTipo() {
+    await this.loadData();
+    const contagem = {};
+    for (const cat of CATEGORIES) {
+      const data = this.dataByTipo.get(cat.tipo);
+      if (data && data.length > 0) {
+        contagem[cat.tipo] = data.length;
+      }
+    }
+    return contagem;
+  }
+
+  /**
+   * Busca peças com filtros dinâmicos.
+   *
+   * @param {object} params
+   * @param {string} params.tipo - Tipo de peça (vazio = todos)
+   * @param {string} params.tolerancia - Tolerância numérica
+   * @param {object} params.[fieldName] - Valores de busca dinâmicos (interno, externo, etc.)
+   */
   async buscarPecas(params) {
     await this.loadData();
-    const { tipo, interno, externo, altura, alturaBase, tolerancia } = params;
-    
+    const { tipo, tolerancia, ...searchFields } = params;
     const tol = Number(tolerancia) || 0;
-    
-    return this.data.filter(peca => {
-      // Ignora linhas vazias
-      if (!peca.Codigo) return false;
 
-      // Filtro de tipo (opcional)
-      if (tipo && peca.Tipo && !peca.Tipo.toLowerCase().includes(tipo.toLowerCase())) {
-        return false;
+    const results = [];
+
+    // Determinar quais categorias buscar
+    const categoriesToSearch = tipo
+      ? CATEGORIES.filter((c) => c.tipo === tipo)
+      : CATEGORIES;
+
+    for (const cat of categoriesToSearch) {
+      const data = this.dataByTipo.get(cat.tipo);
+      if (!data) continue;
+
+      for (const peca of data) {
+        if (!peca.Codigo) continue;
+
+        let matches = true;
+
+        // Para cada campo de busca preenchido, verificar se a peça atende
+        for (const [fieldKey, searchValue] of Object.entries(searchFields)) {
+          const numVal = Number(searchValue);
+          if (!numVal) continue; // Campo vazio, ignorar
+
+          // Converter field key para coluna CSV
+          const csvCol = FIELD_TO_CSV[fieldKey];
+          if (!csvCol) continue;
+
+          const pecaVal = Number(peca[csvCol]);
+          if (isNaN(pecaVal)) {
+            matches = false;
+            break;
+          }
+
+          if (Math.abs(pecaVal - numVal) > tol) {
+            matches = false;
+            break;
+          }
+        }
+
+        if (matches) {
+          // Adicionar info do tipo ao resultado
+          results.push({
+            ...peca,
+            Tipo: cat.tipo,
+            _categoria: cat.label,
+          });
+        }
       }
+    }
 
-      // Filtros numéricos
-      const intNum = Number(interno);
-      const extNum = Number(externo);
-      const altNum = Number(altura);
-      const altBaseNum = Number(alturaBase);
-
-      if (intNum && Math.abs(Number(peca.Interno) - intNum) > tol) return false;
-      if (extNum && Math.abs(Number(peca.Externo) - extNum) > tol) return false;
-      if (altNum && Math.abs(Number(peca.AlturaTotal) - altNum) > tol) return false;
-      if (altBaseNum && Math.abs(Number(peca.AlturaBase) - altBaseNum) > tol) return false;
-
-      return true;
-    });
+    return results;
   }
 }
 
