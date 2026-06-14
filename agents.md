@@ -10,8 +10,8 @@ Esta é a especificação de regras e comportamentos para assistentes de IA que 
    - Evite introduzir cores flat ou fora da paleta corporativa.
    
 2. **Componentização & Customização:**
-   - Badges de tipos de peças na tabela (ex: ZW, ZO) possuem cores fixas específicas para garantir contraste e rápida identificação visual no painel.
-   - Qualquer novo tipo de peça adicionado dinamicamente ao CSV receberá uma cor gerada de forma determinística (via HSL hash) para manter a harmonia visual sem exigir intervenção manual de código.
+   - Badges de tipos de peças na tabela (ex: ZW, ZO, ORING, CHEVRON) possuem cores fixas específicas para garantir contraste e rápida identificação visual no painel. As cores devem ser lidas da configuração central em `src/config/categories.js`.
+   - Evitar geração de cores dinâmicas para manter a consistência visual; usar a paleta predefinida no `categories.js` para as 20 categorias existentes.
 
 3. **Performance & Frameworks:**
    - O projeto utiliza React com Tailwind CSS.
