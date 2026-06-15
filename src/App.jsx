@@ -1,7 +1,10 @@
 import { Check, Copy, Loader2 } from "lucide-react";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
-import CATEGORIES, { FIELD_DEFS, getCategoryByTipo, getFieldsForTipo } from "./config/categories";
+import {
+  FIELD_DEFS,
+  getCategoryByTipo
+} from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
 
@@ -33,8 +36,8 @@ function getDisplayColumns(tipo) {
                 dim1: "Dim1",
                 dim2: "Dim2",
                 dim3: "Dim3",
-              })
-            )
+              }),
+            ),
           ).find(([, csv]) => csv === csvCol);
           const def = fieldKey ? FIELD_DEFS[fieldKey[0]] : null;
           return {
@@ -62,7 +65,9 @@ function getDisplayColumns(tipo) {
 function columnHasData(results, csvCol) {
   return results.some((r) => {
     const val = r[csvCol];
-    return val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+    return (
+      val !== undefined && val !== null && val !== "" && !isNaN(Number(val))
+    );
   });
 }
 
@@ -121,12 +126,12 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <main className="pt-32 pb-20 px-4">
+        <div className="max-w-9xl mx-auto">
           <SearchForm onSearch={handleSearch} />
 
           {/* Results Area */}
-          <div className="mt-16 max-w-6xl mx-auto relative z-10">
+          <div className="mt-16 max-w-7xl mx-auto relative z-10">
             {loading ? (
               <div className="glass rounded-xl p-10 flex flex-col items-center justify-center gap-4 text-accent-gold animate-fade-in-up">
                 <Loader2 size={32} className="animate-spin" />
@@ -175,7 +180,9 @@ function App() {
                         <tr
                           key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
                           className="hover:bg-white/5 transition-colors group animate-fade-in-up"
-                          style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
+                          style={{
+                            animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
+                          }}
                         >
                           <td className="p-4 pl-6 max-w-[160px] sm:max-w-[200px] lg:max-w-[300px] xl:max-w-[400px]">
                             <div className="flex items-center gap-3">
@@ -190,7 +197,7 @@ function App() {
                                   <Copy size={14} />
                                 )}
                               </button>
-                              <span 
+                              <span
                                 className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
                                 title={peca.Codigo}
                               >
@@ -208,14 +215,16 @@ function App() {
                           </td>
                           {visibleColumns.map((col) => {
                             const val = peca[col.csvCol];
-                            const hasVal = val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+                            const hasVal =
+                              val !== undefined &&
+                              val !== null &&
+                              val !== "" &&
+                              !isNaN(Number(val));
                             return (
                               <td
                                 key={col.csvCol}
                                 className={`p-4 text-right font-mono text-lg ${
-                                  hasVal
-                                    ? "text-gray-200"
-                                    : "text-gray-600"
+                                  hasVal ? "text-gray-200" : "text-gray-600"
                                 }`}
                               >
                                 {hasVal ? Number(val).toFixed(2) : "—"}
@@ -234,7 +243,9 @@ function App() {
                     <div
                       key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
                       className="glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border border-white/5"
-                      style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
+                      style={{
+                        animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
+                      }}
                     >
                       <div className="flex justify-between items-center border-b border-white/10 pb-3">
                         <div className="flex items-center gap-3 max-w-[70%]">
@@ -249,7 +260,7 @@ function App() {
                               <Copy size={16} />
                             )}
                           </button>
-                          <span 
+                          <span
                             className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
                             title={peca.Codigo}
                           >
@@ -266,16 +277,24 @@ function App() {
                       <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
                         {visibleColumns.map((col) => {
                           const val = peca[col.csvCol];
-                          const hasVal = val !== undefined && val !== null && val !== "" && !isNaN(Number(val));
+                          const hasVal =
+                            val !== undefined &&
+                            val !== null &&
+                            val !== "" &&
+                            !isNaN(Number(val));
                           if (!hasVal && !searchTipo) return null; // Em busca global, ocultar colunas vazias
                           return (
                             <div key={col.csvCol} className="flex flex-col">
                               <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
                                 {col.label}
                               </span>
-                              <span className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}>
+                              <span
+                                className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
+                              >
                                 {hasVal ? Number(val).toFixed(2) : "—"}{" "}
-                                <span className="text-sm text-gray-500">{col.unit}</span>
+                                <span className="text-sm text-gray-500">
+                                  {col.unit}
+                                </span>
                               </span>
                             </div>
                           );
