@@ -112,7 +112,13 @@ class DatabaseService {
           const csvCol = FIELD_TO_CSV[fieldKey];
           if (!csvCol) continue;
 
-          const pecaVal = Number(peca[csvCol]);
+          let pecaVal = Number(peca[csvCol]);
+          
+          // Fallback: se não tiver AlturaBase, usar Altura
+          if (isNaN(pecaVal) && csvCol === "AlturaBase") {
+            pecaVal = Number(peca["Altura"]);
+          }
+
           if (isNaN(pecaVal)) {
             matches = false;
             break;

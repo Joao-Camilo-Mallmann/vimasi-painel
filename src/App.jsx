@@ -24,7 +24,6 @@ function getDisplayColumns(tipo) {
                 interno: "Interno",
                 externo: "Externo",
                 alturaBase: "AlturaBase",
-                alturaTotal: "AlturaTotal",
                 altura: "Altura",
                 diametro: "Diametro",
                 espessura: "Espessura",
@@ -52,7 +51,6 @@ function getDisplayColumns(tipo) {
     { csvCol: "Externo", label: "Ø Externo", unit: "mm" },
     { csvCol: "Altura", label: "Altura", unit: "mm" },
     { csvCol: "AlturaBase", label: "Alt. Base", unit: "mm" },
-    { csvCol: "AlturaTotal", label: "Alt. Total", unit: "mm" },
     { csvCol: "Diametro", label: "Diâmetro", unit: "mm" },
     { csvCol: "Espessura", label: "Espessura", unit: "mm" },
   ];
@@ -179,11 +177,11 @@ function App() {
                           className="hover:bg-white/5 transition-colors group animate-fade-in-up"
                           style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
                         >
-                          <td className="p-4 pl-6">
+                          <td className="p-4 pl-6 max-w-[160px] sm:max-w-[200px] lg:max-w-[300px] xl:max-w-[400px]">
                             <div className="flex items-center gap-3">
                               <button
                                 onClick={() => handleCopy(peca.Codigo)}
-                                className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95"
+                                className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
                                 title="Copiar código"
                               >
                                 {copiedCode === peca.Codigo ? (
@@ -192,7 +190,10 @@ function App() {
                                   <Copy size={14} />
                                 )}
                               </button>
-                              <span className="font-anton text-accent-gold text-xl tracking-wide">
+                              <span 
+                                className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
+                                title={peca.Codigo}
+                              >
                                 {peca.Codigo}
                               </span>
                             </div>
@@ -236,10 +237,10 @@ function App() {
                       style={{ animationDelay: `${Math.min(idx * 0.03, 1.5)}s` }}
                     >
                       <div className="flex justify-between items-center border-b border-white/10 pb-3">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 max-w-[70%]">
                           <button
                             onClick={() => handleCopy(peca.Codigo)}
-                            className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95"
+                            className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
                             title="Copiar código"
                           >
                             {copiedCode === peca.Codigo ? (
@@ -248,7 +249,10 @@ function App() {
                               <Copy size={16} />
                             )}
                           </button>
-                          <span className="font-anton text-accent-gold text-2xl tracking-wide">
+                          <span 
+                            className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
+                            title={peca.Codigo}
+                          >
                             {peca.Codigo}
                           </span>
                         </div>

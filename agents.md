@@ -4,6 +4,9 @@ Esta é a especificação de regras e comportamentos para assistentes de IA que 
 
 ## Diretrizes Gerais
 
+
+**USE /GRILL-ME nos propmt caso seja mais adequado para o contexto.**
+
 1. **Design System & Estética Visual:**
    - Siga estritamente as regras definidas em [.agents/DESIGN.md](file:///home/joao/projects/vimasi-painel/.agents/DESIGN.md).
    - O projeto adota uma estética *Industrial Premium*, combinando um dark canvas com detalhes em Gold (`#e4c7aa`) e Red (`#e53935`).
@@ -16,3 +19,4 @@ Esta é a especificação de regras e comportamentos para assistentes de IA que 
 3. **Performance & Frameworks:**
    - O projeto utiliza React com Tailwind CSS.
    - Não use classes dinâmicas interpoladas do Tailwind que possam falhar no build (ex: `text-${color}-400`). Em vez disso, utilize estilos inline computados para variações dinâmicas complexas ou mapeamentos pré-definidos.
+- Colunas 'Altura' e 'AlturaTotal' dos CSVs foram unificadas no sistema (adotando 'Altura'), mantendo a 'AlturaBase' separada para peças de conjunto.

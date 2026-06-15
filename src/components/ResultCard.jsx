@@ -57,10 +57,10 @@ export default function ResultCard({ peca }) {
         </div>
         <div className="bg-black/20 rounded-lg p-3 border border-white/5 group-hover:border-white/10 transition-colors">
           <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-            Alt. Total
+            Altura
           </p>
           <p className="text-lg font-mono text-gray-200">
-            {Number(peca.AlturaTotal).toFixed(2)}{" "}
+            {Number(peca.Altura).toFixed(2)}{" "}
             <span className="text-xs text-gray-500">mm</span>
           </p>
         </div>
