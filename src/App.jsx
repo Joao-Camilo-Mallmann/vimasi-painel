@@ -1,10 +1,7 @@
-import { Check, Copy, Loader2 } from "lucide-react";
+import { Check, Copy, Loader2, X } from "lucide-react";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
-import {
-  FIELD_DEFS,
-  getCategoryByTipo
-} from "./config/categories";
+import { FIELD_DEFS, getCategoryByTipo } from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
 
@@ -77,6 +74,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
   const [searchTipo, setSearchTipo] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCopy = (codigo) => {
     navigator.clipboard.writeText(codigo);
@@ -111,6 +109,22 @@ function App() {
       {/* Background Effects */}
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent-gold/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent-red/10 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Floating Image (Como pedir altura) */}
+      <div
+        className="absolute right-4 top-24 hidden xl:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity cursor-pointer z-40"
+        onClick={() => setIsModalOpen(true)}
+        title="Clique para ampliar"
+      >
+        <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-1 pointer-events-none">
+          Como medir
+        </span>
+        <img
+          src="/como-pedir.png"
+          alt="Como pedir altura"
+          className="w-32 h-auto rounded-lg shadow-xl border border-white/10"
+        />
+      </div>
 
       {/* Header */}
       <header className="glass-strong fixed top-0 w-full z-50 px-6 py-4">
@@ -308,6 +322,27 @@ function App() {
           </div>
         </div>
       </main>
+
+      {/* Modal Fullscreen Imagem */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <button
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <X size={36} />
+          </button>
+          <img
+            src="/como-pedir.png"
+            alt="Como pedir altura (Tela Cheia)"
+            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

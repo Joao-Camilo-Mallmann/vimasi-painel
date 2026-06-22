@@ -92,7 +92,7 @@ export default function SearchForm({ onSearch }) {
                 key={fieldKey}
                 className="flex flex-col gap-2 flex-1 animate-fade-in-up"
               >
-                <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1">
+                <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1 flex items-center">
                   {def.label}
                   {def.unit && (
                     <span className="text-gray-500 lowercase font-normal ml-1">
