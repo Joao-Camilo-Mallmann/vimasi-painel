@@ -12,19 +12,19 @@
 
 // ── Fields de busca disponíveis ─────────────────────────────────
 export const FIELD_DEFS = {
-  interno:      { label: "Ø Interno",    placeholder: "0.00", unit: "mm" },
-  externo:      { label: "Ø Externo",    placeholder: "0.00", unit: "mm" },
-  alturaBase:   { label: "Alt. Base",    placeholder: "0.00", unit: "mm" },
-  altura:       { label: "Altura",       placeholder: "0.00", unit: "mm" },
+  interno: { label: "Ø Interno", placeholder: "0.00", unit: "mm" },
+  externo: { label: "Ø Externo", placeholder: "0.00", unit: "mm" },
+  alturaBase: { label: "Alt. Base", placeholder: "0.00", unit: "mm" },
+  altura: { label: "Altura", placeholder: "0.00", unit: "mm" },
 };
 
 // ── Mapeamento campo de busca → coluna do CSV ───────────────────
 // Quando o nome do campo difere do header CSV, mapear aqui.
 const FIELD_TO_CSV = {
-  interno:     "Interno",
-  externo:     "Externo",
-  alturaBase:  "AlturaBase",
-  altura:      "Altura",
+  interno: "Interno",
+  externo: "Externo",
+  alturaBase: "AlturaBase",
+  altura: "Altura",
 };
 
 export { FIELD_TO_CSV };
@@ -70,6 +70,22 @@ const CATEGORIES = [
     columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
     fields: ["interno", "externo", "altura"],
     badge: { bg: "#FFFFFF", text: "#050505", border: "#FEFEFE" },
+  },
+  {
+    tipo: "GUIA",
+    label: "Anel Guia",
+    csvFile: "data_anel_guia.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#1b4332", text: "#ffffff", border: "#2d6a4f" },
+  },
+  {
+    tipo: "RP",
+    label: "Raspador Metálico",
+    csvFile: "data_raspador_metalico.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#64748b", text: "#ffffff", border: "#475569" },
   },
 ];
 
