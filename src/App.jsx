@@ -199,9 +199,15 @@ function App() {
                               <input
                                 type="checkbox"
                                 checked={!!estoque[peca.Codigo]}
-                                onChange={() => handleToggleEstoque(peca.Codigo)}
+                                onChange={() =>
+                                  handleToggleEstoque(peca.Codigo)
+                                }
                                 className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                                title={estoque[peca.Codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
+                                title={
+                                  estoque[peca.Codigo]
+                                    ? "Remover do estoque"
+                                    : "Adicionar ao estoque"
+                                }
                               />
                               <button
                                 onClick={() => handleCopy(peca.Codigo)}
@@ -271,7 +277,11 @@ function App() {
                             checked={!!estoque[peca.Codigo]}
                             onChange={() => handleToggleEstoque(peca.Codigo)}
                             className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                            title={estoque[peca.Codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
+                            title={
+                              estoque[peca.Codigo]
+                                ? "Remover do estoque"
+                                : "Adicionar ao estoque"
+                            }
                           />
                           <button
                             onClick={() => handleCopy(peca.Codigo)}

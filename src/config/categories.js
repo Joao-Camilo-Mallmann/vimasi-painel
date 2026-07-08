@@ -63,6 +63,14 @@ const CATEGORIES = [
     fields: ["interno", "externo", "altura"],
     badge: { bg: "#fb923c", text: "#050505", border: "#fb923c" },
   },
+  {
+    tipo: "GSK",
+    label: "Gaxeta GSK",
+    csvFile: "data_gaxeta_gsk.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#FFFFFF", text: "#050505", border: "#FEFEFE" },
+  },
 ];
 
 export default CATEGORIES;
