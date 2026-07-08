@@ -194,7 +194,7 @@ function App() {
                             animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
                           }}
                         >
-                          <td className="p-4 pl-6 max-w-[160px] sm:max-w-[200px] lg:max-w-[300px] xl:max-w-[400px]">
+                          <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
                             <div className="flex items-center gap-3">
                               <input
                                 type="checkbox"

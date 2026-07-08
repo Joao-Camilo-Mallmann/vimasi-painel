@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -10,8 +11,6 @@
 }
 
 @layer base {
-  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
-
   body {
     @apply bg-primary-dark text-gray-200 font-arimo;
     color-scheme: dark;
