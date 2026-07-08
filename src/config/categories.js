@@ -72,14 +72,6 @@ const CATEGORIES = [
     badge: { bg: "#FFFFFF", text: "#050505", border: "#FEFEFE" },
   },
   {
-    tipo: "GUIA",
-    label: "Anel Guia",
-    csvFile: "data_anel_guia.csv",
-    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
-    fields: ["interno", "externo", "altura"],
-    badge: { bg: "#1b4332", text: "#ffffff", border: "#2d6a4f" },
-  },
-  {
     tipo: "RP",
     label: "Raspador Metálico",
     csvFile: "data_raspador_metalico.csv",
