@@ -87,6 +87,14 @@ const CATEGORIES = [
     fields: ["interno", "externo", "altura"],
     badge: { bg: "#64748b", text: "#ffffff", border: "#475569" },
   },
+  {
+    tipo: "RPA",
+    label: "Raspador Azul",
+    csvFile: "data_raspador_azul.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#3b82f6", text: "#ffffff", border: "#2563eb" },
+  },
 ];
 
 export default CATEGORIES;
