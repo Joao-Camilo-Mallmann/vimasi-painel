@@ -65,6 +65,21 @@ function App() {
   const [copiedCode, setCopiedCode] = useState(null);
   const [searchTipo, setSearchTipo] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [estoque, setEstoque] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("vimasi_estoque") || "{}");
+    } catch {
+      return {};
+    }
+  });
+
+  const handleToggleEstoque = (codigo) => {
+    setEstoque((prev) => {
+      const updated = { ...prev, [codigo]: !prev[codigo] };
+      localStorage.setItem("vimasi_estoque", JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   const handleCopy = (codigo) => {
     navigator.clipboard.writeText(codigo);
@@ -174,13 +189,20 @@ function App() {
                       {resultados.map((peca, idx) => (
                         <tr
                           key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                          className="hover:bg-white/5 transition-colors group animate-fade-in-up"
+                          className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
                           style={{
                             animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
                           }}
                         >
                           <td className="p-4 pl-6 max-w-[160px] sm:max-w-[200px] lg:max-w-[300px] xl:max-w-[400px]">
                             <div className="flex items-center gap-3">
+                              <input
+                                type="checkbox"
+                                checked={!!estoque[peca.Codigo]}
+                                onChange={() => handleToggleEstoque(peca.Codigo)}
+                                className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                                title={estoque[peca.Codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
+                              />
                               <button
                                 onClick={() => handleCopy(peca.Codigo)}
                                 className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
@@ -237,13 +259,20 @@ function App() {
                   {resultados.map((peca, idx) => (
                     <div
                       key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                      className="glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border border-white/5"
+                      className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
                       style={{
                         animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
                       }}
                     >
                       <div className="flex justify-between items-center border-b border-white/10 pb-3">
                         <div className="flex items-center gap-3 max-w-[70%]">
+                          <input
+                            type="checkbox"
+                            checked={!!estoque[peca.Codigo]}
+                            onChange={() => handleToggleEstoque(peca.Codigo)}
+                            className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                            title={estoque[peca.Codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
+                          />
                           <button
                             onClick={() => handleCopy(peca.Codigo)}
                             className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
