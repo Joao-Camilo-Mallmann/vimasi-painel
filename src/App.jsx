@@ -1,4 +1,4 @@
-import { Check, Copy, Loader2, X } from "lucide-react";
+import { Check, Copy, Loader2, Ruler, X } from "lucide-react";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
 import { FIELD_DEFS, getCategoryByTipo } from "./config/categories";
@@ -25,14 +25,6 @@ function getDisplayColumns(tipo) {
                 externo: "Externo",
                 alturaBase: "AlturaBase",
                 altura: "Altura",
-                diametro: "Diametro",
-                espessura: "Espessura",
-                largura: "Largura",
-                comprimento: "Comprimento",
-                v: "V",
-                dim1: "Dim1",
-                dim2: "Dim2",
-                dim3: "Dim3",
               }),
             ),
           ).find(([, csv]) => csv === csvCol);
@@ -51,8 +43,6 @@ function getDisplayColumns(tipo) {
     { csvCol: "Externo", label: "Ø Externo", unit: "mm" },
     { csvCol: "Altura", label: "Altura", unit: "mm" },
     { csvCol: "AlturaBase", label: "Alt. Base", unit: "mm" },
-    { csvCol: "Diametro", label: "Diâmetro", unit: "mm" },
-    { csvCol: "Espessura", label: "Espessura", unit: "mm" },
   ];
 }
 
@@ -110,22 +100,6 @@ function App() {
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent-gold/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent-red/10 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Floating Image (Como pedir altura) */}
-      <div
-        className="absolute right-4 top-24 hidden xl:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity cursor-pointer z-40"
-        onClick={() => setIsModalOpen(true)}
-        title="Clique para ampliar"
-      >
-        <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-1 pointer-events-none">
-          Como medir
-        </span>
-        <img
-          src="/como-pedir.png"
-          alt="Como pedir altura"
-          className="w-32 h-auto rounded-lg shadow-xl border border-white/10"
-        />
-      </div>
-
       {/* Header */}
       <header className="glass-strong fixed top-0 w-full z-50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -136,6 +110,13 @@ function App() {
               className="h-10 object-contain drop-shadow-md"
             />
           </div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-gold/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-white uppercase font-bold cursor-pointer"
+          >
+            <Ruler size={14} className="text-accent-gold" />
+            Como Medir
+          </button>
         </div>
       </header>
 
