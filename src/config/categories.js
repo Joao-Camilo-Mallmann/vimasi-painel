@@ -47,6 +47,22 @@ const CATEGORIES = [
     fields: ["interno", "externo", "altura", "alturaBase"],
     badge: { bg: "#a3e635", text: "#050505", border: "#a3e635" },
   },
+  {
+    tipo: "OD",
+    label: "Buffer OD",
+    csvFile: "data_buffer_seals_od.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#fb923c", text: "#050505", border: "#fb923c" },
+  },
+  {
+    tipo: "OE",
+    label: "Buffer OE",
+    csvFile: "data_buffer_seals_oe.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#fb923c", text: "#050505", border: "#fb923c" },
+  },
 ];
 
 export default CATEGORIES;
