@@ -49,7 +49,7 @@ const CATEGORIES = [
   },
   {
     tipo: "OD",
-    label: "Buffer OD",
+    label: "Conjunto OD",
     csvFile: "data_buffer_seals_od.csv",
     columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
     fields: ["interno", "externo", "altura"],
@@ -57,7 +57,7 @@ const CATEGORIES = [
   },
   {
     tipo: "OE",
-    label: "Buffer OE",
+    label: "Conjunto OE",
     csvFile: "data_buffer_seals_oe.csv",
     columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
     fields: ["interno", "externo", "altura"],
