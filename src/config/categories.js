@@ -95,6 +95,14 @@ const CATEGORIES = [
     fields: ["interno", "externo", "altura"],
     badge: { bg: "#3b82f6", text: "#ffffff", border: "#2563eb" },
   },
+  {
+    tipo: "GX",
+    label: "Gaxeta",
+    csvFile: "data_gaxeta.csv",
+    columns: ["Codigo", "Tipo", "Interno", "Externo", "Altura"],
+    fields: ["interno", "externo", "altura"],
+    badge: { bg: "#000000", text: "#ffffff", border: "#111111" },
+  },
 ];
 
 export default CATEGORIES;
