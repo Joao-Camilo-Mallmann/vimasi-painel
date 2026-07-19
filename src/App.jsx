@@ -9,33 +9,36 @@ import { getTipoBadgeStyle } from "./utils/tipoStyles";
  * Retorna as colunas de dimensão a renderizar na tabela,
  * baseado no tipo selecionado (ou união para "Todos").
  */
-function getDisplayColumns(tipo) {
-  if (tipo) {
-    const cat = getCategoryByTipo(tipo);
-    if (cat) {
-      // Retornar todas as colunas exceto Codigo e Tipo
-      return cat.columns
-        .filter((c) => c !== "Codigo" && c !== "Tipo")
-        .map((csvCol) => {
-          // Encontrar o FIELD_DEF correspondente
-          const fieldKey = Object.entries(
-            Object.fromEntries(
-              Object.entries({
-                interno: "Interno",
-                externo: "Externo",
-                alturaBase: "AlturaBase",
-                altura: "Altura",
-              }),
-            ),
-          ).find(([, csv]) => csv === csvCol);
-          const def = fieldKey ? FIELD_DEFS[fieldKey[0]] : null;
-          return {
-            csvCol,
-            label: def?.label || csvCol,
-            unit: def?.unit || "mm",
-          };
-        });
+function getDisplayColumns(tipos) {
+  if (tipos && tipos.length > 0) {
+    const allCols = [];
+    for (const t of tipos) {
+      const cat = getCategoryByTipo(t);
+      if (cat) {
+        for (const col of cat.columns) {
+          if (!allCols.includes(col)) {
+            allCols.push(col);
+          }
+        }
+      }
     }
+    // Retornar todas as colunas exceto Codigo e Tipo
+    return allCols
+      .filter((c) => c !== "Codigo" && c !== "Tipo")
+      .map((csvCol) => {
+        const fieldKey = Object.entries({
+          interno: "Interno",
+          externo: "Externo",
+          alturaBase: "AlturaBase",
+          altura: "Altura",
+        }).find(([, csv]) => csv === csvCol);
+        const def = fieldKey ? FIELD_DEFS[fieldKey[0]] : null;
+        return {
+          csvCol,
+          label: def?.label || csvCol,
+          unit: def?.unit || "mm",
+        };
+      });
   }
   // Busca global: mostrar as colunas mais universais
   return [
@@ -63,7 +66,7 @@ function App() {
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
-  const [searchTipo, setSearchTipo] = useState("");
+  const [searchTipos, setSearchTipos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [estoque, setEstoque] = useState(() => {
     try {
@@ -89,7 +92,7 @@ function App() {
   const handleSearch = async (params) => {
     setLoading(true);
     setSearched(false);
-    setSearchTipo(params.tipo || "");
+    setSearchTipos(params.tipos || []);
     try {
       await new Promise((resolve) => setTimeout(resolve, 400));
       const results = await DatabaseService.buscarPecas(params);
@@ -103,9 +106,9 @@ function App() {
   };
 
   // Colunas dinâmicas para a tabela
-  const allColumns = getDisplayColumns(searchTipo);
-  // Filtrar colunas sem dados (só em busca global)
-  const visibleColumns = searchTipo
+  const allColumns = getDisplayColumns(searchTipos);
+  // Filtrar colunas sem dados (se for busca global ou multiplas categorias)
+  const visibleColumns = (searchTipos && searchTipos.length === 1)
     ? allColumns
     : allColumns.filter((col) => columnHasData(resultados, col.csvCol));
 
@@ -316,7 +319,7 @@ function App() {
                             val !== null &&
                             val !== "" &&
                             !isNaN(Number(val));
-                          if (!hasVal && !searchTipo) return null; // Em busca global, ocultar colunas vazias
+                          if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
                           return (
                             <div key={col.csvCol} className="flex flex-col">
                               <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">

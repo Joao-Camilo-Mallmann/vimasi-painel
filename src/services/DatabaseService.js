@@ -78,21 +78,26 @@ class DatabaseService {
    * Busca peças com filtros dinâmicos.
    *
    * @param {object} params
-   * @param {string} params.tipo - Tipo de peça (vazio = todos)
+   * @param {string[]} params.tipos - Lista de tipos de peça (vazio = todos)
+   * @param {string} params.tipo - Tipo de peça (fallback para retrocompatibilidade)
+   * @param {string} params.codigo - Código da peça para busca parcial
    * @param {string} params.tolerancia - Tolerância numérica
    * @param {object} params.[fieldName] - Valores de busca dinâmicos (interno, externo, etc.)
    */
   async buscarPecas(params) {
     await this.loadData();
-    const { tipo, tolerancia, ...searchFields } = params;
+    const { tipos, tipo, tolerancia, codigo, ...searchFields } = params;
     const tol = Number(tolerancia) || 0;
 
     const results = [];
 
     // Determinar quais categorias buscar
-    const categoriesToSearch = tipo
-      ? CATEGORIES.filter((c) => c.tipo === tipo)
-      : CATEGORIES;
+    let categoriesToSearch = CATEGORIES;
+    if (tipos && tipos.length > 0) {
+      categoriesToSearch = CATEGORIES.filter((c) => tipos.includes(c.tipo));
+    } else if (tipo) {
+      categoriesToSearch = CATEGORIES.filter((c) => c.tipo === tipo);
+    }
 
     for (const cat of categoriesToSearch) {
       const data = this.dataByTipo.get(cat.tipo);
@@ -103,30 +108,42 @@ class DatabaseService {
 
         let matches = true;
 
-        // Para cada campo de busca preenchido, verificar se a peça atende
-        for (const [fieldKey, searchValue] of Object.entries(searchFields)) {
-          const numVal = Number(searchValue);
-          if (!numVal) continue; // Campo vazio, ignorar
-
-          // Converter field key para coluna CSV
-          const csvCol = FIELD_TO_CSV[fieldKey];
-          if (!csvCol) continue;
-
-          let pecaVal = Number(peca[csvCol]);
-          
-          // Fallback: se não tiver AlturaBase, usar Altura
-          if (isNaN(pecaVal) && csvCol === "AlturaBase") {
-            pecaVal = Number(peca["Altura"]);
-          }
-
-          if (isNaN(pecaVal)) {
+        // Se houver busca por código, verificar correspondência parcial (case-insensitive)
+        if (codigo) {
+          const searchCode = codigo.trim().toLowerCase();
+          const pecaCode = String(peca.Codigo).toLowerCase();
+          if (!pecaCode.includes(searchCode)) {
             matches = false;
-            break;
           }
+        }
 
-          if (Math.abs(pecaVal - numVal) > tol) {
-            matches = false;
-            break;
+        // Se passou na busca por código, verificar campos de dimensão
+        if (matches) {
+          for (const [fieldKey, searchValue] of Object.entries(searchFields)) {
+            if (searchValue === "" || searchValue === undefined || searchValue === null) continue;
+            const numVal = Number(searchValue);
+            if (isNaN(numVal)) continue;
+
+            // Converter field key para coluna CSV
+            const csvCol = FIELD_TO_CSV[fieldKey];
+            if (!csvCol) continue;
+
+            let pecaVal = Number(peca[csvCol]);
+            
+            // Fallback: se não tiver AlturaBase, usar Altura
+            if (isNaN(pecaVal) && csvCol === "AlturaBase") {
+              pecaVal = Number(peca["Altura"]);
+            }
+
+            if (isNaN(pecaVal)) {
+              matches = false;
+              break;
+            }
+
+            if (Math.abs(pecaVal - numVal) > tol) {
+              matches = false;
+              break;
+            }
           }
         }
 
