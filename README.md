@@ -16,7 +16,7 @@
 
 ---
 
-![Vimasi Painel](docs/print-home.png)
+![Vimasi Painel](public/print-home.png)
 
 ---
 
