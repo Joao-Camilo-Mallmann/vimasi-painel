@@ -28,9 +28,19 @@ comment on column public.estoque.created_at is 'Data/hora UTC em que a peça foi
 alter table public.estoque enable row level security;
 
 -- Política única para todas as operações (SELECT, INSERT, UPDATE, DELETE)
-create policy "Acesso exclusivo para administradores autenticados"
-  on public.estoque
-  for all
-  to authenticated
-  using (true)
-  with check (true);
+do $$
+begin
+  if not exists (
+    select 1 from pg_policies 
+    where schemaname = 'public' 
+      and tablename = 'estoque' 
+      and policyname = 'Acesso exclusivo para administradores autenticados'
+  ) then
+    create policy "Acesso exclusivo para administradores autenticados"
+      on public.estoque
+      for all
+      to authenticated
+      using (true)
+      with check (true);
+  end if;
+end $$;

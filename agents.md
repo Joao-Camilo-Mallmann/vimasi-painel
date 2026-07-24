@@ -89,7 +89,7 @@ openspec/
 - Dados de estoque armazenados em **Supabase** (não em localStorage).
 - `handleToggleEstoque` usa `insert` / `delete` conforme o estado do checkbox.
 - **Row Level Security (RLS)** ativado — requests não autenticados são bloqueados.
-- Migration em `supabase/migrations/001_create_estoque_table.sql`.
+- Migration em `supabase/migrations/001_create_estoque_table.sql` (deve verificar `pg_policies` em bloco `DO $$` para ignorar se já existir).
 
 ### Cliente Supabase
 - Inicializado em `src/utils/supabase.js`.
