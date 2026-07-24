@@ -1,8 +1,10 @@
-import { Check, Copy, Loader2, Ruler, X } from "lucide-react";
-import { useState } from "react";
+import { Check, Copy, Loader2, LogOut, Ruler, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import Login from "./components/Login";
 import SearchForm from "./components/SearchForm";
 import { FIELD_DEFS, getCategoryByTipo } from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
+import { supabase } from "./utils/supabase";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
 
 /**
@@ -62,26 +64,94 @@ function columnHasData(results, csvCol) {
 }
 
 function App() {
+  const [session, setSession] = useState(undefined);
   const [resultados, setResultados] = useState([]);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
   const [searchTipos, setSearchTipos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [estoque, setEstoque] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("vimasi_estoque") || "{}");
-    } catch {
-      return {};
-    }
-  });
+  const [estoque, setEstoque] = useState({});
 
-  const handleToggleEstoque = (codigo) => {
+  // Listen for Supabase auth session changes
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session: s } }) => {
+      setSession(s);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, s) => {
+      setSession(s);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Fetch estoque from Supabase when session becomes active
+  useEffect(() => {
+    if (!session) return;
+
+    const fetchEstoque = async () => {
+      const { data, error } = await supabase.from("estoque").select("codigo");
+      if (error) {
+        console.error("Erro ao carregar estoque:", error);
+        return;
+      }
+      const map = {};
+      for (const row of data) {
+        map[row.codigo] = true;
+      }
+      setEstoque(map);
+    };
+
+    fetchEstoque();
+  }, [session]);
+
+  const handleToggleEstoque = async (codigo) => {
+    const isChecked = !!estoque[codigo];
+
+    // Optimistic update
     setEstoque((prev) => {
-      const updated = { ...prev, [codigo]: !prev[codigo] };
-      localStorage.setItem("vimasi_estoque", JSON.stringify(updated));
+      const updated = { ...prev };
+      if (isChecked) {
+        delete updated[codigo];
+      } else {
+        updated[codigo] = true;
+      }
       return updated;
     });
+
+    if (isChecked) {
+      // Remove from Supabase
+      const { error } = await supabase
+        .from("estoque")
+        .delete()
+        .eq("codigo", codigo);
+      if (error) {
+        console.error("Erro ao remover do estoque:", error);
+        // Revert optimistic update
+        setEstoque((prev) => ({ ...prev, [codigo]: true }));
+      }
+    } else {
+      // Insert into Supabase
+      const { error } = await supabase
+        .from("estoque")
+        .insert({ codigo });
+      if (error) {
+        console.error("Erro ao adicionar ao estoque:", error);
+        // Revert optimistic update
+        setEstoque((prev) => {
+          const reverted = { ...prev };
+          delete reverted[codigo];
+          return reverted;
+        });
+      }
+    }
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
   };
 
   const handleCopy = (codigo) => {
@@ -112,6 +182,20 @@ function App() {
     ? allColumns
     : allColumns.filter((col) => columnHasData(resultados, col.csvCol));
 
+  // Show loading state while checking session
+  if (session === undefined) {
+    return (
+      <div className="min-h-screen bg-primary-dark flex items-center justify-center">
+        <Loader2 size={32} className="animate-spin text-accent-gold" />
+      </div>
+    );
+  }
+
+  // Show login when no active session
+  if (!session) {
+    return <Login />;
+  }
+
   return (
     <div className="min-h-screen relative overflow-hidden bg-primary-dark">
       {/* Background Effects */}
@@ -128,13 +212,23 @@ function App() {
               className="h-10 object-contain drop-shadow-md"
             />
           </div>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-gold/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-white uppercase font-bold cursor-pointer"
-          >
-            <Ruler size={14} className="text-accent-gold" />
-            Como Medir
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-gold/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-white uppercase font-bold cursor-pointer"
+            >
+              <Ruler size={14} className="text-accent-gold" />
+              Como Medir
+            </button>
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-red/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-accent-red uppercase font-bold cursor-pointer"
+              title="Sair"
+            >
+              <LogOut size={14} />
+              Sair
+            </button>
+          </div>
         </div>
       </header>
 

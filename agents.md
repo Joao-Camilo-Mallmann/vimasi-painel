@@ -20,3 +20,6 @@ Esta é a especificação de regras e comportamentos para assistentes de IA que 
    - O projeto utiliza React com Tailwind CSS.
    - Não use classes dinâmicas interpoladas do Tailwind que possam falhar no build (ex: `text-${color}-400`). Em vez disso, utilize estilos inline computados para variações dinâmicas complexas ou mapeamentos pré-definidos.
 - Colunas 'Altura' e 'AlturaTotal' dos CSVs foram unificadas no sistema (adotando 'Altura'), mantendo a 'AlturaBase' separada para peças de conjunto.
+
+4. **Integracao Supabase MCP:**
+   - Servidor MCP do Supabase configurado via [.mcp.json](file:///home/joao/projects/vimasi-painel/.mcp.json) (`https://mcp.supabase.com/mcp`).
