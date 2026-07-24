@@ -1,58 +1,82 @@
-# Vimasi Painel - Busca de Estoque
-An ultra-fast search engine for wiper seals, O-rings, Chevron gaskets, and all 20 categories from the PDF catalog (over 6,000 parts). Allows precise filtering by dimensions like internal/external sizes, height, diameter, and thickness depending on the part type. Designed specifically for **Vimasi**.
+<div align="center">
+  <img src="public/logo.png" alt="Vimasi Logo" width="280" />
 
-A aplicação não necessita de banco de dados externo ou backend, tornando-a incrivelmente veloz, com dados sendo carregados dinamicamente de arquivos CSV estáticos embarcados.
+  <h1>Vimasi Painel</h1>
+  <p><strong>Motor de busca dimensional de vedações industriais</strong></p>
+  <p>Busque em +6.000 peças de 20 categorias com filtragem precisa por dimensões e tolerâncias.</p>
 
-**🔗 Acessar o sistema:** [https://painel.vimasi-vedacoes.com/](https://painel.vimasi-vedacoes.com/)
+  <a href="https://painel.vimasi-vedacoes.com/">🔗 painel.vimasi-vedacoes.com</a>
 
-![Vimasi Busca](docs/print-home.png)
+  <br/><br/>
 
-## 🚀 Funcionalidades Principais
+  ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
+  ![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)
+  ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+</div>
 
-* **Busca Dimensional Inteligente e Global**: Filtre as peças cruzando dimensões. Busque em todas as 20 categorias simultaneamente ou filtre por uma específica.
-* **Tolerância Dinâmica**: Permite estipular margens de erro (ex: ± 0.2mm, ± 0.5mm) para localizar peças equivalentes ou substitutas.
-* **Formulário Dinâmico**: O formulário se adapta à categoria selecionada (ex: O-Ring mostra "Diâmetro" e "Espessura", ZW mostra "Alt. Base", Fita Guia mostra "Comprimento").
-* **Tabela Adaptativa**: As colunas da tabela de resultados ajustam-se para exibir apenas as dimensões pertinentes aos tipos sendo visualizados.
-* **Botão "QUERO" (Cópia Rápida)**: Cada peça encontrada conta com um pequeno botão que copia imediatamente seu código para a área de transferência com confirmação visual (✅ Copiado).
-* **UI/UX Premium (Glassmorphism)**: Interface construída usando conceitos modernos, fundos escuros de alto contraste e micro-animações (stagger animations) para não cansar a vista e manter uma apresentação de alto nível técnico.
-* **Totalmente Responsivo**: Layout que se adequa do celular à telas de monitores ultrawide num formato "Dashboard".
+---
 
-## 🛠️ Tecnologias Utilizadas
+![Vimasi Painel](docs/print-home.png)
 
-* [**React 18**](https://react.dev/) + [**Vite**](https://vitejs.dev/): Motor de renderização de alta velocidade.
-* [**Tailwind CSS (v4)**](https://tailwindcss.com/): Estilização e design system.
-* [**PapaParse**](https://www.papaparse.com/): Parse e conversão do banco de dados `data.csv` local direto no navegador.
-* [**Lucide React**](https://lucide.dev/): Ícones elegantes e consistentes em padrão SVG.
-* [**Bun**](https://bun.sh/): Gerenciador de pacotes e runtime ultra veloz.
+---
 
-## 📦 Como Rodar Localmente
+## ✨ Funcionalidades
 
-Certifique-se de ter o [Bun](https://bun.sh/) instalado na sua máquina.
+| Feature | Descrição |
+|---|---|
+| 🔍 **Busca Dimensional Global** | Cruze dimensões (diâmetro, altura, espessura) em todas as 20 categorias simultaneamente |
+| 📐 **Tolerância Dinâmica** | Margens de ±0.2mm, ±0.5mm etc. para localizar peças equivalentes ou substitutas |
+| 🧩 **Formulário Adaptativo** | Campos se ajustam ao tipo selecionado (O-Ring → Ø + espessura; ZW → Alt. Base, etc.) |
+| 📊 **Tabela Inteligente** | Colunas se reorganizam para mostrar apenas as dimensões pertinentes ao tipo visualizado |
+| 📋 **Cópia Rápida** | Botão "QUERO" copia o código da peça para a área de transferência com feedback visual |
+| 📱 **Totalmente Responsivo** | Do mobile a monitores ultrawide no formato Dashboard |
 
-1. **Instale as dependências:**
-   ```bash
-   bun install
-   ```
-2. **Rode o servidor de desenvolvimento:**
-   ```bash
-   bun run dev
-   ```
-3. Abra a porta do localhost gerada (normalmente `http://localhost:5173/`).
+---
 
-## 📁 Banco de Dados (CSV)
+## 🛠️ Stack
 
-O banco de dados é gerido localmente em múltiplos arquivos CSV na pasta:
-`src/data/data_*.csv`
+| Camada | Tecnologia |
+|---|---|
+| UI Framework | [React 19](https://react.dev/) |
+| Build Tool | [Vite 8](https://vitejs.dev/) |
+| Estilização | [Tailwind CSS v4](https://tailwindcss.com/) |
+| Ícones | [Lucide React](https://lucide.dev/) |
+| Parse CSV | [PapaParse](https://www.papaparse.com/) |
+| Linguagem | JavaScript ESM |
 
-O sistema suporta 20 categorias de peças, cada uma em seu próprio arquivo (ex: `data_oring_de_pu.csv`, `data_conjunto_zw.csv`).
+---
 
-Para adicionar novos produtos, basta abrir o CSV da categoria correspondente no Excel (ou editor de texto) e incluir novas linhas respeitando os cabeçalhos. O arquivo de configuração central encontra-se em `src/config/categories.js`.
+## 🚀 Como Rodar Localmente
 
-## ☁️ Como Fazer o Deploy (GitHub Pages)
+> Requer **Node.js 18+** e **npm**.
 
-O projeto já está 100% configurado para ser hospedado **de graça** via GitHub Pages.
+**1. Clone e instale as dependências:**
+```bash
+git clone <repo-url>
+cd vimasi-painel
+npm install
+```
 
-1. Mande os arquivos para um repositório no seu GitHub.
-2. No seu repositório, vá em **Settings** > **Pages** (no menu da esquerda).
-3. Na seção "Build and deployment", altere o "Source" para **GitHub Actions**.
-4. É só aguardar cerca de 1 minuto. O GitHub Actions executará as instruções que deixamos prontas na pasta `.github/workflows/deploy.yml` e colocará o sistema no ar de forma automática!
+**2. Inicie o servidor de desenvolvimento:**
+```bash
+npm run dev
+# → http://localhost:5173
+```
+
+---
+
+## ☁️ Deploy
+
+O projeto está configurado para deploy automático via **GitHub Actions → GitHub Pages**.
+
+1. Faça push para o repositório no GitHub.
+2. Vá em **Settings → Pages → Source → GitHub Actions**.
+3. Aguarde ~1 minuto. O workflow em `.github/workflows/deploy.yml` faz o deploy automaticamente.
+
+> 🔗 Produção: [https://painel.vimasi-vedacoes.com/](https://painel.vimasi-vedacoes.com/)
+
+---
+
+<div align="center">
+  <sub>Desenvolvido para <strong>Vimasi Vedações Industriais</strong></sub>
+</div>
