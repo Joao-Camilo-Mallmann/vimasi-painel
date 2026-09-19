@@ -1,4 +1,4 @@
-import { Check, Copy, Loader2, LogOut, Ruler, X } from "lucide-react";
+import { Check, Copy, Loader2, LogOut, PackageCheck, Ruler, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import SearchForm from "./components/SearchForm";
@@ -72,6 +72,7 @@ function App() {
   const [searchTipos, setSearchTipos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [estoque, setEstoque] = useState({});
+  const [apenasEstoque, setApenasEstoque] = useState(false);
 
   // Listen for Supabase auth session changes
   useEffect(() => {
@@ -175,12 +176,28 @@ function App() {
     }
   };
 
+  const handleToggleApenasEstoque = () => {
+    setApenasEstoque((prev) => {
+      const next = !prev;
+      if (next && !searched && !loading) {
+        handleSearch({ tipos: searchTipos, tolerancia: "0.5", codigo: "" });
+      }
+      return next;
+    });
+  };
+
+  const displayedResultados = apenasEstoque
+    ? resultados.filter((peca) => !!estoque[peca.Codigo])
+    : resultados;
+
+  const totalEstoqueNaBusca = resultados.filter((peca) => !!estoque[peca.Codigo]).length;
+
   // Colunas dinâmicas para a tabela
   const allColumns = getDisplayColumns(searchTipos);
   // Filtrar colunas sem dados (se for busca global ou multiplas categorias)
   const visibleColumns = (searchTipos && searchTipos.length === 1)
     ? allColumns
-    : allColumns.filter((col) => columnHasData(resultados, col.csvCol));
+    : allColumns.filter((col) => columnHasData(displayedResultados, col.csvCol));
 
   // Show loading state while checking session
   if (session === undefined) {
@@ -235,7 +252,11 @@ function App() {
       {/* Main Content */}
       <main className="pt-32 pb-20 px-4">
         <div className="max-w-9xl mx-auto">
-          <SearchForm onSearch={handleSearch} />
+          <SearchForm
+            onSearch={handleSearch}
+            apenasEstoque={apenasEstoque}
+            onToggleApenasEstoque={handleToggleApenasEstoque}
+          />
 
           {/* Results Area */}
           <div className="mt-16 max-w-7xl mx-auto relative z-10">
@@ -255,51 +276,173 @@ function App() {
             ) : (
               <div>
                 {resultados.length > 0 && (
-                  <div className="mb-6 flex justify-between items-end border-b border-white/10 pb-4">
-                    <h2 className="text-2xl font-anton text-white tracking-widest">
-                      RESULTADOS
-                    </h2>
+                  <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-white/10 pb-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h2 className="text-2xl font-anton text-white tracking-widest">
+                        RESULTADOS
+                      </h2>
+                      <button
+                        type="button"
+                        onClick={() => setApenasEstoque((prev) => !prev)}
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer active:scale-95 ${
+                          apenasEstoque
+                            ? "border-accent-gold bg-accent-gold/20 text-accent-gold shadow-md shadow-accent-gold/10"
+                            : "border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20"
+                        }`}
+                        title={
+                          apenasEstoque
+                            ? "Exibir todas as peças encontradas"
+                            : "Filtrar apenas itens que temos em estoque"
+                        }
+                      >
+                        <PackageCheck
+                          size={16}
+                          className={apenasEstoque ? "text-accent-gold" : "text-gray-400"}
+                        />
+                        <span>Apenas em estoque</span>
+                        <span
+                          className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                            apenasEstoque
+                              ? "bg-accent-gold/30 text-accent-gold"
+                              : "bg-white/10 text-gray-300"
+                          }`}
+                        >
+                          {totalEstoqueNaBusca}
+                        </span>
+                      </button>
+                    </div>
                     <span className="text-accent-gold font-mono text-sm">
-                      {resultados.length} peça(s) encontrada(s)
+                      {apenasEstoque
+                        ? `${displayedResultados.length} de ${resultados.length} peça(s) em estoque`
+                        : `${resultados.length} peça(s) encontrada(s)`}
                     </span>
                   </div>
                 )}
 
-                {/* Desktop Table */}
-                <div className="hidden md:block overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
-                  <table className="w-full text-left border-collapse whitespace-nowrap">
-                    <thead>
-                      <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
-                        <th className="p-4 pl-6">Código</th>
-                        <th className="p-4 text-center">Tipo</th>
-                        {visibleColumns.map((col) => (
-                          <th key={col.csvCol} className="p-4 text-right">
-                            {col.label}{" "}
-                            <span className="text-gray-500 lowercase font-normal ml-1">
-                              {col.unit}
-                            </span>
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5 text-gray-200">
-                      {resultados.map((peca, idx) => (
-                        <tr
+                {displayedResultados.length === 0 && resultados.length > 0 ? (
+                  <div className="glass rounded-xl p-10 text-center flex flex-col items-center gap-3">
+                    <p className="text-gray-300 text-lg">
+                      Nenhuma das {resultados.length} peças encontradas está marcada no estoque.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setApenasEstoque(false)}
+                      className="text-accent-gold hover:underline text-sm font-mono tracking-wider cursor-pointer"
+                    >
+                      Exibir todas as {resultados.length} peças encontradas
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    {/* Desktop Table */}
+                    <div className="hidden md:block overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
+                      <table className="w-full text-left border-collapse whitespace-nowrap">
+                        <thead>
+                          <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
+                            <th className="p-4 pl-6">Código</th>
+                            <th className="p-4 text-center">Tipo</th>
+                            {visibleColumns.map((col) => (
+                              <th key={col.csvCol} className="p-4 text-right">
+                                {col.label}{" "}
+                                <span className="text-gray-500 lowercase font-normal ml-1">
+                                  {col.unit}
+                                </span>
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/5 text-gray-200">
+                          {displayedResultados.map((peca, idx) => (
+                            <tr
+                              key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
+                              className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
+                              style={{
+                                animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
+                              }}
+                            >
+                              <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
+                                <div className="flex items-center gap-3">
+                                  <input
+                                    type="checkbox"
+                                    checked={!!estoque[peca.Codigo]}
+                                    onChange={() =>
+                                      handleToggleEstoque(peca.Codigo)
+                                    }
+                                    className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                                    title={
+                                      estoque[peca.Codigo]
+                                        ? "Remover do estoque"
+                                        : "Adicionar ao estoque"
+                                    }
+                                  />
+                                  <button
+                                    onClick={() => handleCopy(peca.Codigo)}
+                                    className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
+                                    title="Copiar código"
+                                  >
+                                    {copiedCode === peca.Codigo ? (
+                                      <Check size={14} className="text-green-400" />
+                                    ) : (
+                                      <Copy size={14} />
+                                    )}
+                                  </button>
+                                  <span
+                                    className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
+                                    title={peca.Codigo}
+                                  >
+                                    {peca.Codigo}
+                                  </span>
+                                </div>
+                              </td>
+                              <td className="p-4 text-center">
+                                <span
+                                  className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                  style={getTipoBadgeStyle(peca.Tipo)}
+                                >
+                                  {peca.Tipo}
+                                </span>
+                              </td>
+                              {visibleColumns.map((col) => {
+                                const val = peca[col.csvCol];
+                                const hasVal =
+                                  val !== undefined &&
+                                  val !== null &&
+                                  val !== "" &&
+                                  !isNaN(Number(val));
+                                return (
+                                  <td
+                                    key={col.csvCol}
+                                    className={`p-4 text-right font-mono text-lg ${
+                                      hasVal ? "text-gray-200" : "text-gray-600"
+                                    }`}
+                                  >
+                                    {hasVal ? Number(val).toFixed(2) : "—"}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Mobile Cards View */}
+                    <div className="grid grid-cols-1 gap-4 md:hidden">
+                      {displayedResultados.map((peca, idx) => (
+                        <div
                           key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                          className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
+                          className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
                           style={{
                             animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
                           }}
                         >
-                          <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
-                            <div className="flex items-center gap-3">
+                          <div className="flex justify-between items-center border-b border-white/10 pb-3">
+                            <div className="flex items-center gap-3 max-w-[70%]">
                               <input
                                 type="checkbox"
                                 checked={!!estoque[peca.Codigo]}
-                                onChange={() =>
-                                  handleToggleEstoque(peca.Codigo)
-                                }
-                                className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                                onChange={() => handleToggleEstoque(peca.Codigo)}
+                                className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
                                 title={
                                   estoque[peca.Codigo]
                                     ? "Remover do estoque"
@@ -308,132 +451,60 @@ function App() {
                               />
                               <button
                                 onClick={() => handleCopy(peca.Codigo)}
-                                className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
+                                className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
                                 title="Copiar código"
                               >
                                 {copiedCode === peca.Codigo ? (
-                                  <Check size={14} className="text-green-400" />
+                                  <Check size={16} className="text-green-400" />
                                 ) : (
-                                  <Copy size={14} />
+                                  <Copy size={16} />
                                 )}
                               </button>
                               <span
-                                className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
+                                className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
                                 title={peca.Codigo}
                               >
                                 {peca.Codigo}
                               </span>
                             </div>
-                          </td>
-                          <td className="p-4 text-center">
                             <span
                               className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
                               style={getTipoBadgeStyle(peca.Tipo)}
                             >
                               {peca.Tipo}
                             </span>
-                          </td>
-                          {visibleColumns.map((col) => {
-                            const val = peca[col.csvCol];
-                            const hasVal =
-                              val !== undefined &&
-                              val !== null &&
-                              val !== "" &&
-                              !isNaN(Number(val));
-                            return (
-                              <td
-                                key={col.csvCol}
-                                className={`p-4 text-right font-mono text-lg ${
-                                  hasVal ? "text-gray-200" : "text-gray-600"
-                                }`}
-                              >
-                                {hasVal ? Number(val).toFixed(2) : "—"}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile Cards View */}
-                <div className="grid grid-cols-1 gap-4 md:hidden">
-                  {resultados.map((peca, idx) => (
-                    <div
-                      key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                      className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
-                      style={{
-                        animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
-                      }}
-                    >
-                      <div className="flex justify-between items-center border-b border-white/10 pb-3">
-                        <div className="flex items-center gap-3 max-w-[70%]">
-                          <input
-                            type="checkbox"
-                            checked={!!estoque[peca.Codigo]}
-                            onChange={() => handleToggleEstoque(peca.Codigo)}
-                            className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                            title={
-                              estoque[peca.Codigo]
-                                ? "Remover do estoque"
-                                : "Adicionar ao estoque"
-                            }
-                          />
-                          <button
-                            onClick={() => handleCopy(peca.Codigo)}
-                            className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
-                            title="Copiar código"
-                          >
-                            {copiedCode === peca.Codigo ? (
-                              <Check size={16} className="text-green-400" />
-                            ) : (
-                              <Copy size={16} />
-                            )}
-                          </button>
-                          <span
-                            className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
-                            title={peca.Codigo}
-                          >
-                            {peca.Codigo}
-                          </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
+                            {visibleColumns.map((col) => {
+                              const val = peca[col.csvCol];
+                              const hasVal =
+                                val !== undefined &&
+                                val !== null &&
+                                val !== "" &&
+                                !isNaN(Number(val));
+                              if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
+                              return (
+                                <div key={col.csvCol} className="flex flex-col">
+                                  <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                                    {col.label}
+                                  </span>
+                                  <span
+                                    className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
+                                  >
+                                    {hasVal ? Number(val).toFixed(2) : "—"}{" "}
+                                    <span className="text-sm text-gray-500">
+                                      {col.unit}
+                                    </span>
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                        <span
-                          className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                          style={getTipoBadgeStyle(peca.Tipo)}
-                        >
-                          {peca.Tipo}
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
-                        {visibleColumns.map((col) => {
-                          const val = peca[col.csvCol];
-                          const hasVal =
-                            val !== undefined &&
-                            val !== null &&
-                            val !== "" &&
-                            !isNaN(Number(val));
-                          if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
-                          return (
-                            <div key={col.csvCol} className="flex flex-col">
-                              <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
-                                {col.label}
-                              </span>
-                              <span
-                                className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
-                              >
-                                {hasVal ? Number(val).toFixed(2) : "—"}{" "}
-                                <span className="text-sm text-gray-500">
-                                  {col.unit}
-                                </span>
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </>
+                )}
               </div>
             )}
           </div>

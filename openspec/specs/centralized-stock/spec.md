@@ -26,3 +26,14 @@ The system SHALL enforce Row Level Security (RLS) on the stock data.
 #### Scenario: Unauthenticated API access
 - **WHEN** an unauthenticated request attempts to read or write to the stock table
 - **THEN** the Supabase database denies the request
+
+### Requirement: Stock Filtering Interface
+The system SHALL provide a control allowing users to filter items so that only pieces present in the stock are displayed.
+
+#### Scenario: Filtering stock from search results
+- **WHEN** an authenticated user activates the "Apenas em estoque" filter on the results view
+- **THEN** the system immediately filters the displayed items to show only products currently registered in the stock table, displaying the matching count
+
+#### Scenario: Querying stock without dimension filters
+- **WHEN** an authenticated user searches with "Apenas em estoque" active without entering dimension constraints
+- **THEN** the system lists all products in stock (optionally restricted to selected categories)

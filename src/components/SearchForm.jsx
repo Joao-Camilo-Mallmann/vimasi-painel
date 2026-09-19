@@ -1,10 +1,10 @@
-import { Search, ChevronDown, Check, X } from "lucide-react";
+import { Search, ChevronDown, Check, X, PackageCheck } from "lucide-react";
 import { useEffect, useMemo, useState, useRef } from "react";
 import CATEGORIES, { FIELD_DEFS } from "../config/categories";
 import DatabaseService from "../services/DatabaseService";
 import { getTipoBadgeStyle } from "../utils/tipoStyles";
 
-export default function SearchForm({ onSearch }) {
+export default function SearchForm({ onSearch, apenasEstoque, onToggleApenasEstoque }) {
   const [tiposDisponiveis, setTiposDisponiveis] = useState([]);
   const [contagem, setContagem] = useState({});
   const [formData, setFormData] = useState({
@@ -250,6 +250,33 @@ export default function SearchForm({ onSearch }) {
               <option value="5.0" className="bg-zinc-900 text-white">± 5.0</option>
               <option value="10.0" className="bg-zinc-900 text-white">± 10.0</option>
             </select>
+          </div>
+
+          {/* FILTRO ESTOQUE */}
+          <div className="flex flex-col gap-2 w-full lg:w-auto flex-none">
+            <label className="text-xs uppercase tracking-widest text-gray-400 font-bold ml-1 truncate hidden lg:block">
+              Estoque
+            </label>
+            <button
+              type="button"
+              onClick={onToggleApenasEstoque}
+              className={`w-full lg:w-auto h-[52px] px-4 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer active:scale-95 ${
+                apenasEstoque
+                  ? "border-accent-gold bg-accent-gold/20 text-accent-gold shadow-lg shadow-accent-gold/10"
+                  : "border-white/10 bg-black/40 hover:bg-white/5 text-gray-400 hover:text-white"
+              }`}
+              title={
+                apenasEstoque
+                  ? "Filtro ativo: apenas peças em estoque"
+                  : "Filtrar apenas peças que temos em estoque"
+              }
+            >
+              <PackageCheck
+                size={18}
+                className={apenasEstoque ? "text-accent-gold" : "text-gray-400"}
+              />
+              <span className="whitespace-nowrap">Em Estoque</span>
+            </button>
           </div>
 
           {/* BUSCAR */}
