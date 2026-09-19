@@ -248,9 +248,11 @@ function App() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-primary-dark">
-      {/* Background Effects */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent-gold/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent-red/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* Background Effects (Fixado com GPU para scroll suave sem recálculo de blur) */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-accent-gold/10 blur-[90px] rounded-full transform-gpu" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent-red/10 blur-[90px] rounded-full transform-gpu" />
+      </div>
 
       {/* Header */}
       <header className="glass-strong fixed top-0 w-full z-50 px-6 py-4">
@@ -393,13 +395,10 @@ function App() {
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-white/5 text-gray-200">
-                            {paginatedResultados.map((peca, idx) => (
+                            {paginatedResultados.map((peca) => (
                               <tr
-                                key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                                className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
-                                style={{
-                                  animationDelay: `${Math.min(idx * 0.02, 0.4)}s`,
-                                }}
+                                key={`${peca.Tipo}-${peca.Codigo}`}
+                                className={`hover:bg-white/5 transition-colors duration-150 group ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
                               >
                                 <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
                                   <div className="flex items-center gap-3">
@@ -469,13 +468,10 @@ function App() {
                     ) : (
                       /* Mobile Cards View */
                       <div className="grid grid-cols-1 gap-4">
-                        {paginatedResultados.map((peca, idx) => (
+                        {paginatedResultados.map((peca) => (
                           <div
-                            key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                            className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
-                            style={{
-                              animationDelay: `${Math.min(idx * 0.02, 0.4)}s`,
-                            }}
+                            key={`${peca.Tipo}-${peca.Codigo}`}
+                            className={`glass rounded-xl p-5 flex flex-col gap-4 border transition-colors duration-150 ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
                           >
                             <div className="flex justify-between items-center border-b border-white/10 pb-3">
                               <div className="flex items-center gap-3 max-w-[70%]">

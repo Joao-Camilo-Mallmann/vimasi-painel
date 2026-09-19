@@ -205,7 +205,7 @@ export default function SearchForm({ onSearch, apenasEstoque, onToggleApenasEsto
             return (
               <div
                 key={fieldKey}
-                className="flex flex-col gap-2 w-full lg:w-24 xl:w-28 flex-1 min-w-[80px] animate-fade-in-up"
+                className="flex flex-col gap-2 w-full lg:w-24 xl:w-28 flex-1 min-w-[80px]"
               >
                 <label className="text-xs uppercase tracking-widest text-gray-300 font-bold ml-1 flex items-center truncate">
                   {def.label}
