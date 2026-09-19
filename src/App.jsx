@@ -1,11 +1,26 @@
-import { Check, Copy, Loader2, LogOut, PackageCheck, Ruler, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Check, ChevronLeft, ChevronRight, Copy, Loader2, LogOut, PackageCheck, Ruler, X } from "lucide-react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Login from "./components/Login";
 import SearchForm from "./components/SearchForm";
 import { FIELD_DEFS, getCategoryByTipo } from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
 import { supabase } from "./utils/supabase";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
+
+/**
+ * Hook para sincronizar se a viewport é desktop (evita renderizar markup duplicado no DOM).
+ */
+function useIsDesktop(breakpoint = 768) {
+  return useSyncExternalStore(
+    (callback) => {
+      const mediaQuery = window.matchMedia(`(min-width: ${breakpoint}px)`);
+      mediaQuery.addEventListener("change", callback);
+      return () => mediaQuery.removeEventListener("change", callback);
+    },
+    () => window.innerWidth >= breakpoint,
+    () => true
+  );
+}
 
 /**
  * Retorna as colunas de dimensão a renderizar na tabela,
@@ -73,6 +88,9 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [estoque, setEstoque] = useState({});
   const [apenasEstoque, setApenasEstoque] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
+  const isDesktop = useIsDesktop(768);
 
   // Listen for Supabase auth session changes
   useEffect(() => {
@@ -163,6 +181,7 @@ function App() {
   const handleSearch = async (params) => {
     setLoading(true);
     setSearched(false);
+    setCurrentPage(1);
     setSearchTipos(params.tipos || []);
     try {
       await new Promise((resolve) => setTimeout(resolve, 400));
@@ -177,6 +196,7 @@ function App() {
   };
 
   const handleToggleApenasEstoque = () => {
+    setCurrentPage(1);
     setApenasEstoque((prev) => {
       const next = !prev;
       if (next && !searched && !loading) {
@@ -186,18 +206,31 @@ function App() {
     });
   };
 
-  const displayedResultados = apenasEstoque
-    ? resultados.filter((peca) => !!estoque[peca.Codigo])
-    : resultados;
+  const displayedResultados = useMemo(() => {
+    return apenasEstoque
+      ? resultados.filter((peca) => !!estoque[peca.Codigo])
+      : resultados;
+  }, [apenasEstoque, resultados, estoque]);
 
-  const totalEstoqueNaBusca = resultados.filter((peca) => !!estoque[peca.Codigo]).length;
+  const totalEstoqueNaBusca = useMemo(() => {
+    return resultados.filter((peca) => !!estoque[peca.Codigo]).length;
+  }, [resultados, estoque]);
+
+  const totalPages = Math.max(1, Math.ceil(displayedResultados.length / pageSize));
+  const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+  const paginatedResultados = useMemo(() => {
+    const startIndex = (safeCurrentPage - 1) * pageSize;
+    return displayedResultados.slice(startIndex, startIndex + pageSize);
+  }, [displayedResultados, safeCurrentPage, pageSize]);
 
   // Colunas dinâmicas para a tabela
-  const allColumns = getDisplayColumns(searchTipos);
-  // Filtrar colunas sem dados (se for busca global ou multiplas categorias)
-  const visibleColumns = (searchTipos && searchTipos.length === 1)
-    ? allColumns
-    : allColumns.filter((col) => columnHasData(displayedResultados, col.csvCol));
+  const visibleColumns = useMemo(() => {
+    const allColumns = getDisplayColumns(searchTipos);
+    return (searchTipos && searchTipos.length === 1)
+      ? allColumns
+      : allColumns.filter((col) => columnHasData(displayedResultados, col.csvCol));
+  }, [searchTipos, displayedResultados]);
 
   // Show loading state while checking session
   if (session === undefined) {
@@ -283,7 +316,10 @@ function App() {
                       </h2>
                       <button
                         type="button"
-                        onClick={() => setApenasEstoque((prev) => !prev)}
+                        onClick={() => {
+                          setCurrentPage(1);
+                          setApenasEstoque((prev) => !prev);
+                        }}
                         className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer active:scale-95 ${
                           apenasEstoque
                             ? "border-accent-gold bg-accent-gold/20 text-accent-gold shadow-md shadow-accent-gold/10"
@@ -326,7 +362,10 @@ function App() {
                     </p>
                     <button
                       type="button"
-                      onClick={() => setApenasEstoque(false)}
+                      onClick={() => {
+                        setCurrentPage(1);
+                        setApenasEstoque(false);
+                      }}
                       className="text-accent-gold hover:underline text-sm font-mono tracking-wider cursor-pointer"
                     >
                       Exibir todas as {resultados.length} peças encontradas
@@ -334,74 +373,149 @@ function App() {
                   </div>
                 ) : (
                   <>
-                    {/* Desktop Table */}
-                    <div className="hidden md:block overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
-                      <table className="w-full text-left border-collapse whitespace-nowrap">
-                        <thead>
-                          <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
-                            <th className="p-4 pl-6">Código</th>
-                            <th className="p-4 text-center">Tipo</th>
-                            {visibleColumns.map((col) => (
-                              <th key={col.csvCol} className="p-4 text-right">
-                                {col.label}{" "}
-                                <span className="text-gray-500 lowercase font-normal ml-1">
-                                  {col.unit}
-                                </span>
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-white/5 text-gray-200">
-                          {displayedResultados.map((peca, idx) => (
-                            <tr
-                              key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                              className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
-                              style={{
-                                animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
-                              }}
-                            >
-                              <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
-                                <div className="flex items-center gap-3">
-                                  <input
-                                    type="checkbox"
-                                    checked={!!estoque[peca.Codigo]}
-                                    onChange={() =>
-                                      handleToggleEstoque(peca.Codigo)
-                                    }
-                                    className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                                    title={
-                                      estoque[peca.Codigo]
-                                        ? "Remover do estoque"
-                                        : "Adicionar ao estoque"
-                                    }
-                                  />
-                                  <button
-                                    onClick={() => handleCopy(peca.Codigo)}
-                                    className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
-                                    title="Copiar código"
-                                  >
-                                    {copiedCode === peca.Codigo ? (
-                                      <Check size={14} className="text-green-400" />
-                                    ) : (
-                                      <Copy size={14} />
-                                    )}
-                                  </button>
-                                  <span
-                                    className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
-                                    title={peca.Codigo}
-                                  >
-                                    {peca.Codigo}
+                    {/* Renderização condicional por Viewport (evita duplicar markup desktop + mobile no DOM) */}
+                    {isDesktop ? (
+                      /* Desktop Table */
+                      <div className="overflow-x-auto bg-black/20 rounded-xl border border-white/10 shadow-xl backdrop-blur-md">
+                        <table className="w-full text-left border-collapse whitespace-nowrap">
+                          <thead>
+                            <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
+                              <th className="p-4 pl-6">Código</th>
+                              <th className="p-4 text-center">Tipo</th>
+                              {visibleColumns.map((col) => (
+                                <th key={col.csvCol} className="p-4 text-right">
+                                  {col.label}{" "}
+                                  <span className="text-gray-500 lowercase font-normal ml-1">
+                                    {col.unit}
                                   </span>
-                                </div>
-                              </td>
-                              <td className="p-4 text-center">
-                                <span
-                                  className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                                  style={getTipoBadgeStyle(peca.Tipo)}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-white/5 text-gray-200">
+                            {paginatedResultados.map((peca, idx) => (
+                              <tr
+                                key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
+                                className={`hover:bg-white/5 transition-all group animate-fade-in-up ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
+                                style={{
+                                  animationDelay: `${Math.min(idx * 0.02, 0.4)}s`,
+                                }}
+                              >
+                                <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
+                                  <div className="flex items-center gap-3">
+                                    <input
+                                      type="checkbox"
+                                      checked={!!estoque[peca.Codigo]}
+                                      onChange={() =>
+                                        handleToggleEstoque(peca.Codigo)
+                                      }
+                                      className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                                      title={
+                                        estoque[peca.Codigo]
+                                          ? "Remover do estoque"
+                                          : "Adicionar ao estoque"
+                                      }
+                                    />
+                                    <button
+                                      onClick={() => handleCopy(peca.Codigo)}
+                                      className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
+                                      title="Copiar código"
+                                    >
+                                      {copiedCode === peca.Codigo ? (
+                                        <Check size={14} className="text-green-400" />
+                                      ) : (
+                                        <Copy size={14} />
+                                      )}
+                                    </button>
+                                    <span
+                                      className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
+                                      title={peca.Codigo}
+                                    >
+                                      {peca.Codigo}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="p-4 text-center">
+                                  <span
+                                    className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                    style={getTipoBadgeStyle(peca.Tipo)}
+                                  >
+                                    {peca.Tipo}
+                                  </span>
+                                </td>
+                                {visibleColumns.map((col) => {
+                                  const val = peca[col.csvCol];
+                                  const hasVal =
+                                    val !== undefined &&
+                                    val !== null &&
+                                    val !== "" &&
+                                    !isNaN(Number(val));
+                                  return (
+                                    <td
+                                      key={col.csvCol}
+                                      className={`p-4 text-right font-mono text-lg ${
+                                        hasVal ? "text-gray-200" : "text-gray-600"
+                                      }`}
+                                    >
+                                      {hasVal ? Number(val).toFixed(2) : "—"}
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      /* Mobile Cards View */
+                      <div className="grid grid-cols-1 gap-4">
+                        {paginatedResultados.map((peca, idx) => (
+                          <div
+                            key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
+                            className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
+                            style={{
+                              animationDelay: `${Math.min(idx * 0.02, 0.4)}s`,
+                            }}
+                          >
+                            <div className="flex justify-between items-center border-b border-white/10 pb-3">
+                              <div className="flex items-center gap-3 max-w-[70%]">
+                                <input
+                                  type="checkbox"
+                                  checked={!!estoque[peca.Codigo]}
+                                  onChange={() => handleToggleEstoque(peca.Codigo)}
+                                  className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
+                                  title={
+                                    estoque[peca.Codigo]
+                                      ? "Remover do estoque"
+                                      : "Adicionar ao estoque"
+                                  }
+                                />
+                                <button
+                                  onClick={() => handleCopy(peca.Codigo)}
+                                  className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
+                                  title="Copiar código"
                                 >
-                                  {peca.Tipo}
+                                  {copiedCode === peca.Codigo ? (
+                                    <Check size={16} className="text-green-400" />
+                                  ) : (
+                                    <Copy size={16} />
+                                  )}
+                                </button>
+                                <span
+                                  className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
+                                  title={peca.Codigo}
+                                >
+                                  {peca.Codigo}
                                 </span>
-                              </td>
+                              </div>
+                              <span
+                                className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                style={getTipoBadgeStyle(peca.Tipo)}
+                              >
+                                {peca.Tipo}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
                               {visibleColumns.map((col) => {
                                 const val = peca[col.csvCol];
                                 const hasVal =
@@ -409,100 +523,88 @@ function App() {
                                   val !== null &&
                                   val !== "" &&
                                   !isNaN(Number(val));
+                                if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
                                 return (
-                                  <td
-                                    key={col.csvCol}
-                                    className={`p-4 text-right font-mono text-lg ${
-                                      hasVal ? "text-gray-200" : "text-gray-600"
-                                    }`}
-                                  >
-                                    {hasVal ? Number(val).toFixed(2) : "—"}
-                                  </td>
+                                  <div key={col.csvCol} className="flex flex-col">
+                                    <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                                      {col.label}
+                                    </span>
+                                    <span
+                                      className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
+                                    >
+                                      {hasVal ? Number(val).toFixed(2) : "—"}{" "}
+                                      <span className="text-sm text-gray-500">
+                                        {col.unit}
+                                      </span>
+                                    </span>
+                                  </div>
                                 );
                               })}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-
-                    {/* Mobile Cards View */}
-                    <div className="grid grid-cols-1 gap-4 md:hidden">
-                      {displayedResultados.map((peca, idx) => (
-                        <div
-                          key={`${peca.Tipo}-${peca.Codigo}-${idx}`}
-                          className={`glass rounded-xl p-5 flex flex-col gap-4 animate-fade-in-up border transition-all ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
-                          style={{
-                            animationDelay: `${Math.min(idx * 0.03, 1.5)}s`,
-                          }}
-                        >
-                          <div className="flex justify-between items-center border-b border-white/10 pb-3">
-                            <div className="flex items-center gap-3 max-w-[70%]">
-                              <input
-                                type="checkbox"
-                                checked={!!estoque[peca.Codigo]}
-                                onChange={() => handleToggleEstoque(peca.Codigo)}
-                                className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                                title={
-                                  estoque[peca.Codigo]
-                                    ? "Remover do estoque"
-                                    : "Adicionar ao estoque"
-                                }
-                              />
-                              <button
-                                onClick={() => handleCopy(peca.Codigo)}
-                                className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
-                                title="Copiar código"
-                              >
-                                {copiedCode === peca.Codigo ? (
-                                  <Check size={16} className="text-green-400" />
-                                ) : (
-                                  <Copy size={16} />
-                                )}
-                              </button>
-                              <span
-                                className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
-                                title={peca.Codigo}
-                              >
-                                {peca.Codigo}
-                              </span>
                             </div>
-                            <span
-                              className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                              style={getTipoBadgeStyle(peca.Tipo)}
-                            >
-                              {peca.Tipo}
-                            </span>
                           </div>
-                          <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
-                            {visibleColumns.map((col) => {
-                              const val = peca[col.csvCol];
-                              const hasVal =
-                                val !== undefined &&
-                                val !== null &&
-                                val !== "" &&
-                                !isNaN(Number(val));
-                              if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
-                              return (
-                                <div key={col.csvCol} className="flex flex-col">
-                                  <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
-                                    {col.label}
-                                  </span>
-                                  <span
-                                    className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
-                                  >
-                                    {hasVal ? Number(val).toFixed(2) : "—"}{" "}
-                                    <span className="text-sm text-gray-500">
-                                      {col.unit}
-                                    </span>
-                                  </span>
-                                </div>
-                              );
-                            })}
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Paginação */}
+                    {displayedResultados.length > pageSize && (
+                      <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-black/30 border border-white/10 rounded-xl px-5 py-3">
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400 font-mono">
+                          <span>
+                            Mostrando <strong className="text-white font-bold">{(currentPage - 1) * pageSize + 1}</strong> a{" "}
+                            <strong className="text-white font-bold">{Math.min(currentPage * pageSize, displayedResultados.length)}</strong> de{" "}
+                            <strong className="text-accent-gold font-bold">{displayedResultados.length}</strong> peças
+                          </span>
+                          <div className="flex items-center gap-1.5 border-l border-white/10 pl-3">
+                            <span className="text-gray-500">Por pág:</span>
+                            <select
+                              value={pageSize}
+                              onChange={(e) => {
+                                setPageSize(Number(e.target.value));
+                                setCurrentPage(1);
+                              }}
+                              className="bg-black/50 border border-white/20 rounded-md px-2 py-1 text-xs text-gray-300 focus:outline-none focus:border-accent-gold cursor-pointer"
+                            >
+                              <option value={25} className="bg-zinc-900 text-white">25</option>
+                              <option value={50} className="bg-zinc-900 text-white">50</option>
+                              <option value={100} className="bg-zinc-900 text-white">100</option>
+                            </select>
                           </div>
                         </div>
-                      ))}
-                    </div>
+
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            disabled={safeCurrentPage === 1}
+                            onClick={() => {
+                              setCurrentPage((p) => Math.max(1, p - 1));
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-white/10 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:border-accent-gold/40 hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                          >
+                            <ChevronLeft size={16} />
+                            <span className="hidden sm:inline">Anterior</span>
+                          </button>
+
+                          <span className="px-3 py-1 text-xs font-mono font-bold text-accent-gold bg-accent-gold/10 border border-accent-gold/30 rounded-lg">
+                            {safeCurrentPage} / {totalPages}
+                          </span>
+
+                          <button
+                            type="button"
+                            disabled={safeCurrentPage === totalPages}
+                            onClick={() => {
+                              setCurrentPage((p) => Math.min(totalPages, p + 1));
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-white/10 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:border-accent-gold/40 hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                          >
+                            <span className="hidden sm:inline">Próxima</span>
+                            <ChevronRight size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
