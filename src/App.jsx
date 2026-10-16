@@ -1,4 +1,4 @@
-import { Check, ChevronLeft, ChevronRight, Copy, Loader2, LogOut, PackageCheck, Ruler, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Copy, Loader2, LogOut, PackageCheck } from "lucide-react";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Login from "./components/Login";
 import FacetFilter from "./components/FacetFilter";
@@ -107,7 +107,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
   const [selecao, setSelecao] = useState(SELECAO_VAZIA);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [estoque, setEstoque] = useState({});
   const [apenasEstoque, setApenasEstoque] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -312,13 +311,6 @@ function App() {
             />
           </div>
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-gold/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-white uppercase font-bold cursor-pointer"
-            >
-              <Ruler size={14} className="text-accent-gold" />
-              Como Medir
-            </button>
             <button
               onClick={handleSignOut}
               className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 hover:border-accent-red/40 hover:bg-white/5 transition-all text-xs tracking-widest text-gray-300 hover:text-accent-red uppercase font-bold cursor-pointer"
@@ -692,25 +684,6 @@ function App() {
       </main>
 
       {/* Modal Fullscreen Imagem */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
-            onClick={() => setIsModalOpen(false)}
-          >
-            <X size={36} />
-          </button>
-          <img
-            src="/como-pedir.png"
-            alt="Como pedir altura (Tela Cheia)"
-            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
     </div>
   );
 }
