@@ -1,164 +1,178 @@
 import Papa from 'papaparse';
-import CATEGORIES, { FIELD_TO_CSV } from '../config/categories';
+import { LEGACY_MAP, getColunasLegado } from '../config/taxonomia';
+import { secao as calcSecao } from '../utils/units';
 
 // ── Importar TODOS os CSVs via Vite raw ─────────────────────────
-// Cada CSV é importado como string raw para parsing com PapaParse.
-const csvModules = import.meta.glob('../data/data_*.csv', { query: '?raw', import: 'default', eager: true });
+const apcModules = import.meta.glob('../data/catalogo_apc.csv', { query: '?raw', import: 'default', eager: true });
+const legacyModules = import.meta.glob('../data/data_*.csv', { query: '?raw', import: 'default', eager: true });
+
+const CAMPOS_DIM = ['interno', 'externo', 'altura', 'alturaBase', 'secao'];
+
+const parseCsv = (raw) =>
+  Papa.parse(raw, {
+    header: true,
+    dynamicTyping: false,
+    delimiter: ';',
+    comments: '#',
+    skipEmptyLines: true,
+  }).data;
+
+const num = (v) => {
+  if (v === undefined || v === null || v === '') return null;
+  const n = Number(String(v).replace(',', '.'));
+  return Number.isFinite(n) ? n : null;
+};
+
+const chaveCodigo = (c) => String(c ?? '').trim().toUpperCase();
+
+/** Rótulo do modelo no funil: modelos da linha pneumática são distintos dos hidráulicos. */
+const rotuloModelo = (modelo, linha) =>
+  modelo && linha === 'Pneumática' ? `${modelo} · Pneumática` : modelo || '—';
+
+function finalizar(p) {
+  if (p.secao === null || p.secao === undefined) p.secao = calcSecao(p.interno, p.externo);
+  // O-ring: Ø externo e altura derivados da seção
+  if (p.externo === null && p.interno !== null && p.secao !== null && p.tipo === 'O-ring') {
+    p.externo = p.interno + 2 * p.secao;
+    p.altura = p.secao;
+  }
+  p.busca = `${chaveCodigo(p.codigo)} ${chaveCodigo(p.referencia)}`;
+  return p;
+}
+
+function produtoApc(row) {
+  const ficha = row.TempMin !== '' || row.PressaoPsi !== ''
+    ? {
+        pressao: num(row.PressaoPsi),
+        tempMin: num(row.TempMin),
+        tempMax: num(row.TempMax),
+        velocidade: num(row.VelocidadeMs),
+      }
+    : null;
+  const extras = (row.Extras || '')
+    .split('|')
+    .filter(Boolean)
+    .map((kv) => {
+      const [label, value] = kv.split('=');
+      return { label, value };
+    });
+  return finalizar({
+    origem: 'apc',
+    codigo: String(row.Codigo),
+    referencia: row.Referencia || '',
+    tipo: row.Tipo || 'Outros',
+    modelo: rotuloModelo(row.Modelo, row.Linha),
+    material: row.Material || '—',
+    aplicacoes: row.Aplicacao ? row.Aplicacao.split(',') : [],
+    linha: row.Linha || '',
+    interno: num(row.Interno),
+    externo: num(row.Externo),
+    altura: num(row.Altura),
+    alturaBase: null,
+    secao: null,
+    extras,
+    ficha,
+    descricao: row.Descricao || '',
+    unidadeNominal: row.UnidadeNominal || 'mm',
+    fonte: row.Fonte,
+    pagina: row.Pagina || '',
+  });
+}
+
+function produtoLegado(row, arquivo, cfg) {
+  const colunas = getColunasLegado(cfg);
+  const p = {
+    origem: arquivo,
+    codigo: String(row.Codigo).trim(),
+    referencia: '',
+    tipo: cfg.tipo,
+    modelo: cfg.modelo,
+    material: /PM$/i.test(String(row.Codigo).trim()) ? 'Polymax' : cfg.material || '—',
+    aplicacoes: cfg.aplicacoes,
+    linha: '',
+    interno: null,
+    externo: null,
+    altura: null,
+    alturaBase: null,
+    secao: null,
+    extras: [],
+    ficha: null,
+    descricao: '',
+    unidadeNominal: 'mm',
+    fonte: 'legado',
+    pagina: '',
+  };
+  for (const [col, destino] of Object.entries(colunas)) {
+    const v = row[col];
+    if (v === undefined || v === null || v === '') continue;
+    if (CAMPOS_DIM.includes(destino)) p[destino] = num(v);
+    else p.extras.push({ label: destino, value: String(v).replace('.', ',') });
+  }
+  return finalizar(p);
+}
 
 class DatabaseService {
   constructor() {
-    /** @type {Map<string, Array<object>>} tipo → parsed rows */
-    this.dataByTipo = new Map();
+    /** @type {Array<object>} */
+    this.produtos = [];
+    this.sobrepostos = 0;
     this.loaded = false;
   }
 
-  /**
-   * Carrega e parseia todos os CSVs de uma vez.
-   */
-  async loadData() {
+  /** Carrega catálogo APC + CSVs antigas num único array normalizado. */
+  loadData() {
     if (this.loaded) return;
 
-    for (const cat of CATEGORIES) {
-      // Encontrar o módulo raw correspondente
-      const key = Object.keys(csvModules).find((k) => k.endsWith(cat.csvFile));
-      if (!key) {
-        console.warn(`CSV não encontrado para ${cat.tipo}: ${cat.csvFile}`);
+    const apcRaw = Object.values(apcModules)[0];
+    const apc = apcRaw ? parseCsv(apcRaw).filter((r) => r.Codigo).map(produtoApc) : [];
+    const codigosApc = new Set(apc.map((p) => chaveCodigo(p.codigo)));
+
+    const legado = [];
+    for (const [path, raw] of Object.entries(legacyModules)) {
+      const arquivo = path.split('/').pop();
+      const cfg = LEGACY_MAP[arquivo];
+      if (!cfg) {
+        console.warn(`CSV sem mapeamento em taxonomia.js: ${arquivo}`);
         continue;
       }
-      const rawCsv = csvModules[key];
-
-      const result = Papa.parse(rawCsv, {
-        header: true,
-        dynamicTyping: true,
-        delimiter: ';',
-        comments: '#',
-        skipEmptyLines: true,
-      });
-
-      // Filtrar linhas vazias (sem código)
-      const validRows = result.data.filter((row) => row.Codigo);
-      this.dataByTipo.set(cat.tipo, validRows);
+      for (const row of parseCsv(raw)) {
+        if (!row.Codigo) continue;
+        // O APC prevalece quando o mesmo código existe nas duas fontes
+        if (codigosApc.has(chaveCodigo(row.Codigo))) {
+          this.sobrepostos += 1;
+          continue;
+        }
+        legado.push(produtoLegado(row, arquivo, cfg));
+      }
     }
 
-    // Também carregar o CSV legado (data.csv) para manter compatibilidade
-    // caso exista dados lá que não estejam nos novos CSVs
+    this.produtos = [...apc, ...legado].map((p, i) => ({ ...p, id: i }));
     this.loaded = true;
   }
 
   /**
-   * Retorna todos os tipos disponíveis (ordenados).
-   */
-  async getTipos() {
-    await this.loadData();
-    return CATEGORIES
-      .filter((cat) => {
-        const data = this.dataByTipo.get(cat.tipo);
-        return data && data.length > 0;
-      })
-      .map((cat) => cat.tipo)
-      .sort();
-  }
-
-  /**
-   * Retorna a contagem de peças por tipo.
-   */
-  async getContagemPorTipo() {
-    await this.loadData();
-    const contagem = {};
-    for (const cat of CATEGORIES) {
-      const data = this.dataByTipo.get(cat.tipo);
-      if (data && data.length > 0) {
-        contagem[cat.tipo] = data.length;
-      }
-    }
-    return contagem;
-  }
-
-  /**
-   * Busca peças com filtros dinâmicos.
+   * Busca pela medida (e/ou código). Valores de medida já chegam em mm.
    *
    * @param {object} params
-   * @param {string[]} params.tipos - Lista de tipos de peça (vazio = todos)
-   * @param {string} params.tipo - Tipo de peça (fallback para retrocompatibilidade)
-   * @param {string} params.codigo - Código da peça para busca parcial
-   * @param {string} params.tolerancia - Tolerância numérica
-   * @param {object} params.[fieldName] - Valores de busca dinâmicos (interno, externo, etc.)
+   * @param {string} params.codigo - trecho do Código ou da Referência
+   * @param {number|string} params.tolerancia - ± em mm
+   * @param {{interno?: number, externo?: number, altura?: number, secao?: number}} params.medidas
    */
-  async buscarPecas(params) {
-    await this.loadData();
-    const { tipos, tipo, tolerancia, codigo, ...searchFields } = params;
+  buscar({ codigo = '', tolerancia = 0, medidas = {} } = {}) {
+    this.loadData();
     const tol = Number(tolerancia) || 0;
+    const termo = chaveCodigo(codigo);
+    const filtros = Object.entries(medidas).filter(([, v]) => v !== null && v !== undefined && Number.isFinite(v));
 
-    const results = [];
-
-    // Determinar quais categorias buscar
-    let categoriesToSearch = CATEGORIES;
-    if (tipos && tipos.length > 0) {
-      categoriesToSearch = CATEGORIES.filter((c) => tipos.includes(c.tipo));
-    } else if (tipo) {
-      categoriesToSearch = CATEGORIES.filter((c) => c.tipo === tipo);
-    }
-
-    for (const cat of categoriesToSearch) {
-      const data = this.dataByTipo.get(cat.tipo);
-      if (!data) continue;
-
-      for (const peca of data) {
-        if (!peca.Codigo) continue;
-
-        let matches = true;
-
-        // Se houver busca por código, verificar correspondência parcial (case-insensitive)
-        if (codigo) {
-          const searchCode = codigo.trim().toLowerCase();
-          const pecaCode = String(peca.Codigo).toLowerCase();
-          if (!pecaCode.includes(searchCode)) {
-            matches = false;
-          }
-        }
-
-        // Se passou na busca por código, verificar campos de dimensão
-        if (matches) {
-          for (const [fieldKey, searchValue] of Object.entries(searchFields)) {
-            if (searchValue === "" || searchValue === undefined || searchValue === null) continue;
-            const numVal = Number(searchValue);
-            if (isNaN(numVal)) continue;
-
-            // Converter field key para coluna CSV
-            const csvCol = FIELD_TO_CSV[fieldKey];
-            if (!csvCol) continue;
-
-            let pecaVal = Number(peca[csvCol]);
-            
-            // Fallback: se não tiver AlturaBase, usar Altura
-            if (isNaN(pecaVal) && csvCol === "AlturaBase") {
-              pecaVal = Number(peca["Altura"]);
-            }
-
-            if (isNaN(pecaVal)) {
-              matches = false;
-              break;
-            }
-
-            if (Math.abs(pecaVal - numVal) > tol) {
-              matches = false;
-              break;
-            }
-          }
-        }
-
-        if (matches) {
-          // Adicionar info do tipo ao resultado
-          results.push({
-            ...peca,
-            Tipo: cat.tipo,
-            _categoria: cat.label,
-          });
-        }
+    return this.produtos.filter((p) => {
+      if (termo && !p.busca.includes(termo)) return false;
+      for (const [campo, alvo] of filtros) {
+        const v = p[campo];
+        if (v === null || v === undefined) return false;
+        if (Math.abs(v - alvo) > tol + 1e-9) return false;
       }
-    }
-
-    return results;
+      return true;
+    });
   }
 }
 

@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Reusable catalog ingestion script
-The system SHALL provide a developer script `scripts/ingest_catalogos.py` that reads `docs/catalogos/apc-completo/apc-gaxetas-raspadores-ref-02-2019.pdf` and writes `src/data/catalogo_apc.csv`. The CSV SHALL use `;` as delimiter, `.` as decimal separator, and a header row with the columns `Codigo;Referencia;Tipo;Modelo;Material;Aplicacao;Linha;Interno;Externo;Altura;UnidadeNominal;Fonte;Pagina`. Running the script twice on the same input SHALL produce byte-identical output.
+The system SHALL provide a developer script `scripts/ingest_catalogos.py` that reads `docs/catalogos/apc-completo/apc-gaxetas-raspadores-ref-02-2019.pdf` and writes `src/data/catalogo_apc.csv`. The CSV SHALL use `;` as delimiter, `.` as decimal separator, and a header row with the columns `Codigo;Referencia;Tipo;Modelo;Material;Aplicacao;Linha;Interno;Externo;Altura;UnidadeNominal;PressaoPsi;TempMin;TempMax;VelocidadeMs;Extras;Descricao;Tabela2026;Fonte;Pagina`. The ficha técnica (pressure, temperature, speed) SHALL come from the script's manifest, which is transcribed from the catalog index. Pneumatic-line seals SHALL have Tipo `Gaxeta` and Linha `Pneumática`. Running the script twice on the same input SHALL produce byte-identical output.
 
 #### Scenario: Full regeneration
 - **WHEN** a developer runs `python -I scripts/ingest_catalogos.py`
@@ -91,8 +91,27 @@ Each entry SHALL identify the page, Nº AGEL, REFERÊNCIA, field, printed value 
 - **WHEN** a Tipo B row has REFERÊNCIA `18700250312` and no Nº AGEL
 - **THEN** the row has Codigo `18700250312` and Referencia `18700250312`
 
+### Requirement: Cross-check with the 2026 price list
+When `docs/catalogos/precos/agel-lista-precos-2026-01.pdf` is present, the script SHALL extract only the code and description of each item, never the price or IPI. It SHALL then:
+- Match items to catalog rows by Nº AGEL or REFERÊNCIA, ignoring hyphens (`12500250-250` = `12500250250`).
+- Set `Tabela2026=S` on matched rows, and fill `Descricao` when it is empty.
+- Report description dimensions that differ from the catalog by more than 0.05 mm.
+- Add items that exist only in the price list as products with `Fonte=tabela2026`. Their facets come from the description, and their dimensions from the reference code or, failing that, the description.
+
+#### Scenario: Tipo B code with hyphen
+- **WHEN** the price list has `12500250-250` "GAXETA 1/4 X 1/2 X 1/4"
+- **THEN** catalog row `5702` (Referência `12500250250`) gets `Tabela2026=S`
+
+#### Scenario: Item only in the price list
+- **WHEN** the price list has `50000` "GAXETA AG 4 100,00 X 115,00 X 10,00 - GSK" and the catalog has no such code
+- **THEN** a product with Tipo Gaxeta, Modelo AG 4 (BS), Material GSK and dimensions 100 × 115 × 10 is written, with `Fonte=tabela2026`
+
+#### Scenario: No prices in the output
+- **WHEN** the production bundle is built
+- **THEN** no unit price or IPI value from the price list appears in `src/data/` or `dist/`
+
 ### Requirement: Price list stays out of the repository
-The price list `Gaxetas 2026.pdf` SHALL NOT be committed. The path `docs/catalogos/precos/` SHALL be git-ignored.
+The price list SHALL NOT be committed. The paths `docs/catalogos/precos/` and `docs/Gaxetas 2026.pdf` SHALL be git-ignored.
 
 #### Scenario: Price list placed locally
 - **WHEN** a developer copies the price list into `docs/catalogos/precos/`

@@ -1,11 +1,13 @@
 import { Check, ChevronLeft, ChevronRight, Copy, Loader2, LogOut, PackageCheck, Ruler, X } from "lucide-react";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Login from "./components/Login";
+import FacetFilter from "./components/FacetFilter";
 import SearchForm from "./components/SearchForm";
-import { FIELD_DEFS, getCategoryByTipo } from "./config/categories";
 import DatabaseService from "./services/DatabaseService";
+import { aplicarFacetas, contarFacetas, etapasFunil, SELECAO_VAZIA } from "./utils/facets";
 import { supabase } from "./utils/supabase";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
+import { formatInch, formatMm } from "./utils/units";
 
 /**
  * Hook para sincronizar se a viewport é desktop (evita renderizar markup duplicado no DOM).
@@ -22,60 +24,48 @@ function useIsDesktop(breakpoint = 768) {
   );
 }
 
-/**
- * Retorna as colunas de dimensão a renderizar na tabela,
- * baseado no tipo selecionado (ou união para "Todos").
- */
-function getDisplayColumns(tipos) {
-  if (tipos && tipos.length > 0) {
-    const allCols = [];
-    for (const t of tipos) {
-      const cat = getCategoryByTipo(t);
-      if (cat) {
-        for (const col of cat.columns) {
-          if (!allCols.includes(col)) {
-            allCols.push(col);
-          }
-        }
-      }
-    }
-    // Retornar todas as colunas exceto Codigo e Tipo
-    return allCols
-      .filter((c) => c !== "Codigo" && c !== "Tipo")
-      .map((csvCol) => {
-        const fieldKey = Object.entries({
-          interno: "Interno",
-          externo: "Externo",
-          alturaBase: "AlturaBase",
-          altura: "Altura",
-        }).find(([, csv]) => csv === csvCol);
-        const def = fieldKey ? FIELD_DEFS[fieldKey[0]] : null;
-        return {
-          csvCol,
-          label: def?.label || csvCol,
-          unit: def?.unit || "mm",
-        };
-      });
-  }
-  // Busca global: mostrar as colunas mais universais
-  return [
-    { csvCol: "Interno", label: "Ø Interno", unit: "mm" },
-    { csvCol: "Externo", label: "Ø Externo", unit: "mm" },
-    { csvCol: "Altura", label: "Altura", unit: "mm" },
-    { csvCol: "AlturaBase", label: "Alt. Base", unit: "mm" },
-  ];
+// Colunas de medida (sempre em mm + polegada)
+const COLUNAS_MEDIDA = [
+  { campo: "interno", label: "Ø Interno" },
+  { campo: "externo", label: "Ø Externo" },
+  { campo: "altura", label: "Altura" },
+  { campo: "secao", label: "Seção" },
+  { campo: "alturaBase", label: "Alt. Base" },
+];
+
+const temValor = (v) => v !== null && v !== undefined && Number.isFinite(v);
+
+const fmtNum = (v) => (v === null || v === undefined ? "" : v.toLocaleString("pt-BR"));
+
+/** "8000 psi · -45 a +135 °C · 0,5 m/s" */
+function formatFicha(f) {
+  if (!f) return "";
+  const partes = [];
+  if (f.pressao !== null) partes.push(`${f.pressao} psi`);
+  if (f.tempMin !== null && f.tempMax !== null) partes.push(`${f.tempMin} a +${f.tempMax} °C`);
+  if (f.velocidade !== null) partes.push(`${fmtNum(f.velocidade)} m/s`);
+  return partes.join(" · ");
 }
 
-/**
- * Verifica se uma coluna tem dados relevantes nos resultados.
- */
-function columnHasData(results, csvCol) {
-  return results.some((r) => {
-    const val = r[csvCol];
-    return (
-      val !== undefined && val !== null && val !== "" && !isNaN(Number(val))
-    );
-  });
+/** Linha de detalhes: ficha técnica + extras (V, L1, Largura...) */
+function detalhesDaPeca(peca) {
+  const partes = [];
+  const ficha = formatFicha(peca.ficha);
+  if (ficha) partes.push(ficha);
+  for (const e of peca.extras) partes.push(`${e.label} ${e.value}`);
+  return partes.join(" · ");
+}
+
+function CelulaMedida({ valor, grande = true }) {
+  if (!temValor(valor)) {
+    return <span className="text-gray-600">—</span>;
+  }
+  return (
+    <span className="flex flex-col items-end leading-tight">
+      <span className={`font-mono ${grande ? "text-lg" : "text-base"} text-gray-200`}>{formatMm(valor)}</span>
+      <span className="font-mono text-xs text-white/40">{formatInch(valor)}</span>
+    </span>
+  );
 }
 
 function App() {
@@ -84,7 +74,7 @@ function App() {
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copiedCode, setCopiedCode] = useState(null);
-  const [searchTipos, setSearchTipos] = useState([]);
+  const [selecao, setSelecao] = useState(SELECAO_VAZIA);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [estoque, setEstoque] = useState({});
   const [apenasEstoque, setApenasEstoque] = useState(false);
@@ -182,10 +172,10 @@ function App() {
     setLoading(true);
     setSearched(false);
     setCurrentPage(1);
-    setSearchTipos(params.tipos || []);
+    setSelecao(SELECAO_VAZIA);
     try {
       await new Promise((resolve) => setTimeout(resolve, 400));
-      const results = await DatabaseService.buscarPecas(params);
+      const results = DatabaseService.buscar(params);
       setResultados(results);
       setSearched(true);
     } catch (err) {
@@ -200,21 +190,42 @@ function App() {
     setApenasEstoque((prev) => {
       const next = !prev;
       if (next && !searched && !loading) {
-        handleSearch({ tipos: searchTipos, tolerancia: "0.5", codigo: "" });
+        handleSearch({ tolerancia: "0.5", codigo: "", medidas: {} });
       }
       return next;
     });
   };
 
-  const displayedResultados = useMemo(() => {
+  const handleToggleFaceta = (key, valor) => {
+    setCurrentPage(1);
+    setSelecao((prev) => ({
+      ...prev,
+      [key]: prev[key].includes(valor) ? prev[key].filter((v) => v !== valor) : [...prev[key], valor],
+    }));
+  };
+
+  const handleLimparFaceta = (key) => {
+    setCurrentPage(1);
+    setSelecao((prev) => (key ? { ...prev, [key]: [] } : SELECAO_VAZIA));
+  };
+
+  // Estoque é aplicado antes do funil, para as contagens refletirem o filtro
+  const baseFunil = useMemo(() => {
     return apenasEstoque
-      ? resultados.filter((peca) => !!estoque[peca.Codigo])
+      ? resultados.filter((peca) => !!estoque[peca.codigo])
       : resultados;
   }, [apenasEstoque, resultados, estoque]);
 
+  const opcoesFacetas = useMemo(() => contarFacetas(baseFunil, selecao), [baseFunil, selecao]);
+  const etapas = useMemo(() => etapasFunil(baseFunil, selecao), [baseFunil, selecao]);
+
+  const displayedResultados = useMemo(() => aplicarFacetas(baseFunil, selecao), [baseFunil, selecao]);
+
+  const resultadosSemEstoque = useMemo(() => aplicarFacetas(resultados, selecao), [resultados, selecao]);
+
   const totalEstoqueNaBusca = useMemo(() => {
-    return resultados.filter((peca) => !!estoque[peca.Codigo]).length;
-  }, [resultados, estoque]);
+    return resultadosSemEstoque.filter((peca) => !!estoque[peca.codigo]).length;
+  }, [resultadosSemEstoque, estoque]);
 
   const totalPages = Math.max(1, Math.ceil(displayedResultados.length / pageSize));
   const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
@@ -224,13 +235,12 @@ function App() {
     return displayedResultados.slice(startIndex, startIndex + pageSize);
   }, [displayedResultados, safeCurrentPage, pageSize]);
 
-  // Colunas dinâmicas para a tabela
-  const visibleColumns = useMemo(() => {
-    const allColumns = getDisplayColumns(searchTipos);
-    return (searchTipos && searchTipos.length === 1)
-      ? allColumns
-      : allColumns.filter((col) => columnHasData(displayedResultados, col.csvCol));
-  }, [searchTipos, displayedResultados]);
+  // Só exibe colunas de medida que têm dado em alguma peça filtrada
+  const visibleColumns = useMemo(
+    () => COLUNAS_MEDIDA.filter((col) => displayedResultados.some((p) => temValor(p[col.campo]))),
+    [displayedResultados]
+  );
+  const mostrarReferencia = useMemo(() => displayedResultados.some((p) => p.referencia), [displayedResultados]);
 
   // Show loading state while checking session
   if (session === undefined) {
@@ -350,23 +360,36 @@ function App() {
                       </button>
                     </div>
                     <span className="text-accent-gold font-mono text-sm">
-                      {apenasEstoque
-                        ? `${displayedResultados.length} de ${resultados.length} peça(s) em estoque`
-                        : `${resultados.length} peça(s) encontrada(s)`}
+                      {displayedResultados.length === resultados.length
+                        ? `${resultados.length} peça(s) encontrada(s)`
+                        : `${displayedResultados.length} de ${resultados.length} peça(s)`}
                     </span>
                   </div>
+                )}
+
+                {resultados.length > 0 && (
+                  <FacetFilter
+                    opcoes={opcoesFacetas}
+                    selecao={selecao}
+                    etapas={etapas}
+                    onToggle={handleToggleFaceta}
+                    onLimpar={handleLimparFaceta}
+                  />
                 )}
 
                 {displayedResultados.length === 0 && resultados.length > 0 ? (
                   <div className="glass rounded-xl p-10 text-center flex flex-col items-center gap-3">
                     <p className="text-gray-300 text-lg">
-                      Nenhuma das {resultados.length} peças encontradas está marcada no estoque.
+                      {apenasEstoque
+                        ? `Nenhuma das ${resultadosSemEstoque.length} peças filtradas está marcada no estoque.`
+                        : "Nenhuma peça com esses filtros."}
                     </p>
                     <button
                       type="button"
                       onClick={() => {
                         setCurrentPage(1);
                         setApenasEstoque(false);
+                        setSelecao(SELECAO_VAZIA);
                       }}
                       className="text-accent-gold hover:underline text-sm font-mono tracking-wider cursor-pointer"
                     >
@@ -383,83 +406,80 @@ function App() {
                           <thead>
                             <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
                               <th className="p-4 pl-6">Código</th>
-                              <th className="p-4 text-center">Tipo</th>
+                              <th className="p-4">Tipo / Modelo</th>
+                              <th className="p-4">Material</th>
                               {visibleColumns.map((col) => (
-                                <th key={col.csvCol} className="p-4 text-right">
-                                  {col.label}{" "}
-                                  <span className="text-gray-500 lowercase font-normal ml-1">
-                                    {col.unit}
+                                <th key={col.campo} className="p-4 text-right">
+                                  {col.label}
+                                  <span className="block text-gray-500 lowercase font-normal">
+                                    mm · pol
                                   </span>
                                 </th>
                               ))}
+                              <th className="p-4">Detalhes</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-white/5 text-gray-200">
                             {paginatedResultados.map((peca) => (
                               <tr
-                                key={`${peca.Tipo}-${peca.Codigo}`}
-                                className={`hover:bg-white/5 transition-colors duration-150 group ${estoque[peca.Codigo] ? "bg-accent-gold/10" : ""}`}
+                                key={peca.id}
+                                className={`hover:bg-white/5 transition-colors duration-150 group ${estoque[peca.codigo] ? "bg-accent-gold/10" : ""}`}
                               >
                                 <td className="p-4 pl-6 max-w-40 sm:max-w-50 lg:max-w-75 xl:max-w-100">
                                   <div className="flex items-center gap-3">
                                     <input
                                       type="checkbox"
-                                      checked={!!estoque[peca.Codigo]}
-                                      onChange={() =>
-                                        handleToggleEstoque(peca.Codigo)
-                                      }
+                                      checked={!!estoque[peca.codigo]}
+                                      onChange={() => handleToggleEstoque(peca.codigo)}
                                       className="w-4 h-4 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                                      title={
-                                        estoque[peca.Codigo]
-                                          ? "Remover do estoque"
-                                          : "Adicionar ao estoque"
-                                      }
+                                      title={estoque[peca.codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
                                     />
                                     <button
-                                      onClick={() => handleCopy(peca.Codigo)}
+                                      onClick={() => handleCopy(peca.codigo)}
                                       className="flex items-center gap-1.5 bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold px-2 py-1 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
                                       title="Copiar código"
                                     >
-                                      {copiedCode === peca.Codigo ? (
+                                      {copiedCode === peca.codigo ? (
                                         <Check size={14} className="text-green-400" />
                                       ) : (
                                         <Copy size={14} />
                                       )}
                                     </button>
-                                    <span
-                                      className="font-anton text-accent-gold text-xl tracking-wide truncate flex-1 min-w-0"
-                                      title={peca.Codigo}
-                                    >
-                                      {peca.Codigo}
-                                    </span>
+                                    <div className="flex flex-col min-w-0 flex-1">
+                                      <span
+                                        className="font-anton text-accent-gold text-xl tracking-wide truncate"
+                                        title={peca.codigo}
+                                      >
+                                        {peca.codigo}
+                                      </span>
+                                      {mostrarReferencia && peca.referencia && peca.referencia !== peca.codigo && (
+                                        <span className="font-mono text-xs text-white/50 truncate" title="Referência do fornecedor">
+                                          Ref. {peca.referencia}
+                                        </span>
+                                      )}
+                                    </div>
                                   </div>
                                 </td>
-                                <td className="p-4 text-center">
-                                  <span
-                                    className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                                    style={getTipoBadgeStyle(peca.Tipo)}
-                                  >
-                                    {peca.Tipo}
-                                  </span>
-                                </td>
-                                {visibleColumns.map((col) => {
-                                  const val = peca[col.csvCol];
-                                  const hasVal =
-                                    val !== undefined &&
-                                    val !== null &&
-                                    val !== "" &&
-                                    !isNaN(Number(val));
-                                  return (
-                                    <td
-                                      key={col.csvCol}
-                                      className={`p-4 text-right font-mono text-lg ${
-                                        hasVal ? "text-gray-200" : "text-gray-600"
-                                      }`}
+                                <td className="p-4">
+                                  <div className="flex items-center gap-2">
+                                    <span
+                                      className="px-2.5 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                      style={getTipoBadgeStyle(peca.tipo)}
                                     >
-                                      {hasVal ? Number(val).toFixed(2) : "—"}
-                                    </td>
-                                  );
-                                })}
+                                      {peca.tipo}
+                                    </span>
+                                    <span className="text-white/90 font-bold">{peca.modelo}</span>
+                                  </div>
+                                </td>
+                                <td className="p-4 text-white/80">{peca.material}</td>
+                                {visibleColumns.map((col) => (
+                                  <td key={col.campo} className="p-4 text-right">
+                                    <CelulaMedida valor={peca[col.campo]} />
+                                  </td>
+                                ))}
+                                <td className="p-4 text-xs text-white/60 max-w-72 whitespace-normal leading-relaxed">
+                                  {detalhesDaPeca(peca) || <span className="text-gray-600">—</span>}
+                                </td>
                               </tr>
                             ))}
                           </tbody>
@@ -470,73 +490,72 @@ function App() {
                       <div className="grid grid-cols-1 gap-4">
                         {paginatedResultados.map((peca) => (
                           <div
-                            key={`${peca.Tipo}-${peca.Codigo}`}
-                            className={`glass rounded-xl p-5 flex flex-col gap-4 border transition-colors duration-150 ${estoque[peca.Codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
+                            key={peca.id}
+                            className={`glass rounded-xl p-5 flex flex-col gap-4 border transition-colors duration-150 ${estoque[peca.codigo] ? "border-accent-gold/40 bg-accent-gold/5" : "border-white/5"}`}
                           >
-                            <div className="flex justify-between items-center border-b border-white/10 pb-3">
-                              <div className="flex items-center gap-3 max-w-[70%]">
+                            <div className="flex justify-between items-start gap-3 border-b border-white/10 pb-3">
+                              <div className="flex items-center gap-3 min-w-0">
                                 <input
                                   type="checkbox"
-                                  checked={!!estoque[peca.Codigo]}
-                                  onChange={() => handleToggleEstoque(peca.Codigo)}
+                                  checked={!!estoque[peca.codigo]}
+                                  onChange={() => handleToggleEstoque(peca.codigo)}
                                   className="w-5 h-5 rounded border border-white/20 bg-black/40 text-accent-gold accent-accent-gold cursor-pointer focus:ring-0 focus:ring-offset-0 transition-all shrink-0"
-                                  title={
-                                    estoque[peca.Codigo]
-                                      ? "Remover do estoque"
-                                      : "Adicionar ao estoque"
-                                  }
+                                  title={estoque[peca.codigo] ? "Remover do estoque" : "Adicionar ao estoque"}
                                 />
                                 <button
-                                  onClick={() => handleCopy(peca.Codigo)}
+                                  onClick={() => handleCopy(peca.codigo)}
                                   className="flex items-center justify-center bg-accent-gold/10 hover:bg-accent-gold/20 text-accent-gold w-8 h-8 rounded border border-accent-gold/20 transition-all active:scale-95 shrink-0"
                                   title="Copiar código"
                                 >
-                                  {copiedCode === peca.Codigo ? (
+                                  {copiedCode === peca.codigo ? (
                                     <Check size={16} className="text-green-400" />
                                   ) : (
                                     <Copy size={16} />
                                   )}
                                 </button>
-                                <span
-                                  className="font-anton text-accent-gold text-2xl tracking-wide truncate flex-1 min-w-0"
-                                  title={peca.Codigo}
-                                >
-                                  {peca.Codigo}
-                                </span>
+                                <div className="flex flex-col min-w-0">
+                                  <span
+                                    className="font-anton text-accent-gold text-2xl tracking-wide truncate"
+                                    title={peca.codigo}
+                                  >
+                                    {peca.codigo}
+                                  </span>
+                                  {peca.referencia && peca.referencia !== peca.codigo && (
+                                    <span className="font-mono text-xs text-white/50 truncate">Ref. {peca.referencia}</span>
+                                  )}
+                                </div>
                               </div>
-                              <span
-                                className="px-3 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                                style={getTipoBadgeStyle(peca.Tipo)}
-                              >
-                                {peca.Tipo}
-                              </span>
+                              <div className="flex flex-col items-end gap-1 shrink-0">
+                                <span
+                                  className="px-2.5 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                  style={getTipoBadgeStyle(peca.tipo)}
+                                >
+                                  {peca.tipo}
+                                </span>
+                                <span className="text-xs text-white/80 font-bold">{peca.modelo}</span>
+                                <span className="text-xs text-white/50">{peca.material}</span>
+                              </div>
                             </div>
                             <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
-                              {visibleColumns.map((col) => {
-                                const val = peca[col.csvCol];
-                                const hasVal =
-                                  val !== undefined &&
-                                  val !== null &&
-                                  val !== "" &&
-                                  !isNaN(Number(val));
-                                if (!hasVal && (!searchTipos || searchTipos.length !== 1)) return null; // Ocultar colunas vazias se busca global ou multiplas categorias
-                                return (
-                                  <div key={col.csvCol} className="flex flex-col">
+                              {visibleColumns.map((col) =>
+                                temValor(peca[col.campo]) ? (
+                                  <div key={col.campo} className="flex flex-col">
                                     <span className="text-gray-500 text-xs tracking-widest uppercase mb-1">
                                       {col.label}
                                     </span>
-                                    <span
-                                      className={`font-mono text-lg ${hasVal ? "text-white/90" : "text-gray-600"}`}
-                                    >
-                                      {hasVal ? Number(val).toFixed(2) : "—"}{" "}
-                                      <span className="text-sm text-gray-500">
-                                        {col.unit}
-                                      </span>
+                                    <span className="font-mono text-lg text-white/90">
+                                      {formatMm(peca[col.campo])} <span className="text-sm text-gray-500">mm</span>
                                     </span>
+                                    <span className="font-mono text-xs text-white/40">{formatInch(peca[col.campo])}</span>
                                   </div>
-                                );
-                              })}
+                                ) : null
+                              )}
                             </div>
+                            {detalhesDaPeca(peca) && (
+                              <p className="text-xs text-white/60 leading-relaxed border-t border-white/10 pt-3">
+                                {detalhesDaPeca(peca)}
+                              </p>
+                            )}
                           </div>
                         ))}
                       </div>

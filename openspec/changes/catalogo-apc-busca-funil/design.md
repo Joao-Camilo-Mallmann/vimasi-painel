@@ -37,13 +37,19 @@ Then it de-duplicates by `codigo`, and APC wins.
 - *Alternative:* one CSV per model (~45 files). Rejected: facets would have to live in config per file, and the glob/registry grows for no benefit.
 - *Alternative:* Supabase. Rejected for now, same reasons as before: the schema will be shaped by the margin and positions work.
 
-### 2. Taxonomy config is the single source of facet metadata
-`src/config/taxonomia.js` holds:
-- **`TIPOS`**: label, badge style and order.
-- **`MODELOS`**: key, Tipo, label and ficha per material, transcribed from the index pages.
-- **`LEGACY_MAP`**: for each legacy csvFile, its Tipo, Modelo, Material and Aplicações, plus the column→field mapping for odd files (Diametro/Espessura, Largura/Espessura/Comprimento, V).
+### 2. Facet metadata: APC facets in the CSV, legacy facets in config
+- **APC rows** carry every facet and the ficha técnica in their CSV columns. Both come from the script manifest (`APLICACOES` and `FICHA`, transcribed from the index pages). This keeps a single source per dataset, so Python and JS don't each hold a copy of the model table.
+- **`src/config/taxonomia.js`** holds:
+  - `TIPOS`: badge styles and display order
+  - `FACETAS`
+  - `CAMPOS_MEDIDA`
+  - `LEGACY_MAP`: for each legacy csvFile, its Tipo, Modelo, Material and Aplicações, plus the column→field mapping for odd files (Diametro/Espessura, Largura/Espessura/Comprimento, V)
 
-Today's `categories.js` is folded into it. The pneumatic models get distinct keys (e.g. `AG 3 PN`) because their ficha differs from the hydraulic AG 3. In the UI they're labeled "AG 3 · Pneumática".
+`categories.js` was removed.
+
+Pneumatic-line seals are Tipo **Gaxeta** with Linha Pneumática. The loader labels their Modelo "AG 3 · Pneumática" so they stay distinct from the hydraulic AG 3, whose ficha is different.
+
+Items that exist only in the 2026 price list are added with `Fonte=tabela2026`. Their prices are discarded at extraction time.
 
 ### 3. Script: manifest + word-coordinate extraction (Python, pdfplumber)
 The manifest lists PDF page → regions. Each region carries its title anchor text (e.g. "AG - 2"), Tipo, Modelo, Material, Aplicações, Linha, nominal unit and code pattern. The extraction goes like this:
