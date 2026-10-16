@@ -25,3 +25,7 @@ dist-ssr
 *.sw?
 package-lock.json
 bun.lock
+
+# Lista de preços (comercial, não versionar)
+docs/catalogos/precos/
+docs/Gaxetas 2026.pdf

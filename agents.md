@@ -33,6 +33,10 @@ npm run dev       # Inicia dev server (Vite)
 npm run build     # Build de produção
 npm run lint      # ESLint
 npm run preview   # Preview da build
+
+python -I scripts/ingest_catalogos.py   # Regenera src/data/catalogo_apc.csv + docs/catalogos/divergencias.md
+node scripts/check_units.mjs            # Auto-checagem mm ⇄ pol
+node scripts/check_busca.mjs            # Auto-checagem busca + funil de facetas
 ```
 
 ---
@@ -47,20 +51,27 @@ src/
 │
 ├── components/
 │   ├── Login.jsx            # Tela de login (Supabase Auth)
-│   ├── SearchForm.jsx       # Formulário de busca de produtos
-│   └── ResultCard.jsx       # Card de resultado de produto
+│   ├── SearchForm.jsx       # Busca por medida (ØINT/ØEXT/Altura/Seção, mm|pol) + código/referência
+│   └── FacetFilter.jsx      # Funil Tipo → Modelo → Material → Aplicação (com contagens)
 │
 ├── services/
-│   └── DatabaseService.js   # Abstração das queries Supabase
+│   └── DatabaseService.js   # Carrega catálogo APC + CSVs antigas num único Product[] e busca por medida
 │
 ├── config/
-│   └── categories.js        # Paleta de cores por categoria de peça (fonte da verdade)
+│   └── taxonomia.js         # Tipos (badges fixos), facetas, campos de medida, LEGACY_MAP (fonte da verdade)
 │
 ├── utils/
 │   ├── supabase.js          # Inicialização do cliente Supabase
-│   └── tipoStyles.js        # Estilos/classes por tipo de peça
+│   ├── tipoStyles.js        # Estilo inline do badge por Tipo
+│   ├── units.js             # mm ⇄ pol: formatMm, formatInch (1/64"), parseInch, secao
+│   └── facets.js            # Contagem disjuntiva das facetas + etapas do funil
 │
-└── data/                    # Dados estáticos (CSVs importados, etc.)
+└── data/
+    ├── catalogo_apc.csv     # GERADO por scripts/ingest_catalogos.py — não editar à mão
+    └── data_*.csv           # CSVs antigas (facetas via LEGACY_MAP)
+
+scripts/                     # Ferramentas de dev (não entram no bundle)
+docs/catalogos/              # PDFs brutos + divergencias.md (ver README da pasta)
 
 supabase/
 └── migrations/
@@ -132,12 +143,24 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
 
 ---
 
-## 🧩 Componentização & Categorias
+## 🧩 Catálogo, Facetas & Medidas
 
-- **Badges de tipos de peças** (ZW, ZO, ORING, CHEVRON, etc.) têm cores **fixas** definidas em `src/config/categories.js`.
-  - Nunca gere cores dinâmicas para categorias — use o mapeamento pré-definido (20 categorias).
-  - `tipoStyles.js` em `src/utils/` fornece as classes/estilos por tipo.
-- **Colunas CSV**: `Altura` e `AlturaTotal` foram unificadas em `Altura`; `AlturaBase` é separada para peças de conjunto.
+- **Busca = funil**: medida (± tolerância em mm) → Tipo → Modelo → Material → Aplicação.
+  - Na tela, a faceta `modelo` se chama **Perfil** (B, AG 1, STD…). "Linha" = Hidráulica/Pneumática; Polymax é **Material**, não Linha.
+  - Facetas em ordem livre, OU dentro do grupo, E entre grupos.
+  - Peças sem aplicação são genéricas e atendem Haste e Êmbolo.
+- **Fonte dos dados**:
+  - `src/data/catalogo_apc.csv` é gerado do PDF APC + lista AGEL 2026. Para mudar, edite o script e rode de novo.
+  - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
+  - Mesmo `Codigo` nas duas fontes → o APC prevalece.
+- **Medidas**:
+  - Armazenadas em mm. Para exibir, sempre via `src/utils/units.js`. Nunca `toFixed(2)` solto.
+  - Formato: `15,88 mm · 5/8"` (vírgula; fração 1/64" com `≈` quando não é exata).
+  - Seção = (ØEXT − ØINT) / 2.
+- **Referência do fornecedor** (`Referencia`) é a fonte da verdade das medidas em polegada: veja `docs/catalogos/README.md`.
+- **Preços** (lista AGEL 2026) **nunca** entram em `src/` nem no git: o bundle é público. Se um dia precisar de preço no painel, use Supabase com RLS.
+- **Badges de Tipo** têm cores **fixas** em `TIPOS` (`taxonomia.js`), aplicadas via style inline. Nunca gere cores dinâmicas.
+- **Colunas CSV antigas**: `Altura` e `AlturaTotal` foram unificadas em `Altura`; `AlturaBase` é separada para peças de conjunto.
 
 ---
 
@@ -169,7 +192,8 @@ openspec validate --specs                   # Validar specs
 - [ ] Verifiquei as specs em `openspec/specs/` para contexto de requisitos
 - [ ] Confirmei que não há change ativa conflitante (`openspec list`)
 - [ ] Não estou usando classes Tailwind dinâmicas interpoladas
-- [ ] Estou usando cores da paleta de `categories.js` para badges de peças
+- [ ] Estou usando cores de `TIPOS` em `taxonomia.js` para badges de peças
+- [ ] Medidas exibidas/parseadas via `units.js` (mm + pol)
 - [ ] Não expus nenhuma interface de cadastro público
 
 ---
@@ -179,7 +203,10 @@ openspec validate --specs                   # Validar specs
 | Arquivo | Propósito |
 |---|---|
 | [.agents/DESIGN.md](.agents/DESIGN.md) | Design system completo e tokens visuais |
-| [src/config/categories.js](src/config/categories.js) | Mapeamento de cores por categoria |
+| [src/config/taxonomia.js](src/config/taxonomia.js) | Tipos/badges, facetas, mapeamento das CSVs antigas |
+| [src/utils/units.js](src/utils/units.js) | Conversão e formatação mm ⇄ pol |
+| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão do catálogo APC + cruzamento com a lista 2026 |
+| [docs/catalogos/divergencias.md](docs/catalogos/divergencias.md) | Relatório gerado: divergências e cruzamentos |
 | [src/utils/supabase.js](src/utils/supabase.js) | Cliente Supabase inicializado |
 | [src/services/DatabaseService.js](src/services/DatabaseService.js) | Abstração de queries |
 | [.env.example](.env.example) | Variáveis de ambiente necessárias |

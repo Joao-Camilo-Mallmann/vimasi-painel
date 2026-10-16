@@ -1,14 +1,13 @@
 /**
  * Retorna o estilo CSS (cores de fundo, texto e borda) correspondente
- * a cada tipo de peça de vedação.
+ * a cada Tipo de peça (Gaxeta, Raspador, Conjunto...).
  *
- * Agora usa o registry central de categorias para cores fixas
- * de TODAS as 20 categorias.
+ * As cores são fixas em src/config/taxonomia.js (TIPOS).
  *
- * @param {string} tipo - O tipo da peça (ex: ZW, ZO, ORING, CHEVRON).
+ * @param {string} tipo - O Tipo da peça.
  * @returns {object} Objeto com estilos CSS aplicáveis.
  */
-import { getBadgeByTipo } from "../config/categories";
+import { getBadgeByTipo } from "../config/taxonomia";
 
 export const getTipoBadgeStyle = (tipo) => {
   const badge = getBadgeByTipo(tipo);
