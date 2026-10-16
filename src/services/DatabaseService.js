@@ -62,6 +62,7 @@ function produtoApc(row) {
     referencia: row.Referencia || '',
     tipo: row.Tipo || 'Outros',
     modelo: rotuloModelo(row.Modelo, row.Linha),
+    perfil: row.Modelo || '', // exibição: sem o sufixo de linha do funil
     material: row.Material || '—',
     aplicacoes: row.Aplicacao ? row.Aplicacao.split(',') : [],
     linha: row.Linha || '',
@@ -87,6 +88,7 @@ function produtoLegado(row, arquivo, cfg) {
     referencia: '',
     tipo: cfg.tipo,
     modelo: cfg.modelo,
+    perfil: cfg.modelo,
     material: /PM$/i.test(String(row.Codigo).trim()) ? 'Polymax' : cfg.material || '—',
     aplicacoes: cfg.aplicacoes,
     linha: '',

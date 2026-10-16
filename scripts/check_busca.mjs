@@ -83,6 +83,15 @@ assert.equal(tiposPm.reduce((a, o) => a + o.count, 0), soPm.length);
 const sec = db.buscar({ tolerancia: 0, medidas: { secao: 3.175 } });
 assert.ok(sec.length > 0 && sec.every((p) => Math.abs(p.secao - 3.175) < 1e-6));
 
+// Catálogo × desenhos: Tipo B vai na haste e no êmbolo; KDG é raspador; RP-08 é amortecimento
+const apc = (cod) => db.produtos.find((p) => p.codigo === cod && p.origem === "apc");
+assert.deepEqual(apc("5702").aplicacoes, ["haste", "embolo"]);
+assert.equal(apc("6303").tipo, "Raspador");
+assert.deepEqual(apc("9898").aplicacoes, ["amortecimento"]);
+// Genéricas (sem aplicação) não aparecem em Amortecimento
+const amort = aplicarFacetas(db.produtos, { ...SELECAO_VAZIA, aplicacao: ["amortecimento"] });
+assert.ok(amort.length > 0 && amort.every((p) => p.aplicacoes.includes("amortecimento")));
+
 // Legado agora pesquisável (Teflon)
 assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "data_anel_teflon.csv"));
 

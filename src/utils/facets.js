@@ -4,9 +4,9 @@
  * para que dê para trocar de opção dentro do grupo sem limpar antes.
  *
  * Dentro de um grupo: OU. Entre grupos: E.
- * Peças genéricas (sem aplicação) atendem qualquer seleção de Aplicação.
+ * Peças genéricas (sem aplicação) atendem Haste e Êmbolo.
  */
-import { APLICACOES, FACETAS, ORDEM_TIPOS } from "../config/taxonomia";
+import { APLICACOES, APLICACOES_GENERICAS, FACETAS, ORDEM_TIPOS } from "../config/taxonomia";
 
 export const SELECAO_VAZIA = { tipo: [], modelo: [], material: [], aplicacao: [] };
 
@@ -19,8 +19,8 @@ const valores = {
 
 function atende(p, key, selecionados) {
   if (!selecionados || selecionados.length === 0) return true;
-  if (key === "aplicacao" && p.aplicacoes.length === 0) return true; // genérica
-  return valores[key](p).some((v) => selecionados.includes(v));
+  const vals = key === "aplicacao" && p.aplicacoes.length === 0 ? APLICACOES_GENERICAS : valores[key](p);
+  return vals.some((v) => selecionados.includes(v));
 }
 
 export function aplicarFacetas(produtos, selecao, ignorar = null) {
@@ -51,7 +51,7 @@ export function contarFacetas(produtos, selecao) {
     for (const p of base) {
       if (key === "aplicacao") {
         // genéricas contam para todas as aplicações
-        const alvo = p.aplicacoes.length ? p.aplicacoes : Object.keys(APLICACOES);
+        const alvo = p.aplicacoes.length ? p.aplicacoes : APLICACOES_GENERICAS;
         for (const v of alvo) cont.set(v, (cont.get(v) || 0) + 1);
       } else {
         for (const v of valores[key](p)) cont.set(v, (cont.get(v) || 0) + 1);

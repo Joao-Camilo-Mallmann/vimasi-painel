@@ -50,7 +50,7 @@
 
 - [x] 5.1 Change `DatabaseService` to load `catalogo_apc.csv` plus all legacy CSVs through `LEGACY_MAP`, normalize them into `Product[]` (computing `secao`), and de-duplicate by `codigo` so APC wins.
 - [x] 5.2 Make `buscar` filter by measurements (ØINT, ØEXT, Altura, Seção) ± tolerance, and by code against Codigo or Referencia.
-- [x] 5.3 Add `contarFacetas(base, selecao)`: disjunctive counts per group. Generic Aplicação matches any selection.
+- [x] 5.3 Add `contarFacetas(base, selecao)`: disjunctive counts per group. Generic Aplicação matches Haste and Êmbolo.
 
 ## 6. UI
 

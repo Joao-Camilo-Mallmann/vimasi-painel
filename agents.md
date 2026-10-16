@@ -146,6 +146,7 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
 ## 🧩 Catálogo, Facetas & Medidas
 
 - **Busca = funil**: medida (± tolerância em mm) → Tipo → Modelo → Material → Aplicação.
+  - Na tela, a faceta `modelo` se chama **Perfil** (B, AG 1, STD…). "Linha" = Hidráulica/Pneumática; Polymax é **Material**, não Linha.
   - Facetas em ordem livre, OU dentro do grupo, E entre grupos.
   - Peças sem aplicação são genéricas e atendem Haste e Êmbolo.
 - **Fonte dos dados**:

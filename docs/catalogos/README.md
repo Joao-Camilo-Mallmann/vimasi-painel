@@ -10,6 +10,8 @@
 ## Como regenerar os dados
 
 ```bash
+pip install pdfplumber                     # dependência do script (use um venv)
+cp "docs/Gaxetas 2026.pdf" docs/catalogos/precos/agel-lista-precos-2026-01.pdf   # sem ela, perde o cruzamento com a lista
 python -I scripts/ingest_catalogos.py      # gera src/data/catalogo_apc.csv + docs/catalogos/divergencias.md
 node scripts/check_units.mjs               # auto-checagem mm ⇄ pol
 node scripts/check_busca.mjs               # auto-checagem busca + funil

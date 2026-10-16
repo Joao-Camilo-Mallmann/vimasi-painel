@@ -9,8 +9,8 @@ Total: **2445** itens.
 | Tipo | Modelo | Material | Linha | Itens |
 |---|---|---|---|---|
 | Ferramenta |  | — |  | 3 |
-| Gaxeta |  | Polymax | Hidráulica | 11 |
-| Gaxeta |  | — | Hidráulica | 13 |
+| Gaxeta |  | Polymax | Hidráulica | 10 |
+| Gaxeta |  | — | Hidráulica | 12 |
 | Gaxeta | AG 1 | GSK | Hidráulica | 2 |
 | Gaxeta | AG 1 | PU | Hidráulica | 33 |
 | Gaxeta | AG 1 | Polymax | Hidráulica | 58 |
@@ -43,7 +43,7 @@ Total: **2445** itens.
 | Gaxeta | AG 3 | — | Pneumática | 14 |
 | Gaxeta | AG 4 (BS) | GSK | Hidráulica | 78 |
 | Gaxeta | AG 4 (BS) | PU | Hidráulica | 105 |
-| Gaxeta | AG 4 (BS) | Polymax | Hidráulica | 154 |
+| Gaxeta | AG 4 (BS) | Polymax | Hidráulica | 155 |
 | Gaxeta | AG 5 | PU | Hidráulica | 10 |
 | Gaxeta | AG 5 | Polymax | Hidráulica | 5 |
 | Gaxeta | AG 50 | GSK | Hidráulica | 1 |
@@ -58,22 +58,20 @@ Total: **2445** itens.
 | Gaxeta | AG 90 | GSK | Hidráulica | 1 |
 | Gaxeta | B | PU | Hidráulica | 564 |
 | Gaxeta | B | Polymax | Hidráulica | 160 |
-| Gaxeta | KDG | — | Pneumática | 4 |
 | Gaxeta | RP-08 | — | Pneumática | 15 |
-| Gaxeta | STD | PU | Hidráulica | 278 |
+| Gaxeta | STD | PU | Hidráulica | 279 |
 | Gaxeta | STD | Polymax | Hidráulica | 32 |
-| Gaxeta | Z | — | Pneumática | 10 |
-| Raspador |  | — | Hidráulica | 3 |
-| Raspador | 6D/66D | — | Hidráulica | 63 |
+| Gaxeta | Z | Borracha | Pneumática | 10 |
+| Raspador | 6D/66D | PU | Hidráulica | 65 |
+| Raspador | 900D | PU | Hidráulica | 24 |
 | Raspador | 900D | Polymax | Hidráulica | 1 |
-| Raspador | 900D | — | Hidráulica | 24 |
 | Raspador | AGK1 | PU | Hidráulica | 9 |
 | Raspador | AGK2 | PU | Hidráulica | 17 |
+| Raspador | D | PU | Hidráulica | 160 |
 | Raspador | D | Polymax | Hidráulica | 19 |
-| Raspador | D | — | Hidráulica | 159 |
+| Raspador | DG | PU | Hidráulica | 16 |
 | Raspador | DG | Polymax | Hidráulica | 3 |
-| Raspador | DG | — | Hidráulica | 16 |
-| Raspador | E | — | Hidráulica | 16 |
+| Raspador | E | PU | Hidráulica | 16 |
 | Raspador | GA | MVQ | Hidráulica | 1 |
 | Raspador | GA | NBR | Hidráulica | 65 |
 | Raspador | GA | PU | Hidráulica | 108 |
@@ -82,9 +80,10 @@ Total: **2445** itens.
 | Raspador | GAE | PU | Hidráulica | 25 |
 | Raspador | GAG | NBR | Hidráulica | 4 |
 | Raspador | GAG | PU | Hidráulica | 17 |
-| Raspador | K | — | Hidráulica | 6 |
+| Raspador | K | PU | Hidráulica | 6 |
+| Raspador | KDG | — | Pneumática | 4 |
+| Raspador | RP-25 | PU | Hidráulica | 28 |
 | Raspador | RP-25 | Polymax | Hidráulica | 14 |
-| Raspador | RP-25 | — | Hidráulica | 28 |
 | Raspador | RP-25 | — | Pneumática | 7 |
 | Raspador | RP-28 | Polymax | Hidráulica | 18 |
 | Raspador | RP-32 | Polymax | Hidráulica | 2 |
@@ -229,10 +228,6 @@ Nenhuma.
 | `5551PM` | data_gaxeta.csv | Gaxeta AG 5 Polymax |
 | `5887PM` | data_gaxeta.csv | Gaxeta AG 5 Polymax |
 | `7017PM` | data_gaxeta.csv | Gaxeta AG 5 Polymax |
-| `6303` | data_raspador_azul.csv | Gaxeta KDG  |
-| `6302` | data_raspador_azul.csv | Gaxeta KDG  |
-| `6301` | data_raspador_azul.csv | Gaxeta KDG  |
-| `6300` | data_raspador_azul.csv | Gaxeta KDG  |
 | `4479` | data_raspador_metalico.csv | Raspador AGK1 PU |
 | `4862` | data_raspador_metalico.csv | Raspador AGK1 PU |
 | `4862` | data_raspador_metalico.csv | Raspador AGK1 PU |
@@ -519,30 +514,30 @@ Nenhuma.
 | `3491` | data_raspador_metalico.csv | Raspador GAG PU |
 | `3368` | data_raspador_metalico.csv | Raspador GAG PU |
 | `4839` | data_raspador_metalico.csv | Raspador GAG PU |
-| `6621` | data_raspador_azul.csv | Raspador RP-25  |
-| `6855` | data_raspador_azul.csv | Raspador RP-25  |
-| `5639` | data_raspador_azul.csv | Raspador RP-25  |
-| `AG7223` | data_raspador_azul.csv | Raspador RP-25  |
-| `5730` | data_raspador_azul.csv | Raspador RP-25  |
-| `9560` | data_raspador_azul.csv | Raspador RP-25  |
-| `9869` | data_raspador_azul.csv | Raspador RP-25  |
-| `6979` | data_raspador_azul.csv | Raspador RP-25  |
-| `AG7569` | data_raspador_azul.csv | Raspador RP-25  |
-| `6183` | data_raspador_azul.csv | Raspador RP-25  |
-| `5638` | data_raspador_azul.csv | Raspador RP-25  |
-| `6233` | data_raspador_azul.csv | Raspador RP-25  |
-| `6673` | data_raspador_azul.csv | Raspador RP-25  |
-| `AG7360` | data_raspador_azul.csv | Raspador RP-25  |
-| `3092` | data_raspador_azul.csv | Raspador RP-25  |
-| `6229` | data_raspador_azul.csv | Raspador RP-25  |
-| `9127` | data_raspador_azul.csv | Raspador RP-25  |
-| `1976` | data_raspador_azul.csv | Raspador RP-25  |
-| `6224` | data_raspador_azul.csv | Raspador RP-25  |
-| `AG7048` | data_raspador_azul.csv | Raspador RP-25  |
-| `5276` | data_raspador_azul.csv | Raspador RP-25  |
-| `6469` | data_raspador_azul.csv | Raspador RP-25  |
-| `1977` | data_raspador_azul.csv | Raspador RP-25  |
-| `AG7439` | data_raspador_azul.csv | Raspador RP-25  |
+| `6621` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6855` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `5639` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `AG7223` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `5730` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `9560` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `9869` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6979` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `AG7569` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6183` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `5638` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6233` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6673` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `AG7360` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `3092` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6229` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `9127` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `1976` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6224` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `AG7048` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `5276` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `6469` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `1977` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `AG7439` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `7603PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
 | `7619PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
 | `7604PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
@@ -554,6 +549,10 @@ Nenhuma.
 | `7617PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
 | `7958PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
 | `8509PM` | data_raspador_azul.csv | Raspador RP-25 Polymax |
+| `6303` | data_raspador_azul.csv | Raspador KDG  |
+| `6302` | data_raspador_azul.csv | Raspador KDG  |
+| `6301` | data_raspador_azul.csv | Raspador KDG  |
+| `6300` | data_raspador_azul.csv | Raspador KDG  |
 | `6279` | data_raspador_azul.csv | Raspador RP-25  |
 | `6278` | data_raspador_azul.csv | Raspador RP-25  |
 | `6277` | data_raspador_azul.csv | Raspador RP-25  |
@@ -840,8 +839,36 @@ Nenhum.
 
 Nenhuma.
 
+## Perfil a confirmar
+
+Só na lista 2026, sem perfil na descrição nem código exclusivo. Aparecem na busca por medida, não no filtro de Perfil.
+
+- `619701102-314` · GAXETA 28,00 X 38,00 X 8,00
+- `623601102` · GAXETA 28,00 X 40,00 X 6,00
+- `619701181-315` · GAXETA 30,00 X 40,00 X 8,00
+- `623601181-393` · GAXETA 30,00 X 42,00 X 10,00
+- `621701377-393` · GAXETA 35,00 X 46,00 X 10,00
+- `627601417-314` · GAXETA 36,00 X 50,00 X 8,00
+- `621601771-275` · GAXETA 45,00 X 56,00 X 7,00
+- `629502185-374` · GAXETA 55,50 X 70,50 X 9,50
+- `619702362-472` · GAXETA 60,00 X 70,00 X 12,00
+- `619703150-314` · GAXETA 80,00 X 90,00 X 8,00
+- `643304330-511` · GAXETA 110,00 X 132,00 X 13,00
+- `659008661-708` · GAXETA 220,00 X 250,00 X 18,00
+- `623601575-330PM` · GAXETA 40,00 X 52,00 X 8,40 POLYMAX
+- `619701772-394PM` · GAXETA 45,00 X 55,00 X 10,00 POLYMAX
+- `619701968-236PM` · GAXETA 50,00 X 60,00 X 6,00 POLYMAX
+- `619702165-374PM` · GAXETA 55,00 X 65,00 X 10,00 POLYMAX
+- `619702362-276PM` · GAXETA 60,00 X 70,00 X 7,00 POLYMAX
+- `7341PM` · GAXETA 62,00 X 75,00 X 14,00 POLYMAX
+- `629502480-393PM` · GAXETA 63,00 X 78,00 X 10,00 POLYMAX
+- `7235PM` · GAXETA 68,00 X 80,00 X 14,00 POLYMAX
+- `619703543-228PM` · GAXETA 90,00 X 100,00 X 5,80 POLYMAX
+- `639406300-591PM` · GAXETA 160,00 X 180,00 X 15,00 POLYMAX
+
 ## Pendências conhecidas (dados antigos)
 
 - `data_conjunto_bp.csv`: colunas Externo/Interno parecem trocadas em parte das linhas.
-- Raspadores sem coluna MATERIAL no catálogo ficam com Material em branco.
+- Raspadores D, 6D/66D, 900D, K, RP-25, DG e E não têm coluna MATERIAL: PU por inferência (faixa -30/+100 °C).
+- Linha pneumática não informa material (exceto Z = borracha); fica em branco.
 - Tabela de conversão do Drive: `11 1/2` = 292,10 (não 292,70); `18 1/4` = 463,55; `22` = 558,80; falta `27/32` (21,43).

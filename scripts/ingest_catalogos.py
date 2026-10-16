@@ -39,13 +39,17 @@ TOL_DIVERGENCIA = 0.05  # mm
 PU_HID = (-30, 100)
 PM_TEMP = (-45, 135)
 
-HASTE, EMBOLO = "haste", "embolo"
+HASTE, EMBOLO, AMORTECIMENTO = "haste", "embolo", "amortecimento"
 
 # (linha, modelo) -> aplicações
+# O índice agrupa por haste/êmbolo, mas os desenhos de montagem mandam:
+# B, AG 2 e AG 7 aparecem instalados na haste E no êmbolo (págs. 15, 23, 27, 37-44).
 APLICACOES = {
+    # gaxetas hidráulicas — haste e êmbolo (dois desenhos na página)
+    **{("gaxeta", m): [HASTE, EMBOLO] for m in ["B", "AG 2", "AG 7"]},
     # gaxetas hidráulicas — haste
     **{("gaxeta", m): [HASTE] for m in [
-        "B", "AG 1", "AG 2", "AG 4 (BS)", "AG 5", "AG 7", "AG 11", "AG 12", "AG 13",
+        "AG 1", "AG 4 (BS)", "AG 5", "AG 11", "AG 12", "AG 13",
         "AG 14", "AG 16", "AG 17", "AG 19", "AG 20", "AG 21", "AG 22", "AG 23"]},
     # gaxetas hidráulicas — êmbolo
     **{("gaxeta", m): [EMBOLO] for m in [
@@ -54,16 +58,24 @@ APLICACOES = {
     **{("raspador", m): [HASTE] for m in [
         "D", "6D/66D", "900D", "K", "RP-25", "DG", "E", "GA", "GAE", "GAG",
         "AGK1", "GA1", "AGK2", "RP-28"]},
-    # linha pneumática ("Aplicação Pneumática de Haste / Êmbolo")
-    ("pneumatica", "AG 3"): [HASTE, EMBOLO],
-    ("pneumatica", "AG 6"): [HASTE, EMBOLO],
+    # linha pneumática — aplicação pelo desenho de cada página (63-66)
+    ("pneumatica", "AG 3"): [EMBOLO],         # série Mini ISO
+    ("pneumatica", "AG 6"): [EMBOLO],         # série CWU
     ("pneumatica", "AG 7"): [HASTE, EMBOLO],
-    ("pneumatica", "AG 24"): [HASTE, EMBOLO],
-    ("pneumatica", "AG 25"): [EMBOLO],      # guarnição composta de êmbolo
-    ("pneumatica", "KDG"): [HASTE, EMBOLO],
-    ("pneumatica", "RP-08"): [],            # guarnição de amortecimento
-    ("pneumatica", "RP-25"): [HASTE],       # raspador série compacta
-    ("pneumatica", "Z"): [EMBOLO],          # guarnição de êmbolo
+    ("pneumatica", "AG 24"): [EMBOLO],
+    ("pneumatica", "AG 25"): [HASTE],         # guarnição composta (vedação + raspador na haste)
+    ("pneumatica", "KDG"): [HASTE],           # raspador série Mini ISO (EL-xxxx)
+    ("pneumatica", "RP-08"): [AMORTECIMENTO], # guarnição de amortecimento
+    ("pneumatica", "RP-25"): [HASTE],         # raspador série compacta
+    ("pneumatica", "Z"): [EMBOLO],            # guarnição de borracha de êmbolo
+}
+
+# Material quando a tabela não tem coluna MATERIAL nem é Polymax.
+# Raspadores de lábio (D…E) têm a mesma faixa -30/+100 °C das gaxetas PU.
+MATERIAL_PADRAO = {
+    **{("gaxeta", m): "PU" for (li, m) in APLICACOES if li == "gaxeta"},
+    **{("raspador", m): "PU" for m in ["D", "6D/66D", "900D", "K", "RP-25", "DG", "E"]},
+    ("pneumatica", "Z"): "Borracha",  # pág. 67: "GUARNIÇÃO DE BORRACHA - TIPO Z"
 }
 
 # (linha, modelo, polymax) -> ficha
@@ -137,8 +149,8 @@ def linha_da_pagina(pagina):
 
 
 def tipo_do_modelo(linha, modelo):
-    # Na linha pneumática há raspador (RP-25) e guarnições
-    if linha == "pneumatica" and modelo == "RP-25":
+    # Na linha pneumática há raspadores (RP-25, KDG) e guarnições
+    if linha == "pneumatica" and modelo in ("RP-25", "KDG"):
         return "Raspador"
     return TIPO_POR_LINHA[linha]
 
@@ -489,10 +501,8 @@ def montar(rows, precos, problemas):
                 material = "Polymax" if r["material_linha"] == "POLYMAX" else r["material_linha"]
             elif r["polymax"]:
                 material = "Polymax"
-            elif linha == "gaxeta":
-                material = "PU"
             else:
-                material = ""
+                material = MATERIAL_PADRAO.get((linha, modelo), "")
             linha_label = LINHA_LABEL[linha]
 
         decod = decode_ref(r["ref"], CODE_PATTERN.get(modelo)) if linha in ("gaxeta", "raspador") else None
@@ -574,9 +584,6 @@ def montar(rows, precos, problemas):
     return saida
 
 
-MODELOS_GAXETA = {m for (li, m) in APLICACOES if li == "gaxeta"}
-
-
 def item_da_lista(it):
     """Produto que existe só na lista 2026: facetas pela descrição, medidas pelo código ou descrição."""
     desc, cod = it["descricao"].upper(), it["codigo"].upper()
@@ -596,7 +603,17 @@ def item_da_lista(it):
         modelo = m.group(1)
     elif m := re.search(r"\b(RP-\d+)", desc):
         modelo = m.group(1)
-    codigo_limpo = re.sub(r"(BS)?(PM)?$", "", cod.replace("-", ""))
+    elif re.search(r"\bSTD\b", desc):
+        modelo = "STD"
+    # Perfil pelo código só quando o padrão é exclusivo no catálogo.
+    # "6" + SSS IIIII HHH sem sufixo é B ou STD: fica em branco (relatório).
+    elif re.search(r"BS(PMX?)?$", cod):
+        modelo = "AG 4 (BS)"
+    elif linha == "raspador" and re.match(r"66?D-\d{4}", cod):
+        modelo = "6D/66D"
+    elif linha == "raspador" and re.match(r"D-\d{4}", cod):
+        modelo = "D"
+    codigo_limpo = re.sub(r"(BS)?(PMX?)?$", "", cod.replace("-", ""))
     pattern = None
     if re.fullmatch(r"\d{8}", codigo_limpo):
         pattern, modelo = "std8", modelo or "STD"
@@ -605,17 +622,15 @@ def item_da_lista(it):
     if modelo == "AG 4":
         modelo = "AG 4 (BS)"
 
-    polymax = "POLYMAX" in desc or cod.endswith("PM")
+    polymax = "POLYMAX" in desc or bool(re.search(r"PMX?$", cod))
     if polymax:
         material = "Polymax"
     elif "GSK" in desc:
         material = "GSK"
     elif m := re.search(r"\b(PU|NBR|MVQ|VITON|FKM)\b", desc):
         material = m.group(1)
-    elif linha == "gaxeta" and modelo in MODELOS_GAXETA:
-        material = "PU"
     else:
-        material = ""
+        material = MATERIAL_PADRAO.get((linha, modelo), "") if linha else ""
 
     dims = (decode_ref(codigo_limpo, pattern) if pattern else None) or dims_da_descricao(desc) or {}
     aplic = APLICACOES.get((linha, modelo), []) if linha else []
@@ -722,9 +737,14 @@ def escrever_relatorio(saida, problemas, legado, precos_ok):
     L += [f"- pág. {p} · {li} · {m} · polymax={pm}" for p, li, m, pm in sorted(problemas["sem_manifesto"])] or ["Nenhum."]
     L += ["", "## Linhas não extraídas", ""]
     L += [f"- pág. {p} · {m} · `{raw}`" for p, m, raw in problemas["nao_extraidas"]] or ["Nenhuma."]
+    sem_perfil = [s for s in saida if s["Tipo"] in ("Gaxeta", "Raspador") and not s["Modelo"]]
+    L += ["", "## Perfil a confirmar", "",
+          "Só na lista 2026, sem perfil na descrição nem código exclusivo. Aparecem na busca por medida, não no filtro de Perfil.", ""]
+    L += [f"- `{s['Codigo']}` · {s['Descricao']}" for s in sem_perfil] or ["Nenhum."]
     L += ["", "## Pendências conhecidas (dados antigos)", "",
           "- `data_conjunto_bp.csv`: colunas Externo/Interno parecem trocadas em parte das linhas.",
-          "- Raspadores sem coluna MATERIAL no catálogo ficam com Material em branco.",
+          "- Raspadores D, 6D/66D, 900D, K, RP-25, DG e E não têm coluna MATERIAL: PU por inferência (faixa -30/+100 °C).",
+          "- Linha pneumática não informa material (exceto Z = borracha); fica em branco.",
           "- Tabela de conversão do Drive: `11 1/2` = 292,10 (não 292,70); `18 1/4` = 463,55; `22` = 558,80; falta `27/32` (21,43)."]
     OUT_REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
 

@@ -3,8 +3,9 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Login from "./components/Login";
 import FacetFilter from "./components/FacetFilter";
 import SearchForm from "./components/SearchForm";
+import { APLICACOES } from "./config/taxonomia";
 import DatabaseService from "./services/DatabaseService";
-import { aplicarFacetas, contarFacetas, etapasFunil, SELECAO_VAZIA } from "./utils/facets";
+import { aplicarFacetas, contarFacetas, SELECAO_VAZIA } from "./utils/facets";
 import { supabase } from "./utils/supabase";
 import { getTipoBadgeStyle } from "./utils/tipoStyles";
 import { formatInch, formatMm } from "./utils/units";
@@ -37,23 +38,54 @@ const temValor = (v) => v !== null && v !== undefined && Number.isFinite(v);
 
 const fmtNum = (v) => (v === null || v === undefined ? "" : v.toLocaleString("pt-BR"));
 
-/** "8000 psi · -45 a +135 °C · 0,5 m/s" */
-function formatFicha(f) {
-  if (!f) return "";
+/** ["8.000 psi", "-45 a +135 °C", "0,5 m/s"] */
+function partesFicha(f) {
+  if (!f) return [];
   const partes = [];
-  if (f.pressao !== null) partes.push(`${f.pressao} psi`);
+  if (f.pressao !== null) partes.push(`${fmtNum(f.pressao)} psi`);
   if (f.tempMin !== null && f.tempMax !== null) partes.push(`${f.tempMin} a +${f.tempMax} °C`);
   if (f.velocidade !== null) partes.push(`${fmtNum(f.velocidade)} m/s`);
-  return partes.join(" · ");
+  return partes;
 }
 
-/** Linha de detalhes: ficha técnica + extras (V, L1, Largura...) */
-function detalhesDaPeca(peca) {
-  const partes = [];
-  const ficha = formatFicha(peca.ficha);
-  if (ficha) partes.push(ficha);
-  for (const e of peca.extras) partes.push(`${e.label} ${e.value}`);
-  return partes.join(" · ");
+/** Extras do catálogo: "V 3 · L1 12,5" */
+const textoExtras = (peca) => peca.extras.map((e) => `${e.label} ${e.value}`).join(" · ");
+
+const temFicha = (peca) => partesFicha(peca.ficha).length > 0 || peca.extras.length > 0;
+
+/** "Polymax · Hidráulica" */
+const materialELinha = (peca) => [peca.material, peca.linha].filter((v) => v && v !== "—").join(" · ");
+
+function Aplicacoes({ lista }) {
+  if (lista.length === 0) {
+    return (
+      <span className="text-gray-600" title="Sem aplicação definida: atende Haste e Êmbolo">
+        —
+      </span>
+    );
+  }
+  return (
+    <span className="flex flex-wrap gap-1.5">
+      {lista.map((a) => (
+        <span key={a} className="px-2 py-0.5 rounded-md border border-white/15 bg-white/5 text-xs text-white/80">
+          {APLICACOES[a] || a}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Pressão · temperatura · velocidade, e os extras numa segunda linha */
+function FichaTecnica({ peca }) {
+  const partes = partesFicha(peca.ficha);
+  const extras = textoExtras(peca);
+  if (!partes.length && !extras) return <span className="text-gray-600">—</span>;
+  return (
+    <span className="flex flex-col gap-0.5 leading-relaxed">
+      {partes.length > 0 && <span className="text-white/80">{partes.join(" · ")}</span>}
+      {extras && <span className="text-white/50">{extras}</span>}
+    </span>
+  );
 }
 
 function CelulaMedida({ valor, grande = true }) {
@@ -187,13 +219,13 @@ function App() {
 
   const handleToggleApenasEstoque = () => {
     setCurrentPage(1);
-    setApenasEstoque((prev) => {
-      const next = !prev;
-      if (next && !searched && !loading) {
-        handleSearch({ tolerancia: "0.5", codigo: "", medidas: {} });
-      }
-      return next;
-    });
+    setApenasEstoque((prev) => !prev);
+  };
+
+  // Atalhos do estado inicial: lista o catálogo sem medidas, com ou sem o filtro de estoque
+  const handleListarTudo = (somenteEstoque) => {
+    setApenasEstoque(somenteEstoque);
+    handleSearch({ tolerancia: "0.5", codigo: "", medidas: {} });
   };
 
   const handleToggleFaceta = (key, valor) => {
@@ -217,7 +249,6 @@ function App() {
   }, [apenasEstoque, resultados, estoque]);
 
   const opcoesFacetas = useMemo(() => contarFacetas(baseFunil, selecao), [baseFunil, selecao]);
-  const etapas = useMemo(() => etapasFunil(baseFunil, selecao), [baseFunil, selecao]);
 
   const displayedResultados = useMemo(() => aplicarFacetas(baseFunil, selecao), [baseFunil, selecao]);
 
@@ -297,20 +328,48 @@ function App() {
       {/* Main Content */}
       <main className="pt-32 pb-20 px-4">
         <div className="max-w-9xl mx-auto">
-          <SearchForm
-            onSearch={handleSearch}
-            apenasEstoque={apenasEstoque}
-            onToggleApenasEstoque={handleToggleApenasEstoque}
-          />
+          <SearchForm onSearch={handleSearch}>
+            <FacetFilter
+              desabilitado={!searched || resultados.length === 0}
+              opcoes={opcoesFacetas}
+              selecao={selecao}
+              onToggle={handleToggleFaceta}
+              onLimpar={handleLimparFaceta}
+              apenasEstoque={apenasEstoque}
+              totalEstoque={totalEstoqueNaBusca}
+              onToggleEstoque={handleToggleApenasEstoque}
+            />
+          </SearchForm>
 
           {/* Results Area */}
-          <div className="mt-16 max-w-7xl mx-auto relative z-10">
+          <div className="mt-12 max-w-7xl mx-auto relative z-10">
             {loading ? (
               <div className="glass rounded-xl p-10 flex flex-col items-center justify-center gap-4 text-accent-gold animate-fade-in-up">
                 <Loader2 size={32} className="animate-spin" />
-                <p className="font-mono text-sm tracking-widest">
-                  BUSCANDO NO ESTOQUE...
+                <p className="text-sm">Buscando no catálogo…</p>
+              </div>
+            ) : !searched ? (
+              <div className="rounded-2xl border border-dashed border-white/15 p-8 text-center flex flex-col items-center gap-5">
+                <p className="text-gray-400 max-w-md">
+                  Preencha as medidas ou o código e toque em Buscar. Para ver tudo sem filtrar por medida:
                 </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleListarTudo(false)}
+                    className="h-10 px-4 rounded-xl border border-white/15 bg-white/5 hover:border-white/30 text-sm text-gray-200 transition-colors cursor-pointer"
+                  >
+                    Listar o catálogo completo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleListarTudo(true)}
+                    className="flex items-center gap-2 h-10 px-4 rounded-xl border border-accent-gold/40 bg-accent-gold/10 hover:bg-accent-gold/20 text-sm text-accent-gold transition-colors cursor-pointer"
+                  >
+                    <PackageCheck size={16} />
+                    Só o que tenho em estoque
+                  </button>
+                </div>
               </div>
             ) : searched && resultados.length === 0 ? (
               <div className="glass rounded-xl p-10 text-center">
@@ -321,60 +380,17 @@ function App() {
             ) : (
               <div>
                 {resultados.length > 0 && (
-                  <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-white/10 pb-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h2 className="text-2xl font-anton text-white tracking-widest">
-                        RESULTADOS
-                      </h2>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setCurrentPage(1);
-                          setApenasEstoque((prev) => !prev);
-                        }}
-                        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer active:scale-95 ${
-                          apenasEstoque
-                            ? "border-accent-gold bg-accent-gold/20 text-accent-gold shadow-md shadow-accent-gold/10"
-                            : "border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20"
-                        }`}
-                        title={
-                          apenasEstoque
-                            ? "Exibir todas as peças encontradas"
-                            : "Filtrar apenas itens que temos em estoque"
-                        }
-                      >
-                        <PackageCheck
-                          size={16}
-                          className={apenasEstoque ? "text-accent-gold" : "text-gray-400"}
-                        />
-                        <span>Apenas em estoque</span>
-                        <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                            apenasEstoque
-                              ? "bg-accent-gold/30 text-accent-gold"
-                              : "bg-white/10 text-gray-300"
-                          }`}
-                        >
-                          {totalEstoqueNaBusca}
-                        </span>
-                      </button>
-                    </div>
-                    <span className="text-accent-gold font-mono text-sm">
+                  <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                    <h2 className="text-2xl font-anton text-white tracking-widest">RESULTADOS</h2>
+                    <span className="text-gray-400 text-sm" aria-live="polite">
+                      <strong className="text-accent-gold font-mono text-base">
+                        {displayedResultados.length.toLocaleString("pt-BR")}
+                      </strong>
                       {displayedResultados.length === resultados.length
-                        ? `${resultados.length} peça(s) encontrada(s)`
-                        : `${displayedResultados.length} de ${resultados.length} peça(s)`}
+                        ? displayedResultados.length === 1 ? " peça" : " peças"
+                        : ` de ${resultados.length.toLocaleString("pt-BR")} peças`}
                     </span>
                   </div>
-                )}
-
-                {resultados.length > 0 && (
-                  <FacetFilter
-                    opcoes={opcoesFacetas}
-                    selecao={selecao}
-                    etapas={etapas}
-                    onToggle={handleToggleFaceta}
-                    onLimpar={handleLimparFaceta}
-                  />
                 )}
 
                 {displayedResultados.length === 0 && resultados.length > 0 ? (
@@ -406,8 +422,13 @@ function App() {
                           <thead>
                             <tr className="bg-black/40 border-b border-white/10 text-gray-400 text-xs font-bold tracking-widest uppercase">
                               <th className="p-4 pl-6">Código</th>
-                              <th className="p-4">Tipo / Modelo</th>
-                              <th className="p-4">Material</th>
+                              <th className="p-4">
+                                Peça
+                                <span className="block text-gray-500 lowercase font-normal">
+                                  perfil · material · linha
+                                </span>
+                              </th>
+                              <th className="p-4">Aplicação</th>
                               {visibleColumns.map((col) => (
                                 <th key={col.campo} className="p-4 text-right">
                                   {col.label}
@@ -416,7 +437,7 @@ function App() {
                                   </span>
                                 </th>
                               ))}
-                              <th className="p-4">Detalhes</th>
+                              <th className="p-4">Ficha técnica</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-white/5 text-gray-200">
@@ -461,24 +482,31 @@ function App() {
                                   </div>
                                 </td>
                                 <td className="p-4">
-                                  <div className="flex items-center gap-2">
-                                    <span
-                                      className="px-2.5 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
-                                      style={getTipoBadgeStyle(peca.tipo)}
-                                    >
-                                      {peca.tipo}
-                                    </span>
-                                    <span className="text-white/90 font-bold">{peca.modelo}</span>
+                                  <div className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                      <span
+                                        className="px-2.5 py-1 rounded-md text-xs font-mono border font-bold shadow-sm"
+                                        style={getTipoBadgeStyle(peca.tipo)}
+                                      >
+                                        {peca.tipo}
+                                      </span>
+                                      <span className="text-white/90 font-bold">{peca.perfil || "—"}</span>
+                                    </div>
+                                    {materialELinha(peca) && (
+                                      <span className="text-xs text-white/60">{materialELinha(peca)}</span>
+                                    )}
                                   </div>
                                 </td>
-                                <td className="p-4 text-white/80">{peca.material}</td>
+                                <td className="p-4">
+                                  <Aplicacoes lista={peca.aplicacoes} />
+                                </td>
                                 {visibleColumns.map((col) => (
                                   <td key={col.campo} className="p-4 text-right">
                                     <CelulaMedida valor={peca[col.campo]} />
                                   </td>
                                 ))}
-                                <td className="p-4 text-xs text-white/60 max-w-72 whitespace-normal leading-relaxed">
-                                  {detalhesDaPeca(peca) || <span className="text-gray-600">—</span>}
+                                <td className="p-4 text-xs max-w-72 whitespace-normal">
+                                  <FichaTecnica peca={peca} />
                                 </td>
                               </tr>
                             ))}
@@ -532,10 +560,18 @@ function App() {
                                 >
                                   {peca.tipo}
                                 </span>
-                                <span className="text-xs text-white/80 font-bold">{peca.modelo}</span>
-                                <span className="text-xs text-white/50">{peca.material}</span>
+                                <span className="text-sm text-white/90 font-bold">{peca.perfil || "—"}</span>
+                                {materialELinha(peca) && (
+                                  <span className="text-xs text-white/60 text-right">{materialELinha(peca)}</span>
+                                )}
                               </div>
                             </div>
+                            {peca.aplicacoes.length > 0 && (
+                              <div className="flex items-center gap-3">
+                                <span className="text-gray-500 text-xs tracking-widest uppercase">Aplicação</span>
+                                <Aplicacoes lista={peca.aplicacoes} />
+                              </div>
+                            )}
                             <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
                               {visibleColumns.map((col) =>
                                 temValor(peca[col.campo]) ? (
@@ -551,10 +587,10 @@ function App() {
                                 ) : null
                               )}
                             </div>
-                            {detalhesDaPeca(peca) && (
-                              <p className="text-xs text-white/60 leading-relaxed border-t border-white/10 pt-3">
-                                {detalhesDaPeca(peca)}
-                              </p>
+                            {temFicha(peca) && (
+                              <div className="text-xs border-t border-white/10 pt-3">
+                                <FichaTecnica peca={peca} />
+                              </div>
                             )}
                           </div>
                         ))}

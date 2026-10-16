@@ -32,7 +32,7 @@ Selection rules:
 - Multiple options within a group are combined with OR.
 - Groups are combined with AND.
 - Facets can be selected in any order.
-- Generic parts (empty `aplicacoes`) SHALL match any Aplicação selection.
+- Generic parts (empty `aplicacoes`) SHALL match Haste and Êmbolo, but not Amortecimento.
 
 #### Scenario: Narrowing the funnel
 - **WHEN** a search returns 50 parts and the user selects Tipo "Gaxeta"

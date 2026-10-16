@@ -17,7 +17,7 @@ The script SHALL use a manifest derived from the catalog index (PDF pages 9–13
 - Tipo: Gaxeta, Raspador or Reparo pneumático
 - Modelo
 - Material: PU or Polymax; for pages with a MATERIAL column, the per-row value (NBR, PU…)
-- Aplicação: haste, êmbolo, or both
+- Aplicação: haste, êmbolo, both, or amortecimento (RP-08). The assembly drawing on each page wins over the index grouping.
 - Linha: hidráulica or pneumática
 - nominal unit: mm or pol
 

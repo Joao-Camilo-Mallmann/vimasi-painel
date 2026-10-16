@@ -36,12 +36,16 @@ export const getBadgeByTipo = (tipo) => TIPOS[tipo] || BADGE_FALLBACK;
 export const APLICACOES = {
   haste: "Haste",
   embolo: "Êmbolo",
+  amortecimento: "Amortecimento",
 };
+
+// Peças sem aplicação (genéricas) atendem só estas
+export const APLICACOES_GENERICAS = ["haste", "embolo"];
 
 // ── Facetas do funil (ordem do fluxo principal) ─────────────────
 export const FACETAS = [
   { key: "tipo", label: "Tipo" },
-  { key: "modelo", label: "Modelo" },
+  { key: "modelo", label: "Perfil" }, // campo interno "modelo" (B, AG 1, STD…); na tela, "Perfil"
   { key: "material", label: "Material" },
   { key: "aplicacao", label: "Aplicação" },
 ];
