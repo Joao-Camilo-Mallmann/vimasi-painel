@@ -111,7 +111,7 @@ function App() {
   const [estoque, setEstoque] = useState({});
   const [apenasEstoque, setApenasEstoque] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState(100);
   const isDesktop = useIsDesktop(768);
 
   // Listen for Supabase auth session changes
@@ -260,6 +260,12 @@ function App() {
 
   const totalPages = Math.max(1, Math.ceil(displayedResultados.length / pageSize));
   const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+  const paginasVisiveis = useMemo(() => {
+    const set = new Set([1, totalPages, safeCurrentPage - 1, safeCurrentPage, safeCurrentPage + 1]);
+    const nums = [...set].filter((n) => n >= 1 && n <= totalPages).sort((a, b) => a - b);
+    return nums.flatMap((n, i) => (i > 0 && n - nums[i - 1] > 1 ? ["…" + n, n] : [n]));
+  }, [totalPages, safeCurrentPage]);
 
   const paginatedResultados = useMemo(() => {
     const startIndex = (safeCurrentPage - 1) * pageSize;
@@ -602,8 +608,8 @@ function App() {
                       <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-black/30 border border-white/10 rounded-xl px-5 py-3">
                         <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400 font-mono">
                           <span>
-                            Mostrando <strong className="text-white font-bold">{(currentPage - 1) * pageSize + 1}</strong> a{" "}
-                            <strong className="text-white font-bold">{Math.min(currentPage * pageSize, displayedResultados.length)}</strong> de{" "}
+                            Mostrando <strong className="text-white font-bold">{(safeCurrentPage - 1) * pageSize + 1}</strong> a{" "}
+                            <strong className="text-white font-bold">{Math.min(safeCurrentPage * pageSize, displayedResultados.length)}</strong> de{" "}
                             <strong className="text-accent-gold font-bold">{displayedResultados.length}</strong> peças
                           </span>
                           <div className="flex items-center gap-1.5 border-l border-white/10 pl-3">
@@ -637,9 +643,30 @@ function App() {
                             <span className="hidden sm:inline">Anterior</span>
                           </button>
 
-                          <span className="px-3 py-1 text-xs font-mono font-bold text-accent-gold bg-accent-gold/10 border border-accent-gold/30 rounded-lg">
-                            {safeCurrentPage} / {totalPages}
-                          </span>
+                          <div className="flex items-center gap-1">
+                            {paginasVisiveis.map((n) =>
+                              typeof n === "string" ? (
+                                <span key={n} className="px-1 text-gray-500 text-xs">…</span>
+                              ) : (
+                                <button
+                                  key={n}
+                                  type="button"
+                                  aria-current={n === safeCurrentPage ? "page" : undefined}
+                                  onClick={() => {
+                                    setCurrentPage(n);
+                                    window.scrollTo({ top: 0, behavior: "smooth" });
+                                  }}
+                                  className={`min-w-9 px-2 py-1.5 rounded-lg text-xs font-mono font-bold border transition-all cursor-pointer ${
+                                    n === safeCurrentPage
+                                      ? "text-black bg-accent-gold border-accent-gold shadow-[0_0_12px_rgba(212,175,55,0.4)]"
+                                      : "text-gray-300 border-white/10 hover:text-white hover:border-accent-gold/40 hover:bg-white/5"
+                                  }`}
+                                >
+                                  {n}
+                                </button>
+                              )
+                            )}
+                          </div>
 
                           <button
                             type="button"
