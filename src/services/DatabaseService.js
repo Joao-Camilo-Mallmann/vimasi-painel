@@ -25,6 +25,9 @@ const num = (v) => {
 
 const chaveCodigo = (c) => String(c ?? '').trim().toUpperCase();
 
+// Ordem natural: "GT 25" antes de "GT 124"
+const collator = new Intl.Collator('pt-BR', { numeric: true, sensitivity: 'base' });
+
 /** Rótulo do modelo no funil: modelos da linha pneumática são distintos dos hidráulicos. */
 const rotuloModelo = (modelo, linha) =>
   modelo && linha === 'Pneumática' ? `${modelo} · Pneumática` : modelo || '—';
@@ -148,7 +151,9 @@ class DatabaseService {
       }
     }
 
-    this.produtos = [...apc, ...legado].map((p, i) => ({ ...p, id: i }));
+    this.produtos = [...apc, ...legado]
+      .sort((a, b) => collator.compare(a.codigo, b.codigo))
+      .map((p, i) => ({ ...p, id: i }));
     this.loaded = true;
   }
 
