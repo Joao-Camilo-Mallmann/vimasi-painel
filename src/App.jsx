@@ -38,6 +38,9 @@ const temValor = (v) => v !== null && v !== undefined && Number.isFinite(v);
 
 const fmtNum = (v) => (v === null || v === undefined ? "" : v.toLocaleString("pt-BR"));
 
+/** Soma das diferenças (mm) entre as medidas da peça e as buscadas. */
+const desvio = (peca, medidas) => medidas.reduce((soma, [campo, alvo]) => soma + Math.abs(peca[campo] - alvo), 0);
+
 /** ["8.000 psi", "-45 a +135 °C", "0,5 m/s"] */
 function partesFicha(f) {
   if (!f) return [];
@@ -109,6 +112,8 @@ function App() {
   const [selecao, setSelecao] = useState(SELECAO_VAZIA);
   const [estoque, setEstoque] = useState({});
   const [apenasEstoque, setApenasEstoque] = useState(false);
+  const [medidasBusca, setMedidasBusca] = useState({});
+  const [ordem, setOrdem] = useState("proximidade");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(100);
   const isDesktop = useIsDesktop(768);
@@ -208,6 +213,7 @@ function App() {
       await new Promise((resolve) => setTimeout(resolve, 400));
       const results = DatabaseService.buscar(params);
       setResultados(results);
+      setMedidasBusca(params.medidas ?? {});
       setSearched(true);
     } catch (err) {
       console.error("Erro na busca:", err);
@@ -240,12 +246,27 @@ function App() {
     setSelecao((prev) => (key ? { ...prev, [key]: [] } : SELECAO_VAZIA));
   };
 
+  const handleMudarOrdem = (nova) => {
+    setCurrentPage(1);
+    setOrdem(nova);
+  };
+
+  const porMedida = Object.keys(medidasBusca).length > 0;
+  const ordemEfetiva = porMedida ? ordem : "codigo";
+
+  // O catálogo já vem em ordem de código e o sort é estável: empates de desvio ficam por código
+  const resultadosOrdenados = useMemo(() => {
+    if (ordemEfetiva !== "proximidade") return resultados;
+    const medidas = Object.entries(medidasBusca);
+    return [...resultados].sort((a, b) => desvio(a, medidas) - desvio(b, medidas));
+  }, [resultados, medidasBusca, ordemEfetiva]);
+
   // Estoque é aplicado antes do funil, para as contagens refletirem o filtro
   const baseFunil = useMemo(() => {
     return apenasEstoque
-      ? resultados.filter((peca) => !!estoque[peca.codigo])
-      : resultados;
-  }, [apenasEstoque, resultados, estoque]);
+      ? resultadosOrdenados.filter((peca) => !!estoque[peca.codigo])
+      : resultadosOrdenados;
+  }, [apenasEstoque, resultadosOrdenados, estoque]);
 
   const opcoesFacetas = useMemo(() => contarFacetas(baseFunil, selecao), [baseFunil, selecao]);
 
@@ -336,6 +357,9 @@ function App() {
               apenasEstoque={apenasEstoque}
               totalEstoque={totalEstoqueNaBusca}
               onToggleEstoque={handleToggleApenasEstoque}
+              ordem={ordemEfetiva}
+              porMedida={porMedida}
+              onMudarOrdem={handleMudarOrdem}
             />
           </SearchForm>
 

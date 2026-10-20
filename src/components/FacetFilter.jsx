@@ -1,4 +1,4 @@
-import { Check, ChevronDown, PackageCheck, Search, X } from "lucide-react";
+import { ArrowDownAZ, Check, ChevronDown, Crosshair, PackageCheck, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Passo from "./Passo";
 import { FACETAS } from "../config/taxonomia";
@@ -12,6 +12,48 @@ const NOTAS = {
 
 /** Acima disso a lista ganha um campo de busca. */
 const LIMITE_BUSCA = 10;
+
+const ORDENS = [
+  {
+    valor: "proximidade",
+    label: "Medida mais próxima",
+    Icone: Crosshair,
+    dica: "Primeiro as peças com medidas mais perto das que você digitou",
+  },
+  { valor: "codigo", label: "Código A–Z", Icone: ArrowDownAZ, dica: "Em ordem alfanumérica do código" },
+];
+
+/** Alterna a ordem dos resultados. Sem medida na busca, só a ordem por código faz sentido. */
+function SeletorOrdem({ ordem, porMedida, onMudar }) {
+  return (
+    <div role="group" aria-label="Ordenar resultados" className="flex items-center h-10 p-1 gap-1 rounded-xl border border-white/15 bg-white/5">
+      {ORDENS.map(({ valor, label, Icone, dica }) => {
+        const indisponivel = valor === "proximidade" && !porMedida;
+        const ativo = ordem === valor;
+        return (
+          <button
+            key={valor}
+            type="button"
+            aria-pressed={ativo}
+            aria-disabled={indisponivel}
+            onClick={() => !indisponivel && onMudar(valor)}
+            title={indisponivel ? "Busque por medida para ordenar pela mais próxima" : dica}
+            className={`flex items-center gap-2 h-full px-3 rounded-lg text-sm transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-accent-gold ${
+              ativo
+                ? "bg-accent-gold/20 text-accent-gold font-bold"
+                : indisponivel
+                  ? "text-gray-300 opacity-40 cursor-not-allowed"
+                  : "text-gray-300 hover:text-white hover:bg-white/5 cursor-pointer"
+            }`}
+          >
+            <Icone size={15} />
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 /**
  * Seletor suspenso de múltipla escolha. Em telas pequenas abre como folha no rodapé.
@@ -160,7 +202,19 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
  * Perfil, Material e Aplicação ficam em seletores. Dentro de um grupo vale OU,
  * entre grupos vale E, e cada opção mostra quantas peças restam.
  */
-export default function FacetFilter({ desabilitado, opcoes, selecao, onToggle, onLimpar, apenasEstoque, totalEstoque, onToggleEstoque }) {
+export default function FacetFilter({
+  desabilitado,
+  opcoes,
+  selecao,
+  onToggle,
+  onLimpar,
+  apenasEstoque,
+  totalEstoque,
+  onToggleEstoque,
+  ordem,
+  porMedida,
+  onMudarOrdem,
+}) {
   const temSelecao = FACETAS.some(({ key }) => selecao[key].length > 0);
   const secundarias = FACETAS.filter(({ key }) => key !== "tipo");
   const tipoLabel = FACETAS.find(({ key }) => key === "tipo")?.label ?? "Tipo";
@@ -220,12 +274,13 @@ export default function FacetFilter({ desabilitado, opcoes, selecao, onToggle, o
           />
         ))}
 
-        <div className="flex items-center gap-4 sm:ml-auto">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:ml-auto">
           {temSelecao && (
             <button type="button" onClick={() => onLimpar()} className="text-sm text-gray-400 hover:text-accent-red underline-offset-4 hover:underline transition-colors cursor-pointer">
               Limpar filtros
             </button>
           )}
+          <SeletorOrdem ordem={ordem} porMedida={porMedida} onMudar={onMudarOrdem} />
           <button
             type="button"
             role="switch"
