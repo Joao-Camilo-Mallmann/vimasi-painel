@@ -76,24 +76,24 @@ function SeletorOrdem({ ordem, porMedida, onMudar }) {
   };
 
   return (
-    <div ref={raiz} className="relative">
+    <div ref={raiz} className="relative flex-1 min-w-0 sm:flex-none">
       <button
         type="button"
         onClick={() => setAberto((v) => !v)}
         aria-expanded={aberto}
         aria-haspopup="listbox"
-        className="flex items-center gap-2 h-10 pl-3.5 pr-3 rounded-xl border border-white/15 bg-white/5 text-sm text-gray-300 hover:border-white/30 transition-colors duration-200 cursor-pointer"
+        className="w-full flex items-center gap-2 h-10 pl-3.5 pr-3 rounded-xl border border-white/15 bg-white/5 text-sm text-gray-300 hover:border-white/30 transition-colors duration-200 cursor-pointer"
       >
-        <span>Ordenar</span>
+        <span className="hidden sm:inline">Ordenar</span>
         <atual.Icone size={15} className="text-accent-gold" />
-        <span className="text-white font-bold truncate max-w-48">{atual.label}</span>
+        <span className="flex-1 min-w-0 text-left text-white font-bold truncate sm:max-w-48">{atual.label}</span>
         <ChevronDown size={14} className={`text-white/50 transition-transform duration-200 ${aberto ? "rotate-180" : ""}`} />
       </button>
 
       {aberto && (
         <>
           <div className="fixed inset-0 z-40 bg-black/60 sm:hidden" aria-hidden="true" />
-          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-[26rem]">
+          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-104">
             <div className="flex items-center justify-between px-4 pt-3 pb-2">
               <span className="font-anton tracking-wide text-white">Ordenar</span>
               <button type="button" onClick={() => setAberto(false)} className="sm:hidden text-white/60 cursor-pointer" aria-label="Fechar">
@@ -129,10 +129,10 @@ function SeletorOrdem({ ordem, porMedida, onMudar }) {
                     key={campo}
                     role="group"
                     aria-label={`Ordenar por ${label}`}
-                    className={`flex items-center gap-3 pl-3 pr-1.5 h-11 rounded-lg ${linhaAtiva ? "bg-accent-gold/15" : ""}`}
+                    className={`flex items-center gap-3 pl-3 pr-1.5 h-13 sm:h-11 rounded-lg ${linhaAtiva ? "bg-accent-gold/15" : ""}`}
                   >
                     <span className={`flex-1 text-[15px] ${linhaAtiva ? "text-white font-bold" : "text-white/90"}`}>{label}</span>
-                    <div className="flex h-8 rounded-lg border border-white/15 bg-black/30 p-0.5">
+                    <div className="flex h-10 sm:h-8 rounded-lg border border-white/15 bg-black/30 p-0.5">
                       {SENTIDOS.map(({ dir, label: rotuloDir, nome, Icone }) => {
                         const valor = `${campo}:${dir}`;
                         const marcado = ordem === valor;
@@ -143,7 +143,7 @@ function SeletorOrdem({ ordem, porMedida, onMudar }) {
                             aria-pressed={marcado}
                             onClick={() => escolher(valor)}
                             title={`${label}: ${nome}. Peças sem essa medida vão para o fim`}
-                            className={`flex items-center gap-1.5 px-2.5 rounded-md text-sm transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-accent-gold ${
+                            className={`flex items-center gap-1.5 px-3 sm:px-2.5 rounded-md text-sm transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-accent-gold ${
                               marcado ? "bg-accent-gold text-black font-bold" : "text-white/80 hover:text-white hover:bg-white/10"
                             }`}
                           >
@@ -190,9 +190,9 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
   const visiveis = termo ? opcoes.filter((o) => rotulo(o).toLowerCase().includes(termo)) : opcoes;
 
   return (
-    <div ref={raiz} className="relative">
+    <div ref={raiz} className="relative min-w-0">
       <div
-        className={`flex items-center h-10 rounded-xl border text-sm transition-colors duration-200 ${
+        className={`w-full flex items-center h-10 rounded-xl border text-sm transition-colors duration-200 ${
           ativo ? "border-accent-gold/60 bg-accent-gold/10 text-white" : "border-white/15 bg-white/5 text-gray-300 hover:border-white/30"
         }`}
       >
@@ -201,10 +201,11 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
           onClick={alternar}
           aria-expanded={aberto}
           aria-haspopup="listbox"
-          className="flex items-center gap-2 pl-3.5 pr-3 h-full cursor-pointer"
+          className="flex-1 min-w-0 flex items-center justify-between sm:justify-start gap-2 pl-3 sm:pl-3.5 pr-2.5 sm:pr-3 h-full cursor-pointer"
         >
-          <span className={ativo ? "text-accent-gold font-bold" : ""}>{label}</span>
-          {ativo && <span className="truncate max-w-32">{resumo}</span>}
+          <span className={`truncate ${ativo ? "text-accent-gold font-bold" : ""}`}>{label}</span>
+          {ativo && <span className="hidden sm:inline truncate max-w-32">{resumo}</span>}
+          {ativo && <span className="sm:hidden text-xs text-accent-gold tabular-nums">{selecionados.length}</span>}
           {!ativo && <span className="text-xs text-white/40">{opcoes.length}</span>}
           <ChevronDown size={14} className={`text-white/50 transition-transform duration-200 ${aberto ? "rotate-180" : ""}`} />
         </button>
@@ -223,7 +224,7 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
       {aberto && (
         <>
           <div className="fixed inset-0 z-40 bg-black/60 sm:hidden" aria-hidden="true" />
-          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-[26rem]">
+          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-104">
             <div className="flex items-center justify-between px-4 pt-3 pb-2">
               <span className="font-anton tracking-wide text-white">{label}</span>
               <div className="flex items-center gap-3 text-xs">
@@ -356,7 +357,7 @@ export default function FacetFilter({
       </div>
 
       {/* Refinar */}
-      <div className="flex flex-wrap items-center gap-2 pt-5 border-t border-white/10">
+      <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:items-center pt-5 border-t border-white/10">
         <span className="text-sm text-gray-400 sm:w-16 shrink-0 hidden sm:block">Detalhe</span>
         {secundarias.map(({ key, label }) => (
           <Seletor
@@ -370,9 +371,9 @@ export default function FacetFilter({
           />
         ))}
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:ml-auto">
+        <div className="col-span-3 flex flex-wrap items-center gap-2 sm:gap-x-4 sm:ml-auto">
           {temSelecao && (
-            <button type="button" onClick={() => onLimpar()} className="text-sm text-gray-400 hover:text-accent-red underline-offset-4 hover:underline transition-colors cursor-pointer">
+            <button type="button" onClick={() => onLimpar()} className="order-last sm:order-0 w-full sm:w-auto text-left text-sm text-gray-400 hover:text-accent-red underline-offset-4 hover:underline transition-colors cursor-pointer">
               Limpar filtros
             </button>
           )}
@@ -383,14 +384,15 @@ export default function FacetFilter({
             aria-checked={apenasEstoque}
             onClick={onToggleEstoque}
             title={apenasEstoque ? "Mostrar todas as peças encontradas" : "Mostrar só as peças que temos em estoque"}
-            className={`flex items-center gap-2 h-10 px-3.5 rounded-xl border text-sm transition-colors duration-200 cursor-pointer ${
+            className={`shrink-0 flex items-center gap-2 h-10 px-3 sm:px-3.5 rounded-xl border text-sm transition-colors duration-200 cursor-pointer ${
               apenasEstoque
                 ? "border-accent-gold bg-accent-gold/20 text-accent-gold font-bold"
                 : "border-white/15 bg-white/5 text-gray-300 hover:border-white/30 hover:text-white"
             }`}
           >
             <PackageCheck size={16} />
-            Só em estoque
+            <span className="sm:hidden">Estoque</span>
+            <span className="hidden sm:inline">Só em estoque</span>
             <span className={`font-mono text-xs tabular-nums ${apenasEstoque ? "text-accent-gold" : "text-white/50"}`}>{totalEstoque.toLocaleString("pt-BR")}</span>
           </button>
         </div>
