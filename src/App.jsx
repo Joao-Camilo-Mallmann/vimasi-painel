@@ -252,13 +252,24 @@ function App() {
   };
 
   const porMedida = Object.keys(medidasBusca).length > 0;
-  const ordemEfetiva = porMedida ? ordem : "codigo";
+  const ordemEfetiva = ordem === "proximidade" && !porMedida ? "codigo" : ordem;
 
-  // O catálogo já vem em ordem de código e o sort é estável: empates de desvio ficam por código
+  // O catálogo já vem em ordem de código e o sort é estável: empates ficam por código
   const resultadosOrdenados = useMemo(() => {
-    if (ordemEfetiva !== "proximidade") return resultados;
-    const medidas = Object.entries(medidasBusca);
-    return [...resultados].sort((a, b) => desvio(a, medidas) - desvio(b, medidas));
+    if (ordemEfetiva === "codigo") return resultados;
+    if (ordemEfetiva === "proximidade") {
+      const medidas = Object.entries(medidasBusca);
+      return [...resultados].sort((a, b) => desvio(a, medidas) - desvio(b, medidas));
+    }
+    // Por medida ("interno:desc" / "interno:asc"); peças sem essa medida vão para o fim
+    const [campo, dir] = ordemEfetiva.split(":");
+    const sinal = dir === "asc" ? 1 : -1;
+    return [...resultados].sort((a, b) => {
+      const ta = temValor(a[campo]);
+      const tb = temValor(b[campo]);
+      if (!ta || !tb) return ta === tb ? 0 : ta ? -1 : 1;
+      return sinal * (a[campo] - b[campo]);
+    });
   }, [resultados, medidasBusca, ordemEfetiva]);
 
   // Estoque é aplicado antes do funil, para as contagens refletirem o filtro

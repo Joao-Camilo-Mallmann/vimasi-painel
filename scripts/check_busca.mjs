@@ -44,8 +44,8 @@ assert.equal(p8016.length, 1);
 assert.equal(p8016[0].modelo, "AG 13");
 assert.equal(p8016[0].material, "Polymax");
 
-// Busca por referência
-assert.ok(db.buscar({ codigo: "12500250" }).some((p) => p.referencia.includes("12500250") && p.codigo !== "12500250"));
+// Busca só pelo código: referência não entra
+assert.ok(db.buscar({ codigo: "12500250" }).every((p) => p.codigo.includes("12500250")));
 
 // Medida em polegada = medida em mm
 const porMm = db.buscar({ tolerancia: 0.5, medidas: { interno: 44.45 } });

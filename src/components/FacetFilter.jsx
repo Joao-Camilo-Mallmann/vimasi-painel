@@ -1,4 +1,4 @@
-import { ArrowDownAZ, Check, ChevronDown, Crosshair, PackageCheck, Search, X } from "lucide-react";
+import { ArrowDownAZ, ArrowDownWideNarrow, ArrowUpNarrowWide, Check, ChevronDown, Crosshair, PackageCheck, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Passo from "./Passo";
 import { FACETAS } from "../config/taxonomia";
@@ -23,46 +23,29 @@ const ORDENS = [
   { valor: "codigo", label: "Código A–Z", Icone: ArrowDownAZ, dica: "Em ordem alfanumérica do código" },
 ];
 
-/** Alterna a ordem dos resultados. Sem medida na busca, só a ordem por código faz sentido. */
-function SeletorOrdem({ ordem, porMedida, onMudar }) {
-  return (
-    <div role="group" aria-label="Ordenar resultados" className="flex items-center h-10 p-1 gap-1 rounded-xl border border-white/15 bg-white/5">
-      {ORDENS.map(({ valor, label, Icone, dica }) => {
-        const indisponivel = valor === "proximidade" && !porMedida;
-        const ativo = ordem === valor;
-        return (
-          <button
-            key={valor}
-            type="button"
-            aria-pressed={ativo}
-            aria-disabled={indisponivel}
-            onClick={() => !indisponivel && onMudar(valor)}
-            title={indisponivel ? "Busque por medida para ordenar pela mais próxima" : dica}
-            className={`flex items-center gap-2 h-full px-3 rounded-lg text-sm transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-accent-gold ${
-              ativo
-                ? "bg-accent-gold/20 text-accent-gold font-bold"
-                : indisponivel
-                  ? "text-gray-300 opacity-40 cursor-not-allowed"
-                  : "text-gray-300 hover:text-white hover:bg-white/5 cursor-pointer"
-            }`}
-          >
-            <Icone size={15} />
-            {label}
-          </button>
-        );
-      })}
-    </div>
-  );
+/** Cada medida ordena nos dois sentidos; o valor da ordem fica "campo:dir". */
+const MEDIDAS_ORDEM = [
+  { campo: "interno", label: "Ø Interno" },
+  { campo: "externo", label: "Ø Externo" },
+  { campo: "altura", label: "Altura" },
+];
+
+const SENTIDOS = [
+  { dir: "desc", label: "Maior", nome: "maior → menor", Icone: ArrowDownWideNarrow },
+  { dir: "asc", label: "Menor", nome: "menor → maior", Icone: ArrowUpNarrowWide },
+];
+
+/** Rótulo e ícone da ordem atual, para o botão fechado. */
+function descreverOrdem(ordem, disponiveis) {
+  const [campo, dir] = ordem.split(":");
+  const medida = MEDIDAS_ORDEM.find((m) => m.campo === campo);
+  const sentido = SENTIDOS.find((s) => s.dir === dir);
+  if (medida && sentido) return { label: `${medida.label}: ${sentido.nome}`, Icone: sentido.Icone };
+  return disponiveis.find((o) => o.valor === ordem) ?? disponiveis[0];
 }
 
-/**
- * Seletor suspenso de múltipla escolha. Em telas pequenas abre como folha no rodapé.
- */
-function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
-  const [aberto, setAberto] = useState(false);
-  const [consulta, setConsulta] = useState("");
-  const raiz = useRef(null);
-
+/** Fecha o painel ao clicar fora dele ou apertar Esc. */
+function useFechar(aberto, setAberto, raiz) {
   useEffect(() => {
     if (!aberto) return;
     const fora = (e) => {
@@ -75,7 +58,120 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
       document.removeEventListener("pointerdown", fora);
       document.removeEventListener("keydown", esc);
     };
-  }, [aberto]);
+  }, [aberto, setAberto, raiz]);
+}
+
+/** Escolhe a ordem dos resultados. "Medida mais próxima" só existe quando a busca tem medida. */
+function SeletorOrdem({ ordem, porMedida, onMudar }) {
+  const [aberto, setAberto] = useState(false);
+  const raiz = useRef(null);
+  useFechar(aberto, setAberto, raiz);
+
+  const disponiveis = ORDENS.filter((o) => o.valor !== "proximidade" || porMedida);
+  const atual = descreverOrdem(ordem, disponiveis);
+
+  const escolher = (valor) => {
+    onMudar(valor);
+    setAberto(false);
+  };
+
+  return (
+    <div ref={raiz} className="relative">
+      <button
+        type="button"
+        onClick={() => setAberto((v) => !v)}
+        aria-expanded={aberto}
+        aria-haspopup="listbox"
+        className="flex items-center gap-2 h-10 pl-3.5 pr-3 rounded-xl border border-white/15 bg-white/5 text-sm text-gray-300 hover:border-white/30 transition-colors duration-200 cursor-pointer"
+      >
+        <span>Ordenar</span>
+        <atual.Icone size={15} className="text-accent-gold" />
+        <span className="text-white font-bold truncate max-w-48">{atual.label}</span>
+        <ChevronDown size={14} className={`text-white/50 transition-transform duration-200 ${aberto ? "rotate-180" : ""}`} />
+      </button>
+
+      {aberto && (
+        <>
+          <div className="fixed inset-0 z-40 bg-black/60 sm:hidden" aria-hidden="true" />
+          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-[26rem]">
+            <div className="flex items-center justify-between px-4 pt-3 pb-2">
+              <span className="font-anton tracking-wide text-white">Ordenar</span>
+              <button type="button" onClick={() => setAberto(false)} className="sm:hidden text-white/60 cursor-pointer" aria-label="Fechar">
+                <X size={18} />
+              </button>
+            </div>
+            <ul role="listbox" className="overflow-y-auto px-2 pb-2 flex-1">
+              {disponiveis.map(({ valor, label, Icone, dica }) => {
+                const marcado = valor === ordem || (valor === "codigo" && ordem === "proximidade" && !porMedida);
+                return (
+                  <li key={valor} role="option" aria-selected={marcado}>
+                    <button
+                      type="button"
+                      onClick={() => escolher(valor)}
+                      title={dica}
+                      className={`w-full flex items-center gap-3 px-3 h-11 rounded-lg text-[15px] text-left cursor-pointer transition-colors ${marcado ? "bg-accent-gold/15" : "hover:bg-white/10"}`}
+                    >
+                      <Icone size={16} className={marcado ? "text-accent-gold" : "text-white/70"} />
+                      <span className={`flex-1 truncate ${marcado ? "text-white font-bold" : "text-white/90"}`}>{label}</span>
+                      {marcado && <Check size={16} className="text-accent-gold" />}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="px-2 pb-3 pt-2 border-t border-white/10">
+              <span className="block px-3 pb-1.5 text-xs text-gray-400">Por medida</span>
+              {MEDIDAS_ORDEM.map(({ campo, label }) => {
+                const linhaAtiva = ordem.startsWith(`${campo}:`);
+                return (
+                  <div
+                    key={campo}
+                    role="group"
+                    aria-label={`Ordenar por ${label}`}
+                    className={`flex items-center gap-3 pl-3 pr-1.5 h-11 rounded-lg ${linhaAtiva ? "bg-accent-gold/15" : ""}`}
+                  >
+                    <span className={`flex-1 text-[15px] ${linhaAtiva ? "text-white font-bold" : "text-white/90"}`}>{label}</span>
+                    <div className="flex h-8 rounded-lg border border-white/15 bg-black/30 p-0.5">
+                      {SENTIDOS.map(({ dir, label: rotuloDir, nome, Icone }) => {
+                        const valor = `${campo}:${dir}`;
+                        const marcado = ordem === valor;
+                        return (
+                          <button
+                            key={dir}
+                            type="button"
+                            aria-pressed={marcado}
+                            onClick={() => escolher(valor)}
+                            title={`${label}: ${nome}. Peças sem essa medida vão para o fim`}
+                            className={`flex items-center gap-1.5 px-2.5 rounded-md text-sm transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-accent-gold ${
+                              marcado ? "bg-accent-gold text-black font-bold" : "text-white/80 hover:text-white hover:bg-white/10"
+                            }`}
+                          >
+                            <Icone size={15} />
+                            {rotuloDir}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Seletor suspenso de múltipla escolha. Em telas pequenas abre como folha no rodapé.
+ */
+function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
+  const [aberto, setAberto] = useState(false);
+  const [consulta, setConsulta] = useState("");
+  const raiz = useRef(null);
+  useFechar(aberto, setAberto, raiz);
 
   const alternar = () => {
     setConsulta("");
@@ -127,7 +223,7 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
       {aberto && (
         <>
           <div className="fixed inset-0 z-40 bg-black/60 sm:hidden" aria-hidden="true" />
-          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-full sm:mt-2 sm:w-80 rounded-2xl border border-white/15 bg-zinc-900 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-96">
+          <div className="fixed inset-x-3 bottom-3 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-full sm:mt-2 sm:w-88 rounded-2xl border border-white/20 bg-zinc-800 shadow-2xl shadow-black/60 flex flex-col max-h-[70vh] sm:max-h-[26rem]">
             <div className="flex items-center justify-between px-4 pt-3 pb-2">
               <span className="font-anton tracking-wide text-white">{label}</span>
               <div className="flex items-center gap-3 text-xs">
@@ -167,7 +263,7 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
                     <button
                       type="button"
                       onClick={() => onToggle(op.valor)}
-                      className="relative w-full flex items-center gap-3 px-3 h-10 rounded-lg text-sm text-left cursor-pointer hover:bg-white/5 transition-colors overflow-hidden"
+                      className={`relative w-full flex items-center gap-3 px-3 h-11 rounded-lg text-[15px] text-left cursor-pointer transition-colors overflow-hidden ${marcado ? "bg-accent-gold/15" : "hover:bg-white/10"}`}
                     >
                       <span
                         aria-hidden="true"
@@ -175,21 +271,21 @@ function Seletor({ label, opcoes, selecionados, onToggle, onLimpar, nota }) {
                         style={{ width: `calc((100% - 1.5rem) * ${Math.max(0.03, Math.sqrt(op.count / maximo))})` }}
                       />
                       <span
-                        className={`relative w-4 h-4 rounded border flex items-center justify-center shrink-0 ${
-                          marcado ? "bg-accent-gold border-accent-gold text-black" : "border-white/30"
+                        className={`relative w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 ${
+                          marcado ? "bg-accent-gold border-accent-gold text-black" : "border-white/50"
                         }`}
                       >
-                        {marcado && <Check size={12} strokeWidth={3} />}
+                        {marcado && <Check size={14} strokeWidth={3} />}
                       </span>
-                      <span className={`relative flex-1 truncate ${marcado ? "text-white font-bold" : "text-gray-200"}`}>{rotulo(op)}</span>
-                      <span className="relative font-mono text-xs text-white/50 tabular-nums">{op.count.toLocaleString("pt-BR")}</span>
+                      <span className={`relative flex-1 truncate ${marcado ? "text-white font-bold" : "text-white/90"}`}>{rotulo(op)}</span>
+                      <span className="relative font-mono text-sm text-white/70 tabular-nums">{op.count.toLocaleString("pt-BR")}</span>
                     </button>
                   </li>
                 );
               })}
             </ul>
 
-            {nota && <p className="px-4 py-2.5 text-xs text-gray-500 border-t border-white/10">{nota}</p>}
+            {nota && <p className="px-4 py-2.5 text-xs text-gray-400 border-t border-white/10">{nota}</p>}
           </div>
         </>
       )}

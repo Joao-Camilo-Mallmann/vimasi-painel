@@ -39,7 +39,7 @@ function finalizar(p) {
     p.externo = p.interno + 2 * p.secao;
     p.altura = p.secao;
   }
-  p.busca = `${chaveCodigo(p.codigo)} ${chaveCodigo(p.referencia)}`;
+  p.busca = chaveCodigo(p.codigo);
   return p;
 }
 
@@ -161,7 +161,7 @@ class DatabaseService {
    * Busca pela medida (e/ou código). Valores de medida já chegam em mm.
    *
    * @param {object} params
-   * @param {string} params.codigo - trecho do Código ou da Referência
+   * @param {string} params.codigo - trecho do Código
    * @param {number|string} params.tolerancia - ± em mm
    * @param {{interno?: number, externo?: number, altura?: number, secao?: number}} params.medidas
    */
