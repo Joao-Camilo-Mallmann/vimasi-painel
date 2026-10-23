@@ -149,16 +149,22 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
   - Na tela, a faceta `modelo` se chama **Perfil** (B, AG 1, STD…). "Linha" = Hidráulica/Pneumática; Polymax é **Material**, não Linha.
   - Facetas em ordem livre, OU dentro do grupo, E entre grupos.
   - Peças sem aplicação são genéricas e atendem Haste e Êmbolo.
+  - **Retentor** (Tipo) sempre tem a aplicação **Eixo** e nunca aparece em Haste/Êmbolo. Perfil que existe em mais de um Tipo (ex.: "B") aparece no funil como `B · Retentor` (`desambiguarPerfis` em `DatabaseService.js`).
 - **Fonte dos dados**:
-  - `src/data/catalogo_apc.csv` é gerado do PDF APC + lista AGEL 2026. Para mudar, edite o script e rode de novo.
+  - `src/data/catalogo_apc.csv` é gerado por `scripts/ingest_catalogos.py` a partir de três fontes. Para mudar, edite o script e rode de novo.
+    - catálogo de gaxetas e raspadores ref. 2022
+    - catálogo de retentores ref. 2021
+    - listas AGEL 2025 de gaxetas/raspadores e de retentores
+  - Colunas `Catalogo` (`gaxetas-2022` | `retentores-2021` | `lista-2025`) e `NaLista` (`S` = o código está numa lista 2025).
+  - Mesmo código nos dois catálogos → o de gaxetas prevalece.
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
-  - Mesmo `Codigo` nas duas fontes → o APC prevalece.
+  - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
 - **Medidas**:
   - Armazenadas em mm. Para exibir, sempre via `src/utils/units.js`. Nunca `toFixed(2)` solto.
   - Formato: `15,88 mm · 5/8"` (vírgula; fração 1/64" com `≈` quando não é exata).
   - Seção = (ØEXT − ØINT) / 2.
 - **Referência do fornecedor** (`Referencia`) é a fonte da verdade das medidas em polegada: veja `docs/catalogos/README.md`.
-- **Preços** (lista AGEL 2026) **nunca** entram em `src/` nem no git: o bundle é público. Se um dia precisar de preço no painel, use Supabase com RLS.
+- **Preços** **nunca** entram em `src/` nem no git: o bundle é público. As listas 2025 versionadas em `docs/catalogos/listas/` não têm preço. Se um dia precisar de preço no painel, use Supabase com RLS.
 - **Badges de Tipo** têm cores **fixas** em `TIPOS` (`taxonomia.js`), aplicadas via style inline. Nunca gere cores dinâmicas.
 - **Colunas CSV antigas**: `Altura` e `AlturaTotal` foram unificadas em `Altura`; `AlturaBase` é separada para peças de conjunto.
 
@@ -205,7 +211,7 @@ openspec validate --specs                   # Validar specs
 | [.agents/DESIGN.md](.agents/DESIGN.md) | Design system completo e tokens visuais |
 | [src/config/taxonomia.js](src/config/taxonomia.js) | Tipos/badges, facetas, mapeamento das CSVs antigas |
 | [src/utils/units.js](src/utils/units.js) | Conversão e formatação mm ⇄ pol |
-| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão do catálogo APC + cruzamento com a lista 2026 |
+| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão dos catálogos APC (gaxetas 2022 + retentores 2021) + cruzamento com as listas 2025 |
 | [docs/catalogos/divergencias.md](docs/catalogos/divergencias.md) | Relatório gerado: divergências e cruzamentos |
 | [src/utils/supabase.js](src/utils/supabase.js) | Cliente Supabase inicializado |
 | [src/services/DatabaseService.js](src/services/DatabaseService.js) | Abstração de queries |

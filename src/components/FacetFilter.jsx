@@ -7,7 +7,7 @@ import { getTipoBadgeStyle } from "../utils/tipoStyles";
 const rotulo = (op) => (op.valor === "—" ? "Não informado" : op.label);
 
 const NOTAS = {
-  aplicacao: "Peças sem aplicação definida aparecem em Haste e Êmbolo.",
+  aplicacao: "Peças sem aplicação definida aparecem em Haste e Êmbolo. Retentores ficam em Eixo.",
 };
 
 /** Acima disso a lista ganha um campo de busca. */

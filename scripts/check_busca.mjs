@@ -92,6 +92,40 @@ assert.deepEqual(apc("9898").aplicacoes, ["amortecimento"]);
 const amort = aplicarFacetas(db.produtos, { ...SELECAO_VAZIA, aplicacao: ["amortecimento"] });
 assert.ok(amort.length > 0 && amort.every((p) => p.aplicacoes.includes("amortecimento")));
 
+// Retentores: índice do catálogo 2021; Tipo Retentor, aplicação Eixo
+const r9965 = apc("9965");
+assert.equal(r9965.tipo, "Retentor");
+assert.equal(r9965.catalogo, "retentores-2021");
+assert.deepEqual(r9965.aplicacoes, ["eixo"]);
+assert.deepEqual([r9965.interno, r9965.externo, r9965.altura], [15.9, 25.4, 4.5]);
+// H1/H2: Altura = H2 (total)
+assert.equal(apc("1023").altura, 7);
+// Variante de material (BRGF no índice) fica no perfil-base da página
+assert.equal(apc("1307").perfil, "BRG");
+assert.equal(apc("1307").material, "FPM");
+// Raspadores do catálogo de retentores vão na haste
+assert.equal(apc("1117").tipo, "Raspador");
+assert.deepEqual(apc("1117").aplicacoes, ["haste"]);
+// "B" do retentor não se mistura com o Tipo B da gaxeta no funil
+assert.ok(db.produtos.filter((p) => p.modelo === "B").every((p) => p.tipo === "Gaxeta"));
+assert.ok(db.produtos.some((p) => p.modelo === "B · Retentor"));
+
+// Funil: Retentor → BR → NBR → Eixo (Ø15,90 ±0,1)
+const ret = db.buscar({ tolerancia: 0.1, medidas: { interno: 15.9 } });
+let selR = { ...SELECAO_VAZIA };
+for (const [k, v] of [["tipo", "Retentor"], ["modelo", "BR"], ["material", "NBR"], ["aplicacao", "eixo"]]) {
+  assert.ok(contarFacetas(ret, selR)[k].some((o) => o.valor === v), `opção ${k}=${v} disponível`);
+  selR = { ...selR, [k]: [v] };
+}
+assert.ok(aplicarFacetas(ret, selR).some((p) => p.codigo === "9965"));
+// Retentor não aparece em Haste nem Êmbolo
+const haste = aplicarFacetas(db.produtos, { ...SELECAO_VAZIA, aplicacao: ["haste", "embolo"] });
+assert.ok(!haste.some((p) => p.tipo === "Retentor"));
+// Medida em polegada = mm também nos retentores
+const retMm = db.buscar({ tolerancia: 0.05, medidas: { interno: 25.4 } }).filter((p) => p.tipo === "Retentor");
+const retPol = db.buscar({ tolerancia: 0.05, medidas: { interno: parseInch("1") } }).filter((p) => p.tipo === "Retentor");
+assert.ok(retMm.length > 0 && retMm.length === retPol.length);
+
 // Legado agora pesquisável (Teflon)
 assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "data_anel_teflon.csv"));
 

@@ -3,7 +3,8 @@
  * (Medida → Tipo → Modelo → Material → Aplicação).
  *
  * - O catálogo APC (src/data/catalogo_apc.csv) já vem com as facetas,
- *   geradas por scripts/ingest_catalogos.py a partir do índice do PDF.
+ *   geradas por scripts/ingest_catalogos.py a partir dos catálogos de
+ *   gaxetas/raspadores e de retentores + listas AGEL 2025.
  * - As CSVs antigas (src/data/data_*.csv) recebem as facetas por LEGACY_MAP.
  *
  * Cores de badge são hex fixos aplicados via style inline
@@ -14,6 +15,7 @@
 export const TIPOS = {
   Gaxeta: { bg: "#e4c7aa", text: "#050505", border: "#d4af37" },
   Raspador: { bg: "#64748b", text: "#ffffff", border: "#475569" },
+  Retentor: { bg: "#f472b6", text: "#050505", border: "#ec4899" },
   Conjunto: { bg: "#a3e635", text: "#050505", border: "#84cc16" },
   "Buffer seal": { bg: "#fb923c", text: "#050505", border: "#f97316" },
   Anel: { bg: "#fbbf24", text: "#050505", border: "#f59e0b" },
@@ -37,9 +39,10 @@ export const APLICACOES = {
   haste: "Haste",
   embolo: "Êmbolo",
   amortecimento: "Amortecimento",
+  eixo: "Eixo", // retentores (eixo rotativo)
 };
 
-// Peças sem aplicação (genéricas) atendem só estas
+// Peças sem aplicação (genéricas) atendem só estas. Retentor sempre vem com "eixo".
 export const APLICACOES_GENERICAS = ["haste", "embolo"];
 
 // ── Facetas do funil (ordem do fluxo principal) ─────────────────

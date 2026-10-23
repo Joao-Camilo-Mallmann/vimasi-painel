@@ -32,6 +32,18 @@ const collator = new Intl.Collator('pt-BR', { numeric: true, sensitivity: 'base'
 const rotuloModelo = (modelo, linha) =>
   modelo && linha === 'Pneumática' ? `${modelo} · Pneumática` : modelo || '—';
 
+/** Perfil que existe em mais de um Tipo (ex.: "B" gaxeta × "B" retentor) ganha o Tipo no rótulo do funil. */
+function desambiguarPerfis(produtos) {
+  const tipos = new Map();
+  for (const p of produtos) {
+    if (!tipos.has(p.modelo)) tipos.set(p.modelo, new Set());
+    tipos.get(p.modelo).add(p.tipo);
+  }
+  for (const p of produtos) {
+    if (p.tipo === 'Retentor' && tipos.get(p.modelo).size > 1) p.modelo = `${p.modelo} · Retentor`;
+  }
+}
+
 function finalizar(p) {
   if (p.secao === null || p.secao === undefined) p.secao = calcSecao(p.interno, p.externo);
   // O-ring: Ø externo e altura derivados da seção
@@ -79,6 +91,7 @@ function produtoApc(row) {
     descricao: row.Descricao || '',
     unidadeNominal: row.UnidadeNominal || 'mm',
     fonte: row.Fonte,
+    catalogo: row.Catalogo || '',
     pagina: row.Pagina || '',
   });
 }
@@ -105,6 +118,7 @@ function produtoLegado(row, arquivo, cfg) {
     descricao: '',
     unidadeNominal: 'mm',
     fonte: 'legado',
+    catalogo: '',
     pagina: '',
   };
   for (const [col, destino] of Object.entries(colunas)) {
@@ -151,6 +165,7 @@ class DatabaseService {
       }
     }
 
+    desambiguarPerfis([...apc, ...legado]);
     this.produtos = [...apc, ...legado]
       .sort((a, b) => collator.compare(a.codigo, b.codigo))
       .map((p, i) => ({ ...p, id: i }));
