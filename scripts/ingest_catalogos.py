@@ -344,7 +344,9 @@ def extrair_catalogo(pdf_path, problemas):
             subtitulos = [l for l in linhas if any(11.5 <= w["size"] < 18 for w in l["words"])]
             medidas = [l for l in linhas if l["words"][0]["text"] == "Medidas"]
             headers = [l for l in linhas if any(w["text"] == "AGEL" for w in l["words"])]
-            fronteiras = sorted({l["top"] for l in titulos + medidas + headers} | {790.0})
+            # fim da última tabela = rodapé (nº da página, 10 pt, em ~816 pt); a última linha fica em ~797 pt
+            rodape = min((w["top"] for w in words if w["top"] > 800 and w["size"] >= 9.5), default=page.height)
+            fronteiras = sorted({l["top"] for l in titulos + medidas + headers} | {rodape})
 
             linha_cat = linha_da_pagina(pagina)
             for hdr in headers:
@@ -410,10 +412,16 @@ def extrair_reparos(pdf, problemas):
         linhas = agrupar_linhas(page.extract_words())
         for ln in linhas:
             ws = ln["words"]
-            if not ws or ws[0]["x0"] > 60 or not re.match(r"^[A-Z0-9]+-[A-Z0-9]+", ws[0]["text"]):
+            if not ws or ws[0]["x0"] > 60 or not re.fullmatch(r"[A-Z0-9][A-Z0-9-]*", ws[0]["text"]) \
+                    or not re.search(r"\d", ws[0]["text"]):
                 continue
             codigo = ws[0]["text"]
-            desc = " ".join(w["text"] for w in ws[1:] if w["x0"] < 450)
+            resto = [w for w in ws[1:] if w["x0"] < 450]
+            extras = {}
+            if len(resto) > 1 and resto[0]["text"] == "/":  # "EU-3242 / EU-32": o segundo é apelido
+                extras["Também"] = resto[1]["text"]
+                resto = resto[2:]
+            desc = " ".join(w["text"] for w in resto)
             nums = [w["text"] for w in ws if w["x0"] >= 450]
             dims = [parse_mm(n) for n in nums]
             impresso = {"Interno": None, "Externo": None, "Altura": None}
@@ -421,7 +429,7 @@ def extrair_reparos(pdf, problemas):
                 impresso = dict(zip(["Interno", "Externo", "Altura"], dims))
             rows.append({
                 "pagina": pagina, "linha": "reparo", "modelo": "Kit de reparo" if "REPARO" in desc else "Componente",
-                "polymax": False, "agel": codigo, "ref": "", "impresso": impresso, "extras": {},
+                "polymax": False, "agel": codigo, "ref": "", "impresso": impresso, "extras": extras,
                 "material_linha": "", "raw": ln["text"], "unidade": "mm", "descricao": desc,
             })
     return rows
@@ -485,18 +493,22 @@ def tabela_retentor(words, hdr_top, fim, meio, pagina, perfil, problemas):
         corpo = [w for w in words if corpo_ini < w["top"] < fim and x_min <= w["x0"] < x_max and w["size"] < 9]
         for ln in agrupar_linhas(corpo):
             cel = {k: " ".join(v).strip() for k, v in atribuir(ln["words"], cols).items()}
+            if "BLOQUEADO" in ln["text"]:  # item bloqueado no catálogo: fora do painel
+                problemas["ret_bloqueados"].append((pagina, ln["text"]))
+                continue
             codigo = cel.get("codigo", "").replace(" ", "")
             if not codigo or not re.search(r"\d", ln["text"]):
                 continue
             h1, h2 = parse_h(cel.get("h", ""))
             ext_txt = cel.get("ext", "")
             r = {
-                "codigo": codigo, "ref": "" if cel.get("ref", "---") in {"---", "—"} else cel.get("ref", ""),
+                "codigo": codigo, "ref": "" if re.fullmatch(r"[-—]*", cel.get("ref", "")) else cel.get("ref", ""),
                 "mod": cel.get("mod") or perfil, "int": parse_mm(cel.get("int", "")),
                 # ØEXT escalonado ("110,0/154,0"): vale o primeiro (alojamento); o texto vai para Extras
                 "ext": parse_mm(ext_txt.split("/")[0]), "ext_txt": ext_txt if "/" in ext_txt else "",
                 "h1": h1, "h2": h2, "h_txt": cel.get("h", ""),
-                "mat": cel.get("mat", ""), "ori": cel.get("ori", ""), "pagina": pagina, "raw": ln["text"],
+                "mat": cel.get("mat", ""), "ori": "" if re.fullmatch(r"[-—]*", cel.get("ori", "")) else cel.get("ori", ""),
+                "pagina": pagina, "raw": ln["text"],
             }
             if not re.match(r"^[A-Z]{0,3}\d", codigo) or None in (r["int"], r["ext"], r["h2"]) or not r["mod"]:
                 problemas["nao_extraidas"].append((f"R{pagina}", perfil or "índice", ln["text"]))
@@ -583,11 +595,20 @@ def montar_retentores(perfis, pag_rows, indice, problemas):
     no_indice = {r["codigo"] for r in indice}
     so_pagina = [r for r in pag_rows if r["codigo"] not in no_indice]
     problemas["ret_so_pagina"] = [(r["pagina"], r["mod"], r["codigo"]) for r in so_pagina]
+    problemas["ret_repetidos"] = []
     problemas["ret_so_indice"] = [(r["pagina"], r["mod"], r["codigo"]) for r in indice if r["codigo"] not in por_pag]
 
     saida = []
+    vistos = set()
     for r in indice + so_pagina:
+        if r["codigo"] in vistos:  # código repetido no índice / em duas páginas de perfil
+            problemas["ret_repetidos"].append((r["pagina"], r["mod"], r["codigo"]))
+            continue
+        vistos.add(r["codigo"])
         paginas = por_pag.get(r["codigo"], [])
+        if len({p["mod"] for p in paginas}) > 1:
+            problemas["ret_indice_vs_pagina"].append((r["codigo"], "mod", r["mod"], " / ".join(p["mod"] for p in paginas),
+                                                      r["pagina"], " / ".join(str(p["pagina"]) for p in paginas)))
         for p in paginas:
             if p is r:
                 continue
@@ -616,26 +637,34 @@ def montar_retentores(perfis, pag_rows, indice, problemas):
 def juntar_catalogos(gaxetas, retentores, problemas):
     """Mesmo código nos dois catálogos: fica a linha do de gaxetas, com REF, H1/H2 e orientação do de retentores.
     O de gaxetas imprime só "h" (= H1) nos raspadores GA/GAE/GAG; o de retentores imprime H1/H2."""
-    idx = {chave(s["Codigo"]): s for s in gaxetas}
+    idx = {}
+    for s in gaxetas:
+        idx.setdefault(chave(s["Codigo"]), []).append(s)
     out = list(gaxetas)
     for r in retentores:
-        g = idx.get(chave(r["Codigo"]))
-        if not g:
+        gs = idx.get(chave(r["Codigo"]))
+        if not gs:
             out.append(r)
             continue
-        extras_r = dict(e.split("=", 1) for e in r["Extras"].split("|") if e)
-        h1 = parse_h(extras_r["H1/H2"])[0] if "H1/H2" in extras_r else None
-        comparar = {"Interno": r["Interno"], "Externo": r["Externo"], "Altura": r4(h1) if h1 is not None else r["Altura"]}
-        difs = [c for c, v in comparar.items() if g[c] != "" and v != "" and abs(float(g[c]) - float(v)) > TOL_DIVERGENCIA]
-        if g["Material"] != r["Material"]:
-            difs.append("Material")
-        problemas["entre_catalogos"].append((r["Codigo"], f"{g['Tipo']} {g['Modelo']} {g['Material']} p{g['Pagina']}",
-                                             f"{r['Tipo']} {r['Modelo']} {r['Material']} p{r['Pagina']}", difs))
-        if not g["Referencia"]:
-            g["Referencia"] = r["Referencia"]
-        herdados = [f"{k}={v}" for k, v in extras_r.items() if k in ("H1/H2", "Orientação do lábio")]
-        g["Extras"] = "|".join(filter(None, [g["Extras"], *herdados]))
+        for g in gs:
+            juntar_linha(g, r, problemas)
     return out
+
+
+def juntar_linha(g, r, problemas):
+    """Linha do catálogo de gaxetas `g` herda REF, H1/H2 e orientação da linha de retentores `r`."""
+    extras_r = dict(e.split("=", 1) for e in r["Extras"].split("|") if e)
+    h1 = parse_h(extras_r["H1/H2"])[0] if "H1/H2" in extras_r else None
+    comparar = {"Interno": r["Interno"], "Externo": r["Externo"], "Altura": r4(h1) if h1 is not None else r["Altura"]}
+    difs = [c for c, v in comparar.items() if g[c] != "" and v != "" and abs(float(g[c]) - float(v)) > TOL_DIVERGENCIA]
+    if g["Material"] != r["Material"]:
+        difs.append("Material")
+    problemas["entre_catalogos"].append((r["Codigo"], f"{g['Tipo']} {g['Modelo']} {g['Material']} p{g['Pagina']}",
+                                         f"{r['Tipo']} {r['Modelo']} {r['Material']} p{r['Pagina']}", difs))
+    if not g["Referencia"]:
+        g["Referencia"] = r["Referencia"]
+    herdados = [f"{k}={v}" for k, v in extras_r.items() if k in ("H1/H2", "Orientação do lábio")]
+    g["Extras"] = "|".join(filter(None, [g["Extras"], *herdados]))
 
 
 # ---------------------------------------------------------------------------
@@ -647,7 +676,8 @@ def extrair_lista(pdf_path):
         for page in pdf.pages:
             linha_lista = ""
             ws_pag = page.extract_words()
-            un_x = min((w["x0"] for w in ws_pag if w["text"] == "UN"), default=470) - 5
+            un_x = min((w["x0"] for w in ws_pag if w["text"] == "UN"), default=470)
+            desc_x = min((w["x0"] for w in ws_pag if w["text"] == "Descrição"), default=140) - 3
             for ln in agrupar_linhas(ws_pag, tol=3):
                 if ln["text"].startswith("Linha:"):
                     linha_lista = ln["text"].replace("Linha:", "").strip()
@@ -655,12 +685,21 @@ def extrair_lista(pdf_path):
                 ws = ln["words"]
                 if not ws or ws[0]["x0"] > 60:
                     continue
-                codigo = ws[0]["text"]
-                if not re.match(r"^[A-Z0-9][A-Z0-9./-]*$", codigo) or codigo in {"Código", "Código"}:
+                # o código pode ter espaço ("AG 7-4065", "CWU 032-13", "37504250-625 DEEP")
+                cod_ws = [w["text"] for w in ws if w["x0"] < desc_x]
+                desc_ws = [w["text"] for w in ws if desc_x <= w["x0"] < un_x - 1]
+                if cod_ws and cod_ws[-1].startswith("PM") and len(cod_ws) > 1 and ws[len(cod_ws) - 1]["x1"] > desc_x:
+                    # "619701181-354BS PMGAX. …": sufixo PM colado na descrição
+                    desc_ws.insert(0, cod_ws.pop()[2:])
+                    cod_ws[-1] += " PM"
+                codigo = " ".join(cod_ws)
+                if not re.match(r"^[A-Z0-9][A-Z0-9 ./-]*$", codigo) or codigo in {"Código", "Código"}:
                     continue
-                # descrição = palavras entre o código e a coluna UN (x < ~ 480 na página)
-                desc_ws = [w for w in ws[1:] if w["x1"] < un_x]
-                desc = " ".join(w["text"] for w in desc_ws).strip()
+                # palavra que encosta na coluna UN vem colada com o "PC" ("NBRPC", "REF.00926PC")
+                cruza = [w["text"] for w in ws if w["x0"] < un_x - 1 < w["x1"] and w["x0"] >= desc_x]
+                if cruza:
+                    desc_ws[-1] = re.sub(r"PC[A-Z]*$", "", desc_ws[-1])
+                desc = " ".join(desc_ws).strip()
                 if not desc:
                     continue
                 itens.append({"codigo": codigo, "descricao": desc, "linha": linha_lista, "arquivo": Path(pdf_path).name})
@@ -677,6 +716,8 @@ def dims_da_descricao(desc):
     d = re.sub(r"\b(AG|RP)\s*-?\s*\d+\b", " ", desc.upper())   # nome do modelo não é medida
     d = re.sub(r"(\d)\s+\.(\d)", r"\1.\2", d)                   # "2 .1/4" -> "2.1/4"
     d = re.sub(r"(\d,\d+)\s+/\s*(\d)", r"\1/\2", d)             # "7,00 / 11,50" -> "7,00/11,50"
+    d = re.sub(r"\b(\d+)\.(\d+)/(\d+,\d+)", r"\1,\2/\3", d)        # "5.00/6,00" -> "5,00/6,00"
+    d = re.sub(r"(X\s*\d+,\d+\s*X\s*\d+,\d+)\s*X\s*(\d+,\d+)", r"\1/\2", d)  # "A X B X H1 X H2"
     m = DESC_DIM_RE.search(d)
     if not m:
         return None
@@ -742,7 +783,9 @@ def montar(rows, problemas):
                 material = MATERIAL_PADRAO.get((linha, modelo), "")
             linha_label = LINHA_LABEL[linha]
 
-        decod = decode_ref(r["ref"], CODE_PATTERN.get(modelo)) if linha in ("gaxeta", "raspador") else None
+        decod = None
+        if linha in ("gaxeta", "raspador") and (r["unidade"] == "pol" or CODE_PATTERN.get(modelo) != "d4"):
+            decod = decode_ref(r["ref"], CODE_PATTERN.get(modelo))
         final = dict(r["impresso"])
         fonte = "pdf"
         if decod:
@@ -775,7 +818,7 @@ def montar(rows, problemas):
             "TempMin": ficha[1] if ficha[1] is not None else "",
             "TempMax": ficha[2] if ficha[2] is not None else "",
             "VelocidadeMs": ficha[3] if ficha[3] is not None else "",
-            "Extras": "|".join(f"{k.upper()}={v}" for k, v in r["extras"].items()),
+            "Extras": "|".join(f"{k if linha == 'reparo' else k.upper()}={v}" for k, v in r["extras"].items()),
             "Descricao": r.get("descricao", ""),
             "NaLista": "",
             "Fonte": fonte,
@@ -783,6 +826,26 @@ def montar(rows, problemas):
             "Pagina": r["pagina"],
         })
     return saida
+
+
+def fundir_componentes(saida, problemas):
+    """A pág. 66 repete, pela REFERÊNCIA, peças das tabelas pneumáticas (62-65): vira descrição da peça."""
+    por_ref = {}
+    for s in saida:
+        if s["Referencia"] and s["Tipo"] != "Reparo pneumático":
+            por_ref.setdefault(chave(s["Referencia"]), []).append(s)
+    out = []
+    for s in saida:
+        alvos = por_ref.get(chave(s["Codigo"])) if s["Modelo"] == "Componente" else None
+        if not alvos:
+            out.append(s)
+            continue
+        for a in alvos:
+            a["Descricao"] = a["Descricao"] or s["Descricao"]
+            if s["Extras"]:
+                a["Extras"] = "|".join(filter(None, [a["Extras"], s["Extras"]]))
+        problemas["componentes_fundidos"].append(s["Codigo"])
+    return out
 
 
 def duplicados(saida, problemas):
@@ -796,21 +859,33 @@ def duplicados(saida, problemas):
                 (cod, [f"{x['Modelo']}/{x['Material'] or '—'} p{x['Pagina']} ({x['Catalogo']})" for x in lst]))
 
 
-def cruzar_listas(saida, itens, perfis, problemas):
+def cruzar_listas(saida, itens, perfis, mods, problemas):
     """Marca NaLista, completa a descrição e inclui o que só existe na lista."""
     idx = {}
     for s in saida:
-        idx.setdefault(chave(s["Codigo"]), s)
+        idx.setdefault(chave(s["Codigo"]), []).append(s)
         # Referência só no catálogo de gaxetas: é o código Tipo B/STD (no de retentores é a REF de mercado)
         if s["Referencia"] and s["Catalogo"] == CAT_GAXETAS:
-            idx.setdefault(chave(s["Referencia"]), s)
+            idx.setdefault(chave(s["Referencia"]), []).append(s)
+
+    def achar(it):
+        # Polymax e PU podem ter a mesma Referência (ex.: 25002250312BS): a seção POLYMAX da lista casa com a Polymax
+        pm = it["linha"] == "POLYMAX" or "POLYMAX" in it["descricao"].upper() or it["codigo"].endswith("PM")
+        for c in (it["codigo"], re.sub(r"^AG\s?\d+-", "", it["codigo"])):  # "AG 7-4065" = 4065 da tabela AG 7
+            cands = idx.get(chave(c))
+            if cands:
+                igual = next((s for s in cands if (s["Material"] == "Polymax") == pm), None)
+                # item POLYMAX da lista sem a versão Polymax no catálogo: é outro produto, não a peça PU
+                return igual if igual or not pm else None
+        return None
+
     casados, novos = set(), {}
     for it in itens:
-        s = idx.get(chave(it["codigo"]))
+        s = achar(it)
         if not s:
             if chave(it["codigo"]) not in novos:  # a lista repete códigos entre linhas (ex.: POLYMAX)
                 problemas["lista_sem_catalogo"].append(it)
-                novos[chave(it["codigo"])] = item_da_lista(it, perfis)
+                novos[chave(it["codigo"])] = item_da_lista(it, perfis, mods)
             continue
         casados.add(id(s))
         s["NaLista"] = "S"
@@ -834,19 +909,21 @@ RET_MAT_RE = re.compile(r"\b(HNBR|NBR|FPM|VITON|MVQ|ACM|PTFE|TEFLON|PU)(?:\s*/\s
 RET_NAO_PERFIL = RET_MATERIAIS | {"REF", "PC", "C", "FUROS", "AZUL", "PT", "INOX", "X", "RETENTOR", "RET", "HASTE", "VALVULA"}
 
 
-def retentor_da_lista(it, perfis):
+def retentor_da_lista(it, perfis, mods):
     """Retentor que só existe na lista: perfil e material pela descrição."""
     desc = it["descricao"].upper()
     m = DESC_DIM_RE.search(re.sub(r"(\d)\s+\.(\d)", r"\1.\2", desc))
     cauda = desc[m.end():] if m else desc
-    perfil = next((t for t in re.findall(r"\b[A-Z]{1,6}\d?\b", cauda) if t not in RET_NAO_PERFIL), "")
+    # perfil = primeira palavra que é perfil do catálogo ("PIVO TRACAO" não é)
+    conhecido = lambda t: t not in RET_NAO_PERFIL and (t in mods or perfil_base(t, perfis))
+    perfil = next((t for t in re.findall(r"\b[A-Z]{1,6}\d?\b", cauda) if conhecido(t)), "")
     if not perfil and m:  # "RETENTOR K7 35,00 X …": perfil antes das medidas
-        perfil = next((t for t in re.findall(r"\b[A-Z]{1,6}\d?\b", desc[:m.start()]) if t not in RET_NAO_PERFIL), "")
+        perfil = next((t for t in re.findall(r"\b[A-Z]{1,6}\d?\b", desc[:m.start()]) if conhecido(t)), "")
     mat = RET_MAT_RE.search(cauda)
     material = ""
     if mat:
         material = "/".join(x.replace("VITON", "FPM").replace("TEFLON", "PTFE") for x in mat.groups() if x)
-    ref = re.search(r"REF\.?\s*(\d{5})", desc)
+    ref = re.search(r"REF[.:]?\s*(\d{5})", desc)
     modelo = perfil_base(perfil, perfis) or perfil
     tipo = tipo_retentor(modelo, perfis)[0] if modelo else "Retentor"
     dims = dims_da_descricao(desc) or {}
@@ -866,11 +943,11 @@ def retentor_da_lista(it, perfis):
     }
 
 
-def item_da_lista(it, perfis):
+def item_da_lista(it, perfis, mods):
     """Produto que existe só na lista 2025: facetas pela descrição, medidas pelo código ou descrição."""
     desc, cod = it["descricao"].upper(), it["codigo"].upper()
     if it["linha"] == "RETENTORES" or desc.startswith(("RETENTOR", "RET.", "RET,")):
-        return retentor_da_lista(it, perfis)
+        return retentor_da_lista(it, perfis, mods)
     pneumatica = it["linha"] == "PNEUMÁTICA"
     if desc.startswith(("GAX", "CONJUNTO GAX")):
         tipo, linha = "Gaxeta", "pneumatica" if pneumatica else "gaxeta"
@@ -925,6 +1002,8 @@ def item_da_lista(it, perfis):
     if "H1" in dims:  # como no catálogo de gaxetas: Altura = H1
         dims["Altura"] = dims["H1"]
     aplic = APLICACOES.get((linha, modelo), []) if linha else []
+    if not aplic and tipo == "Raspador":  # raspador trabalha na haste
+        aplic = [HASTE]
     ficha = (FICHA.get((linha, modelo, polymax)) or FICHA.get((linha, modelo, False))) if linha else None
     ficha = ficha or (None, None, None, None)
     return {
@@ -932,7 +1011,7 @@ def item_da_lista(it, perfis):
         "Aplicacao": ",".join(aplic),
         "Linha": "Pneumática" if pneumatica else "Hidráulica" if linha else "",
         "Interno": r4(dims.get("Interno")), "Externo": r4(dims.get("Externo")), "Altura": r4(dims.get("Altura")),
-        "UnidadeNominal": "pol" if "/" in desc else "mm",
+        "UnidadeNominal": "pol" if re.search(r"\d/\d", desc) and "," not in desc else "mm",
         "PressaoPsi": ficha[0] if ficha[0] is not None else "", "TempMin": ficha[1] if ficha[1] is not None else "",
         "TempMax": ficha[2] if ficha[2] is not None else "", "VelocidadeMs": ficha[3] if ficha[3] is not None else "",
         "Extras": f"H1/H2={dims['H1/H2']}" if "H1/H2" in dims else "", "Descricao": it["descricao"], "NaLista": "S",
@@ -990,7 +1069,10 @@ def mudancas(anterior, saida):
     """Códigos que entraram/saíram e medidas/facetas que mudaram em relação ao CSV anterior."""
     ant = {chave(r["Codigo"]): r for r in anterior}
     nov = {chave(s["Codigo"]): s for s in saida}
-    sairam = [ant[k] for k in ant if k not in nov]
+    por_ref = {chave(s["Referencia"]): s for s in saida if s["Referencia"] and s["Catalogo"] == CAT_GAXETAS}
+    # código antigo que agora é a Referência de uma peça do catálogo (componente da pág. 66, item da lista)
+    viraram_ref = [(ant[k], por_ref[k]) for k in ant if k not in nov and k in por_ref]
+    sairam = [ant[k] for k in ant if k not in nov and k not in por_ref]
     entraram = [nov[k] for k in nov if k not in ant]
     mudou = []
     for k in ant.keys() & nov.keys():
@@ -1004,7 +1086,7 @@ def mudancas(anterior, saida):
                 pass
             if va != vn:
                 mudou.append((n["Codigo"], campo, va or "—", vn or "—"))
-    return sairam, entraram, mudou
+    return sairam, entraram, mudou, viraram_ref
 
 
 def escrever_relatorio(saida, problemas, legado, anterior):
@@ -1021,14 +1103,20 @@ def escrever_relatorio(saida, problemas, legado, anterior):
           "| Tipo | Modelo | Material | Linha | Itens |", "|---|---|---|---|---|"]
     L += [f"| {t} | {m} | {mat} | {li} | {n} |" for (t, m, mat, li), n in sorted(cont.items())]
 
-    sairam, entraram, mudou = mudancas(anterior, saida)
+    sairam, entraram, mudou, viraram_ref = mudancas(anterior, saida)
     L += ["", "## Mudanças em relação ao CSV do último commit", "",
-          f"- Saíram: **{len(sairam)}** · Entraram: **{len(entraram)}** · Campos alterados: **{len(mudou)}**", ""]
+          f"- Saíram: **{len(sairam)}** · Entraram: **{len(entraram)}** · Campos alterados: **{len(mudou)}**",
+          f"- Viraram Referência de uma peça do catálogo (continuam pesquisáveis pela peça): **{len(viraram_ref)}**", ""]
     if sairam:
         L += ["### Saíram", "", "| Código | Tipo | Modelo | Material | Medidas (mm) | Fonte anterior |", "|---|---|---|---|---|---|"]
         L += [f"| `{r['Codigo']}` | {r['Tipo']} | {r['Modelo']} | {r['Material']} | "
               f"{r['Interno'] or '—'} × {r['Externo'] or '—'} × {r['Altura'] or '—'} | {r.get('Fonte', '')} p{r.get('Pagina', '')} |"
               for r in sorted(sairam, key=lambda r: (r["Tipo"], r["Modelo"], r["Codigo"]))]
+        L += [""]
+    if viraram_ref:
+        L += ["### Viraram Referência", "", "| Código antigo | Peça no catálogo | Tipo | Modelo |", "|---|---|---|---|"]
+        L += [f"| `{a['Codigo']}` | `{n['Codigo']}` p{n['Pagina']} | {n['Tipo']} | {n['Modelo']} |"
+              for a, n in sorted(viraram_ref, key=lambda x: x[0]["Codigo"])]
         L += [""]
     if mudou:
         L += ["### Campos alterados", "", "| Código | Campo | Antes | Agora |", "|---|---|---|---|"]
@@ -1050,6 +1138,11 @@ def escrever_relatorio(saida, problemas, legado, anterior):
     L += ["", "## Linhas sem Nº AGEL (Código = Referência)", ""]
     L += [f"- pág. {p} · {m} · `{r}`" for p, m, r in problemas["sem_agel"]] or ["Nenhuma."]
 
+    L += ["", "## Componentes pneumáticos (pág. 66) fundidos à peça da tabela", "",
+          "A pág. 66 repete pela REFERÊNCIA peças das págs. 62–65; a descrição vai para a peça e não vira linha separada.", ""]
+    L += [f"{len(problemas['componentes_fundidos'])} códigos: " + ", ".join(f"`{c}`" for c in problemas["componentes_fundidos"])
+          if problemas["componentes_fundidos"] else "Nenhum."]
+
     L += ["", "## Mesmo código em mais de uma tabela", ""]
     L += [f"- `{c}`: {', '.join(lst)}" for c, lst in problemas["duplicados_catalogo"]] or ["Nenhum."]
 
@@ -1064,6 +1157,10 @@ def escrever_relatorio(saida, problemas, legado, anterior):
     L += [f"- pág. {p} · {m} · `{c}`" for p, m, c in problemas["ret_so_pagina"]] or ["Nenhum."]
     L += ["", "### Só no índice (sem página de perfil)", ""]
     L += [f"- pág. {p} · {m} · `{c}`" for p, m, c in problemas["ret_so_indice"]] or ["Nenhum."]
+    L += ["", "### Código repetido (fica a primeira ocorrência)", ""]
+    L += [f"- pág. {p} · {m} · `{c}`" for p, m, c in problemas["ret_repetidos"]] or ["Nenhum."]
+    L += ["", "### Itens BLOQUEADOS no catálogo (fora do painel)", ""]
+    L += [f"- pág. {p} · `{raw}`" for p, raw in problemas["ret_bloqueados"]] or ["Nenhum."]
     L += ["", "### Perfis sem página própria (tipo inferido)", "",
           "Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base com página:", ""]
     L += [f"- {m} → {t}" for m, t in sorted(problemas["ret_tipo_inferido"])] or ["Nenhum."]
@@ -1134,16 +1231,18 @@ def main():
     problemas = {"codigo_vs_impresso": [], "sem_agel": [], "nao_extraidas": [], "sem_manifesto": set(),
                  "duplicados_catalogo": [], "lista_sem_catalogo": [], "lista_vs_catalogo": [],
                  "catalogo_sem_lista": [], "ret_indice_vs_pagina": [], "ret_so_pagina": [], "ret_so_indice": [],
-                 "ret_tipo_inferido": set(), "entre_catalogos": []}
+                 "ret_tipo_inferido": set(), "entre_catalogos": [], "componentes_fundidos": [],
+                 "ret_bloqueados": []}
     anterior = ler_anterior()
-    gaxetas = montar(extrair_catalogo(a.catalogo, problemas), problemas)
+    gaxetas = fundir_componentes(montar(extrair_catalogo(a.catalogo, problemas), problemas), problemas)
     perfis, pag_rows, indice = extrair_retentores(a.retentores, problemas)
     retentores = montar_retentores(perfis, pag_rows, indice, problemas)
     duplicados(gaxetas, problemas)
     duplicados(retentores, problemas)
     saida = juntar_catalogos(gaxetas, retentores, problemas)
     itens = [it for f in a.listas for it in extrair_lista(f)]
-    saida = cruzar_listas(saida, itens, perfis, problemas)
+    mods = {r["mod"] for r in indice + pag_rows}
+    saida = cruzar_listas(saida, itens, perfis, mods, problemas)
     escrever_csv(saida)
     escrever_relatorio(saida, problemas, ler_legado(), anterior)
 

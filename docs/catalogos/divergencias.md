@@ -6,14 +6,13 @@ Fontes: catálogo de gaxetas e raspadores ref. 2022 (`gaxetas-2022`), catálogo 
 
 ## Itens por modelo
 
-Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 1909).
+Total: **4487** itens (gaxetas-2022: 2226, lista-2025: 358, retentores-2021: 1903).
 
 | Tipo | Modelo | Material | Linha | Itens |
 |---|---|---|---|---|
 | Ferramenta |  | — |  | 3 |
-| Gaxeta |  | PU | Pneumática | 1 |
 | Gaxeta |  | Polymax | Hidráulica | 3 |
-| Gaxeta |  | — | Hidráulica | 8 |
+| Gaxeta |  | — | Hidráulica | 5 |
 | Gaxeta | AG 1 | PU | Hidráulica | 8 |
 | Gaxeta | AG 1 | Polymax | Hidráulica | 59 |
 | Gaxeta | AG 10 | PU | Hidráulica | 1 |
@@ -43,8 +42,8 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Gaxeta | AG 3 | Polymax | Hidráulica | 1 |
 | Gaxeta | AG 3 | — | Pneumática | 14 |
 | Gaxeta | AG 4 (BS) | GSK | Hidráulica | 70 |
-| Gaxeta | AG 4 (BS) | PU | Hidráulica | 95 |
-| Gaxeta | AG 4 (BS) | Polymax | Hidráulica | 152 |
+| Gaxeta | AG 4 (BS) | PU | Hidráulica | 96 |
+| Gaxeta | AG 4 (BS) | Polymax | Hidráulica | 156 |
 | Gaxeta | AG 5 | PU | Hidráulica | 8 |
 | Gaxeta | AG 5 | Polymax | Hidráulica | 5 |
 | Gaxeta | AG 6 | PU | Hidráulica | 6 |
@@ -55,15 +54,14 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Gaxeta | AG 7 | — | Pneumática | 10 |
 | Gaxeta | AG 8 | PU | Hidráulica | 4 |
 | Gaxeta | AG 9 | — | Hidráulica | 2 |
-| Gaxeta | B | PU | Hidráulica | 565 |
-| Gaxeta | B | Polymax | Hidráulica | 163 |
+| Gaxeta | B | PU | Hidráulica | 569 |
+| Gaxeta | B | Polymax | Hidráulica | 164 |
 | Gaxeta | RP-08 | — | Pneumática | 15 |
 | Gaxeta | STD | PU | Hidráulica | 279 |
 | Gaxeta | STD | Polymax | Hidráulica | 31 |
 | Gaxeta | Z | Borracha | Pneumática | 10 |
-| Outros |  | PU | Pneumática | 1 |
 | Outros |  | — | Pneumática | 1 |
-| Outros | AG 6 | — | Pneumática | 1 |
+| Outros | STD | — |  | 1 |
 | Raspador | 6D/66D | PU | Hidráulica | 65 |
 | Raspador | 900D | PU | Hidráulica | 24 |
 | Raspador | 900D | Polymax | Hidráulica | 1 |
@@ -92,11 +90,11 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Raspador | DG | Polymax | Hidráulica | 3 |
 | Raspador | E | PU | Hidráulica | 16 |
 | Raspador | GA | MVQ | Hidráulica | 1 |
-| Raspador | GA | NBR | Hidráulica | 74 |
-| Raspador | GA | PU | Hidráulica | 123 |
+| Raspador | GA | NBR | Hidráulica | 75 |
+| Raspador | GA | PU | Hidráulica | 124 |
 | Raspador | GA1 | PU | Hidráulica | 18 |
 | Raspador | GAE | FPM | Hidráulica | 1 |
-| Raspador | GAE | NBR | Hidráulica | 27 |
+| Raspador | GAE | NBR | Hidráulica | 26 |
 | Raspador | GAE | PU | Hidráulica | 32 |
 | Raspador | GAE | — | Hidráulica | 1 |
 | Raspador | GAG | NBR | Hidráulica | 5 |
@@ -122,16 +120,17 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Raspador | RP-27 | Polymax | Hidráulica | 4 |
 | Raspador | RP-28 | Polymax | Hidráulica | 18 |
 | Raspador | RP-32 | Polymax | Hidráulica | 2 |
-| Reparo pneumático |  | — | Pneumática | 2 |
-| Reparo pneumático | Componente | — | Pneumática | 51 |
-| Reparo pneumático | Kit de reparo | — | Pneumática | 13 |
+| Reparo pneumático |  | — | Pneumática | 1 |
+| Reparo pneumático | Componente | — | Pneumática | 9 |
+| Reparo pneumático | Kit de reparo | — | Pneumática | 14 |
+| Retentor |  | NBR | Retentores | 10 |
+| Retentor |  | NBR/FPM | Retentores | 1 |
 | Retentor |  | — | Retentores | 1 |
 | Retentor | AGA | NBR | Retentores | 2 |
 | Retentor | AGB | NBR | Retentores | 1 |
 | Retentor | AGBA | NBR | Retentores | 3 |
-| Retentor | AGBB | FPM | Retentores | 1 |
+| Retentor | AGBB | FPM | Retentores | 2 |
 | Retentor | AGBB | NBR | Retentores | 7 |
-| Retentor | AGBB | — | Retentores | 1 |
 | Retentor | AGBB1 | FPM | Retentores | 1 |
 | Retentor | AGBB1 | NBR | Retentores | 9 |
 | Retentor | AGBB1 | NBR/FPM | Retentores | 1 |
@@ -216,12 +215,8 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Retentor | AGJT | NBR | Retentores | 1 |
 | Retentor | AGJU | NBR | Retentores | 5 |
 | Retentor | AGJY | NBR | Retentores | 1 |
-| Retentor | AGNA | NBR | Retentores | 3 |
-| Retentor | AGNA | — | Retentores | 1 |
-| Retentor | AGND | — | Retentores | 1 |
 | Retentor | AGNK | NBR | Retentores | 1 |
 | Retentor | AGNV | NBR | Retentores | 1 |
-| Retentor | AGNX | NBR/FPM | Retentores | 1 |
 | Retentor | AGX | NBR | Retentores | 1 |
 | Retentor | AGX1 | NBR | Retentores | 2 |
 | Retentor | B | ACM | Retentores | 1 |
@@ -236,7 +231,7 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Retentor | BAG | ACM | Retentores | 4 |
 | Retentor | BAG | FPM | Retentores | 20 |
 | Retentor | BAG | MVQ | Retentores | 2 |
-| Retentor | BAG | NBR | Retentores | 155 |
+| Retentor | BAG | NBR | Retentores | 156 |
 | Retentor | BAGE | NBR | Retentores | 2 |
 | Retentor | BAGE1 | NBR | Retentores | 1 |
 | Retentor | BAGE2 | NBR | Retentores | 1 |
@@ -254,7 +249,6 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Retentor | BG | FPM | Retentores | 7 |
 | Retentor | BG | NBR | Retentores | 54 |
 | Retentor | BGE | NBR | Retentores | 1 |
-| Retentor | BGO | NBR | Retentores | 1 |
 | Retentor | BR | ACM | Retentores | 2 |
 | Retentor | BR | FPM | Retentores | 70 |
 | Retentor | BR | FPM PT | Retentores | 4 |
@@ -280,7 +274,7 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Retentor | BRG | MVQ | Retentores | 12 |
 | Retentor | BRG | MVQ VR | Retentores | 1 |
 | Retentor | BRG | MVQ/PTFE | Retentores | 1 |
-| Retentor | BRG | NBR | Retentores | 604 |
+| Retentor | BRG | NBR | Retentores | 602 |
 | Retentor | BRG | NBR AZ | Retentores | 1 |
 | Retentor | BRG | PTFE | Retentores | 1 |
 | Retentor | BRG | — | Retentores | 5 |
@@ -296,47 +290,28 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | Retentor | BRGG | NBR | Retentores | 13 |
 | Retentor | BRGG | — | Retentores | 1 |
 | Retentor | BRGGE | FPM | Retentores | 1 |
-| Retentor | BRGH | NBR | Retentores | 1 |
-| Retentor | BRGH | — | Retentores | 1 |
 | Retentor | BRO | FPM | Retentores | 10 |
 | Retentor | BRO | MVQ | Retentores | 1 |
 | Retentor | BRO | NBR | Retentores | 11 |
 | Retentor | BRXE2 | NBR | Retentores | 2 |
 | Retentor | BY | NBR | Retentores | 1 |
 | Retentor | GB | NBR | Retentores | 3 |
-| Retentor | GGE | NBR | Retentores | 1 |
-| Retentor | GY | NBR | Retentores | 1 |
 | Retentor | HASTE | FPM | Retentores | 2 |
 | Retentor | K7 | FPM | Retentores | 2 |
 | Retentor | K7 | NBR | Retentores | 2 |
 | Retentor | K7 | — | Retentores | 1 |
-| Retentor | PIVO | — | Retentores | 1 |
 | Retentor | SLPPB | FPM | Retentores | 1 |
 
 ## Mudanças em relação ao CSV do último commit
 
-- Saíram: **117** · Entraram: **2200** · Campos alterados: **13**
+- Saíram: **64** · Entraram: **2196** · Campos alterados: **15**
+- Viraram Referência de uma peça do catálogo (continuam pesquisáveis pela peça): **86**
 
 ### Saíram
 
 | Código | Tipo | Modelo | Material | Medidas (mm) | Fonte anterior |
 |---|---|---|---|---|---|
-| `619701102-314` | Gaxeta |  |  | 28 × 38 × 8 | tabela2026 p |
-| `619701772-394PM` | Gaxeta |  | Polymax | 45 × 55 × 10 | tabela2026 p |
-| `619701968-236PM` | Gaxeta |  | Polymax | 50 × 60 × 6 | tabela2026 p |
-| `619702165-374PM` | Gaxeta |  | Polymax | 55 × 65 × 10 | tabela2026 p |
-| `619702362-276PM` | Gaxeta |  | Polymax | 60 × 70 × 7 | tabela2026 p |
-| `619702362-472` | Gaxeta |  |  | 60 × 70 × 12 | tabela2026 p |
-| `619703150-314` | Gaxeta |  |  | 80 × 90 × 8 | tabela2026 p |
-| `619703543-228PM` | Gaxeta |  | Polymax | 90 × 100 × 5.8 | tabela2026 p |
-| `621601771-275` | Gaxeta |  |  | 45 × 56 × 7 | tabela2026 p |
-| `623601181-393` | Gaxeta |  |  | 30 × 42 × 10 | tabela2026 p |
-| `623601575-330PM` | Gaxeta |  | Polymax | 40 × 52 × 8.4 | tabela2026 p |
-| `629502185-374` | Gaxeta |  |  | 55.5 × 70.5 × 9.5 | tabela2026 p |
-| `629502480-393PM` | Gaxeta |  | Polymax | 63 × 78 × 10 | tabela2026 p |
 | `639406300-591PM` | Gaxeta |  | Polymax | 160 × 180 × 15 | tabela2026 p |
-| `643304330-511` | Gaxeta |  |  | 110 × 132 × 13 | tabela2026 p |
-| `659008661-708` | Gaxeta |  |  | 220 × 250 × 18 | tabela2026 p |
 | `3017` | Gaxeta | AG 1 | PU | 45 × 60 × 9.5 | pdf p23 |
 | `3189` | Gaxeta | AG 1 | PU | 96 × 111 × 9 | pdf p23 |
 | `3192` | Gaxeta | AG 1 | PU | 80 × 90 × 7 | pdf p23 |
@@ -372,9 +347,6 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | `6172` | Gaxeta | AG 2 | PU | 17 × 25 × 7 | pdf p23 |
 | `6297` | Gaxeta | AG 2 | PU | 32 × 47 × 10 | pdf p23 |
 | `9318` | Gaxeta | AG 2 | PU | 13 × 22 × 7 | pdf p23 |
-| `12500750-250BS` | Gaxeta | AG 4 (BS) | Polymax | 19.05 × 25.4 × 6.35 | codigo p |
-| `15601000-312BS` | Gaxeta | AG 4 (BS) | Polymax | 25.4 × 33.3375 × 7.9375 | codigo p |
-| `18702000-312BS` | Gaxeta | AG 4 (BS) | PU | 50.8 × 60.325 × 7.9375 | codigo p |
 | `3369` | Gaxeta | AG 4 (BS) | PU | 100 × 120 × 12 | pdf p25 |
 | `3416` | Gaxeta | AG 4 (BS) | PU | 85 × 100 × 9 | pdf p25 |
 | `3730` | Gaxeta | AG 4 (BS) | PU | 49.6 × 62.5 × 9 | pdf p25 |
@@ -390,10 +362,6 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | `50088` | Gaxeta | AG 4 (BS) | GSK | 76.2 × 88.9 × 9.53 | tabela2026 p |
 | `5536` | Gaxeta | AG 4 (BS) | PU | 32 × 40 × 7 | pdf p25 |
 | `5717` | Gaxeta | AG 4 (BS) | PU | 40 × 48 × 5.7 | pdf p25 |
-| `619701574-314BS` | Gaxeta | AG 4 (BS) | Polymax | 40 × 50 × 8 | tabela2026 p |
-| `6575` | Gaxeta | AG 4 (BS) | PU | 69.85 × 82.55 × 9.525 | codigo p24 |
-| `6764PM` | Gaxeta | AG 4 (BS) | Polymax | 50 × 63 × 9 | pdf p42 |
-| `7796PM` | Gaxeta | AG 4 (BS) | Polymax | 57.15 × 69.85 × 7.9375 | codigo p41 |
 | `9752PM` | Gaxeta | AG 4 (BS) | Polymax | 32 × 42 × 7 | pdf p42 |
 | `9941` | Gaxeta | AG 4 (BS) | PU | 20 × 28 × 5.7 | pdf p25 |
 | `AG7115` | Gaxeta | AG 4 (BS) | PU | 25 × 33 × 6.8 | pdf p25 |
@@ -403,41 +371,101 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 | `6529` | Gaxeta | AG 6 | PU | 12 × 20 × 7 | pdf p27 |
 | `6633` | Gaxeta | AG 6 | PU | 6 × 14 × 6 | pdf p27 |
 | `50077` | Gaxeta | AG 90 | GSK | 0 × 110 × 12 | tabela2026 p |
-| `12501750-185PM` | Gaxeta | B | Polymax | 44.45 × 50.8 × 4.7625 | codigo p |
-| `1642` | Gaxeta | B | PU | 107.95 × 127 × 15.875 | codigo p17 |
-| `1643` | Gaxeta | B | PU | 88.9 × 107.95 × 15.875 | codigo p16 |
-| `1677` | Gaxeta | B | PU | 66.675 × 79.375 × 9.525 | codigo p17 |
-| `1835` | Gaxeta | B | PU | 80 × 100 × 15 | pdf p21 |
-| `18704375-500` | Gaxeta | B | PU | 111.125 × 120.65 × 12.7 | codigo p |
-| `25001625-375` | Gaxeta | B | PU | 41.275 × 53.975 × 9.525 | codigo p |
-| `25002500-375PM` | Gaxeta | B | Polymax | 63.5 × 76.2 × 9.525 | codigo p |
-| `25002750-312PM` | Gaxeta | B | Polymax | 69.85 × 82.55 × 7.9375 | codigo p |
-| `25002750-375` | Gaxeta | B | PU | 69.85 × 82.55 × 9.525 | codigo p |
-| `25005500-562` | Gaxeta | B | PU | 139.7 × 152.4 × 14.2875 | codigo p |
-| `31201125-500` | Gaxeta | B | PU | 28.575 × 44.45 × 12.7 | codigo p |
-| `31201750-500PM` | Gaxeta | B | Polymax | 44.45 × 60.325 × 12.7 | codigo p |
-| `3220PM` | Gaxeta | B | Polymax | 171.45 × 190.5 × 15.875 | codigo p37 |
-| `3303` | Gaxeta | B | PU | 60 × 80 × 10 | pdf p20 |
-| `3429` | Gaxeta | B | PU | 41.275 × 60.325 × 15.875 | codigo p15 |
-| `3590` | Gaxeta | B | PU | 146.05 × 158.75 × 14.2875 | codigo p16 |
-| `37503375-625` | Gaxeta | B | PU | 85.725 × 104.775 × 15.875 | codigo p |
-| `37503750-500` | Gaxeta | B | PU | 95.25 × 114.3 × 12.7 | codigo p |
-| `37504500-625PM` | Gaxeta | B | Polymax | 114.3 × 133.35 × 15.875 | codigo p |
-| `37509000-625PM` | Gaxeta | B | Polymax | 228.6 × 247.65 × 15.875 | codigo p |
-| `4165` | Gaxeta | B | PU | 122.42 × 142.44 × 13 | pdf p21 |
-| `4304` | Gaxeta | B | PU | 215.9 × 234.95 × 15.875 | codigo p18 |
-| `50008500-750` | Gaxeta | B | PU | 215.9 × 241.3 × 19.05 | codigo p |
-| `5160PM` | Gaxeta | B | Polymax | 60.325 × 73.025 × 9.525 | codigo p37 |
-| `5822` | Gaxeta | B | PU | 45 × 66 × 10 | pdf p20 |
-| `5853PM` | Gaxeta | B | Polymax | 60 × 75 × 11.5 | pdf p39 |
 | `5921` | Gaxeta | B | PU | 40 × 52 × 8.4 | pdf p19 |
 | `6101` | Gaxeta | B | PU | 50 × 63 × 8 | pdf p20 |
-| `AG8143` | Gaxeta | B | PU | 28.575 × 34.925 × 3.9688 | codigo p16 |
-| `25005000PM` | Gaxeta | STD | Polymax | 127 × 139.7 × 6.35 | codigo p |
-| `31200625PM` | Gaxeta | STD | Polymax | 15.875 × 31.75 × 7.9375 | codigo p |
-| `37503250PM` | Gaxeta | STD | Polymax | 82.55 × 101.6 × 9.525 | codigo p |
 | `1919` | Raspador | GAE | NBR | 70 × 80 × 7 | pdf p58 |
 | `9099` | Raspador | RP-25 | PU | 56 × 64 × 6 | tabela2026 p |
+
+### Viraram Referência
+
+| Código antigo | Peça no catálogo | Tipo | Modelo |
+|---|---|---|---|
+| `12500750-250BS` | `7995PM` p41 | Gaxeta | AG 4 (BS) |
+| `12501750-185PM` | `7132PM` p37 | Gaxeta | B |
+| `15601000-312BS` | `5881PM` p41 | Gaxeta | AG 4 (BS) |
+| `18702000-312BS` | `9478PM` p41 | Gaxeta | AG 4 (BS) |
+| `18704000` | `4262` p34 | Gaxeta | STD |
+| `18704375-500` | `3305` p19 | Gaxeta | B |
+| `25001500` | `1068` p33 | Gaxeta | STD |
+| `25001625-375` | `5461` p17 | Gaxeta | B |
+| `25002500-375PM` | `1058PM` p37 | Gaxeta | B |
+| `25002750-312PM` | `7952PM` p37 | Gaxeta | B |
+| `25002750-375` | `1624` p18 | Gaxeta | B |
+| `25005000PM` | `3880PM` p46 | Gaxeta | STD |
+| `25005500` | `4372` p35 | Gaxeta | STD |
+| `25005500-562` | `3079` p19 | Gaxeta | B |
+| `31200625PM` | `5562PM` p46 | Gaxeta | STD |
+| `31201125-500` | `5585` p17 | Gaxeta | B |
+| `31201750-500PM` | `1616PM` p37 | Gaxeta | B |
+| `31202625` | `3465` p34 | Gaxeta | STD |
+| `37500875` | `5569` p33 | Gaxeta | STD |
+| `37503250PM` | `1077PM` p46 | Gaxeta | STD |
+| `37503375-625` | `3304` p18 | Gaxeta | B |
+| `37503750-500` | `4864` p19 | Gaxeta | B |
+| `37504500-625PM` | `3963PM` p37 | Gaxeta | B |
+| `37509000-625PM` | `4437PM` p38 | Gaxeta | B |
+| `50008500-750` | `3861` p20 | Gaxeta | B |
+| `619701102-314` | `9477` p21 | Gaxeta | B |
+| `619701574-314BS` | `8042PM` p42 | Gaxeta | AG 4 (BS) |
+| `619701772-394PM` | `6954PM` p39 | Gaxeta | B |
+| `619701968-236PM` | `6089PM` p39 | Gaxeta | B |
+| `619702165-374PM` | `1610PM` p39 | Gaxeta | B |
+| `619702362-276PM` | `4414PM` p39 | Gaxeta | B |
+| `619702362-472` | `6624` p22 | Gaxeta | B |
+| `619703150-314` | `5826` p22 | Gaxeta | B |
+| `619703543-228PM` | `6919PM` p39 | Gaxeta | B |
+| `621601771-275` | `5821` p21 | Gaxeta | B |
+| `623601181-393` | `5362` p21 | Gaxeta | B |
+| `623601575-330PM` | `5921PM` p39 | Gaxeta | B |
+| `629502185-374` | `3182` p22 | Gaxeta | B |
+| `629502480-393PM` | `1829PM` p39 | Gaxeta | B |
+| `639403543-472BS` | `AX0172` p42 | Gaxeta | AG 4 (BS) |
+| `643304330-511` | `6958` p23 | Gaxeta | B |
+| `659008661-708` | `4290` p23 | Gaxeta | B |
+| `66D-3602` | `4953` p50 | Raspador | 6D/66D |
+| `D-3750` | `1627` p47 | Raspador | D |
+| `E4-4030` | `3771` p62 | Gaxeta | AG 3 |
+| `E4-5040` | `5832` p62 | Gaxeta | AG 3 |
+| `E4-6353` | `3772` p62 | Gaxeta | AG 3 |
+| `E4-8068` | `3773` p62 | Gaxeta | AG 3 |
+| `E4-A088` | `3774` p62 | Gaxeta | AG 3 |
+| `EL-0040` | `6303` p64 | Raspador | KDG |
+| `EL-0058` | `6302` p64 | Raspador | KDG |
+| `EL-0082` | `6301` p64 | Raspador | KDG |
+| `EL-1016` | `6300` p64 | Raspador | KDG |
+| `EU-1222` | `5761` p64 | Gaxeta | AG 25 |
+| `EU-1626` | `5760` p64 | Gaxeta | AG 25 |
+| `EU-2029` | `5759` p64 | Gaxeta | AG 25 |
+| `EU-2535` | `5758` p64 | Gaxeta | AG 25 |
+| `EU-3040` | `6878` p64 | Gaxeta | AG 25 |
+| `EU-3242` | `6634` p64 | Gaxeta | AG 25 |
+| `EU-4050` | `6877` p64 | Gaxeta | AG 25 |
+| `PP-1622` | `5792` p65 | Gaxeta | RP-08 |
+| `PP-2028` | `5794` p65 | Gaxeta | RP-08 |
+| `PP-2533` | `5793` p65 | Gaxeta | RP-08 |
+| `PP-3040` | `AG8522` p65 | Gaxeta | RP-08 |
+| `PP-3646` | `5795` p65 | Gaxeta | RP-08 |
+| `PP-4050` | `6629` p65 | Gaxeta | RP-08 |
+| `PP-5060` | `6931` p65 | Gaxeta | RP-08 |
+| `PZ-1207` | `6452` p65 | Gaxeta | Z |
+| `PZ-1605` | `6453` p65 | Gaxeta | Z |
+| `PZ-2013` | `6454` p65 | Gaxeta | Z |
+| `PZ-2518` | `6455` p65 | Gaxeta | Z |
+| `PZ-3210` | `6456` p65 | Gaxeta | Z |
+| `PZ-4031` | `6457` p65 | Gaxeta | Z |
+| `PZ-5010` | `6458` p65 | Gaxeta | Z |
+| `PZ-6351` | `6459` p65 | Gaxeta | Z |
+| `PZ-8010` | `6460` p65 | Gaxeta | Z |
+| `PZ-A008` | `6461` p65 | Gaxeta | Z |
+| `Z8-1006` | `6285` p62 | Gaxeta | AG 3 |
+| `Z8-1207` | `6284` p62 | Gaxeta | AG 3 |
+| `Z8-1610` | `6283` p62 | Gaxeta | AG 3 |
+| `Z8-2014` | `6282` p62 | Gaxeta | AG 3 |
+| `Z8-2519` | `6281` p62 | Gaxeta | AG 3 |
+| `Z8-3224` | `5833` p62 | Gaxeta | AG 3 |
+| `Z8-3426` | `AG7549` p62 | Gaxeta | AG 3 |
+| `Z8-4436` | `AG7553` p62 | Gaxeta | AG 3 |
+| `Z8-C505` | `4124` p62 | Gaxeta | AG 3 |
 
 ### Campos alterados
 
@@ -445,12 +473,14 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 |---|---|---|---|
 | `1590` | Altura | 6 | 6.1 |
 | `1590` | Externo | 63 | 63.75 |
-| `3543` | Altura | 7.5 | 11 |
 | `4730PM` | Altura | 10 | 11 |
 | `4797PM` | Aplicacao | haste,embolo | haste |
 | `4797PM` | Modelo | B | AG 4 (BS) |
 | `50068` | Modelo | AG 16 | AG 4 (BS) |
+| `6058` | Externo | 65.5 | 65 |
+| `6349PM` | Aplicacao | — | haste |
 | `7044PM` | Modelo | AG 14 | AG 4 (BS) |
+| `7067PM` | Aplicacao | — | haste |
 | `7162PM` | Modelo | AG 4 (BS) | AG 1 |
 | `8055PM` | Aplicacao | haste | haste,embolo |
 | `8055PM` | Modelo | AG 1 | AG 2 |
@@ -461,15 +491,15 @@ Total: **4525** itens (gaxetas-2022: 2230, lista-2025: 386, retentores-2021: 190
 
 | Catálogo | Tipo | Itens |
 |---|---|---|
-| gaxetas-2022 | Gaxeta | 36 |
-| gaxetas-2022 | Raspador | 13 |
-| gaxetas-2022 | Reparo pneumático | 2 |
-| lista-2025 | Gaxeta | 16 |
-| lista-2025 | Outros | 3 |
+| gaxetas-2022 | Gaxeta | 42 |
+| gaxetas-2022 | Raspador | 16 |
+| gaxetas-2022 | Reparo pneumático | 3 |
+| lista-2025 | Gaxeta | 5 |
+| lista-2025 | Outros | 2 |
 | lista-2025 | Raspador | 40 |
-| lista-2025 | Reparo pneumático | 2 |
+| lista-2025 | Reparo pneumático | 1 |
 | lista-2025 | Retentor | 185 |
-| retentores-2021 | Raspador | 194 |
+| retentores-2021 | Raspador | 193 |
 | retentores-2021 | Retentor | 1709 |
 
 ## Código da referência × valor impresso (> 0,05 mm)
@@ -488,6 +518,12 @@ O CSV usa o valor do **código** (fonte da verdade).
 
 Nenhuma.
 
+## Componentes pneumáticos (pág. 66) fundidos à peça da tabela
+
+A pág. 66 repete pela REFERÊNCIA peças das págs. 62–65; a descrição vai para a peça e não vira linha separada.
+
+42 códigos: `E4-4030`, `E4-5040`, `E4-6353`, `E4-8068`, `E4-A088`, `EL-0040`, `EL-0058`, `EL-0082`, `EL-1016`, `EU-1222`, `EU-1626`, `EU-2029`, `EU-2535`, `EU-3040`, `EU-3242`, `EU-4050`, `PP-1622`, `PP-2028`, `PP-2533`, `PP-3646`, `PP-3040`, `PP-4050`, `PP-5060`, `PZ-1207`, `PZ-1605`, `PZ-2013`, `PZ-2518`, `PZ-3210`, `PZ-4031`, `PZ-5010`, `PZ-6351`, `PZ-8010`, `PZ-A008`, `Z8-1006`, `Z8-1207`, `Z8-1610`, `Z8-2014`, `Z8-2519`, `Z8-3224`, `Z8-3426`, `Z8-4436`, `Z8-C505`
+
 ## Mesmo código em mais de uma tabela
 
 - `3039PM`: B/Polymax p39 (gaxetas-2022), STD/Polymax p46 (gaxetas-2022)
@@ -497,12 +533,11 @@ Nenhuma.
 - `8377PM`: AG 4 (BS)/Polymax p41 (gaxetas-2022), AG 4 (BS)/Polymax p41 (gaxetas-2022)
 - `7044PM`: AG 4 (BS)/Polymax p42 (gaxetas-2022), AG 14/Polymax p45 (gaxetas-2022)
 - `AG8293`: GA/NBR p54 (gaxetas-2022), GA/NBR p54 (gaxetas-2022)
+- `AG7784`: GA/PU p55 (gaxetas-2022), GA/PU p55 (gaxetas-2022)
 - `4862`: AGK1/PU p58 (gaxetas-2022), AGK2/PU p59 (gaxetas-2022)
 - `4861`: AGK1/PU p58 (gaxetas-2022), AGK2/PU p59 (gaxetas-2022)
 - `4860`: AGK1/PU p58 (gaxetas-2022), AGK2/PU p59 (gaxetas-2022)
 - `6285`: AG 3/— p62 (gaxetas-2022), AG 24/— p63 (gaxetas-2022)
-- `AG8255`: BRG/NBR p15 (retentores-2021), BRG/NBR p15 (retentores-2021)
-- `TCS0327`: BRG/NBR p17 (retentores-2021), BRG/NBR p17 (retentores-2021)
 
 ## Retentores: índice × páginas de perfil
 
@@ -515,7 +550,7 @@ O CSV usa o **índice** (págs. 84–111). Divergência = mesmo código com valo
 | `3585` | mod | AGJA | AGJA1 | 88 | 46 |
 | `AG8040` | mod | BRGE2 | BRG2 | 99 | 26 |
 | `AG8041` | mod | BRGE2 | BRG2 | 99 | 26 |
-| `AG8255` | mod | BRG | GR | 99 | 75 |
+| `AG8255` | mod | BRG | BRG / GR | 99 | 15 / 75 |
 | `AG8255` | mod | BRG | GR | 99 | 75 |
 | `AG8406` | mod | GGGX-1 | GGGX1 | 99 | 62 |
 | `AX0117` | mod | BRGE2 | BRG2 | 99 | 26 |
@@ -592,6 +627,15 @@ O CSV usa o **índice** (págs. 84–111). Divergência = mesmo código com valo
 - pág. 110 · GB · `TCS0922`
 - pág. 110 · BR · `TCS0976`
 - pág. 111 · BRG · `TCS1005`
+
+### Código repetido (fica a primeira ocorrência)
+
+- pág. 99 · BRG · `AG8255`
+- pág. 105 · BRG · `TCS0327`
+
+### Itens BLOQUEADOS no catálogo (fora do painel)
+
+- pág. 100 · `CX6092BLOQUEADOBAO 17,00 28,00 6,00 NBR LI`
 
 ### Perfis sem página própria (tipo inferido)
 
@@ -712,6 +756,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `3540` | Raspador GAE PU p57 | Raspador GAE PU p73 | — |
 | `3541` | Raspador GAE PU p57 | Raspador GAE PU p73 | — |
 | `3542` | Raspador GA PU p55 | Raspador GA PU p70 | — |
+| `3543` | Raspador GAE PU p57 | Raspador GAE PU p73 | — |
 | `3544` | Raspador GA PU p55 | Raspador GA PU p70 | — |
 | `3679` | Raspador GA PU p55 | Raspador GA PU p70 | — |
 | `3685` | Raspador GA PU p56 | Raspador GA PU p71 | — |
@@ -745,8 +790,11 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `4836` | Raspador GA PU p54 | Raspador GA PU p69 | — |
 | `4839` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
 | `4846` | Raspador AGK1 PU p58 | Raspador AGK1 PU p72 | — |
+| `4860` | Raspador AGK1 PU p58 | Raspador AGK2 PU p72 | — |
 | `4860` | Raspador AGK2 PU p59 | Raspador AGK2 PU p72 | — |
+| `4861` | Raspador AGK1 PU p58 | Raspador AGK2 PU p72 | — |
 | `4861` | Raspador AGK2 PU p59 | Raspador AGK2 PU p72 | — |
+| `4862` | Raspador AGK1 PU p58 | Raspador AGK2 PU p72 | — |
 | `4862` | Raspador AGK2 PU p59 | Raspador AGK2 PU p72 | — |
 | `4863` | Raspador GA PU p55 | Raspador GA PU p70 | — |
 | `4873` | Raspador AGK2 PU p59 | Raspador AGK2 PU p72 | — |
@@ -814,6 +862,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `5941` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `5960` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `6000` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
+| `6071` | Raspador GA PU p54 | Raspador GA PU p70 | — |
 | `6112` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `6123` | Raspador GAE PU p57 | Raspador GAE PU p73 | — |
 | `6144` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
@@ -843,6 +892,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `9882` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `9998` | Raspador GA PU p54 | Raspador GA PU p69 | — |
 | `AG7009` | Raspador GA PU p55 | Raspador GA PU p70 | — |
+| `AG7052` | Raspador GA PU p55 | Raspador GA PU p70 | — |
 | `AG7204` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `AG7346` | Raspador GA PU p54 | Raspador GA PU p69 | — |
 | `AG7366` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
@@ -865,6 +915,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `AG7767` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
 | `AG7783` | Raspador GA PU p55 | Raspador GA PU p71 | — |
 | `AG7784` | Raspador GA PU p55 | Raspador GA PU p71 | — |
+| `AG7784` | Raspador GA PU p55 | Raspador GA PU p71 | — |
 | `AG7803` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `AG7814` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
 | `AG7826` | Raspador GA NBR p55 | Raspador GA NBR p70 | — |
@@ -875,6 +926,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `AG8153` | Raspador GA PU p54 | Raspador GA PU p69 | — |
 | `AG8243` | Raspador GAE PU p57 | Raspador GAE PU p73 | — |
 | `AG8291` | Raspador GA PU p54 | Raspador GA PU p69 | — |
+| `AG8293` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `AG8293` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `AG8296` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `AG8381` | Raspador GAG PU p58 | Raspador GAG PU p74 | — |
@@ -898,12 +950,13 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `TCS0825` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `TCS0868` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `TCS0908` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
+| `TCS1011` | Raspador GA NBR p54 | Raspador GAE NBR p73 | — |
 | `TCS1012` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 | `TCS0822` | Raspador GA NBR p54 | Raspador GA NBR p69 | — |
 
 ## Sobreposição com as CSVs antigas (o APC prevalece no painel)
 
-431 códigos.
+433 códigos.
 
 | Código | CSV antiga | APC |
 |---|---|---|
@@ -1207,6 +1260,8 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `4927` | data_raspador_metalico.csv | Raspador GA PU |
 | `AG7784` | data_raspador_metalico.csv | Raspador GA PU |
 | `AG7784` | data_raspador_metalico.csv | Raspador GA PU |
+| `AG7784` | data_raspador_metalico.csv | Raspador GA PU |
+| `AG7784` | data_raspador_metalico.csv | Raspador GA PU |
 | `4948` | data_raspador_metalico.csv | Raspador GA PU |
 | `3685` | data_raspador_metalico.csv | Raspador GA PU |
 | `3506` | data_raspador_metalico.csv | Raspador GA PU |
@@ -1288,7 +1343,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `3368` | data_raspador_metalico.csv | Raspador GAG PU |
 | `4839` | data_raspador_metalico.csv | Raspador GAG PU |
 | `AG7567` | data_an_is_quad_e_arruela_borracha.csv | Raspador GRG NBR |
-| `5276` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `6621` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `6855` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `5639` | data_raspador_azul.csv | Raspador RP-25 PU |
@@ -1309,6 +1363,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `1976` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `6224` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `AG7048` | data_raspador_azul.csv | Raspador RP-25 PU |
+| `5276` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `6469` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `1977` | data_raspador_azul.csv | Raspador RP-25 PU |
 | `AG7439` | data_raspador_azul.csv | Raspador RP-25 PU |
@@ -1343,8 +1398,8 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 
 Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só código e descrição são lidos.
 
-- Itens dos catálogos encontrados nas listas: **3469** de 4139
-- Itens das listas sem correspondência nos catálogos: **386**
+- Itens dos catálogos encontrados nas listas: **3546** de 4129
+- Itens das listas sem correspondência nos catálogos: **358**
 
 ### Medida da descrição (lista) × catálogo
 
@@ -1358,9 +1413,10 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `5324` | `5324` | RASPADOR TIPO K 38,10 X 47,62 X 5,00 | Altura | 9,00 | 5,00 |
 | `5801` | `5801` | GAXETA AG 4 20,00 X 25,00 X 4,00 | Altura | 4,50 | 4,00 |
 | `5938` | `5938` | GAXETA AG16 30,00 X 40,00 X 9,00 | Externo | 41,00 | 40,00 |
+| `6058` | `6058` | RASPADOR TIPO D 55,00 X 65,50 X 5,30/6,50 | Externo | 65,00 | 65,50 |
 | `625603543-393` | `5828` | GAXETA 90,00 X 103,00 X 10,00 | Externo | 102,00 | 103,00 |
 | `AG7085` | `AG7085` | GAXETA AG22 25,00 X 30,00 X 5,00 | Altura | 5,50 | 5,00 |
-| `AG7482` | `AG7482` | GAX. AG13 50,00X65,00X6,00 | Externo | 65,50 | 65,00 |
+| `AG7482` | `AG7482` | GAX. AG13 50,00X65,00X6,00 C/ARR.ANTI-EXTRUSAO | Externo | 65,50 | 65,00 |
 | `E4-125` | `E4-125` | GAXETA PNEUM. 105 X 125 X 8,25 | Altura | 8,50 | 8,25 |
 | `PP-3646` | `5795` | GUARN. AMORT. RP-08 PU 36,00 X 46,00 X 7,80 | Altura | 7,00 | 7,80 |
 | `1319PM` | `1319PM` | GAXETA AG 2 38,10 X 57,15 X 12,70 POLYMAX | Interno | 38,00 | 38,10 |
@@ -1370,32 +1426,31 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `5920PM` | `5920PM` | GAXETA AG 4 36,00 X 46,00 X 8,00 POLYMAX | Altura | 8,30 | 8,00 |
 | `619701968-236PM` | `6089PM` | GAXETA 50,00 X 60,00 X 6,00 POLYMAX | Altura | 7,00 | 6,00 |
 | `631502953-429PM` | `5829PM` | GAXETA 75,00 X 91,00 X 10,90 POLYMAX | Externo | 90,00 | 91,00 |
-| `1054` | `1054` | RETENTOR 41,30 X 49,30 X 6,00 BAG NBR | Externo | 49,20 | 49,30 |
-| `1405` | `1405` | RETENTOR 49,20 X 68,15 X 12,70 BA-VITON | Externo | 76,10 | 68,15 |
+| `1054` | `1054` | RETENTOR 41,30 X 49,30 X 6,00 BAG NBR REF.01963 | Externo | 49,20 | 49,30 |
+| `1405` | `1405` | RETENTOR 49,20 X 68,15 X 12,70 BA-VITON REF.00185 | Externo | 76,10 | 68,15 |
 | `1512` | `1512` | RETENTOR 28,60 X 52,40 X 7,00 BRG - NBR | Interno | 30,00 | 28,60 |
 | `1525` | `1525` | RETENTOR 85,00 X 95,00 X 7,0/10,0 GAE - PU | Interno | 84,10 | 85,00 |
 | `1525` | `1525` | RETENTOR 85,00 X 95,00 X 7,0/10,0 GAE - PU | Externo | 95,25 | 95,00 |
 | `1552` | `1552` | RETENTOR 73,00 X 90,00 X 7,00/11,00 AGGR NBR | Altura | 10,50 | 11,00 |
 | `3052` | `3052` | RETENTOR 80,00 X 94,00 X 8,50/11,00 GAG PU | Altura | 8,00 | 11,00 |
-| `3239` | `3239` | RETENTOR 35,00 X 65,00 X 14,50/17,00 AGBC / K7 | Altura | 17,50 | 17,00 |
+| `3239` | `3239` | RETENTOR 35,00 X 65,00 X 14,50/17,00 AGBC / K7 NBR | Altura | 17,50 | 17,00 |
 | `3249` | `3249` | RETENTOR 70,00 X 95,00 X 13,00 AGBB K7 NBR | Altura | 14,50 | 13,00 |
 | `3251` | `3251` | RET.150,00 X 180,00 X 14,50 AGBB K7 NBR | Altura | 16,00 | 14,50 |
 | `3253` | `3253` | RETENTOR 58,00 X 82,00 X 16,00 AGFV NBR/PU | Interno | 57,00 | 58,00 |
 | `3253` | `3253` | RETENTOR 58,00 X 82,00 X 16,00 AGFV NBR/PU | Altura | 17,00 | 16,00 |
 | `3268` | `3268` | RETENTOR 45,00 X 70,00 X 14,50 AGBB / K7 NBR | Altura | 17,00 | 14,50 |
-| `3270` | `3270` | RETENTOR 167,80 X 198,00 X 13/17,70 AGBI / K7 | Altura | 17,00 | 17,70 |
+| `3270` | `3270` | RETENTOR 167,80 X 198,00 X 13/17,70 AGBI / K7 NBR | Altura | 17,00 | 17,70 |
 | `3339` | `3339` | RETENTOR 76,20 X 114,90 X 7,00 GGGX NBR | Externo | 114,30 | 114,90 |
-| `3360` | `3360` | RETENTOR 48,00 X 75,00 X 14,50 AGBB K7 NBR | Altura | 17,00 | 14,50 |
+| `3360` | `3360` | RETENTOR 48,00 X 75,00 X 14,50 AGBB K7 NBR 6025 | Altura | 17,00 | 14,50 |
 | `3394` | `3394` | RET.155,00 X 190,00 X 17,00 AGBC K7 NBR | Altura | 19,00 | 17,00 |
 | `3477` | `3477` | RETENTOR 50,00 X 60,00 X 7,00 GA PU | Interno | 50,80 | 50,00 |
 | `3477` | `3477` | RETENTOR 50,00 X 60,00 X 7,00 GA PU | Externo | 60,30 | 60,00 |
-| `3543` | `3543` | RETENTOR 90,00 X 100,00 X 7,50 GAE - PU | Altura | 11,00 | 7,50 |
 | `3994` | `3994` | RETENTOR 60,32 X 85,10 X 11,10 BG NBR | Interno | 140,00 | 60,32 |
 | `3994` | `3994` | RETENTOR 60,32 X 85,10 X 11,10 BG NBR | Externo | 165,00 | 85,10 |
 | `3994` | `3994` | RETENTOR 60,32 X 85,10 X 11,10 BG NBR | Altura | 12,00 | 11,10 |
 | `4307` | `4307` | RETENTOR 88,90 X 122,90 X 18,70 AGJR NBR 02484 | Altura | 19,00 | 18,70 |
-| `4418` | `4418` | RETENTOR 55,00 X 80,00 X 10,90 BRG NBR | Altura | 10,00 | 10,90 |
-| `4502` | `4502` | RETENTOR 122,00 X 142,00 X 10/15 AGBU K7 | Altura | 5,00 | 15,00 |
+| `4418` | `4418` | RETENTOR 55,00 X 80,00 X 10,90 BRG NBR REF.00459 | Altura | 10,00 | 10,90 |
+| `4502` | `4502` | RETENTOR 122,00 X 142,00 X 10/15 AGBU K7 VITON | Altura | 5,00 | 15,00 |
 | `4523` | `4523` | RETENTOR 38,00 X 62,00 X 9,00 BRG NBR | Interno | 101,60 | 38,00 |
 | `4523` | `4523` | RETENTOR 38,00 X 62,00 X 9,00 BRG NBR | Externo | 127,00 | 62,00 |
 | `4523` | `4523` | RETENTOR 38,00 X 62,00 X 9,00 BRG NBR | Altura | 9,50 | 9,00 |
@@ -1406,9 +1461,9 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `4620` | `4620` | RETENTOR 101,00 X 114,00 X 8,20 GA1 - PU | Altura | 7,00 | 8,20 |
 | `4623` | `4623` | RETENTOR 90,00 X 170,00 X 13,00 BRGE VITON | Externo | 110,00 | 170,00 |
 | `4623` | `4623` | RETENTOR 90,00 X 170,00 X 13,00 BRGE VITON | Altura | 11,00 | 13,00 |
-| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF | Interno | 30,00 | 130,00 |
-| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF | Externo | 72,00 | 160,00 |
-| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF | Altura | 20,00 | 14,00 |
+| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF 020P69C | Interno | 30,00 | 130,00 |
+| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF 020P69C | Externo | 72,00 | 160,00 |
+| `4634` | `4634` | RETENTOR 130,00 X 160,00 X 14,00 BRG NBR REF 020P69C | Altura | 20,00 | 14,00 |
 | `4647` | `4647` | RETENTOR 31,75 X 50,80 X 8,70 AGGK - TEFLON | Interno | 32,80 | 31,75 |
 | `4648` | `4648` | RETENTOR 40,00 X 53,00 X 8,00 GAGE-NBR | Altura | 10,00 | 8,00 |
 | `4649` | `4649` | RETENTOR 35,00 X 52,00 X 8,30 GAGE-NBR | Altura | 10,00 | 8,30 |
@@ -1420,11 +1475,11 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `4672` | `4672` | RETENTOR 42,00 X 62,00 X 17,00 AGFV - NBR/PU | Interno | 44,20 | 42,00 |
 | `4672` | `4672` | RETENTOR 42,00 X 62,00 X 17,00 AGFV - NBR/PU | Externo | 71,45 | 62,00 |
 | `4672` | `4672` | RETENTOR 42,00 X 62,00 X 17,00 AGFV - NBR/PU | Altura | 14,80 | 17,00 |
-| `4678` | `4678` | RETENTOR 60,30 X 92,00 X 12,00 BAGE NBR REF. | Altura | 18,00 | 12,00 |
+| `4678` | `4678` | RETENTOR 60,30 X 92,00 X 12,00 BAGE NBR REF. 0033P4C | Altura | 18,00 | 12,00 |
 | `4723` | `4723` | RETENTOR 178,00 X 205,00 X 17,00 AGBD / K7 NBR | Altura | 21,00 | 17,00 |
 | `4966` | `4966` | RETENTOR 235,95 X 268,75 X 17,50/23,00 - K7 | Interno | 234,95 | 235,95 |
 | `5170` | `5170` | RETENTOR 25,40 X 31,70 X 3,50 GA NBR | Altura | 3,20 | 3,50 |
-| `5755` | `5755` | RETENTOR 27,00 X 42,70 X 7,90 BAG-NBR | Externo | 42,90 | 42,70 |
+| `5755` | `5755` | RETENTOR 27,00 X 42,70 X 7,90 BAG-NBR (P-30)REF.0P17C24 | Externo | 42,90 | 42,70 |
 | `5900` | `5900` | RETENTOR 19,00 X 28,60 X 6,50 BR-VITON | Altura | 6,40 | 6,50 |
 | `6639` | `6639` | RETENTOR 52,00 X 62,00 X 7,0/10,0 GAE - PU | Interno | 39,95 | 52,00 |
 | `6639` | `6639` | RETENTOR 52,00 X 62,00 X 7,0/10,0 GAE - PU | Altura | 7,50 | 10,00 |
@@ -1432,92 +1487,70 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `9104` | `9104` | RETENTOR 30,00 X 44,00 X 8,00 GAGE NBR | Altura | 10,00 | 8,00 |
 | `9814` | `9814` | RETENTOR 14,00 X 22,00 X 5,00 AGJK-NBR | Altura | 7,00 | 5,00 |
 | `9818` | `9818` | RETENTOR 27,00 X 38,10 X 6,00 BR-NBR REF.01993 | Altura | 6,40 | 6,00 |
-| `AG7105` | `AG7105` | RETENTOR 15,50 X 30,80 X 11,50 AGGQ1-NBR (C/3 | Altura | 15,50 | 11,50 |
+| `AG7105` | `AG7105` | RETENTOR 15,50 X 30,80 X 11,50 AGGQ1-NBR (C/3 FURPOCS) | Altura | 15,50 | 11,50 |
 | `AG7555` | `AG7555` | RETENTOR 28,00 X 40,00 X 8,30 GAGE NBR | Altura | 9,60 | 8,30 |
-| `AG7591` | `AG7591` | RETENTOR 55,00 X 80,00 X 10,90 BRG - FPM REF | Altura | 10,00 | 10,90 |
-| `AG7672` | `AG7672` | RETENTOR 2,00 X 24,50 X 14,50 AGNK NBR | Altura | 14,70 | 14,50 |
+| `AG7591` | `AG7591` | RETENTOR 55,00 X 80,00 X 10,90 BRG - FPM REF 0045P9C | Altura | 10,00 | 10,90 |
+| `AG7672` | `AG7672` | RETENTOR 2,00 X 24,50 X 14,50 AGNK NBR REF.10316 | Altura | 14,70 | 14,50 |
 | `AG7685` | `AG7685` | RETENTOR 47,00 X 67,00 X 5,00 AGJN1 NBR | Altura | 6,00 | 5,00 |
 | `AG8406` | `AG8406` | RETENTOR 38,00 X 58,00 X8,0/10,0 GGGX-1 NBR | Externo | 59,00 | 58,00 |
 | `AX0016` | `AX0016` | RET.150,15 X 178,00 X 13,0/16,0 AGBB1 K7 NBR | Interno | 150,00 | 150,15 |
-| `AX0018` | `AX0018` | RETENTOR 53,20 X 78,00 X 13,0/16,0 AGBB1 K7 | Altura | 14,00 | 16,00 |
+| `AX0018` | `AX0018` | RETENTOR 53,20 X 78,00 X 13,0/16,0 AGBB1 K7 NBR | Altura | 14,00 | 16,00 |
 | `CX7839` | `CX7839` | RETENTOR 19,00 X 29,00 X 7,00/7,80 BRG NBR | Externo | 29,20 | 29,00 |
 | `CX9370` | `CX9370` | RETENTOR 28,50 X 37,35 X 5,20 BR NBR | Externo | 37,60 | 37,35 |
-| `TCS0029` | `TCS0029` | RETENTOR 35,00 X 60,00 X 13,00 BR-NBR | Externo | 60,25 | 60,00 |
-| `TCS0029` | `TCS0029` | RETENTOR 35,00 X 60,00 X 13,00 BR-NBR | Altura | 12,70 | 13,00 |
-| `TCS0040` | `TCS0040` | RETENTOR 75,00 X 100,00 X 13,00 BAG-NBR | Altura | 12,00 | 13,00 |
-| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR | Interno | 41,10 | 41,28 |
-| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR | Externo | 65,40 | 65,48 |
-| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR | Altura | 13,00 | 12,70 |
-| `TCS0118` | `TCS0118` | RETENTOR 31,70 X 50,80 X 12,27 BAG-NBR | Altura | 11,10 | 12,27 |
+| `TCS0029` | `TCS0029` | RETENTOR 35,00 X 60,00 X 13,00 BR-NBR REF.00009 | Externo | 60,25 | 60,00 |
+| `TCS0029` | `TCS0029` | RETENTOR 35,00 X 60,00 X 13,00 BR-NBR REF.00009 | Altura | 12,70 | 13,00 |
+| `TCS0040` | `TCS0040` | RETENTOR 75,00 X 100,00 X 13,00 BAG-NBR REF.0026P9C | Altura | 12,00 | 13,00 |
+| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR REF.01100 | Interno | 41,10 | 41,28 |
+| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR REF.01100 | Externo | 65,40 | 65,48 |
+| `TCS0078` | `TCS0078` | RETENTOR 41,28 X 65,48 X 12,70 BAG-NBR REF.01100 | Altura | 13,00 | 12,70 |
+| `TCS0118` | `TCS0118` | RETENTOR 31,70 X 50,80 X 12,27 BAG-NBR REF.02063 | Altura | 11,10 | 12,27 |
 | `TCS0144` | `TCS0144` | RETENTOR 20,00 X 35,00 X 7,00 BR-NBR REF.02486 | Externo | 34,00 | 35,00 |
 | `TCS0616` | `TCS0616` | RETENTOR 17.00 X 28,00 X 6,00 BAO NBR(6092) | Altura | 6,50 | 6,00 |
-| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. | Interno | 87,30 | 12,00 |
-| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. | Externo | 114,30 | 20,00 |
-| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. | Altura | 22,20 | 5,00 |
+| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. 03227 | Interno | 87,30 | 12,00 |
+| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. 03227 | Externo | 114,30 | 20,00 |
+| `TCS0910` | `TCS0910` | RETENTOR 12,00 X 20,00 X 5,00 BRG NBR REF. 03227 | Altura | 22,20 | 5,00 |
 
 ### Itens das listas que não estão nos catálogos (incluídos com Catalogo=lista-2025)
 
 | Código | Lista | Linha | Descrição |
 |---|---|---|---|
 | `12500812-250` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 13/16 X 1.1/16 X 1/4 |
-| `12501125-157` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 1.1/8 X 1.3/8 X 5/32 |
 | `1519` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 9 127,00 X 133,35 X 4,76 |
-| `18704000` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 4 X 4.3/8 X 3/16 |
 | `1939` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 9 133,35 X 139,70 X 5,00 |
-| `25001500` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 1.1/2 X 2 X 1/4 |
-| `25002625-375` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 2.5/8 X 3.1/8 X 3/8 |
-| `25005500` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 5.1/2 X 6 X 1/4 |
-| `25005750-562` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 5.3/4 X 6.1/4 X 9/16 |
 | `3062` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 1 85,00 X 93,00 X 12,00 |
-| `31202625` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 2.5/8 X 3.1/4 X 5/16 |
-| `3471` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG12 75,00 X 95,00 X 13,5 |
-| `3642` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 4 70,00 X 83,00 X 10,00 |
-| `37500875` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 7/8 X 1.5/8 X 3/8 |
-| `37501625-625` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 1.5/8 X 2.3/8 X 5/8 |
-| `37503500-625` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 3.1/2 X 4.1/4 X 5/8 |
-| `37504250-625` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 4.1/4 X 5 X 5/8 |
-| `37508500-625` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 8.1/2 X 9.1/4 X 5/8 |
-| `4320` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 7 182,00 X 206,00 X 12,70 |
+| `3471` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG12 75,00 X 95,00 X 13,5 C/ARR.ANTI-EXTRUSAPOC |
+| `37504250-625 DEEP` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 4.1/4 X 5 X 5/8 DEEP |
 | `4940` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO DG 105,00 X 113,00 X 4,00/7,00 |
 | `4950` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO DG 60,00 X 68,00 X 4,00/7,00 |
 | `4951` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO DG 90,00 X 98,00 X 4,00/7,00 |
-| `5064` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 69,85X85,73X6,0/5,0 |
-| `5074` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 75,00X91,00X6,00 |
-| `5276` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO RP-25 63,50 X 76,20 X 6,50 |
+| `5064` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 69,85X85,73X6,0/5,0 C/ARR.ANTI-EXTRUSAPOC |
+| `5074` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 75,00X91,00X6,00 C/ARR.ANTI-EXTRUSAO |
 | `5916-2` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO D 19,00 X 24,70 X 1,8/4,0 |
-| `6058` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO D 55,00 X 65,50 X 5,30/6,50 |
 | `619701181-315` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 30,00 X 40,00 X 8,00 |
 | `621701377-393` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 35,00 X 46,00 X 10,00 |
 | `623601102` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 28,00 X 40,00 X 6,00 |
+| `625002874-189 STD.GAXETA` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | 73,00 X 85,70 X 4,80 STD |
 | `627601417-314` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 36,00 X 50,00 X 8,00 |
 | `636403210-374` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 81,50 X 100,00 X 9,50 STD. DEEP |
-| `639402362-394` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 60,00 X 80,00 X 10,00 |
-| `639403150-590` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 80,00 X 100,00 X 15,00 |
-| `639404820-511` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 122,42 X 142,44 X 13,00 |
-| `641301771-394` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA 45,00 X 66,00 X 10,00 |
 | `66D-2953` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR 75,00 X 87,32 X 7,70 /11,50 |
-| `66D-3602` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR 91,50 X 102,50 X 7,30 |
-| `6761` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 7 33,50 X 53,00 X 11,20 |
 | `9039` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO DG 45,00 X 54,00 X 5,00 |
 | `9070` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO RP-25 35,00 X 43,00 X 5,00 |
 | `9162` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG21 66,00 X 74,00 X 4,00 |
 | `9355` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASP. 25,00 X 33,00 X 4,5/6,0 TIPO RP-25 |
-| `9488` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 76,20 X 94,00 X 5,40 C/ |
+| `9488` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 76,20 X 94,00 X 5,40 C/ ARR.ANTI-EXTRUS |
 | `9791` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO D 25,00 X 29,00 X 3,6/6,7 |
 | `9820` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 1 105,00 X 120,00 X 6,30 |
 | `AG7192` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 1 65,00 X 80,50 X 6,40 |
-| `AG8016` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 40,00X50,70X3,90 |
-| `AG8188` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 57,10 X 75,00 X 5,50 |
+| `AG8016` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 40,00X50,70X3,90 C/ARR.ANTI-EXTRUSAO |
+| `AG8188` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 57,10 X 75,00 X 5,50 C/ARR.ANTI-EXTRUSAPOC |
 | `AG8228` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 1 115,00 X 130,00 X 6,00 |
 | `AG8301` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAXETA AG 7 25,40 X 34,98 X 4,76 |
-| `AG8475` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 90,00X105,00X5,0/6,30 C/ARR ANTI |
+| `AG8475` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG13 90,00X105,00X5,0/6,30 C/ARR ANTI EXTRUSP.C |
 | `AL100` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | ALICATE DE INSTALACAO 3/4 - 1.1/4 |
 | `AL150` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | ALICATE DE INSTALACAO 1.3/8 - 1.7/8 |
 | `AL200` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | ALICATE DE INSTALACAO 2 - 3 |
-| `AX0158` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR TIPO D 266,70 X 292,10 X 7,00 |
-| `AX0343` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG17 90,00 X 105,00 X 11,50 |
+| `AX0343` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | GAX. AG17 90,00 X 105,00 X 11,50 C/ARR.ANT-EXTRUSPAC |
 | `D-2375H` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR 2.3/8 X 2.7/8 X 1/4 PU AMARELO |
-| `D-3750` | lista-gaxetas-raspadores-2025.pdf | GAXETA E RASPADOR | RASPADOR 3.3/4 X 4.1/4 X 1/4 |
 | `50000` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 100,00 X 115,00 X 10,00 - GSK |
 | `50001` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 95,00 X 110,00 X 10,00 - GSK |
 | `50002` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 70,00 X 85,00 X 12,00 - GSK |
@@ -1588,43 +1621,37 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `50070` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 82,55 X 95,25 X 9,53 - GSK |
 | `50071` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 105,00 X 120,00 X 10,00 - GSK |
 | `50072` | lista-gaxetas-raspadores-2025.pdf | GAXETAS GSK | GAXETA AG 4 115,00 X 130,00 X 10,00 - GSK |
-| `AG` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | 7-4065 GAXETA PNEUM. PU 80,00 X 100,00 X 10,00 |
-| `AG24-6754` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | GAXETA PNEUM. PU 24,00 X 32,00 X 3,20 |
-| `CWU` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | 032-13 GAXETA BORR. AG 6 23,20 X 32,00 X 5,50 |
 | `EU-32` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | GUARNICAO COMPOSTA 32 X 43 X 11 |
 | `KCWU160-461` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | REPARO |
-| `PC4A` | lista-gaxetas-raspadores-2025.pdf | PNEUMÁTICA | REPARO PNEUM. CIL. 4" ANTIGO |
 | `1073PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | RASPADOR TIPO D 52,00 X 62,00 X 4,80 POLYMAX |
 | `12500625-250PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 5/8 X 7/8 X 1/4 POLYMAX |
 | `18702125PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 2.1/8 X 2.1/2 X 3/16 POLYMAX |
+| `18702500-375BS` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 4 2.1/2 X 2.7/8 X 3/8 POLYMAX |
 | `18703500-375PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 3.1/2 X 3.7/8 X 3/8 POLYMAX |
 | `18704500-375PMX` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 4.1/2 X 4.7/8 X 3/8 POLYMAX |
 | `25001000-375BS` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAX. AG 4 1 X 1.1/2 X 3/8 POLYMAX |
-| `25002250-312BS` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAX. AG 4 2.1/4 X 2.3/4 X 5/16 POLYMAX |
-| `25002375-375PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 2.3/8 X 2.7/8 X 3/8 POLYMAX |
 | `25005500PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 5.1/2 X 6 X 1/4 POLYMAX |
-| `37506750-625PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 6.3/4 X 7.1/2 X 5/8 POLYMAX |
+| `31205625-625BS` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 4 5.5/8 X 6.1/4 X 5/8 POLYMAX |
 | `50007750-750PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 7.3/4 X 8.3/4 X 3/4 POLYMAX |
 | `5996PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 1 36,00 X 44,00 X 5,70 POLYMAX |
+| `615703357-472` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 615703357-472 |
+| `619701181-354BS PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAX. AG 4 30,00 X 40,00 X 9,00 POLYMAX |
 | `6293PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 4 38,00 X 48,00 X 6,00 POLYMAX |
-| `629502362-450PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 60,00 X 75,00 X 11,50 POLYMAX |
 | `6297PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 2 32,00 X 47,00 X 10,00 POLYMAX |
 | `6328PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 1 24,00 X 32,00 X 6,00 POLYMAX |
 | `6349PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | RASP. 110,00 X 122,20 X 8,1 RP-32 POLYMAX |
-| `639403543-472BS` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 4 90,00 X 110,00 X 12,00 POLYMAX |
 | `7067PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | RASP. RP-32 105,00 X 117,00 X 8,10 - POLYMAX |
 | `7235PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 68,00 X 80,00 X 14,00 POLYMAX |
 | `7341PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA 62,00 X 75,00 X 14,00 POLYMAX |
 | `8121PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG1 28,00 X 38,00 X 7,30 POLYMAX |
-| `8331PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 1 90,00 X 102,00 X 8,70 POLYMAX |
-| `9177PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | RASPADOR 75,00 X 85,00 X 6,0/8,0 - TIPO D |
+| `9177PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | RASPADOR 75,00 X 85,00 X 6,0/8,0 - TIPO D POLYMAX |
 | `AX0086PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 1 80,00 X 92,00 X 8,70 POLYMAX |
 | `AX0093PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 1 110,00 X 125,00 X 10,90 POLYMAX |
 | `AX0337PM` | lista-gaxetas-raspadores-2025.pdf | POLYMAX | GAXETA AG 4 38,10 X 47,63 X 7,94 POLYMAX |
 | `1472-2` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,00 X 90,00 X 7,60 AGBS NBR |
-| `3259` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 57,00 X 73,00 X 10,0/13,50 AGBP - NBR |
+| `3259` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 57,00 X 73,00 X 10,0/13,50 AGBP - NBR (GIPRCO) |
 | `3516-2` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 130,00 X 160,00 X 12,00 GA - PU |
-| `3528` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 85,00 X 10,00 BRG FPM |
+| `3528` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 85,00 X 10,00 BRG FPM REF.00926 |
 | `3531` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 47,00 X 4,00 - BRF |
 | `3539-2` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 62,00 X 8,8/14,7 BAGG1 - NBR |
 | `3694-2` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 130,00 X 12,5/14,0 AGBB1 NBR |
@@ -1654,7 +1681,7 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `9779` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 39,00 X 5,00 BR - NBR |
 | `AG7293` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 31,75 X 41,28 X 4,76/7,55 GAE - NBR |
 | `AG7433` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 33,00 X 3,80 GA - PU |
-| `AG7677` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 5,00 X 30,00 X 14,00 AGB NBR |
+| `AG7677` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 5,00 X 30,00 X 14,00 AGB NBR REF.01102 |
 | `AG7678` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,00 X 30,00 X 7,50 AGGK - TEFLON |
 | `AG7753` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 26,00 X 32,00 X 3,00 GR - NBR |
 | `AG7792` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 6,95 X 62,00 X 8,00/12,50 BS NBR |
@@ -1664,13 +1691,13 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `AG8120` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 31,75 X 50,80 X 7,90 BAG - NBR |
 | `AG8394` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 24,00 X 38,00 X 6,30 BAGF - VITON |
 | `AG8412` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 31,75 X 44,45 X 6,35 GA - PU |
-| `AG8423` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 40,00 X 8,00 BRO - NBR (REF |
+| `AG8423` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 40,00 X 8,00 BRO - NBR (REF 0215P7C) |
 | `AG8462` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 35,00 X 5,00 BR - NBR |
 | `AX0019` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 74,50 X 95,00 X 7,00 GA1 - PU |
-| `AX0045` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 165,00 X 195,00 X 16,5/18,0 AGBB - |
+| `AX0045` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 165,00 X 195,00 X 16,5/18,0 AGBB - FPM KP7C |
 | `AX0079` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 99,50 X 120,00 X 9,00 GA1 - PU |
 | `AX0115` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,00 X 69,50 X 10,00 AGJN |
-| `AX0176` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 52,00 X 72,00 X 12,00 BAGF FPM REF |
+| `AX0176` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 52,00 X 72,00 X 12,00 BAGF FPM REF 0004P7C |
 | `AX0178` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 52,00 X 8,20 GA - PU |
 | `AX0180` | lista-retentores-2025.pdf | RETENTORES | RET.162,00 X 200,00 X 11,40/16,50 K7 |
 | `AX0186` | lista-retentores-2025.pdf | RETENTORES | RETENTOR K7 118,00 X 146,10 X 12,0/15,0 - FPM |
@@ -1683,14 +1710,14 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `AX0248` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 55,00 X 65,00 X 4,00 GA - PU |
 | `AX0250` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 107,95 X 123,83 X 7,94 GA - PU |
 | `AX0252` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 42,00 X 62,15 X 10,00 GY NBR |
-| `AX0256` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 59,50 X 85,60 X 12,00 BG-NBR |
+| `AX0256` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 59,50 X 85,60 X 12,00 BG-NBR REF.00547 |
 | `AX0260` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 100,00 X 8,00 BRG NBR |
-| `AX0262` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 47,70 X 72,95 X 12,00 BG NBR |
-| `AX0263` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 22,00 X 7,00 BRG - NBR (REF |
+| `AX0262` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 47,70 X 72,95 X 12,00 BG NBR (REF.00674) |
+| `AX0263` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 22,00 X 7,00 BRG - NBR (REF 0028P9)C |
 | `AX0272` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 59,50 X 75,00 X 7,00 - GA1 - PU |
 | `AX0273` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 63,50 X 101,60 X 9,50 BAG NBR |
 | `AX0274` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 35,00 X 6,00 BRG NBR |
-| `AX0275` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 42,00 X 10,00 BG NBR |
+| `AX0275` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 42,00 X 10,00 BG NBR REF.01746 |
 | `AX0276` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 75,00 X 90,00 X 8,00 GA - PU |
 | `AX0277` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 89,50 X 105,00 X 7,00 GA1 - PU |
 | `AX0278` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 70,00 X 110,00 X 8,00 BRG NBR |
@@ -1700,26 +1727,26 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `AX0283` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 120,00 X 10,00 BRG NBR |
 | `AX0284` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 200,00 X 230,00 X 15,00 BRG NBR |
 | `AX0285` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 240,00 X 270,00 X 15,0 BRG NBR |
-| `AX0286` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,00 X 72,00 X 10,00 BRG NBR |
+| `AX0286` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,00 X 72,00 X 10,00 BRG NBR REF.00834 |
 | `AX0287` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 120,00 X 150,00 X 14,00 BRG NBR |
 | `AX0289` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 38,00 X 68,00 X 8,00 - BRG NBR |
-| `AX0290` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 38,00 X 50,00 X 7,00 - BRG NBR REF: |
+| `AX0290` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 38,00 X 50,00 X 7,00 - BRG NBR REF: 01355 |
 | `AX0292` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 150,00 X 180,00 X 8,00 BRG NBR |
 | `AX0293` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 32,00 X 47,00 X 7,00 BRG - NBR |
-| `AX0294` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 120,00 X 12,00 BRG NBR |
+| `AX0294` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 120,00 X 12,00 BRG NBR REF.013P75C |
 | `AX0295` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 69,90 X 98,45 X 12,70 B-NBR REF.00081 |
-| `AX0296` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 62,00 X 12,00 BAG NBR |
+| `AX0296` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 62,00 X 12,00 BAG NBR REF.02091P/0C0136 |
 | `AX0299` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 24,00 X 6,00 BR - NBR |
 | `AX0301` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 90,00 X 8,00 BR NBR |
 | `AX0315` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 32,00 X 45,00 X 6,00 BRGF - VITON |
 | `AX0318` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 140,00 X 170,00 X 15,00 BRG NBR |
 | `AX0319` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 50,00 X 10,00 - BRG-FPM |
-| `AX0320` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 55,00 X 72,00 X 9,00 BRG NBR |
-| `AX0321` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 50,00 X 10,00 BRG NBR |
+| `AX0320` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 55,00 X 72,00 X 9,00 BRG NBR REF.02111 |
+| `AX0321` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 50,00 X 10,00 BRG NBR (REF.0035P8)C |
 | `AX0322` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 120,00 X 140,00 X 13,00 BRG NBR |
 | `AX0323` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 240,00 X 280,00 X 15,00 BRG NBR |
 | `AX0328` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 31,70 X 50,80 X 8,73 AGGK - TEFLON |
-| `AX0330` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 42,00 X 8,00 - BA NBR REF |
+| `AX0330` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 42,00 X 8,00 - BA NBR REF 00925 |
 | `AX0331` | lista-retentores-2025.pdf | RETENTORES | RETENTOR K7 55,30 X 84,10 X 13,0/14,5 FPM |
 | `AX0333` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 48,00 X 80,00 X 12,00 BRG NBR |
 | `AX0339` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 101,65 X 150,60 X 8,0/8,50 GGGX - NBR |
@@ -1727,17 +1754,17 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `AX0341` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 31,00 X 42,00 X 7,0/8,0 BRAG-H FPM |
 | `AX0342` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 88,00 X 126,00 X 12,00 BRG NBR |
 | `AX0345` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,40 X 42,80 X 9,20 AGGK - TEFLON |
-| `AX0347` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 56,00 X 80,00 X 13,00/14,50 AGBB1-K7 |
-| `AX0348` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 105,00 X 10,0/14,0 BRGGF - |
+| `AX0347` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 56,00 X 80,00 X 13,00/14,50 AGBB1-K7 NBRP/FCPM |
+| `AX0348` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 105,00 X 10,0/14,0 BRGGF - VITOPNC |
 | `AX0349` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 143,30 X 190,50 X 13,5/16,0 AGBD NBR |
 | `AX0352` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 47,00 X 4,00 - BRGF |
 | `CX0014` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 33,00 X 43,00 X 6,50 BR - NBR |
 | `CX0024` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 17,00 X 38,00 X 5,50 BR NBR |
 | `CX0824` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,00 X 30,00 X 5,00/5,70 BRG NBR |
 | `CX0827` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 33,00 X 46,00 X 7,00 BR NBR |
-| `CX3149` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,80 X 58,80 X 3/4,6 AGJC-NBR |
+| `CX3149` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 50,80 X 58,80 X 3/4,6 AGJC-NBR REF.02819 |
 | `CX5894` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 26,00 X 34,00 X 4,50 AGFX - NBR |
-| `CX8271` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 39,00 X 15,00 AGND - |
+| `CX8271` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 39,00 X 15,00 AGND - NBR/NYLON |
 | `CX8528` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 17,00 X 36,00 X 6,60 BAF - FPM |
 | `CX8544` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,00 X 36,00 X 5,00 AGGX - NBR |
 | `CX8553` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 8,00 X 16,00 X 7,00 BRG - NBR |
@@ -1763,40 +1790,40 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `CX8777` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 23,00 X 34,00 X 6,30 BR NBR |
 | `CX9388` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,20 X 42,00 X 6,00 GR NBR |
 | `RT0021` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 16,90 X 27,00 X 5,00 BRG VITON |
-| `RT0050` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 68,00 X 90,00 X 13,00 BAG NBR (REF |
-| `RT0063` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 42,00 X 7,00 BAG NBR REF. |
-| `RT0071` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 52,00 X 10,00 BR NBR (REF |
+| `RT0050` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 68,00 X 90,00 X 13,00 BAG NBR (REF 0050P0)C |
+| `RT0063` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 42,00 X 7,00 BAG NBR REF. 00847 |
+| `RT0071` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 30,00 X 52,00 X 10,00 BR NBR (REF 00949) |
 | `RT0080` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 26,00 X 42,00 X 10,00 BRG - REF 01151 |
-| `RT0082` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 68,00 X 12,00 |
-| `RT0090` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 17,00 X 40,00 X 8,50 BR - NBR (REF |
-| `RT0092` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 34,00 X 52,00 X 7,50 BR NBR (REF |
+| `RT0082` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 68,00 X 12,00 BAG-NBR(REF.01207P)C |
+| `RT0090` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 17,00 X 40,00 X 8,50 BR - NBR (REF 01492P) |
+| `RT0092` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 34,00 X 52,00 X 7,50 BR NBR (REF 01509) |
 | `RT0120` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X52,00 X 8,00 BRG NBR |
 | `RT0124` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 34,90 X 50,85 X 8,30 BA-NBR REF.02102 |
 | `RT0147` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 38,00 X 52,30 X 7,00 BR NBR REF. 02506 |
-| `RT0149` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 22,00 X 5,00 BRG-NBR |
+| `RT0149` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 22,00 X 5,00 BRG-NBR REF.02535 |
 | `RT0186` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 10,00 X 19,00 X 7,00 BRG FPM |
 | `RT0204` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 30,00 X 8,00 BRG NBR |
 | `RT0224` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 15,00 X 24,00 X 6,00 BR NBR |
 | `RT0244` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 16,00 X 30,00 X 7,00 BRG NBR |
 | `RT0252` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 17,00 X 28,00 X 7,00 BRG NBR |
-| `RT0253` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 44,80 X 61,40 X 12,00 BA NBR REF. |
+| `RT0253` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 44,80 X 61,40 X 12,00 BA NBR REF. 00012 |
 | `RT0266` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 18,00 X 35,00 X 7,00 BRG NBR |
 | `RT0280` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,05 X 33,35 X 7,95 BAG NBR |
 | `RT0293` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 35,00 X 5,00 BRG - NBR |
-| `RT0294` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 35,00 X 8,00 BRG-NBR |
+| `RT0294` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 35,00 X 8,00 BRG-NBR REF.01386 |
 | `RT0297` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 38,00 X 5,00 BRG-NBR |
 | `RT0298` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 40,00 X 8,00 BRG - NBR |
 | `RT0301` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 47,00 X 7,00 BRG NBR |
 | `RT0302` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 47,00 X 8,00 BRG - NBR |
 | `RT0303` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 20,00 X 52,00 X 8,00 BRG-NBR |
-| `RT0317` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 42,00 X 10,00 BRG NBR (REF |
+| `RT0317` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 42,00 X 10,00 BRG NBR (REF 00815P)C |
 | `RT0323` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 23,42 X 29,77 X 4,78 BR NBR |
 | `RT0324` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 24,00 X 35,00 X 7,00 BRG BR |
-| `RT0330` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 35,00 X 7,00 BRG NBR REF |
+| `RT0330` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 35,00 X 7,00 BRG NBR REF 01543 |
 | `RT0332` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 37,00 X 6,00 BRG-NBR |
-| `RT0333` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 37,00 X 7,00 BRG NBR REF. |
+| `RT0333` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 37,00 X 7,00 BRG NBR REF. 01577 |
 | `RT0338` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 38,00 X 7,00 BRG-FPM |
-| `RT0340` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 40,00 X 7,00 BRG NBR REF |
+| `RT0340` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 40,00 X 7,00 BRG NBR REF 02570 |
 | `RT0342` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 42,00 X 6,00 BRG NBR TCS0342 |
 | `RT0350` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 47,00 X 7,00 BRG-FPM |
 | `RT0368` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 40,00 X 6,00 BRG - FPM |
@@ -1807,29 +1834,29 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `RT0431` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 49,00 X 7,00 BRG-NBR |
 | `RT0438` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 36,00 X 50,00 X 7,00 BR FPM |
 | `RT0451` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X 52,00 X 7,00 BR-FPM |
-| `RT0456` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X 56,00 X 8,00 BRG NBR |
+| `RT0456` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X 56,00 X 8,00 BRG NBR REF.00880 |
 | `RT0544` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 55,00 X 70,00 X 8,00 BRG REF.01181 |
 | `RT0573` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 65,00 X 80,00 X 12,00 BRG-NBR |
 | `RT0579` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 70,00 X 88,00 X 12,00 BRG-NBR |
-| `RT0593` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 74,00 X 90,00 X 10,00 BAG NBR REF. |
+| `RT0593` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 74,00 X 90,00 X 10,00 BAG NBR REF. 01044 |
 | `RT0607` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 80,00 X 110,00 X 10,00 BRG NBR |
-| `RT0625` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 130,00 X 13,00 BRG NBR REF |
+| `RT0625` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 100,00 X 130,00 X 13,00 BRG NBR REF 019P74C |
 | `RT0648` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 140,00 X 170,00 X 15,00 BRG FPM |
 | `RT0719` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,05 X 33,35 X 7,95/8,99 BAG NBR |
 | `RT0763` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 36,00 X 8,00 AGNA NBR/NYLON |
 | `RT0772` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 37,60 X 6,00 BR - NBR |
-| `RT0781` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 13,00 X 26,00 X 7,00 BRG NBR |
-| `RT0796` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 14,00 X 24,00 X 7,00 BAG NBR REF. |
-| `RT0801` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X 72,00 X 12,00 BAG NBR REF. |
-| `RT0803` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 73,10 X 13,00 BAGG - NBR |
-| `RT0819` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 40,00 X 7,00 BRG FPM |
-| `RT0866` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 35,00 X 10,00 BAG NBR REF. |
+| `RT0781` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 13,00 X 26,00 X 7,00 BRG NBR REF.02373 |
+| `RT0796` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 14,00 X 24,00 X 7,00 BAG NBR REF. 01389 |
+| `RT0801` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 40,00 X 72,00 X 12,00 BAG NBR REF. 0160P2C |
+| `RT0803` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 73,10 X 13,00 BAGG - NBR REF.023P9C5 |
+| `RT0819` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 25,00 X 40,00 X 7,00 BRG FPM REF.02570 |
+| `RT0866` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 35,00 X 10,00 BAG NBR REF. 00118 |
 | `RT0868` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 43,00 X 52,00 X 6,50 GA NBR REF.02981 |
-| `RT0879` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 75,00 X 95,00 X 10,00 BRG NBR |
+| `RT0879` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 75,00 X 95,00 X 10,00 BRG NBR REF.02531 |
 | `RT0886` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 12,00 X 26,00 X 7,00 BA NBR |
-| `RT0907` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 53,00 X 75,00 X 12,00 BG NBR |
+| `RT0907` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 53,00 X 75,00 X 12,00 BG NBR REF.00838 |
 | `RT0908` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 35,00 X 42,00 X 4,00 GA NBR REF.02095 |
-| `RT0911` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 82,50 X 107,85 X 11,90 BGO NBR |
+| `RT0911` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 82,50 X 107,85 X 11,90 BGO NBR REF.0064P4C |
 | `RT0916` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 47,00 X 9,00 BG NBR REF.01779 |
 | `RT0971` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,05 X 38,00 X 5,00/5,80 BRG NBR |
 | `RT0981` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 70,00 X 85,00 X 8,00 BAG NBR |
@@ -1837,12 +1864,12 @@ Cruzamento por código (ou Referência Tipo B/STD; hífens ignorados). Só códi
 | `RT1005` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,00 X 35,00 X 5,00/5,70 BRG NBR |
 | `RT1010` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 45,00 X 100,00 X 10,00 BRG NBR |
 | `RT1012` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 7,95 X 15,88 X 3,96 GA NBR |
-| `TCS0415` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 32,00 X 52,00 X 7,00 BRG NBR |
+| `TCS0415` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 32,00 X 52,00 X 7,00 BRG NBR REF.02699 |
 | `TCS0681` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 39,00 X 8,50 AGNA NBR/NYLON |
-| `TCS0691` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 40,00 X 7,3/8,5 BRGH |
+| `TCS0691` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 28,00 X 40,00 X 7,3/8,5 BRGH NBR/NYLON |
 | `TCS0702` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 9,00 X 22/23,00 X 14,60 AGNX NBR/FPM |
 | `TCS0748` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 27,70 X 44,00 X 9,00 BRGH NBR/NYLON |
-| `TCS0783` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 26,00 X 41,00 X 8,50 AGNA - |
+| `TCS0783` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 26,00 X 41,00 X 8,50 AGNA - NBR/NYLON |
 | `TCS0855` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 22,00 X 35,00 X 8,50 AGNA NBR/NYLON |
 | `TCS0994` | lista-retentores-2025.pdf | RETENTORES | RETENTOR 19,00 X 30,00 X 7,00 BRG NBR |
 
@@ -1865,20 +1892,28 @@ Só na lista 2025, sem perfil na descrição nem código exclusivo. Aparecem na 
 - `619701181-315` · GAXETA 30,00 X 40,00 X 8,00
 - `621701377-393` · GAXETA 35,00 X 46,00 X 10,00
 - `627601417-314` · GAXETA 36,00 X 50,00 X 8,00
-- `641301771-394` · GAXETA 45,00 X 66,00 X 10,00
-- `639402362-394` · GAXETA 60,00 X 80,00 X 10,00
-- `639403150-590` · GAXETA 80,00 X 100,00 X 15,00
-- `639404820-511` · GAXETA 122,42 X 142,44 X 13,00
-- `629502362-450PM` · GAXETA 60,00 X 75,00 X 11,50 POLYMAX
+- `37504250-625 DEEP` · GAXETA 4.1/4 X 5 X 5/8 DEEP
+- `615703357-472` · GAXETA 615703357-472
 - `7341PM` · GAXETA 62,00 X 75,00 X 14,00 POLYMAX
 - `7235PM` · GAXETA 68,00 X 80,00 X 14,00 POLYMAX
-- `AG24-6754` · GAXETA PNEUM. PU 24,00 X 32,00 X 3,20
-- `RT0082` · RETENTOR 45,00 X 68,00 X 12,00
+- `AG7930` · RETENTOR 42,60 X 80,00 X 7,70 PIVO TRACAO
+- `TCS0855` · RETENTOR 22,00 X 35,00 X 8,50 AGNA NBR/NYLON
+- `RT0763` · RETENTOR 25,00 X 36,00 X 8,00 AGNA NBR/NYLON
+- `TCS0783` · RETENTOR 26,00 X 41,00 X 8,50 AGNA - NBR/NYLON
+- `TCS0748` · RETENTOR 27,70 X 44,00 X 9,00 BRGH NBR/NYLON
+- `TCS0681` · RETENTOR 28,00 X 39,00 X 8,50 AGNA NBR/NYLON
+- `CX8271` · RETENTOR 28,00 X 39,00 X 15,00 AGND - NBR/NYLON
+- `TCS0691` · RETENTOR 28,00 X 40,00 X 7,3/8,5 BRGH NBR/NYLON
+- `AX0252` · RETENTOR 42,00 X 62,15 X 10,00 GY NBR
+- `AX0192` · RETENTOR 63,50 X 88,90 X 7,0/12,7 GGE NBR
+- `RT0911` · RETENTOR 82,50 X 107,85 X 11,90 BGO NBR REF.0064P4C
+- `TCS0702` · RETENTOR 9,00 X 22/23,00 X 14,60 AGNX NBR/FPM
 
 ## Medida incompleta
 
 Aparecem na busca por código, mas não em todas as buscas por medida.
 
+- `615703357-472` · lista-2025 · GAXETA 615703357-472
 - `9203` · lista-2025 · RETENTOR 20,00 X 28,00 6,00 NBR - BR
 
 ## Pendências conhecidas (dados antigos)
