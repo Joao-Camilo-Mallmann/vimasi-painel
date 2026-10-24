@@ -11,6 +11,8 @@
 
 As listas 2025 têm só código, descrição, UN e % IPI (sem preço). O script lê apenas código e descrição.
 
+As listas 2025 são a **fonte mestra** do que está em linha: item dos catálogos 2021/2022 que não está nelas fica no CSV com `NaLista` vazio e **não aparece no painel** (`DatabaseService.loadData`). Item que só existe na lista entra com `Catalogo=lista-2025`.
+
 O catálogo 2022 substituiu o APC ref. 02/2019, e as listas 2025 substituíram a lista AGEL 2026. Os dois arquivos antigos continuam no histórico do git.
 
 ## Como regenerar os dados
@@ -30,8 +32,9 @@ node scripts/check_busca.mjs               # auto-checagem busca + funil
   - retentores: índice × páginas de perfil
   - mesmo código nos dois catálogos
   - sobreposição com as CSVs antigas
-  - listas 2025 × catálogos
+  - listas 2025 × catálogos: medidas divergentes, itens só na lista, casados pela medida (erro de dígito na Referência), itens dos catálogos fora das listas (ocultos no painel), perfis só na lista 2025
   - linhas não extraídas
+  - perfil a confirmar e medida incompleta
 
 ## Gaxetas e raspadores: padrão da REFERÊNCIA (milésimos de polegada)
 
@@ -53,7 +56,7 @@ node scripts/check_busca.mjs               # auto-checagem busca + funil
 - **Perfil:** é o da página onde o código aparece. O índice usa variantes de material, que ficam no perfil-base com `Variante=` em Extras:
   - `F` = FPM: `BRGF` → `BRG`
   - `S` = MVQ: `BAS` → `BA`
-  - `P` = PTFE
+  - `P` = ACM (poliacrilato): `BRGP` → `BRG`
   - número: `AGGK1` → `AGGK`
 - **Tipo:** pela descrição da página do perfil.
   - "RASPADOR…" → `Raspador` (aplicação Haste)
@@ -62,6 +65,7 @@ node scripts/check_busca.mjs               # auto-checagem busca + funil
 - **ØEXT escalonado:** `110,0/154,0` → Externo = primeiro valor; o texto original vai em Extras.
 - **Colunas:** `REF` (referência de mercado) → `Referencia`. `ORI` (LI/H/AH/BI, legenda da pág. 6) → Extras "Orientação do lábio".
 - **Código nos dois catálogos** (raspadores GA, GAE, GAG, AGK1…): vale a linha do catálogo de gaxetas. Lá a coluna `h` é o H1; o `H1/H2` do de retentores vai em Extras.
+- **Só na lista 2025** (`Catalogo=lista-2025`): perfil = primeira sigla da descrição que é perfil do catálogo 2021 (variantes seguem o perfil-base). Se nenhuma for, vale a **única sigla entre as medidas e o material** (`… 8,50 AGNA NBR/NYLON` → `AGNA`; tipo inferido: GA/GR… raspador, o resto retentor) — listadas no relatório em "Perfis só na lista 2025"; se o catálogo arquiva a sigla noutro perfil (`BGO` → `BG`, aprendido nos itens casados), ela vira Variante desse perfil. Material pela sigla (NBR, FPM/VITON, MVQ, PTFE, PU…); se faltar, pela letra de variante do perfil (`BRF`, `BRGF`, `BRG-F` → FPM). Descrição com um `X` a menos (`20,00 X 28,00 6,00`) é tolerada.
 
 ## Recortes antigos (Drive)
 

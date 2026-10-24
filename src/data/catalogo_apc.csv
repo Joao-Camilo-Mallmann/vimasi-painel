@@ -2,10 +2,7 @@ Codigo;Referencia;Tipo;Modelo;Material;Aplicacao;Linha;Interno;Externo;Altura;Un
 AL100;;Ferramenta;;;;;;;;pol;;;;;;ALICATE DE INSTALACAO 3/4 - 1.1/4;S;lista2025;lista-2025;
 AL150;;Ferramenta;;;;;;;;pol;;;;;;ALICATE DE INSTALACAO 1.3/8 - 1.7/8;S;lista2025;lista-2025;
 AL200;;Ferramenta;;;;;;;;mm;;;;;;ALICATE DE INSTALACAO 2 - 3;S;lista2025;lista-2025;
-623601102;;Gaxeta;;;;Hidráulica;28;40;6;mm;;;;;;GAXETA 28,00 X 40,00 X 6,00;S;lista2025;lista-2025;
 619701181-315;;Gaxeta;;;;Hidráulica;30;40;8;mm;;;;;;GAXETA 30,00 X 40,00 X 8,00;S;lista2025;lista-2025;
-621701377-393;;Gaxeta;;;;Hidráulica;35;46;10;mm;;;;;;GAXETA 35,00 X 46,00 X 10,00;S;lista2025;lista-2025;
-627601417-314;;Gaxeta;;;;Hidráulica;36;50;8;mm;;;;;;GAXETA 36,00 X 50,00 X 8,00;S;lista2025;lista-2025;
 37504250-625 DEEP;;Gaxeta;;;;Hidráulica;107.95;127;15.875;pol;;;;;;GAXETA 4.1/4 X 5 X 5/8 DEEP;S;lista2025;lista-2025;
 615703357-472;;Gaxeta;;Polymax;;Hidráulica;;;;mm;;;;;;GAXETA 615703357-472;S;lista2025;lista-2025;
 7341PM;;Gaxeta;;Polymax;;Hidráulica;62;75;14;mm;;;;;;GAXETA 62,00 X 75,00 X 14,00 POLYMAX;S;lista2025;lista-2025;
@@ -53,7 +50,7 @@ AX0093PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;110;125;10.9;mm;6000;-45;135;1;;
 7191PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;65;80;9;mm;6000;-45;135;1;;GAXETA AG 1 65,00 X 80,00 X 9,00 POLYMAX;S;pdf;gaxetas-2022;40
 3016PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;65;80;12;mm;6000;-45;135;1;;GAXETA AG 1 65,00 X 80,00 X 12,00 POLYMAX;S;pdf;gaxetas-2022;40
 4730PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;65;85;11;mm;6000;-45;135;1;;GAXETA AG 1 65,00 X 85,00 X 10,00 POLYMAX;S;pdf;gaxetas-2022;40
-4730PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;65;85;11;mm;6000;-45;135;1;;;;pdf;gaxetas-2022;40
+4730PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;65;85;11;mm;6000;-45;135;1;;GAXETA AG 1 65,00 X 85,00 X 10,00 POLYMAX;S;pdf;gaxetas-2022;40
 7165PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;70;80;6;mm;6000;-45;135;1;;GAXETA AG 1 70,00 X 80,00 X 6,00 POLYMAX;S;pdf;gaxetas-2022;40
 7162PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;75;85;6;mm;6000;-45;135;1;;GAXETA AG 1 75,00 X 85,00 X 6,00 POLYMAX;S;pdf;gaxetas-2022;40
 7722PM;;Gaxeta;AG 1;Polymax;haste;Hidráulica;75;95;12;mm;6000;-45;135;1;;GAXETA AG 1 75,00 X 95,00 X 12,00 POLYMAX;S;pdf;gaxetas-2022;40
@@ -107,7 +104,7 @@ AG7208;;Gaxeta;AG 14;PU;haste;Hidráulica;60;75.5;6;mm;7000;-30;100;0.5;;GAX. AG
 AG7964;;Gaxeta;AG 14;PU;haste;Hidráulica;70;85.1;5.9;mm;7000;-30;100;0.5;;GAX. AG14 70,00 X 85,10 X 5,90 C/ARR.ANTI-EXTRUSAPOC;S;pdf;gaxetas-2022;29
 AG7664;;Gaxeta;AG 14;PU;haste;Hidráulica;72;83;15.5;mm;7000;-30;100;0.5;;GAX. AG14 72,00 X 83,00 X 15,50 C/ARR.ANTI-EXTRUSPAC;S;pdf;gaxetas-2022;29
 7587PM;;Gaxeta;AG 14;Polymax;haste;Hidráulica;57.15;73.02;6.35;mm;7000;-45;135;0.5;;GAX. AG14 57,15X73,02X6,35 POLYMAX C/ARR.ANTI-EPXTCR;S;pdf;gaxetas-2022;45
-7044PM;;Gaxeta;AG 14;Polymax;haste;Hidráulica;62;79;6;mm;7000;-45;135;0.5;;;;pdf;gaxetas-2022;45
+7044PM;;Gaxeta;AG 14;Polymax;haste;Hidráulica;62;79;6;mm;7000;-45;135;0.5;;GAXETA AG14 62,00 X 79,00 X 6,00 POLYMAX;S;pdf;gaxetas-2022;45
 1844;;Gaxeta;AG 15;PU;embolo;Hidráulica;70;90.5;14.5;mm;7000;-30;100;1;;CONJUNTO GAX. AG15 70 X 90,5 X 14,5/21,0 C/GUIA EPMC;S;pdf;gaxetas-2022;30
 1854;;Gaxeta;AG 15;PU;embolo;Hidráulica;90;110;11.7;mm;7000;-30;100;1;;CONJUNTO GAX. AG15 90 X110 X 11,7/18,0 C/GUIA EMP;S;pdf;gaxetas-2022;30
 5938;;Gaxeta;AG 16;PU;haste;Hidráulica;30;41;9;mm;6000;-30;100;1;;GAXETA AG16 30,00 X 40,00 X 9,00;S;pdf;gaxetas-2022;30
@@ -370,7 +367,7 @@ AG7271;;Gaxeta;AG 4 (BS);PU;haste;Hidráulica;85;95;12;mm;6000;-30;100;0.5;;GAXE
 4925PM;18701750375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;44.45;53.975;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 1.3/4 X 2.1/8 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 6571PM;25001750375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;44.45;57.15;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 1.3/4 X 2.1/4 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 8402PM;25001875375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;47.625;60.325;9.525;pol;7000;-45;135;0.5;;GAXETA AG 4 1.7/8 X 2.3/8 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
-8402PM;25001875375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;47.625;60.325;9.525;pol;7000;-45;135;0.5;;;;codigo;gaxetas-2022;41
+8402PM;25001875375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;47.625;60.325;9.525;pol;7000;-45;135;0.5;;GAXETA AG 4 1.7/8 X 2.3/8 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 9478PM;18702000312BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;50.8;60.325;7.9375;pol;7000;-45;135;0.5;;GAXETA AG 4 2 X 2.3/8 X 5/16 POLIMAX;S;codigo;gaxetas-2022;41
 6612PM;25002000312BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;50.8;63.5;7.9375;pol;7000;-45;135;0.5;;GAX. AG 4 2 X 2.1/2 X 5/16 POLYMAX;S;codigo;gaxetas-2022;41
 6572PM;25002000375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;50.8;63.5;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 2 X 2.1/2 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
@@ -386,7 +383,7 @@ AG7271;;Gaxeta;AG 4 (BS);PU;haste;Hidráulica;85;95;12;mm;6000;-30;100;0.5;;GAXE
 6575PM;25002750375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;69.85;82.55;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 2.3/4 X 3.1/4 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 6576PM;25003000375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;76.2;88.9;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 3 X 3.1/2 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 8377PM;18703125375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;79.375;88.9;9.525;pol;7000;-45;135;0.5;;GAXETA AG 4 3.1/8 X 3.1/2 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
-8377PM;18703125375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;79.375;88.9;9.525;pol;7000;-45;135;0.5;;;;codigo;gaxetas-2022;41
+8377PM;18703125375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;79.375;88.9;9.525;pol;7000;-45;135;0.5;;GAXETA AG 4 3.1/8 X 3.1/2 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 8440PM;31203750500BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;95.25;111.125;12.7;pol;7000;-45;135;0.5;;GAXETA AG 4 3.3/4 X 4.3/8 X 1/2 POLYMAX;S;codigo;gaxetas-2022;41
 1843PM;31204500375BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;114.3;130.175;9.525;pol;7000;-45;135;0.5;;GAX. AG 4 4.1/2 X 5.1/8 X 3/8 POLYMAX;S;codigo;gaxetas-2022;41
 31205625-625BS;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;142.875;158.75;15.875;pol;7000;-45;135;0.5;;GAXETA AG 4 5.5/8 X 6.1/4 X 5/8 POLYMAX;S;codigo;lista-2025;
@@ -489,7 +486,7 @@ AX0172;6-39403543472BS;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;90;110;12;mm;7
 8125PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;96.3;106.3;10;mm;7000;-45;135;0.5;;GAXETA AG 4 96,30 X 106,30 X 10,00 POLYMAX;S;pdf;gaxetas-2022;43
 7813PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;100;115;10;mm;7000;-45;135;0.5;;GAXETA AG 4 100,00 X 115,00 X 10,00 POLYMAX;S;pdf;gaxetas-2022;43
 7809PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;100;115;13;mm;7000;-45;135;0.5;;GAXETA AG 4 100,00 X 115,00 X 13,00 POLYMAX;S;pdf;gaxetas-2022;43
-3369PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;100;120;12;mm;7000;-45;135;0.5;;;;pdf;gaxetas-2022;43
+3369PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;100;120;12;mm;7000;-45;135;0.5;;GAXETA AG 4 100,00 X 120,00 X 12,00 POLYMAX;S;pdf;gaxetas-2022;43
 8062PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;100;120;14.5;mm;7000;-45;135;0.5;;GAXETA AG 4 100,00 X 120,00 X 14,50 POLYMAX;S;pdf;gaxetas-2022;43
 4939PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;105;113;9;mm;7000;-45;135;0.5;;GAXETE AG 4 105,00 X 113,00 X 9,00 POLYMAX;S;pdf;gaxetas-2022;43
 4472PM;;Gaxeta;AG 4 (BS);Polymax;haste;Hidráulica;109.9;120.1;10;mm;7000;-45;135;0.5;;GAXETA AG 4 109,90 X 120,10 X 10,00 POLYMAX;S;pdf;gaxetas-2022;43
@@ -578,8 +575,7 @@ AG7937;18700687312;Gaxeta;B;PU;haste,embolo;Hidráulica;17.4625;26.9875;7.9375;p
 5577;18700750312;Gaxeta;B;PU;haste,embolo;Hidráulica;19.05;28.575;7.9375;pol;4000;-30;100;0.5;;GAXETA 3/4 X 1.1/8 X 5/16;S;codigo;gaxetas-2022;17
 5578;25000750375;Gaxeta;B;PU;haste,embolo;Hidráulica;19.05;31.75;9.525;pol;4000;-30;100;0.5;;GAXETA 3/4 X 1.1/4 X 3/8;S;codigo;gaxetas-2022;17
 5579;31200750500;Gaxeta;B;PU;haste,embolo;Hidráulica;19.05;34.925;12.7;pol;4000;-30;100;0.5;;GAXETA 3/4 X 1.3/8 X 1/2;S;codigo;gaxetas-2022;17
-12500812-250;;Gaxeta;B;PU;haste,embolo;Hidráulica;20.6375;26.9875;6.35;pol;4000;-30;100;0.5;;GAXETA 13/16 X 1.1/16 X 1/4;S;codigo;lista-2025;
-6268;12500815250;Gaxeta;B;PU;haste,embolo;Hidráulica;20.6375;26.9875;6.35;pol;4000;-30;100;0.5;;;;codigo;gaxetas-2022;17
+6268;12500815250;Gaxeta;B;PU;haste,embolo;Hidráulica;20.6375;26.9875;6.35;pol;4000;-30;100;0.5;;GAXETA 13/16 X 1.1/16 X 1/4;S;codigo;gaxetas-2022;17
 AG8138;18700812187;Gaxeta;B;PU;haste,embolo;Hidráulica;20.6375;30.1625;4.7625;pol;4000;-30;100;0.5;;GAXETA 13/16 X 1.3/16 X 3/16;S;codigo;gaxetas-2022;17
 5127;18700812312;Gaxeta;B;PU;haste,embolo;Hidráulica;20.6375;30.1625;7.9375;pol;4000;-30;100;0.5;;GAXETA 13/16 X 1.3/16 X 5/16;S;codigo;gaxetas-2022;17
 6156;12500875250;Gaxeta;B;PU;haste,embolo;Hidráulica;22.225;28.575;6.35;pol;4000;-30;100;0.5;;GAXETA 7/8 X 1.1/8 X 1/4;S;codigo;gaxetas-2022;17
@@ -923,10 +919,10 @@ AG8148;6-39401330625;Gaxeta;B;PU;haste,embolo;Hidráulica;33.78;53.79;15.88;mm;4
 AG8149;6-17701378236;Gaxeta;B;PU;haste,embolo;Hidráulica;35;44;6;mm;4000;-30;100;0.5;;GAXETA 35,00 X 44,00 X 6,00;S;pdf;gaxetas-2022;21
 5819;6-19701378236;Gaxeta;B;PU;haste,embolo;Hidráulica;35;45;6;mm;4000;-30;100;0.5;;GAXETA 35,00 X 45,00 X 6,00;S;pdf;gaxetas-2022;21
 6367;6-19701378394;Gaxeta;B;PU;haste,embolo;Hidráulica;35;45;10;mm;4000;-30;100;0.5;;GAXETA 35,00 X 45,00 X 10,00;S;pdf;gaxetas-2022;21
-6187;6-21651377393;Gaxeta;B;PU;haste,embolo;Hidráulica;35;46;10;mm;4000;-30;100;0.5;;;;pdf;gaxetas-2022;21
+6187;6-21651377393;Gaxeta;B;PU;haste,embolo;Hidráulica;35;46;10;mm;4000;-30;100;0.5;;GAXETA 35,00 X 46,00 X 10,00;S;pdf;gaxetas-2022;21
 1589;6-29501378354;Gaxeta;B;PU;haste,embolo;Hidráulica;35;50;9;mm;4000;-30;100;0.5;;GAXETA 35,00 X 50,00 X 9,00;S;pdf;gaxetas-2022;21
 AG8150;6-21701417165;Gaxeta;B;PU;haste,embolo;Hidráulica;36;47;4.2;mm;4000;-30;100;0.5;;GAXETA 36,00 X 47,00 X 4,20;S;pdf;gaxetas-2022;21
-6566;6-27601417312;Gaxeta;B;PU;haste,embolo;Hidráulica;36;50;8;mm;4000;-30;100;0.5;;;;pdf;gaxetas-2022;21
+6566;6-27601417312;Gaxeta;B;PU;haste,embolo;Hidráulica;36;50;8;mm;4000;-30;100;0.5;;GAXETA 36,00 X 50,00 X 8,00;S;pdf;gaxetas-2022;21
 1596;6-18701500266;Gaxeta;B;PU;haste,embolo;Hidráulica;38.1;47.6;6.8;mm;4000;-30;100;0.5;;GAXETA 38,10 X 47,60 X 6,80;S;pdf;gaxetas-2022;21
 1603;6-39401535531;Gaxeta;B;PU;haste,embolo;Hidráulica;39;59;13.5;mm;4000;-30;100;0.5;;GAXETA 39,00 X 59,00 X 13,50;S;pdf;gaxetas-2022;21
 6618;6-15701574236;Gaxeta;B;PU;haste,embolo;Hidráulica;40;48;6;mm;4000;-30;100;0.5;;GAXETA 40,00 X 48,00 X 6,00;S;pdf;gaxetas-2022;21
@@ -1549,12 +1545,12 @@ AG7305;31203625;Gaxeta;STD;PU;embolo;Hidráulica;92.075;107.95;7.9375;pol;5000;-
 5456;6-15700787;Gaxeta;STD;PU;embolo;Hidráulica;20;28;4;mm;5000;-30;100;0.5;;GAXETA 20,00 X 28,00 X 4,00;S;pdf;gaxetas-2022;36
 5288;6-15700866195;Gaxeta;STD;PU;embolo;Hidráulica;22;30;5;mm;5000;-30;100;0.5;;GAXETA 22,00 X 30,00 X 5,00 STD. DEEP;S;pdf;gaxetas-2022;36
 5701;6-23600984;Gaxeta;STD;PU;embolo;Hidráulica;25;37;6;mm;5000;-30;100;0.5;;GAXETA 25,00 X 37,00 X 6,00;S;pdf;gaxetas-2022;36
-5749;6-23621102;Gaxeta;STD;PU;embolo;Hidráulica;28;40;6;mm;5000;-30;100;0.5;;;;pdf;gaxetas-2022;36
+5749;6-23621102;Gaxeta;STD;PU;embolo;Hidráulica;28;40;6;mm;5000;-30;100;0.5;;GAXETA 28,00 X 40,00 X 6,00;S;pdf;gaxetas-2022;36
 6527;6-20002000;Gaxeta;STD;PU;embolo;Hidráulica;50.8;60.9;5.1;mm;5000;-30;100;0.5;;GAXETA 50,80 X 60,90 X 5,10;S;pdf;gaxetas-2022;36
 AG7945;6-19702362;Gaxeta;STD;PU;embolo;Hidráulica;60;70;5;mm;5000;-30;100;0.5;;GAXETA 60,00 X 70,00 X 5,00;S;pdf;gaxetas-2022;36
 1679;6-39402560393;Gaxeta;STD;PU;embolo;Hidráulica;65;85;10;mm;5000;-30;100;0.5;;GAXETA 65,00 X 85,00 X 10,00 DEEP;S;pdf;gaxetas-2022;36
 AG7012;6-17702795236;Gaxeta;STD;PU;embolo;Hidráulica;71;80;6;mm;5000;-30;100;0.5;;GAXETA 71,00 X 80,00 X 6,00 STD. DEEP;S;pdf;gaxetas-2022;36
-5720;6-25002874189;Gaxeta;STD;PU;embolo;Hidráulica;73;85.7;4.8;mm;5000;-30;100;0.5;;;;pdf;gaxetas-2022;36
+5720;6-25002874189;Gaxeta;STD;PU;embolo;Hidráulica;73;85.7;4.8;mm;5000;-30;100;0.5;;STD.GAXETA 73,00 X 85,70 X 4,80 STD;S;pdf;gaxetas-2022;36
 5827;6-39403150;Gaxeta;STD;PU;embolo;Hidráulica;80;100;10;mm;5000;-30;100;0.5;;GAXETA 80,00 X 100,00 X 10,00;S;pdf;gaxetas-2022;36
 5698;6-28503200;Gaxeta;STD;PU;embolo;Hidráulica;81.3;95.8;7.2;mm;5000;-30;100;0.5;;GAXETA 81,30 X 95,80 X 7,20;S;pdf;gaxetas-2022;36
 1785;6-36403210354;Gaxeta;STD;PU;embolo;Hidráulica;81.5;100;9.5;mm;5000;-30;100;0.5;;;;pdf;gaxetas-2022;36
@@ -1596,8 +1592,8 @@ AG7317;6-31203942;Gaxeta;STD;PU;embolo;Hidráulica;100.12;116;7.94;mm;5000;-30;1
 3838PM;37506000PM;Gaxeta;STD;Polymax;embolo;Hidráulica;152.4;171.45;9.525;pol;7000;-45;135;0.5;;GAXETA 6 X 6.3/4 X 3/8 POLYMAX;S;codigo;gaxetas-2022;46
 5701PM;6-23600984PM;Gaxeta;STD;Polymax;embolo;Hidráulica;25;37;6;mm;7000;-45;135;0.5;;GAXETA 25,00 X 37,00 X 6,00 POLYMAX;S;pdf;gaxetas-2022;46
 5749PM;6-23601102PM;Gaxeta;STD;Polymax;embolo;Hidráulica;28;40;6;mm;7000;-45;135;0.5;;GAXETA 28,00 X 40,00 X 6,00 POLYMAX;S;pdf;gaxetas-2022;46
-3039PM;6-37503937490PM;Gaxeta;STD;Polymax;embolo;Hidráulica;100;119;12.5;mm;7000;-45;135;0.5;;;;pdf;gaxetas-2022;46
-6285;;Gaxeta;AG 24;;embolo;Pneumática;6;10;2.6;mm;7000;-45;135;0.5;;;;pdf;gaxetas-2022;63
+3039PM;6-37503937490PM;Gaxeta;STD;Polymax;embolo;Hidráulica;100;119;12.5;mm;7000;-45;135;0.5;;GAXETA 100,00 X 119,00 X 12,50 POLYMAX;S;pdf;gaxetas-2022;46
+6285;;Gaxeta;AG 24;;embolo;Pneumática;6;10;2.6;mm;7000;-45;135;0.5;;GAXETA AG 3 SERIE MINI ISO 6,00 X 10,00 X 2,60;S;pdf;gaxetas-2022;63
 6754;;Gaxeta;AG 24;;embolo;Pneumática;24;32;3.2;mm;7000;-45;135;0.5;;GAXETA PNEUM. PU 24,00 X 32,00 X 3,20;S;pdf;gaxetas-2022;63
 5761;EU-1222;Gaxeta;AG 25;;haste;Pneumática;12;22;10.7;mm;6000;-45;135;0.5;D1=24,00|L1=8,80|L2=13,00|R=1,10|F=1,50|G=30º;GUARNIÇÃO COMPOSTA - TIPO AG-25;S;pdf;gaxetas-2022;64
 5760;EU-1626;Gaxeta;AG 25;;haste;Pneumática;16;26;10.7;mm;6000;-45;135;0.5;D1=28,00|L1=8,80|L2=13,00|R=1,10|F=1,50|G=30º;GUARNIÇÃO COMPOSTA - TIPO AG-25;S;pdf;gaxetas-2022;64
@@ -1663,7 +1659,6 @@ AG8522;PP-3040;Gaxeta;RP-08;;amortecimento;Pneumática;30;40;7.8;mm;7000;-45;135
 6459;PZ 6351;Gaxeta;Z;Borracha;embolo;Pneumática;51;63;4;mm;7000;-45;135;0.5;;GUARNIÇÃO DE BORRACHA - TIPO Z;S;pdf;gaxetas-2022;65
 6460;PZ 8010;Gaxeta;Z;Borracha;embolo;Pneumática;68;80;4;mm;7000;-45;135;0.5;;GUARNIÇÃO DE BORRACHA - TIPO Z;S;pdf;gaxetas-2022;65
 6461;PZ A008;Gaxeta;Z;Borracha;embolo;Pneumática;88;100;4;mm;7000;-45;135;0.5;;GUARNIÇÃO DE BORRACHA - TIPO Z;S;pdf;gaxetas-2022;65
-625002874-189 STD.GAXETA;;Outros;STD;;;;73;85.7;4.8;mm;;;;;;73,00 X 85,70 X 4,80 STD;S;lista2025;lista-2025;
 EU-32;;Outros;;;;Pneumática;32;43;11;mm;;;;;;GUARNICAO COMPOSTA 32 X 43 X 11;S;lista2025;lista-2025;
 66D-2953;;Raspador;6D/66D;PU;haste;Hidráulica;75;87.32;7.7;mm;;-30;100;4;H1/H2=7,70/11,50;RASPADOR 75,00 X 87,32 X 7,70 /11,50;S;lista2025;lista-2025;
 AG8159;66D-0709;Raspador;6D/66D;PU;haste;Hidráulica;18;25;2.5;mm;;-30;100;4;;RASPADOR 18,00 X 25,00 X 2,50/5,80;S;pdf;gaxetas-2022;50
@@ -1796,13 +1791,13 @@ AX0181;;Raspador;AGK1;PU;haste;Hidráulica;55;73.03;11;mm;;-30;100;1;Orientaçã
 4860;;Raspador;AGK1;PU;haste;Hidráulica;80;95;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 80,00 X 95,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;58
 1357;;Raspador;AGK1;PU;haste;Hidráulica;82.55;107.95;14.5;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 82,55 X 107,95 X 14,50 AGK1 - PU;S;pdf;gaxetas-2022;58
 4699;;Raspador;AGK1;PU;haste;Hidráulica;210;237;16;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 210,00 X 237,00 X 16,00 AGK1 PU;S;pdf;gaxetas-2022;58
-4862;;Raspador;AGK2;PU;haste;Hidráulica;65;80;6;mm;;-30;100;1;Orientação do lábio=Liso;;;pdf;gaxetas-2022;59
+4862;;Raspador;AGK2;PU;haste;Hidráulica;65;80;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 65,00 X 80,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4918;;Raspador;AGK2;PU;haste;Hidráulica;65;85;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 65,00 X 85,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;59
-4861;;Raspador;AGK2;PU;haste;Hidráulica;70;85;6;mm;;-30;100;1;Orientação do lábio=Liso;;;pdf;gaxetas-2022;59
+4861;;Raspador;AGK2;PU;haste;Hidráulica;70;85;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 70,00 X 85,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4926;;Raspador;AGK2;PU;haste;Hidráulica;70;85;8;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 70,00 X 85,00 X 8,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4917;;Raspador;AGK2;PU;haste;Hidráulica;75;95;7;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 75,00 X 95,00 X 7,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4873;;Raspador;AGK2;PU;haste;Hidráulica;79.9;95;10.7;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 79,90 X 95,00 X 10,70 AGK2 - PU;S;pdf;gaxetas-2022;59
-4860;;Raspador;AGK2;PU;haste;Hidráulica;80;95;6;mm;;-30;100;1;Orientação do lábio=Liso;;;pdf;gaxetas-2022;59
+4860;;Raspador;AGK2;PU;haste;Hidráulica;80;95;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 80,00 X 95,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4967;;Raspador;AGK2;PU;haste;Hidráulica;80;95;7.5;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 80,00 X 95,00 X 7,50 AGK2 - PU;S;pdf;gaxetas-2022;59
 4912;;Raspador;AGK2;PU;haste;Hidráulica;80;100;6;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 80,00 X 100,00 X 6,00 AGK2 - PU;S;pdf;gaxetas-2022;59
 4978;;Raspador;AGK2;PU;haste;Hidráulica;90;105;5;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 90,00 X 105,00 X 5,00 AGK2 - PU;S;pdf;gaxetas-2022;59
@@ -2055,7 +2050,7 @@ AG7803;;Raspador;GA;NBR;haste;Hidráulica;25.33;31.75;3.18;mm;;-30;100;1;Orienta
 5170;;Raspador;GA;NBR;haste;Hidráulica;25.4;31.7;3.2;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 25,40 X 31,70 X 3,50 GA NBR;S;pdf;gaxetas-2022;54
 CX8589;;Raspador;GA;NBR;haste;Hidráulica;27;32;3.2;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;100
 AG8293;;Raspador;GA;NBR;haste;Hidráulica;28;35;4;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 28,00 X 35,00 X 4,00 GA NBR REF. 00713;S;pdf;gaxetas-2022;54
-AG8293;;Raspador;GA;NBR;haste;Hidráulica;28;35;4;mm;;-30;100;1;Orientação do lábio=Liso;;;pdf;gaxetas-2022;54
+AG8293;;Raspador;GA;NBR;haste;Hidráulica;28;35;4;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 28,00 X 35,00 X 4,00 GA NBR REF. 00713;S;pdf;gaxetas-2022;54
 AG7668;02106;Raspador;GA;NBR;haste;Hidráulica;28;40;5;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 28,00 X 40,00 X 5,00 GA NBR REF. 02106;S;pdf;gaxetas-2022;54
 5960;01539;Raspador;GA;NBR;haste;Hidráulica;28.6;34.9;3.2;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 28,60 X 34,90 X 3,20 GA NBR REF 01539;S;pdf;gaxetas-2022;54
 TCS0094;01539;Raspador;GA;NBR;haste;Hidráulica;28.6;34.9;3.2;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 28,60 X 34,90 X 3,20 GA-NBR REF.01539;S;pdf;gaxetas-2022;54
@@ -2227,7 +2222,7 @@ AG7783;;Raspador;GA;PU;haste;Hidráulica;100;115;8;mm;;-30;100;1;Orientação do
 4927;;Raspador;GA;PU;haste;Hidráulica;110;125;8;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 110,00 X 125,00 X 8,00 GA - PU;S;pdf;gaxetas-2022;55
 4906;;Raspador;GA;PU;haste;Hidráulica;119.85;140;8;mm;;;;;Orientação do lábio=Liso;RETENTOR 119,85 X 140,00 X 8,00 GA - PU;S;pdf;retentores-2021;71
 AG7784;;Raspador;GA;PU;haste;Hidráulica;120;130.17;7;mm;;-30;100;1;Orientação do lábio=Liso;RET.120,00 X 130,17 X 7,00 GA PU;S;pdf;gaxetas-2022;55
-AG7784;;Raspador;GA;PU;haste;Hidráulica;120;130.17;7;mm;;-30;100;1;Orientação do lábio=Liso;;;pdf;gaxetas-2022;55
+AG7784;;Raspador;GA;PU;haste;Hidráulica;120;130.17;7;mm;;-30;100;1;Orientação do lábio=Liso;RET.120,00 X 130,17 X 7,00 GA PU;S;pdf;gaxetas-2022;55
 4948;;Raspador;GA;PU;haste;Hidráulica;120;150;12;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 120,00 X 150,00 X 12,00 GA - PU;S;pdf;gaxetas-2022;56
 3685;;Raspador;GA;PU;haste;Hidráulica;125;138;4;mm;;-30;100;1;Orientação do lábio=Liso;RETENTOR 125,00 X 138,00 X 4,00 GA - PU;S;pdf;gaxetas-2022;56
 3506;;Raspador;GA;PU;haste;Hidráulica;190;210;10;mm;;-30;100;1;Orientação do lábio=Liso;RET.190,00 X 210,00 X 10,00 GA PU;S;pdf;gaxetas-2022;56
@@ -2593,17 +2588,6 @@ P1E-6QRM;;Reparo pneumático;Kit de reparo;;;Pneumática;;;;mm;;;;;;REPARO CILIN
 P1E-K125481;;Reparo pneumático;Kit de reparo;;;Pneumática;;;;mm;;;;;;REPARO CILINDRO ISO 125 MM;S;pdf;gaxetas-2022;67
 PC4A;;Reparo pneumático;Kit de reparo;;;Pneumática;;;;mm;;;;;;"REPARO PNEUMÁTICO CILINDRO 4"" (ANTIGO)";S;pdf;gaxetas-2022;67
 AG7930;;Retentor;;;eixo;Retentores;42.6;80;7.7;mm;;;;;;RETENTOR 42,60 X 80,00 X 7,70 PIVO TRACAO;S;lista2025;lista-2025;
-TCS0855;;Retentor;;NBR;eixo;Retentores;22;35;8.5;mm;;;;;;RETENTOR 22,00 X 35,00 X 8,50 AGNA NBR/NYLON;S;lista2025;lista-2025;
-RT0763;;Retentor;;NBR;eixo;Retentores;25;36;8;mm;;;;;;RETENTOR 25,00 X 36,00 X 8,00 AGNA NBR/NYLON;S;lista2025;lista-2025;
-TCS0783;;Retentor;;NBR;eixo;Retentores;26;41;8.5;mm;;;;;;RETENTOR 26,00 X 41,00 X 8,50 AGNA - NBR/NYLON;S;lista2025;lista-2025;
-TCS0748;;Retentor;;NBR;eixo;Retentores;27.7;44;9;mm;;;;;;RETENTOR 27,70 X 44,00 X 9,00 BRGH NBR/NYLON;S;lista2025;lista-2025;
-TCS0681;;Retentor;;NBR;eixo;Retentores;28;39;8.5;mm;;;;;;RETENTOR 28,00 X 39,00 X 8,50 AGNA NBR/NYLON;S;lista2025;lista-2025;
-CX8271;;Retentor;;NBR;eixo;Retentores;28;39;15;mm;;;;;;RETENTOR 28,00 X 39,00 X 15,00 AGND - NBR/NYLON;S;lista2025;lista-2025;
-TCS0691;;Retentor;;NBR;eixo;Retentores;28;40;8.5;mm;;;;;H1/H2=7,3/8,5;RETENTOR 28,00 X 40,00 X 7,3/8,5 BRGH NBR/NYLON;S;lista2025;lista-2025;
-AX0252;;Retentor;;NBR;eixo;Retentores;42;62.15;10;mm;;;;;;RETENTOR 42,00 X 62,15 X 10,00 GY NBR;S;lista2025;lista-2025;
-AX0192;;Retentor;;NBR;eixo;Retentores;63.5;88.9;12.7;mm;;;;;H1/H2=7,0/12,7;RETENTOR 63,50 X 88,90 X 7,0/12,7 GGE NBR;S;lista2025;lista-2025;
-RT0911;;Retentor;;NBR;eixo;Retentores;82.5;107.85;11.9;mm;;;;;;RETENTOR 82,50 X 107,85 X 11,90 BGO NBR REF.0064P4C;S;lista2025;lista-2025;
-TCS0702;;Retentor;;NBR/FPM;eixo;Retentores;9;22;14.6;mm;;;;;;RETENTOR 9,00 X 22/23,00 X 14,60 AGNX NBR/FPM;S;lista2025;lista-2025;
 4482;;Retentor;AGA;NBR;eixo;Retentores;40.15;69.3;10.7;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;89
 3481;;Retentor;AGA;NBR;eixo;Retentores;60;96;11;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;87
 AG7677;01102;Retentor;AGB;NBR;eixo;Retentores;5;30;14;mm;;;;;;RETENTOR 5,00 X 30,00 X 14,00 AGB NBR REF.01102;S;lista2025;lista-2025;
@@ -2778,8 +2762,14 @@ AG7685;;Retentor;AGJN1;NBR;eixo;Retentores;47;67;6;mm;;;;;H1/H2=5,0/6,0|Orienta�
 4610;02035;Retentor;AGJU;NBR;eixo;Retentores;79;110;17.4;mm;;;;;Orientação do lábio=Liso;RETENTOR 79,00 X 110,00 X 17,40 AGJU NBR REF.0203P5C;S;pdf;retentores-2021;39
 4299;02194;Retentor;AGJU;NBR;eixo;Retentores;101.6;127;16;mm;;;;;Orientação do lábio=Liso;RETENTOR 101,60 X 127,00 X 16,00 GB-NBR REF.02194;S;pdf;retentores-2021;39
 4441;;Retentor;AGJY;NBR;eixo;Retentores;50.8;73;11.5;mm;;;;;H1/H2=7,0 / 11,5|Orientação do lábio=Liso;RETENTOR 50,80 X 73,00 X 7,00 / 11,50 AGJY NBR;S;pdf;retentores-2021;89
+TCS0855;;Retentor;AGNA;NBR;eixo;Retentores;22;35;8.5;mm;;;;;;RETENTOR 22,00 X 35,00 X 8,50 AGNA NBR/NYLON;S;lista2025;lista-2025;
+RT0763;;Retentor;AGNA;NBR;eixo;Retentores;25;36;8;mm;;;;;;RETENTOR 25,00 X 36,00 X 8,00 AGNA NBR/NYLON;S;lista2025;lista-2025;
+TCS0783;;Retentor;AGNA;NBR;eixo;Retentores;26;41;8.5;mm;;;;;;RETENTOR 26,00 X 41,00 X 8,50 AGNA - NBR/NYLON;S;lista2025;lista-2025;
+TCS0681;;Retentor;AGNA;NBR;eixo;Retentores;28;39;8.5;mm;;;;;;RETENTOR 28,00 X 39,00 X 8,50 AGNA NBR/NYLON;S;lista2025;lista-2025;
+CX8271;;Retentor;AGND;NBR;eixo;Retentores;28;39;15;mm;;;;;;RETENTOR 28,00 X 39,00 X 15,00 AGND - NBR/NYLON;S;lista2025;lista-2025;
 AG7672;10316;Retentor;AGNK;NBR;eixo;Retentores;2;24.5;14.7;mm;;;;;Orientação do lábio=Liso;RETENTOR 2,00 X 24,50 X 14,50 AGNK NBR REF.10316;S;pdf;retentores-2021;66
 4442;;Retentor;AGNV;NBR;eixo;Retentores;50.8;70;7.5;mm;;;;;Orientação do lábio=Liso;RETENTOR 50,80 X 70,00 X 7,50 AGNV NBR;S;pdf;retentores-2021;65
+TCS0702;;Retentor;AGNX;NBR/FPM;eixo;Retentores;9;22;14.6;mm;;;;;;RETENTOR 9,00 X 22/23,00 X 14,60 AGNX NBR/FPM;S;lista2025;lista-2025;
 AG7674;00510;Retentor;AGX;NBR;eixo;Retentores;16;35;12;mm;;;;;Orientação do lábio=Liso;RETENTOR 16,00 X 35,00 X 12,00 BRX NBR REF.00510;S;pdf;retentores-2021;98
 AG7675;01089;Retentor;AGX1;NBR;eixo;Retentores;22;45;12;mm;;;;;Orientação do lábio=Liso;RETENTOR 22,00 X 45,00 X 12,00 BRX NBR REF.01089;S;pdf;retentores-2021;98
 AG7825;;Retentor;AGX1;NBR;eixo;Retentores;57;85;13;mm;;;;;Orientação do lábio=Liso;RETENTOR 57,00 X 85,00 X 13,00 BRX NBR;S;pdf;retentores-2021;98
@@ -3163,6 +3153,7 @@ RT0916;01779;Retentor;BG;NBR;eixo;Retentores;22;47;9;mm;;;;;;RETENTOR 22,00 X 47
 AX0262;00674;Retentor;BG;NBR;eixo;Retentores;47.7;72.95;12;mm;;;;;;RETENTOR 47,70 X 72,95 X 12,00 BG NBR (REF.00674);S;lista2025;lista-2025;
 RT0907;00838;Retentor;BG;NBR;eixo;Retentores;53;75;12;mm;;;;;;RETENTOR 53,00 X 75,00 X 12,00 BG NBR REF.00838;S;lista2025;lista-2025;
 AX0256;00547;Retentor;BG;NBR;eixo;Retentores;59.5;85.6;12;mm;;;;;;RETENTOR 59,50 X 85,60 X 12,00 BG-NBR REF.00547;S;lista2025;lista-2025;
+RT0911;;Retentor;BG;NBR;eixo;Retentores;82.5;107.85;11.9;mm;;;;;Variante=BGO;RETENTOR 82,50 X 107,85 X 11,90 BGO NBR REF.0064P4C;S;lista2025;lista-2025;
 TCS0897;01746;Retentor;BG;NBR;eixo;Retentores;20;42;10;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;36
 TCS0916;01779;Retentor;BG;NBR;eixo;Retentores;22;47;9;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;36
 3333;;Retentor;BG;NBR;eixo;Retentores;25;38;8;mm;;;;;Orientação do lábio=Liso;RETENTOR 25,00 X 38,00 X 8,00 BG-NBR REF.01118;S;pdf;retentores-2021;36
@@ -3213,10 +3204,10 @@ TCS0098;01735;Retentor;BG;NBR;eixo;Retentores;125;150;15;mm;;;;;Orientação do 
 4758;;Retentor;BG;NBR;eixo;Retentores;152.4;177.85;12.7;mm;;;;;Orientação do lábio=Liso;RET.152,40 X 177,85 X 12,70 BG NBR;S;pdf;retentores-2021;36
 4629;;Retentor;BG;NBR;eixo;Retentores;158.75;196.85;12.7;mm;;;;;Orientação do lábio=Liso;RETENTOR 158,75 X 196,85 X 12,70 BG NBR;S;pdf;retentores-2021;36
 AX0240;00092;Retentor;BGE;NBR;eixo;Retentores;47.6;70.65;16.5;mm;;;;;H1/H2=14,5/16,5|Orientação do lábio=Liso;RETENTOR 47,60 X 70,65 X 14,5/16,5 BGE-NBR REF 00P09C2;S;pdf;retentores-2021;100
-3531;;Retentor;BR;;eixo;Retentores;35;47;4;mm;;;;;Variante=BRF;RETENTOR 35,00 X 47,00 X 4,00 - BRF;S;lista2025;lista-2025;
 TCS0136;02309;Retentor;BR;ACM;eixo;Retentores;15;25;7;mm;;;;;Variante=BRP|Orientação do lábio=Liso;RETENTOR 15,00 X 25,00 X 7,00 BR-ACM REF.02309;S;pdf;retentores-2021;10
 TCS0141;02418;Retentor;BR;ACM;eixo;Retentores;21.5;40;7;mm;;;;;Variante=BRP|Orientação do lábio=Liso;;;pdf;retentores-2021;11
 6758-2;;Retentor;BR;FPM;eixo;Retentores;30;42;4;mm;;;;;;RETENTOR 30,00 X 42,00 X 4,00 BR - FPM;S;lista2025;lista-2025;
+3531;;Retentor;BR;FPM;eixo;Retentores;35;47;4;mm;;;;;Variante=BRF;RETENTOR 35,00 X 47,00 X 4,00 - BRF;S;lista2025;lista-2025;
 RT0438;;Retentor;BR;FPM;eixo;Retentores;36;50;7;mm;;;;;;RETENTOR 36,00 X 50,00 X 7,00 BR FPM;S;lista2025;lista-2025;
 RT0451;;Retentor;BR;FPM;eixo;Retentores;40;52;7;mm;;;;;;RETENTOR 40,00 X 52,00 X 7,00 BR-FPM;S;lista2025;lista-2025;
 3731;;Retentor;BR;FPM;eixo;Retentores;58;80;8;mm;;;;;Variante=BRF;RETENTOR 58,00 X 80,00 X 8,00 BRF - FPM;S;lista2025;lista-2025;
@@ -3320,11 +3311,11 @@ AG8266;;Retentor;BR;MVQ;eixo;Retentores;45;62;7;mm;;;;;Orientação do lábio=Li
 AG7670;;Retentor;BR;MVQ;eixo;Retentores;60;75;8;mm;;;;;Orientação do lábio=Liso;RETENTOR 60,00 X 75,00 X 8,00 BR - MVQ;S;pdf;retentores-2021;13
 5747;00906;Retentor;BR;MVQ;eixo;Retentores;70;85;8;mm;;;;;Orientação do lábio=Liso;RETENTOR 70,00 X 85,00 X 8,00 BRS MVQ REF 00906;S;pdf;retentores-2021;13
 AG7545;;Retentor;BR;MVQ;eixo;Retentores;80;100;10;mm;;;;;Orientação do lábio=Liso;RETENTOR 80,00 X 100,00 X 10,00 BR - MVQ;S;pdf;retentores-2021;13
-9203;;Retentor;BR;NBR;eixo;Retentores;;;;mm;;;;;;RETENTOR 20,00 X 28,00 6,00 NBR - BR;S;lista2025;lista-2025;
 AX0299;;Retentor;BR;NBR;eixo;Retentores;12;24;6;mm;;;;;;RETENTOR 12,00 X 24,00 X 6,00 BR - NBR;S;lista2025;lista-2025;
 RT0224;;Retentor;BR;NBR;eixo;Retentores;15;24;6;mm;;;;;;RETENTOR 15,00 X 24,00 X 6,00 BR NBR;S;lista2025;lista-2025;
 CX0024;;Retentor;BR;NBR;eixo;Retentores;17;38;5.5;mm;;;;;;RETENTOR 17,00 X 38,00 X 5,50 BR NBR;S;lista2025;lista-2025;
 RT0090;01492;Retentor;BR;NBR;eixo;Retentores;17;40;8.5;mm;;;;;;RETENTOR 17,00 X 40,00 X 8,50 BR - NBR (REF 01492P);S;lista2025;lista-2025;
+9203;;Retentor;BR;NBR;eixo;Retentores;20;28;6;mm;;;;;;RETENTOR 20,00 X 28,00 6,00 NBR - BR;S;lista2025;lista-2025;
 CX8777;;Retentor;BR;NBR;eixo;Retentores;23;34;6.3;mm;;;;;;RETENTOR 23,00 X 34,00 X 6,30 BR NBR;S;lista2025;lista-2025;
 CX8729;;Retentor;BR;NBR;eixo;Retentores;23;35;6.5;mm;;;;;;RETENTOR 23,00 X 35,00 X 6,5 BR - NBR;S;lista2025;lista-2025;
 RT0323;;Retentor;BR;NBR;eixo;Retentores;23.42;29.77;4.78;mm;;;;;;RETENTOR 23,42 X 29,77 X 4,78 BR NBR;S;lista2025;lista-2025;
@@ -3624,8 +3615,6 @@ TCS0109;01884;Retentor;BRAG;NBR;eixo;Retentores;120;144.95;15;mm;;;;;Orientaçã
 CX9751;;Retentor;BRAGG;NBR;eixo;Retentores;35;47;8;mm;;;;;Orientação do lábio=Liso;RETENTOR 35,00 X 47,00 X 8,00 BRAGG NBR;S;pdf;retentores-2021;34
 RT0324;;Retentor;BRG;;eixo;Retentores;24;35;7;mm;;;;;;RETENTOR 24,00 X 35,00 X 7,00 BRG BR;S;lista2025;lista-2025;
 RT0080;01151;Retentor;BRG;;eixo;Retentores;26;42;10;mm;;;;;;RETENTOR 26,00 X 42,00 X 10,00 BRG - REF 01151;S;lista2025;lista-2025;
-AX0352;;Retentor;BRG;;eixo;Retentores;35;47;4;mm;;;;;Variante=BRGF;RETENTOR 35,00 X 47,00 X 4,00 - BRGF;S;lista2025;lista-2025;
-5508-2;;Retentor;BRG;;eixo;Retentores;46;68;7;mm;;;;;;RETENTOR 46,00 X 68,00 X 7,00 BRG-F;S;lista2025;lista-2025;
 RT0544;01181;Retentor;BRG;;eixo;Retentores;55;70;8;mm;;;;;;RETENTOR 55,00 X 70,00 X 8,00 BRG REF.01181;S;lista2025;lista-2025;
 TCS0953;;Retentor;BRG;ACM;eixo;Retentores;14;22;4;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;15
 TCS0295;;Retentor;BRG;ACM;eixo;Retentores;20;36;7;mm;;;;;Variante=BRGP|Orientação do lábio=Liso;;;pdf;retentores-2021;16
@@ -3647,6 +3636,8 @@ RT0390;;Retentor;BRG;FPM;eixo;Retentores;30;45;8;mm;;;;;;RETENTOR 30,00 X 45,00 
 RT0393;;Retentor;BRG;FPM;eixo;Retentores;30;50;7;mm;;;;;;RETENTOR 30,00 X 50,00 X 7,00 BRG FPM;S;lista2025;lista-2025;
 AX0319;;Retentor;BRG;FPM;eixo;Retentores;30;50;10;mm;;;;;;RETENTOR 30,00 X 50,00 X 10,00 - BRG-FPM;S;lista2025;lista-2025;
 AX0315;;Retentor;BRG;FPM;eixo;Retentores;32;45;6;mm;;;;;Variante=BRGF;RETENTOR 32,00 X 45,00 X 6,00 BRGF - VITON;S;lista2025;lista-2025;
+AX0352;;Retentor;BRG;FPM;eixo;Retentores;35;47;4;mm;;;;;Variante=BRGF;RETENTOR 35,00 X 47,00 X 4,00 - BRGF;S;lista2025;lista-2025;
+5508-2;;Retentor;BRG;FPM;eixo;Retentores;46;68;7;mm;;;;;Variante=BRGF;RETENTOR 46,00 X 68,00 X 7,00 BRG-F;S;lista2025;lista-2025;
 AG7961;;Retentor;BRG;FPM;eixo;Retentores;48;72;10;mm;;;;;Variante=BRGF;RETENTOR 48,00 X 72,00 X 10,00 BRGF VITON;S;lista2025;lista-2025;
 6130;;Retentor;BRG;FPM;eixo;Retentores;60;80;7;mm;;;;;Variante=BRGF;RETENTOR 60,00 X 80,00 X 7,00 BRGF - FPM;S;lista2025;lista-2025;
 3528;00926;Retentor;BRG;FPM;eixo;Retentores;65;85;10;mm;;;;;;RETENTOR 65,00 X 85,00 X 10,00 BRG FPM REF.00926;S;lista2025;lista-2025;
@@ -4433,7 +4424,7 @@ TCS0804;02392;Retentor;BRG2;NBR;eixo;Retentores;55;70;10.2;mm;;;;;Variante=BRGE2
 4617;;Retentor;BRGE;FPM;eixo;Retentores;90;110;13;mm;;;;;ØEXT=110,0/154,0|Orientação do lábio=Anti-horário;RETENTOR 90,00 X 154,00 X 13,00 BRGE VITON;S;pdf;retentores-2021;40
 4659;02672;Retentor;BRGE1;NBR;eixo;Retentores;30;72;6.5;mm;;;;;Orientação do lábio=Bidirecional;RETENTOR 30,00 X 72,00 X 6,50 BRGE1 NBR REF 0267P2C;S;pdf;retentores-2021;40
 AG8028;;Retentor;BRGES;FPM;eixo;Retentores;44.45;63.5;9.5;mm;;;;;Orientação do lábio=Liso;RETENTOR 44,45 X 63,50 X 9,50 BRGES VITON;S;pdf;retentores-2021;25
-AX0348;;Retentor;BRGG;;eixo;Retentores;65;105;14;mm;;;;;Variante=BRGGF|H1/H2=10,0/14,0;RETENTOR 65,00 X 105,00 X 10,0/14,0 BRGGF - VITOPNC;S;lista2025;lista-2025;
+AX0348;;Retentor;BRGG;FPM;eixo;Retentores;65;105;14;mm;;;;;Variante=BRGGF|H1/H2=10,0/14,0;RETENTOR 65,00 X 105,00 X 10,0/14,0 BRGGF - VITOPNC;S;lista2025;lista-2025;
 3526;;Retentor;BRGG;FPM;eixo;Retentores;45;76;12;mm;;;;;Variante=BRGGF|Orientação do lábio=Liso;RETENTOR 45,00 X 76,00 X 12,00 BRGGF - VITON;S;pdf;retentores-2021;24
 3740;;Retentor;BRGG;FPM;eixo;Retentores;50;80;11;mm;;;;;Orientação do lábio=Liso;RETENTOR 50,00 X 80,00 X 11,00 BRGG VITON;S;pdf;retentores-2021;24
 TCS0671;;Retentor;BRGG;NBR;eixo;Retentores;19;32;6;mm;;;;;Orientação do lábio=Liso;RETENTOR 19,00 X 32,00 X 6,00/8,70 BRGG NBR;S;pdf;retentores-2021;24
@@ -4450,6 +4441,8 @@ AG7707;;Retentor;BRGG;NBR;eixo;Retentores;35;72;10;mm;;;;;Orientação do lábio
 3692;;Retentor;BRGG;NBR;eixo;Retentores;80;100;12;mm;;;;;Orientação do lábio=Bidirecional;RETENTOR 80,00 X 100,00 X 12,00 BRGG - NBR;S;pdf;retentores-2021;24
 3025;;Retentor;BRGG;NBR;eixo;Retentores;95;125;20;mm;;;;;Orientação do lábio=Liso;RETENTOR 95,00 X 125,00 X 20,00 BRGG NBR;S;pdf;retentores-2021;24
 4492;;Retentor;BRGGE;FPM;eixo;Retentores;75;125;12;mm;;;;;Orientação do lábio=Liso;RETENTOR 75,00 X 125,00 X 12,00/20,00 BRGGE VITONP;S;pdf;retentores-2021;26
+TCS0748;;Retentor;BRGH;NBR;eixo;Retentores;27.7;44;9;mm;;;;;;RETENTOR 27,70 X 44,00 X 9,00 BRGH NBR/NYLON;S;lista2025;lista-2025;
+TCS0691;;Retentor;BRGH;NBR;eixo;Retentores;28;40;8.5;mm;;;;;H1/H2=7,3/8,5;RETENTOR 28,00 X 40,00 X 7,3/8,5 BRGH NBR/NYLON;S;lista2025;lista-2025;
 5555;02963;Retentor;BRO;FPM;eixo;Retentores;17;30;7;mm;;;;;Variante=BROF|Orientação do lábio=Liso;RET, 17,00 X 30,00 X 7,00 BRO-VITON REF.02963;S;pdf;retentores-2021;37
 9491;;Retentor;BRO;FPM;eixo;Retentores;17.4;28.42;7.7;mm;;;;;Variante=BROF|Orientação do lábio=Liso;RETENTOR 17,40 X 28,42 X 7,70 BROF FPM;S;pdf;retentores-2021;37
 CX6055;;Retentor;BRO;FPM;eixo;Retentores;20;30;8;mm;;;;;Variante=BROF|Orientação do lábio=Liso;;;pdf;retentores-2021;37
@@ -4478,6 +4471,8 @@ TCS0143;02485;Retentor;BY;NBR;eixo;Retentores;98.4;144.54;16;mm;;;;;Orientação
 TCS0726;;Retentor;GB;NBR;eixo;Retentores;40;62;12;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;109
 TCS0921;02036;Retentor;GB;NBR;eixo;Retentores;73;101.6;17.4;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;110
 TCS0922;02017;Retentor;GB;NBR;eixo;Retentores;73.5;95;18;mm;;;;;Orientação do lábio=Liso;;;pdf;retentores-2021;110
+AX0192;;Retentor;GGE;NBR;eixo;Retentores;63.5;88.9;12.7;mm;;;;;H1/H2=7,0/12,7;RETENTOR 63,50 X 88,90 X 7,0/12,7 GGE NBR;S;lista2025;lista-2025;
+AX0252;;Retentor;GY;NBR;eixo;Retentores;42;62.15;10;mm;;;;;;RETENTOR 42,00 X 62,15 X 10,00 GY NBR;S;lista2025;lista-2025;
 TCS0696;;Retentor;HASTE;FPM;eixo;Retentores;8.4;18.5;7.5;mm;;;;;Orientação do lábio=Liso;RETENTOR HASTE VALVULA 8,40/14,85X18,5X7,5/10,6;S;pdf;retentores-2021;108
 TCS0872;;Retentor;HASTE;FPM;eixo;Retentores;9;12;10.5;mm;;;;;H1/H2=4,00/10,50|Orientação do lábio=Liso;RETENTOR 9,00 X 12,00/15,00 X 4,00/10,50 NF FPM;S;pdf;retentores-2021;110
 AX0180;;Retentor;K7;;eixo;Retentores;162;200;16.5;mm;;;;;H1/H2=11,40/16,50;RET.162,00 X 200,00 X 11,40/16,50 K7;S;lista2025;lista-2025;

@@ -68,7 +68,7 @@ src/
 │
 └── data/
     ├── catalogo_apc.csv     # GERADO por scripts/ingest_catalogos.py — não editar à mão
-    └── data_*.csv           # CSVs antigas (facetas via LEGACY_MAP)
+    └── <tipo>-<perfil>.csv  # CSVs antigas (anel-teflon.csv, conjunto-zo.csv…; facetas via LEGACY_MAP)
 
 scripts/                     # Ferramentas de dev (não entram no bundle)
 docs/catalogos/              # PDFs brutos + divergencias.md (ver README da pasta)
@@ -100,6 +100,7 @@ openspec/
 - Dados de estoque armazenados em **Supabase** (não em localStorage).
 - `handleToggleEstoque` usa `insert` / `delete` conforme o estado do checkbox.
 - **Row Level Security (RLS)** ativado — requests não autenticados são bloqueados.
+- Códigos fora da lista 2025 (ocultos no painel) podem ter linhas órfãs em `estoque`; não quebram nada, só não aparecem.
 - Migration em `supabase/migrations/001_create_estoque_table.sql` (deve verificar `pg_policies` em bloco `DO $$` para ignorar se já existir).
 
 ### Cliente Supabase
@@ -149,13 +150,14 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
   - Na tela, a faceta `modelo` se chama **Perfil** (B, AG 1, STD…). "Linha" = Hidráulica/Pneumática; Polymax é **Material**, não Linha.
   - Facetas em ordem livre, OU dentro do grupo, E entre grupos.
   - Peças sem aplicação são genéricas e atendem Haste e Êmbolo.
-  - **Retentor** (Tipo) sempre tem a aplicação **Eixo** e nunca aparece em Haste/Êmbolo. Perfil que existe em mais de um Tipo (ex.: "B") aparece no funil como `B · Retentor` (`desambiguarPerfis` em `DatabaseService.js`).
+  - **Retentor** (Tipo) sempre tem a aplicação **Eixo** e nunca aparece em Haste/Êmbolo. Perfil que existe em mais de um Tipo (ex.: "B") aparece no funil como `B · Retentor` (`desambiguarPerfis` em `DatabaseService.js`). Perfil vazio é `—` ("Não informado", último da lista) em qualquer Tipo e não ganha sufixo.
 - **Fonte dos dados**:
   - `src/data/catalogo_apc.csv` é gerado por `scripts/ingest_catalogos.py` a partir de três fontes. Para mudar, edite o script e rode de novo.
     - catálogo de gaxetas e raspadores ref. 2022
     - catálogo de retentores ref. 2021
     - listas AGEL 2025 de gaxetas/raspadores e de retentores
   - Colunas `Catalogo` (`gaxetas-2022` | `retentores-2021` | `lista-2025`) e `NaLista` (`S` = o código está numa lista 2025).
+  - **Lista 2025 = fonte mestra do que está em linha**: `DatabaseService.loadData` só carrega códigos com `NaLista=S` (estar na lista é propriedade do código: linhas gêmeas de um mesmo código, ex.: `7044PM` em AG 14 e AG 4 (BS), ficam as duas). Itens dos catálogos 2021/2022 fora das listas são fora de linha: continuam no CSV (`NaLista` vazio) para o histórico do relatório e para seguir sobrepondo as CSVs antigas (`codigosApc` usa todas as linhas), mas não entram em `produtos` (contador `ocultos`). Relatório: seção "Itens dos catálogos fora das listas 2025".
   - Mesmo código nos dois catálogos → o de gaxetas prevalece.
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
   - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
@@ -201,6 +203,7 @@ openspec validate --specs                   # Validar specs
 - [ ] Estou usando cores de `TIPOS` em `taxonomia.js` para badges de peças
 - [ ] Medidas exibidas/parseadas via `units.js` (mm + pol)
 - [ ] Não expus nenhuma interface de cadastro público
+- [ ] Item novo de catálogo só aparece no painel se estiver numa lista 2025 (`NaLista=S`); depois de mexer em dados rodei `python -I scripts/ingest_catalogos.py` e `node scripts/check_busca.mjs`
 
 ---
 
