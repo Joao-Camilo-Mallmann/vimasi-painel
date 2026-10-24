@@ -4,7 +4,8 @@ import { secao as calcSecao } from '../utils/units';
 
 // ── Importar TODOS os CSVs via Vite raw ─────────────────────────
 const apcModules = import.meta.glob('../data/catalogo_apc.csv', { query: '?raw', import: 'default', eager: true });
-const legacyModules = import.meta.glob('../data/data_*.csv', { query: '?raw', import: 'default', eager: true });
+// CSVs antigas: src/data/<tipo>-<perfil>.csv (facetas em LEGACY_MAP); catalogo_apc.csv é o gerado dos PDFs
+const legacyModules = import.meta.glob(['../data/*.csv', '!../data/catalogo_apc.csv'], { query: '?raw', import: 'default', eager: true });
 
 const CAMPOS_DIM = ['interno', 'externo', 'altura', 'alturaBase', 'secao'];
 
@@ -31,6 +32,21 @@ const collator = new Intl.Collator('pt-BR', { numeric: true, sensitivity: 'base'
 /** Rótulo do modelo no funil: modelos da linha pneumática são distintos dos hidráulicos. */
 const rotuloModelo = (modelo, linha) =>
   modelo && linha === 'Pneumática' ? `${modelo} · Pneumática` : modelo || '—';
+
+/**
+ * Perfil que existe em mais de um Tipo (ex.: "B" gaxeta × "B" retentor) ganha o Tipo no rótulo do funil.
+ * Perfil vazio ("—") é "Não informado" em qualquer Tipo e não ganha sufixo.
+ */
+function desambiguarPerfis(produtos) {
+  const tipos = new Map();
+  for (const p of produtos) {
+    if (!tipos.has(p.modelo)) tipos.set(p.modelo, new Set());
+    tipos.get(p.modelo).add(p.tipo);
+  }
+  for (const p of produtos) {
+    if (p.tipo === 'Retentor' && p.modelo !== '—' && tipos.get(p.modelo).size > 1) p.modelo = `${p.modelo} · Retentor`;
+  }
+}
 
 function finalizar(p) {
   if (p.secao === null || p.secao === undefined) p.secao = calcSecao(p.interno, p.externo);
@@ -79,7 +95,9 @@ function produtoApc(row) {
     descricao: row.Descricao || '',
     unidadeNominal: row.UnidadeNominal || 'mm',
     fonte: row.Fonte,
+    catalogo: row.Catalogo || '',
     pagina: row.Pagina || '',
+    naLista: row.NaLista === 'S', // está numa lista AGEL 2025 (fonte mestra do que está em linha)
   });
 }
 
@@ -105,6 +123,7 @@ function produtoLegado(row, arquivo, cfg) {
     descricao: '',
     unidadeNominal: 'mm',
     fonte: 'legado',
+    catalogo: '',
     pagina: '',
   };
   for (const [col, destino] of Object.entries(colunas)) {
@@ -121,6 +140,7 @@ class DatabaseService {
     /** @type {Array<object>} */
     this.produtos = [];
     this.sobrepostos = 0;
+    this.ocultos = 0;
     this.loaded = false;
   }
 
@@ -129,8 +149,15 @@ class DatabaseService {
     if (this.loaded) return;
 
     const apcRaw = Object.values(apcModules)[0];
-    const apc = apcRaw ? parseCsv(apcRaw).filter((r) => r.Codigo).map(produtoApc) : [];
-    const codigosApc = new Set(apc.map((p) => chaveCodigo(p.codigo)));
+    const apcTodos = apcRaw ? parseCsv(apcRaw).filter((r) => r.Codigo).map(produtoApc) : [];
+    // Todo código do APC (mesmo fora de linha) continua sobrepondo as CSVs antigas;
+    // senão o item voltaria ao painel com as facetas genéricas da CSV antiga (ex.: 8016PM).
+    const codigosApc = new Set(apcTodos.map((p) => chaveCodigo(p.codigo)));
+    // Lista 2025 = fonte mestra do que está em linha: código dos catálogos 2021/2022 fora dela não aparece.
+    // Estar na lista é propriedade do código: linhas gêmeas (ex.: 7044PM em AG 14 e AG 4 (BS)) ficam as duas.
+    const codigosNaLista = new Set(apcTodos.filter((p) => p.naLista).map((p) => chaveCodigo(p.codigo)));
+    const apc = apcTodos.filter((p) => codigosNaLista.has(chaveCodigo(p.codigo)));
+    this.ocultos = apcTodos.length - apc.length;
 
     const legado = [];
     for (const [path, raw] of Object.entries(legacyModules)) {
@@ -151,6 +178,7 @@ class DatabaseService {
       }
     }
 
+    desambiguarPerfis([...apc, ...legado]);
     this.produtos = [...apc, ...legado]
       .sort((a, b) => collator.compare(a.codigo, b.codigo))
       .map((p, i) => ({ ...p, id: i }));

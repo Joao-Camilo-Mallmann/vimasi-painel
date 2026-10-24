@@ -13,11 +13,11 @@ const url = (p) => pathToFileURL(join(root, p)).href;
 
 const ler = (nomes) =>
   JSON.stringify(Object.fromEntries(nomes.map((n) => [`../data/${n}`, readFileSync(join(dataDir, n), "utf-8")])));
-const legado = readdirSync(dataDir).filter((n) => /^data_.*\.csv$/.test(n));
+const legado = readdirSync(dataDir).filter((n) => n.endsWith(".csv") && n !== "catalogo_apc.csv");
 
 let src = readFileSync(join(root, "src/services/DatabaseService.js"), "utf-8")
   .replace(/import\.meta\.glob\('\.\.\/data\/catalogo_apc\.csv'[^)]*\)/, ler(["catalogo_apc.csv"]))
-  .replace(/import\.meta\.glob\('\.\.\/data\/data_\*\.csv'[^)]*\)/, ler(legado))
+  .replace(/import\.meta\.glob\(\['\.\.\/data\/\*\.csv'[^)]*\)/, ler(legado))
   .replace("'../config/taxonomia'", `'${url("src/config/taxonomia.js")}'`)
   .replace("'../utils/units'", `'${url("src/utils/units.js")}'`)
   .replace("from 'papaparse'", `from '${url("node_modules/papaparse/papaparse.js")}'`);
@@ -36,13 +36,20 @@ const { aplicarFacetas, contarFacetas, etapasFunil, SELECAO_VAZIA } = await impo
 const { parseInch } = await import(url("src/utils/units.js"));
 
 db.loadData();
-console.log(`produtos: ${db.produtos.length} (legado sobreposto pelo APC: ${db.sobrepostos})`);
+console.log(
+  `produtos: ${db.produtos.length} (legado sobreposto pelo APC: ${db.sobrepostos}; APC fora da lista 2025: ${db.ocultos})`
+);
+
+// Lista 2025 = fonte mestra: item dos catálogos fora dela não aparece, nem pela CSV antiga que o repetia
+assert.ok(db.ocultos > 0);
+assert.ok(db.produtos.filter((p) => p.origem === "apc").every((p) => p.naLista === true));
+assert.equal(db.buscar({ codigo: "8016PM" }).length, 0);
 
 // Código duplicado entre fontes aparece uma vez, com facetas do APC
-const p8016 = db.buscar({ codigo: "8016PM" }).filter((p) => p.codigo === "8016PM");
-assert.equal(p8016.length, 1);
-assert.equal(p8016[0].modelo, "AG 13");
-assert.equal(p8016[0].material, "Polymax");
+const p9053 = db.buscar({ codigo: "9053PM" }).filter((p) => p.codigo === "9053PM");
+assert.equal(p9053.length, 1);
+assert.equal(p9053[0].modelo, "AG 13");
+assert.equal(p9053[0].material, "Polymax");
 
 // Busca só pelo código: referência não entra
 assert.ok(db.buscar({ codigo: "12500250" }).every((p) => p.codigo.includes("12500250")));
@@ -92,7 +99,63 @@ assert.deepEqual(apc("9898").aplicacoes, ["amortecimento"]);
 const amort = aplicarFacetas(db.produtos, { ...SELECAO_VAZIA, aplicacao: ["amortecimento"] });
 assert.ok(amort.length > 0 && amort.every((p) => p.aplicacoes.includes("amortecimento")));
 
+// Retentores: índice do catálogo 2021; Tipo Retentor, aplicação Eixo
+const r9965 = apc("9965");
+assert.equal(r9965.tipo, "Retentor");
+assert.equal(r9965.catalogo, "retentores-2021");
+assert.deepEqual(r9965.aplicacoes, ["eixo"]);
+assert.deepEqual([r9965.interno, r9965.externo, r9965.altura], [15.9, 25.4, 4.5]);
+// H1/H2: Altura = H2 (total)
+assert.equal(apc("1023").altura, 7);
+// Variante de material (BRGF no índice) fica no perfil-base da página
+assert.equal(apc("1307").perfil, "BRG");
+assert.equal(apc("1307").material, "FPM");
+// Raspadores do catálogo de retentores vão na haste
+assert.equal(apc("1117").tipo, "Raspador");
+assert.deepEqual(apc("1117").aplicacoes, ["haste"]);
+// "B" do retentor não se mistura com o Tipo B da gaxeta no funil
+assert.ok(db.produtos.filter((p) => p.modelo === "B").every((p) => p.tipo === "Gaxeta"));
+assert.ok(db.produtos.some((p) => p.modelo === "B · Retentor"));
+
+// Retentores só na lista 2025: perfil desconhecido do catálogo 2021 vem da descrição; sem perfil = "—"
+assert.equal(apc("TCS0855").perfil, "AGNA");
+assert.equal(apc("TCS0855").modelo, "AGNA");
+assert.equal(apc("TCS0855").tipo, "Retentor");
+assert.equal(apc("AG7930").modelo, "—");
+assert.ok(!db.produtos.some((p) => p.modelo === "— · Retentor"));
+assert.equal(contarFacetas(db.produtos, SELECAO_VAZIA).modelo.at(-1).valor, "—");
+// "20,00 X 28,00 6,00": faltou um X na descrição da lista
+assert.deepEqual([apc("9203").interno, apc("9203").externo, apc("9203").altura], [20, 28, 6]);
+// Variante de material sem material na descrição: BRF / BRG-F → FPM
+assert.equal(apc("3531").perfil, "BR");
+assert.equal(apc("3531").material, "FPM");
+assert.equal(apc("5508-2").material, "FPM");
+// Mesmo código em duas tabelas do catálogo: a lista vale para as duas linhas
+assert.ok(db.buscar({ codigo: "7044PM" }).some((p) => p.modelo === "AG 14"));
+assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.modelo).sort(), ["AGK1", "AGK2"]);
+// Código da lista com erro de dígito na Referência casa pela medida; "STD.GAXETA" não vira código
+assert.ok(apc("5720") && apc("5749") && apc("6566") && apc("6187") && apc("6268"));
+assert.equal(db.produtos.filter((p) => p.codigo.startsWith("625002874")).length, 0);
+// Sigla que o catálogo arquiva noutro perfil vira Variante dele (BGO → BG)
+assert.equal(apc("RT0911").perfil, "BG");
+
+// Funil: Retentor → BR → NBR → Eixo (Ø15,90 ±0,1)
+const ret = db.buscar({ tolerancia: 0.1, medidas: { interno: 15.9 } });
+let selR = { ...SELECAO_VAZIA };
+for (const [k, v] of [["tipo", "Retentor"], ["modelo", "BR"], ["material", "NBR"], ["aplicacao", "eixo"]]) {
+  assert.ok(contarFacetas(ret, selR)[k].some((o) => o.valor === v), `opção ${k}=${v} disponível`);
+  selR = { ...selR, [k]: [v] };
+}
+assert.ok(aplicarFacetas(ret, selR).some((p) => p.codigo === "9965"));
+// Retentor não aparece em Haste nem Êmbolo
+const haste = aplicarFacetas(db.produtos, { ...SELECAO_VAZIA, aplicacao: ["haste", "embolo"] });
+assert.ok(!haste.some((p) => p.tipo === "Retentor"));
+// Medida em polegada = mm também nos retentores
+const retMm = db.buscar({ tolerancia: 0.05, medidas: { interno: 25.4 } }).filter((p) => p.tipo === "Retentor");
+const retPol = db.buscar({ tolerancia: 0.05, medidas: { interno: parseInch("1") } }).filter((p) => p.tipo === "Retentor");
+assert.ok(retMm.length > 0 && retMm.length === retPol.length);
+
 // Legado agora pesquisável (Teflon)
-assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "data_anel_teflon.csv"));
+assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "anel-teflon.csv"));
 
 console.log("busca/funil: todos os cenários OK");

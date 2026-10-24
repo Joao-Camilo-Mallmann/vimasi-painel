@@ -1,31 +1,42 @@
 # Catálogos (fontes brutas)
 
-## Fonte principal
+## Fontes atuais
 
 | Arquivo | Origem | Uso |
 |---|---|---|
-| `apc-completo/apc-gaxetas-raspadores-ref-02-2019.pdf` | "APC GAXETAS (3).pdf" | **Fonte principal.** 69 págs. Índice nas págs. PDF 9–13; tabelas nas págs. 15–68. |
-| `precos/agel-lista-precos-2026-01.pdf` | "Gaxetas 2026.pdf" | Lista AGEL 01/2026. **Fora do git** (`.gitignore`). Só código e descrição são cruzados; **preço nunca é importado**. |
+| `gaxetas-raspadores/catalogo-gaxetas-raspadores-2022.pdf` | "catalogo-gaxetas-2022.pdf" | **Gaxetas e raspadores** (ref. 2022, 68 págs.). Índice nas págs. PDF 12–16; tabelas nas págs. 17–65; reparos pneumáticos nas 66–67. Página impressa = página PDF − 16. |
+| `retentores/catalogo-retentores-2021.pdf` | "catalogo-retentores-digital2.pdf" | **Retentores** (ref. 2021, 112 págs.). Perfis nas págs. 10–76; referência de mercado nas 77–83; índice "REFERÊNCIA AGEL" (todos os códigos) nas 84–111. |
+| `listas/lista-gaxetas-raspadores-2025.pdf` | AGEL 2025 | Código + descrição de gaxetas, raspadores, Polymax, GSK e pneumática. |
+| `listas/lista-retentores-2025.pdf` | AGEL 2025 | Código + descrição de retentores. |
+
+As listas 2025 têm só código, descrição, UN e % IPI (sem preço). O script lê apenas código e descrição.
+
+As listas 2025 são a **fonte mestra** do que está em linha: item dos catálogos 2021/2022 que não está nelas fica no CSV com `NaLista` vazio e **não aparece no painel** (`DatabaseService.loadData`). Item que só existe na lista entra com `Catalogo=lista-2025`.
+
+O catálogo 2022 substituiu o APC ref. 02/2019, e as listas 2025 substituíram a lista AGEL 2026. Os dois arquivos antigos continuam no histórico do git.
 
 ## Como regenerar os dados
 
 ```bash
 pip install pdfplumber                     # dependência do script (use um venv)
-cp "docs/Gaxetas 2026.pdf" docs/catalogos/precos/agel-lista-precos-2026-01.pdf   # sem ela, perde o cruzamento com a lista
 python -I scripts/ingest_catalogos.py      # gera src/data/catalogo_apc.csv + docs/catalogos/divergencias.md
 node scripts/check_units.mjs               # auto-checagem mm ⇄ pol
 node scripts/check_busca.mjs               # auto-checagem busca + funil
 ```
 
-- Novo catálogo ou página: ajustar o manifesto no topo do script (`APLICACOES`, `FICHA`, faixas de página).
+- Novo catálogo ou página: ajustar o manifesto no topo do script (`APLICACOES`, `FICHA`, `DATA_PAGES`, `POLYMAX_PAGES`, `RET_PERFIL_PAGES`, `RET_INDICE_PAGES`).
 - O relatório `divergencias.md` lista:
+  - mudanças em relação ao CSV do último commit (saíram, entraram, campos alterados)
   - código × valor impresso
   - duplicados
+  - retentores: índice × páginas de perfil
+  - mesmo código nos dois catálogos
   - sobreposição com as CSVs antigas
-  - lista 2026 × catálogo
+  - listas 2025 × catálogos: medidas divergentes, itens só na lista, casados pela medida (erro de dígito na Referência), itens dos catálogos fora das listas (ocultos no painel), perfis só na lista 2025
   - linhas não extraídas
+  - perfil a confirmar e medida incompleta
 
-## Padrão da REFERÊNCIA (milésimos de polegada)
+## Gaxetas e raspadores: padrão da REFERÊNCIA (milésimos de polegada)
 
 | Modelo | Padrão | Exemplo |
 |---|---|---|
@@ -37,12 +48,29 @@ node scripts/check_busca.mjs               # auto-checagem busca + funil
 - Códigos que não ficam perto de uma fração (ex.: `D-0788` = 20 mm) são convertidos direto.
 - Prefixo `6-` ou `---` significa peça métrica/especial e usa o valor impresso.
 - Sufixo `PM` = Polymax. Sufixo `BS` = AG 4 (BS).
-- Na lista 2026 o código Tipo B vem com hífen (`12500250-250` = `12500250250`).
+- Na lista o código Tipo B vem com hífen (`12500250-250` = `12500250250`).
+
+## Retentores
+
+- **Fonte primária:** o índice "REFERÊNCIA AGEL" (`CÓDIGO REF MOD. ØINT ØEXT H1/H2 MAT ORI`). As páginas de perfil conferem o índice e completam os códigos que faltam nele.
+- **Perfil:** é o da página onde o código aparece. O índice usa variantes de material, que ficam no perfil-base com `Variante=` em Extras:
+  - `F` = FPM: `BRGF` → `BRG`
+  - `S` = MVQ: `BAS` → `BA`
+  - `P` = ACM (poliacrilato): `BRGP` → `BRG`
+  - número: `AGGK1` → `AGGK`
+- **Tipo:** pela descrição da página do perfil.
+  - "RASPADOR…" → `Raspador` (aplicação Haste)
+  - "RETENTOR…", "VEDADOR…" ou "GUARDA PÓ…" → `Retentor` (aplicação **Eixo**)
+- **Altura:** `H1/H2` (ex.: `5,0/7,0`) → Altura = H2 (total); o texto original vai em Extras.
+- **ØEXT escalonado:** `110,0/154,0` → Externo = primeiro valor; o texto original vai em Extras.
+- **Colunas:** `REF` (referência de mercado) → `Referencia`. `ORI` (LI/H/AH/BI, legenda da pág. 6) → Extras "Orientação do lábio".
+- **Código nos dois catálogos** (raspadores GA, GAE, GAG, AGK1…): vale a linha do catálogo de gaxetas. Lá a coluna `h` é o H1; o `H1/H2` do de retentores vai em Extras.
+- **Só na lista 2025** (`Catalogo=lista-2025`): perfil = primeira sigla da descrição que é perfil do catálogo 2021 (variantes seguem o perfil-base). Se nenhuma for, vale a **única sigla entre as medidas e o material** (`… 8,50 AGNA NBR/NYLON` → `AGNA`; tipo inferido: GA/GR… raspador, o resto retentor) — listadas no relatório em "Perfis só na lista 2025"; se o catálogo arquiva a sigla noutro perfil (`BGO` → `BG`, aprendido nos itens casados), ela vira Variante desse perfil. Material pela sigla (NBR, FPM/VITON, MVQ, PTFE, PU…); se faltar, pela letra de variante do perfil (`BRF`, `BRGF`, `BRG-F` → FPM). Descrição com um `X` a menos (`20,00 X 28,00 6,00`) é tolerada.
 
 ## Recortes antigos (Drive)
 
 As pastas `conversao-pol-mm/`, `vedacao-embolo/` e `vedacao-haste/` vieram da pasta do Drive
-`1oBfppBxdZX2nqZUeHn70SU8rPZWI9Gxa`. São **recortes do catálogo completo** (os "ALTERADO" são
+`1oBfppBxdZX2nqZUeHn70SU8rPZWI9Gxa`. São **recortes do catálogo APC 2019** (os "ALTERADO" são
 as páginas convertidas para mm) e ficam só como referência.
 
 Erros na tabela de conversão do Drive: `11 1/2` = 292,10 (não 292,70); `18 1/4` = 463,55;

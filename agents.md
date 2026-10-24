@@ -68,7 +68,7 @@ src/
 │
 └── data/
     ├── catalogo_apc.csv     # GERADO por scripts/ingest_catalogos.py — não editar à mão
-    └── data_*.csv           # CSVs antigas (facetas via LEGACY_MAP)
+    └── <tipo>-<perfil>.csv  # CSVs antigas (anel-teflon.csv, conjunto-zo.csv…; facetas via LEGACY_MAP)
 
 scripts/                     # Ferramentas de dev (não entram no bundle)
 docs/catalogos/              # PDFs brutos + divergencias.md (ver README da pasta)
@@ -100,6 +100,7 @@ openspec/
 - Dados de estoque armazenados em **Supabase** (não em localStorage).
 - `handleToggleEstoque` usa `insert` / `delete` conforme o estado do checkbox.
 - **Row Level Security (RLS)** ativado — requests não autenticados são bloqueados.
+- Códigos fora da lista 2025 (ocultos no painel) podem ter linhas órfãs em `estoque`; não quebram nada, só não aparecem.
 - Migration em `supabase/migrations/001_create_estoque_table.sql` (deve verificar `pg_policies` em bloco `DO $$` para ignorar se já existir).
 
 ### Cliente Supabase
@@ -149,16 +150,23 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
   - Na tela, a faceta `modelo` se chama **Perfil** (B, AG 1, STD…). "Linha" = Hidráulica/Pneumática; Polymax é **Material**, não Linha.
   - Facetas em ordem livre, OU dentro do grupo, E entre grupos.
   - Peças sem aplicação são genéricas e atendem Haste e Êmbolo.
+  - **Retentor** (Tipo) sempre tem a aplicação **Eixo** e nunca aparece em Haste/Êmbolo. Perfil que existe em mais de um Tipo (ex.: "B") aparece no funil como `B · Retentor` (`desambiguarPerfis` em `DatabaseService.js`). Perfil vazio é `—` ("Não informado", último da lista) em qualquer Tipo e não ganha sufixo.
 - **Fonte dos dados**:
-  - `src/data/catalogo_apc.csv` é gerado do PDF APC + lista AGEL 2026. Para mudar, edite o script e rode de novo.
+  - `src/data/catalogo_apc.csv` é gerado por `scripts/ingest_catalogos.py` a partir de três fontes. Para mudar, edite o script e rode de novo.
+    - catálogo de gaxetas e raspadores ref. 2022
+    - catálogo de retentores ref. 2021
+    - listas AGEL 2025 de gaxetas/raspadores e de retentores
+  - Colunas `Catalogo` (`gaxetas-2022` | `retentores-2021` | `lista-2025`) e `NaLista` (`S` = o código está numa lista 2025).
+  - **Lista 2025 = fonte mestra do que está em linha**: `DatabaseService.loadData` só carrega códigos com `NaLista=S` (estar na lista é propriedade do código: linhas gêmeas de um mesmo código, ex.: `7044PM` em AG 14 e AG 4 (BS), ficam as duas). Itens dos catálogos 2021/2022 fora das listas são fora de linha: continuam no CSV (`NaLista` vazio) para o histórico do relatório e para seguir sobrepondo as CSVs antigas (`codigosApc` usa todas as linhas), mas não entram em `produtos` (contador `ocultos`). Relatório: seção "Itens dos catálogos fora das listas 2025".
+  - Mesmo código nos dois catálogos → o de gaxetas prevalece.
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
-  - Mesmo `Codigo` nas duas fontes → o APC prevalece.
+  - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
 - **Medidas**:
   - Armazenadas em mm. Para exibir, sempre via `src/utils/units.js`. Nunca `toFixed(2)` solto.
   - Formato: `15,88 mm · 5/8"` (vírgula; fração 1/64" com `≈` quando não é exata).
   - Seção = (ØEXT − ØINT) / 2.
 - **Referência do fornecedor** (`Referencia`) é a fonte da verdade das medidas em polegada: veja `docs/catalogos/README.md`.
-- **Preços** (lista AGEL 2026) **nunca** entram em `src/` nem no git: o bundle é público. Se um dia precisar de preço no painel, use Supabase com RLS.
+- **Preços** **nunca** entram em `src/` nem no git: o bundle é público. As listas 2025 versionadas em `docs/catalogos/listas/` não têm preço. Se um dia precisar de preço no painel, use Supabase com RLS.
 - **Badges de Tipo** têm cores **fixas** em `TIPOS` (`taxonomia.js`), aplicadas via style inline. Nunca gere cores dinâmicas.
 - **Colunas CSV antigas**: `Altura` e `AlturaTotal` foram unificadas em `Altura`; `AlturaBase` é separada para peças de conjunto.
 
@@ -195,6 +203,7 @@ openspec validate --specs                   # Validar specs
 - [ ] Estou usando cores de `TIPOS` em `taxonomia.js` para badges de peças
 - [ ] Medidas exibidas/parseadas via `units.js` (mm + pol)
 - [ ] Não expus nenhuma interface de cadastro público
+- [ ] Item novo de catálogo só aparece no painel se estiver numa lista 2025 (`NaLista=S`); depois de mexer em dados rodei `python -I scripts/ingest_catalogos.py` e `node scripts/check_busca.mjs`
 
 ---
 
@@ -205,7 +214,7 @@ openspec validate --specs                   # Validar specs
 | [.agents/DESIGN.md](.agents/DESIGN.md) | Design system completo e tokens visuais |
 | [src/config/taxonomia.js](src/config/taxonomia.js) | Tipos/badges, facetas, mapeamento das CSVs antigas |
 | [src/utils/units.js](src/utils/units.js) | Conversão e formatação mm ⇄ pol |
-| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão do catálogo APC + cruzamento com a lista 2026 |
+| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão dos catálogos APC (gaxetas 2022 + retentores 2021) + cruzamento com as listas 2025 |
 | [docs/catalogos/divergencias.md](docs/catalogos/divergencias.md) | Relatório gerado: divergências e cruzamentos |
 | [src/utils/supabase.js](src/utils/supabase.js) | Cliente Supabase inicializado |
 | [src/services/DatabaseService.js](src/services/DatabaseService.js) | Abstração de queries |
