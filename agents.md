@@ -164,6 +164,7 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
   - Colunas `Catalogo` (`gaxetas-2022` | `retentores-2021` | `lista-2025`) e `NaLista` (`S` = o código está numa lista 2025).
   - **Lista 2025 = fonte mestra do que está em linha**: `DatabaseService.loadData` só carrega códigos com `NaLista=S` (estar na lista é propriedade do código: linhas gêmeas de um mesmo código, ex.: `7044PM` em AG 14 e AG 4 (BS), ficam as duas). Itens dos catálogos 2021/2022 fora das listas são fora de linha: continuam no CSV (`NaLista` vazio) para o histórico do relatório e para seguir sobrepondo as CSVs antigas (`codigosApc` usa todas as linhas), mas não entram em `produtos` (contador `ocultos`). Relatório: seção "Itens dos catálogos fora das listas 2025".
   - Mesmo código nos dois catálogos → o de gaxetas prevalece.
+  - Raspadores **GA, GAE, AGK1, GA1 e AGK2** (carcaça metálica) saem com Perfil **Metálico**, o mesmo de `raspador-metalico.csv`. O perfil APC original fica em Extras (`Perfil APC`). A troca é feita no fim do script (`PERFIS_METALICOS`), então o cruzamento com as listas continua usando o perfil do catálogo. **GAG** continua GAG.
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
   - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
 - **Medidas**:

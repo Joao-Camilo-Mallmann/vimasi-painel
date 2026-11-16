@@ -132,7 +132,13 @@ assert.equal(apc("3531").material, "FPM");
 assert.equal(apc("5508-2").material, "FPM");
 // Mesmo código em duas tabelas do catálogo: a lista vale para as duas linhas
 assert.ok(db.buscar({ codigo: "7044PM" }).some((p) => p.modelo === "AG 14"));
-assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.modelo).sort(), ["AGK1", "AGK2"]);
+assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.extras[0].value).sort(), ["AGK1", "AGK2"]);
+// Raspadores GA/GAE/AGK1/GA1/AGK2 têm carcaça metálica: Perfil "Metálico", perfil APC em Extras; GAG continua
+for (const m of ["GA", "GAE", "AGK1", "GA1", "AGK2"]) assert.ok(!db.produtos.some((p) => p.tipo === "Raspador" && p.perfil === m), m);
+assert.equal(apc("1117").modelo, "Metálico");
+assert.deepEqual(apc("1117").extras[0], { label: "Perfil APC", value: "GA" });
+assert.ok(db.produtos.some((p) => p.perfil === "GAG"));
+assert.ok(db.produtos.some((p) => p.origem !== "apc" && p.modelo === "Metálico"));
 // Código da lista com erro de dígito na Referência casa pela medida; "STD.GAXETA" não vira código
 assert.ok(apc("5720") && apc("5749") && apc("6566") && apc("6187") && apc("6268"));
 assert.equal(db.produtos.filter((p) => p.codigo.startsWith("625002874")).length, 0);

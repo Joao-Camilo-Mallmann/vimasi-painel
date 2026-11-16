@@ -148,6 +148,12 @@ FICHA = {
     ("pneumatica", "Z", False): (7000, *PM_TEMP, 0.5),
 }
 
+# Raspadores com carcaça metálica: no painel o Perfil é "Metálico" (o mesmo de raspador-metalico.csv).
+# O perfil APC original fica em Extras ("Perfil APC"). Aplicado só na saída: o cruzamento com as
+# listas 2025 continua usando o perfil do catálogo. GAG fica como está.
+PERFIS_METALICOS = {"GA", "GAE", "AGK1", "GA1", "AGK2"}
+PERFIL_METALICO = "Metálico"
+
 TIPO_POR_LINHA = {"gaxeta": "Gaxeta", "raspador": "Raspador", "pneumatica": "Gaxeta"}
 LINHA_LABEL = {"gaxeta": "Hidráulica", "raspador": "Hidráulica", "pneumatica": "Pneumática"}
 
@@ -1139,6 +1145,14 @@ CAMPOS = ["Codigo", "Referencia", "Tipo", "Modelo", "Material", "Aplicacao", "Li
           "Descricao", "NaLista", "Fonte", "Catalogo", "Pagina"]
 
 
+def agrupar_metalicos(saida):
+    for s in saida:
+        if s["Tipo"] == "Raspador" and s["Modelo"] in PERFIS_METALICOS:
+            s["Extras"] = "|".join(filter(None, [f"Perfil APC={s['Modelo']}", s["Extras"]]))
+            s["Modelo"] = PERFIL_METALICO
+    return saida
+
+
 def escrever_csv(saida):
     saida.sort(key=lambda s: (s["Tipo"], s["Linha"], s["Modelo"], s["Material"], s["Fonte"],
                               float(s["Interno"] or 0), float(s["Externo"] or 0), float(s["Altura"] or 0), s["Codigo"]))
@@ -1369,7 +1383,7 @@ def main():
     saida = juntar_catalogos(gaxetas, retentores, problemas)
     itens = [it for f in a.listas for it in extrair_lista(f)]
     mods = {r["mod"] for r in indice + pag_rows}
-    saida = cruzar_listas(saida, itens, perfis, mods, problemas)
+    saida = agrupar_metalicos(cruzar_listas(saida, itens, perfis, mods, problemas))
     escrever_csv(saida)
     escrever_relatorio(saida, problemas, ler_legado(), anterior)
 
