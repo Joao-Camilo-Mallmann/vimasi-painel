@@ -358,7 +358,7 @@ function App() {
       {/* Main Content */}
       <main className="pt-32 pb-20 px-4">
         <div className="max-w-9xl mx-auto">
-          <SearchForm onSearch={handleSearch}>
+          <SearchForm onSearch={handleSearch} tipo={selecao.tipo.length === 1 ? selecao.tipo[0] : null}>
             <FacetFilter
               desabilitado={!searched || resultados.length === 0}
               opcoes={opcoesFacetas}

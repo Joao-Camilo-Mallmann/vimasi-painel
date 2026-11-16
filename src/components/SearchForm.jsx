@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import { CAMPOS_MEDIDA } from "../config/taxonomia";
 import { formatMm, parseEntrada, textoParaUnidade } from "../utils/units";
-import DesenhoGaxeta from "./DesenhoGaxeta";
+import DesenhoPeca from "./DesenhoPeca";
 import Passo from "./Passo";
 
 const TOLERANCIAS = ["0", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10"];
@@ -11,19 +11,37 @@ const CAMPOS_VAZIOS = Object.fromEntries(
   CAMPOS_MEDIDA.map(({ key }) => [key, ""]),
 );
 
-const DICAS = {
+const DICAS_PADRAO = {
   interno: "Vão por dentro do anel",
   externo: "Diâmetro de fora a fora",
   altura: "Comprimento no sentido do eixo",
   secao: "Espessura da parede",
 };
 
-export default function SearchForm({ onSearch, children }) {
+const DICAS_POR_TIPO = {
+  "O-ring": {
+    secao: "Espessura do cordão",
+    altura: "Igual à espessura do cordão",
+  },
+  Retentor: {
+    interno: "Diâmetro do eixo",
+    externo: "Diâmetro do alojamento",
+  },
+  Arruela: {
+    altura: "Espessura da arruela",
+  },
+};
+
+export default function SearchForm({ onSearch, tipo = null, children }) {
   const [codigo, setCodigo] = useState("");
   const [tolerancia, setTolerancia] = useState("0.5");
   const [unidade, setUnidade] = useState("mm");
   const [campos, setCampos] = useState(CAMPOS_VAZIOS);
   const [foco, setFoco] = useState(null);
+
+  const dicas = tipo && DICAS_POR_TIPO[tipo]
+    ? { ...DICAS_PADRAO, ...DICAS_POR_TIPO[tipo] }
+    : DICAS_PADRAO;
 
   const invalido = (key) =>
     campos[key].trim() !== "" && parseEntrada(campos[key], unidade) === null;
@@ -58,7 +76,7 @@ export default function SearchForm({ onSearch, children }) {
 
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-5">
           <div className="hidden md:flex md:w-72 lg:w-[26rem] shrink-0 items-center justify-center border-r border-white/10 pr-6 lg:pr-8">
-            <DesenhoGaxeta foco={foco} />
+            <DesenhoPeca tipo={tipo} foco={foco} />
           </div>
 
           <div className="flex-1 min-w-0 flex flex-col gap-5">
@@ -118,7 +136,7 @@ export default function SearchForm({ onSearch, children }) {
                         ? "Valor inválido"
                         : unidade === "pol" && mm !== null
                           ? `= ${formatMm(mm)} mm`
-                          : DICAS[key]}
+                          : dicas[key]}
                     </span>
                   </label>
                 );

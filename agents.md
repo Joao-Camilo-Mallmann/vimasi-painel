@@ -52,6 +52,7 @@ src/
 ├── components/
 │   ├── Login.jsx            # Tela de login (Supabase Auth)
 │   ├── SearchForm.jsx       # Busca por medida (ØINT/ØEXT/Altura/Seção, mm|pol) + código/referência
+│   ├── DesenhoPeca.jsx      # Desenho 3D do passo "Meça a peça", muda conforme o Tipo selecionado
 │   └── FacetFilter.jsx      # Funil Tipo → Modelo → Material → Aplicação (com contagens)
 │
 ├── services/
