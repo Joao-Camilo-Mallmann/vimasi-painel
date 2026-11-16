@@ -148,11 +148,11 @@ FICHA = {
     ("pneumatica", "Z", False): (7000, *PM_TEMP, 0.5),
 }
 
-# Raspadores com carcaça metálica: no painel o Perfil é "Metálico" (o mesmo de raspador-metalico.csv).
-# O perfil APC original fica em Extras ("Perfil APC"). Aplicado só na saída: o cruzamento com as
-# listas 2025 continua usando o perfil do catálogo. GAG fica como está.
+# Raspadores com carcaça metálica: Tipo "Raspador metálico"; Perfil, Material e Aplicação ficam
+# como no catálogo. Aplicado só na saída: o resto do script trata esses perfis como "Raspador".
+# GAG continua Raspador.
 PERFIS_METALICOS = {"GA", "GAE", "AGK1", "GA1", "AGK2"}
-PERFIL_METALICO = "Metálico"
+TIPO_RASPADOR_METALICO = "Raspador metálico"
 
 TIPO_POR_LINHA = {"gaxeta": "Gaxeta", "raspador": "Raspador", "pneumatica": "Gaxeta"}
 LINHA_LABEL = {"gaxeta": "Hidráulica", "raspador": "Hidráulica", "pneumatica": "Pneumática"}
@@ -1148,8 +1148,7 @@ CAMPOS = ["Codigo", "Referencia", "Tipo", "Modelo", "Material", "Aplicacao", "Li
 def agrupar_metalicos(saida):
     for s in saida:
         if s["Tipo"] == "Raspador" and s["Modelo"] in PERFIS_METALICOS:
-            s["Extras"] = "|".join(filter(None, [f"Perfil APC={s['Modelo']}", s["Extras"]]))
-            s["Modelo"] = PERFIL_METALICO
+            s["Tipo"] = TIPO_RASPADOR_METALICO
     return saida
 
 
@@ -1344,12 +1343,12 @@ def escrever_relatorio(saida, problemas, legado, anterior):
     L += [f"- pág. {p} · {li} · {m} · polymax={pm}" for p, li, m, pm in sorted(problemas["sem_manifesto"])] or ["Nenhum."]
     L += ["", "## Linhas não extraídas", "", "Página com prefixo R = catálogo de retentores.", ""]
     L += [f"- pág. {p} · {m} · `{raw}`" for p, m, raw in problemas["nao_extraidas"]] or ["Nenhuma."]
-    sem_perfil = [s for s in saida if s["Tipo"] in ("Gaxeta", "Raspador", "Retentor") and not s["Modelo"]]
+    sem_perfil = [s for s in saida if s["Tipo"] in ("Gaxeta", "Raspador", TIPO_RASPADOR_METALICO, "Retentor") and not s["Modelo"]]
     L += ["", "## Perfil a confirmar", "",
           "Só na lista 2025, sem perfil na descrição nem código exclusivo. No filtro de Perfil aparecem como `—` ('Não informado', "
           "último da lista); os sem medida (ver 'Medida incompleta') só pela busca por código.", ""]
     L += [f"- `{s['Codigo']}` · {s['Descricao']}" for s in sem_perfil] or ["Nenhum."]
-    sem_medida = [s for s in saida if s["Tipo"] in ("Gaxeta", "Raspador", "Retentor")
+    sem_medida = [s for s in saida if s["Tipo"] in ("Gaxeta", "Raspador", TIPO_RASPADOR_METALICO, "Retentor")
                   and not (s["Interno"] and s["Externo"] and s["Altura"])]
     L += ["", "## Medida incompleta", "", "Aparecem na busca por código, mas não em todas as buscas por medida.", ""]
     L += [f"- `{s['Codigo']}` · {s['Catalogo']} · {s['Descricao'] or s['Modelo']}" for s in sem_medida] or ["Nenhum."]

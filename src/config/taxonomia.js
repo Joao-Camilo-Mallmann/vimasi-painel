@@ -15,6 +15,7 @@
 export const TIPOS = {
   Gaxeta: { bg: "#e4c7aa", text: "#050505", border: "#d4af37" },
   Raspador: { bg: "#64748b", text: "#ffffff", border: "#475569" },
+  "Raspador metálico": { bg: "#a1a1aa", text: "#050505", border: "#71717a" },
   Retentor: { bg: "#f472b6", text: "#050505", border: "#ec4899" },
   Conjunto: { bg: "#a3e635", text: "#050505", border: "#84cc16" },
   "Buffer seal": { bg: "#fb923c", text: "#050505", border: "#f97316" },
@@ -100,7 +101,7 @@ export const LEGACY_MAP = {
     colunas: { Diametro: "interno", Espessura: "secao" },
   },
   "raspador-azul.csv": { tipo: "Raspador", modelo: "Azul", material: "", aplicacoes: ["haste"] },
-  "raspador-metalico.csv": { tipo: "Raspador", modelo: "Metálico", material: "", aplicacoes: ["haste"] },
+  "raspador-metalico.csv": { tipo: "Raspador metálico", modelo: "Metálico", material: "", aplicacoes: ["haste"] },
   "v-ring-guarda-po.csv": { tipo: "V-Ring", modelo: "Guarda-pó", material: "", aplicacoes: ["haste"] },
 };
 

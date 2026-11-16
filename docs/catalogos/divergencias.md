@@ -103,17 +103,22 @@ Total: **4482** itens (gaxetas-2022: 2226, lista-2025: 353, retentores-2021: 190
 | Raspador | GRG | NBR | Hidráulica | 5 |
 | Raspador | K | PU | Hidráulica | 6 |
 | Raspador | KDG | — | Pneumática | 4 |
-| Raspador | Metálico | FPM | Hidráulica | 1 |
-| Raspador | Metálico | MVQ | Hidráulica | 1 |
-| Raspador | Metálico | NBR | Hidráulica | 101 |
-| Raspador | Metálico | PU | Hidráulica | 203 |
-| Raspador | Metálico | — | Hidráulica | 1 |
 | Raspador | RP-25 | PU | Hidráulica | 27 |
 | Raspador | RP-25 | Polymax | Hidráulica | 14 |
 | Raspador | RP-25 | — | Pneumática | 7 |
 | Raspador | RP-27 | Polymax | Hidráulica | 4 |
 | Raspador | RP-28 | Polymax | Hidráulica | 18 |
 | Raspador | RP-32 | Polymax | Hidráulica | 2 |
+| Raspador metálico | AGK1 | PU | Hidráulica | 12 |
+| Raspador metálico | AGK2 | PU | Hidráulica | 17 |
+| Raspador metálico | GA | MVQ | Hidráulica | 1 |
+| Raspador metálico | GA | NBR | Hidráulica | 75 |
+| Raspador metálico | GA | PU | Hidráulica | 124 |
+| Raspador metálico | GA1 | PU | Hidráulica | 18 |
+| Raspador metálico | GAE | FPM | Hidráulica | 1 |
+| Raspador metálico | GAE | NBR | Hidráulica | 26 |
+| Raspador metálico | GAE | PU | Hidráulica | 32 |
+| Raspador metálico | GAE | — | Hidráulica | 1 |
 | Reparo pneumático |  | — | Pneumática | 1 |
 | Reparo pneumático | Componente | — | Pneumática | 9 |
 | Reparo pneumático | Kit de reparo | — | Pneumática | 14 |
@@ -300,315 +305,617 @@ Total: **4482** itens (gaxetas-2022: 2226, lista-2025: 353, retentores-2021: 190
 
 ## Mudanças em relação ao CSV do último commit
 
-- Saíram: **0** · Entraram: **0** · Campos alterados: **302**
+- Saíram: **0** · Entraram: **0** · Campos alterados: **604**
 - Viraram Referência de uma peça do catálogo (continuam pesquisáveis pela peça): **0**
 
 ### Campos alterados
 
 | Código | Campo | Antes | Agora |
 |---|---|---|---|
-| `1117` | Modelo | GA | Metálico |
-| `1335` | Modelo | AGK1 | Metálico |
-| `1337` | Modelo | GA | Metálico |
-| `1338` | Modelo | GA | Metálico |
-| `1340` | Modelo | GA | Metálico |
-| `1341` | Modelo | GA | Metálico |
-| `1342` | Modelo | GA | Metálico |
-| `1344` | Modelo | GA | Metálico |
-| `1347` | Modelo | GA | Metálico |
-| `1357` | Modelo | AGK1 | Metálico |
-| `1364` | Modelo | GA | Metálico |
-| `1384` | Modelo | GA | Metálico |
-| `1388` | Modelo | GA | Metálico |
-| `1448` | Modelo | GA | Metálico |
-| `1450` | Modelo | GA | Metálico |
-| `1451` | Modelo | GA | Metálico |
-| `1452` | Modelo | GA | Metálico |
-| `1453` | Modelo | GA | Metálico |
-| `1454` | Modelo | GA | Metálico |
-| `1455` | Modelo | GA | Metálico |
-| `1505` | Modelo | GA | Metálico |
-| `1509` | Modelo | GAE | Metálico |
-| `1511` | Modelo | GA | Metálico |
-| `1514` | Modelo | GA | Metálico |
-| `1520` | Modelo | GAE | Metálico |
-| `1523` | Modelo | GAE | Metálico |
-| `1525` | Modelo | GAE | Metálico |
-| `1529` | Modelo | GAE | Metálico |
-| `1531` | Modelo | GA | Metálico |
-| `1536` | Modelo | GA | Metálico |
-| `1537` | Modelo | GA | Metálico |
-| `1540` | Modelo | GAE | Metálico |
-| `1545` | Modelo | GAE | Metálico |
-| `1655` | Modelo | GA | Metálico |
-| `1656` | Modelo | GAE | Metálico |
-| `1686` | Modelo | GA | Metálico |
-| `1717` | Modelo | GA | Metálico |
-| `1803` | Modelo | GA | Metálico |
-| `1827` | Modelo | GA | Metálico |
-| `1842` | Modelo | GA | Metálico |
-| `1917` | Modelo | GA | Metálico |
-| `1923` | Modelo | GA | Metálico |
-| `1925` | Modelo | GA | Metálico |
-| `1926` | Modelo | GA | Metálico |
-| `1947` | Modelo | GA | Metálico |
-| `1950` | Modelo | GA | Metálico |
-| `1969` | Modelo | GA | Metálico |
-| `1983` | Modelo | GA | Metálico |
-| `1986` | Modelo | GA | Metálico |
-| `3115` | Modelo | GAE | Metálico |
-| `3145` | Modelo | GAE | Metálico |
-| `3190` | Modelo | GA | Metálico |
-| `3191` | Modelo | GA | Metálico |
-| `3241` | Modelo | GAE | Metálico |
-| `3242` | Modelo | GAE | Metálico |
-| `3273` | Modelo | GA | Metálico |
-| `3284` | Modelo | GA | Metálico |
-| `3341` | Modelo | GAE | Metálico |
-| `3362` | Modelo | GAE | Metálico |
-| `3395` | Modelo | GAE | Metálico |
-| `3396` | Modelo | GAE | Metálico |
-| `3397` | Modelo | GAE | Metálico |
-| `3401` | Modelo | GAE | Metálico |
-| `3417` | Modelo | GAE | Metálico |
-| `3477` | Modelo | GA | Metálico |
-| `3478` | Modelo | GA | Metálico |
-| `3479` | Modelo | GA | Metálico |
-| `3480` | Modelo | GA | Metálico |
-| `3483` | Modelo | GA | Metálico |
-| `3504` | Modelo | GA | Metálico |
-| `3505` | Modelo | GA | Metálico |
-| `3506` | Modelo | GA | Metálico |
-| `3509` | Modelo | GA | Metálico |
-| `3515` | Modelo | GA | Metálico |
-| `3516-2` | Modelo | GA | Metálico |
-| `3540` | Modelo | GAE | Metálico |
-| `3541` | Modelo | GAE | Metálico |
-| `3542` | Modelo | GA | Metálico |
-| `3543` | Modelo | GAE | Metálico |
-| `3544` | Modelo | GA | Metálico |
-| `3679` | Modelo | GA | Metálico |
-| `3685` | Modelo | GA | Metálico |
-| `3733` | Modelo | GA | Metálico |
-| `3775` | Modelo | GA | Metálico |
-| `3820` | Modelo | GA | Metálico |
-| `3859` | Modelo | GA | Metálico |
-| `3886` | Modelo | GAE | Metálico |
-| `4242` | Modelo | AGK1 | Metálico |
-| `4331` | Modelo | GA | Metálico |
-| `4336` | Modelo | GA | Metálico |
-| `4339` | Modelo | GAE | Metálico |
-| `4362` | Modelo | GA | Metálico |
-| `4363` | Modelo | GA | Metálico |
-| `4392` | Modelo | GAE | Metálico |
-| `4451` | Modelo | GA | Metálico |
-| `4461` | Modelo | GA | Metálico |
-| `4462` | Modelo | GA | Metálico |
-| `4479` | Modelo | AGK1 | Metálico |
-| `4493` | Modelo | GAE | Metálico |
-| `4611` | Modelo | GA | Metálico |
-| `4639` | Modelo | GA | Metálico |
-| `4643` | Modelo | GA | Metálico |
-| `4645` | Modelo | GA | Metálico |
-| `4666` | Modelo | GA | Metálico |
-| `4676` | Modelo | GA | Metálico |
-| `4699` | Modelo | AGK1 | Metálico |
-| `4784` | Modelo | GAE | Metálico |
-| `4785` | Modelo | GAE | Metálico |
-| `4809` | Modelo | GA1 | Metálico |
-| `4810` | Modelo | GA1 | Metálico |
-| `4811` | Modelo | GA | Metálico |
-| `4817` | Modelo | GA1 | Metálico |
-| `4836` | Modelo | GA | Metálico |
-| `4846` | Modelo | AGK1 | Metálico |
-| `4860` | Modelo | AGK2 | Metálico |
-| `4861` | Modelo | AGK2 | Metálico |
-| `4862` | Modelo | AGK2 | Metálico |
-| `4863` | Modelo | GA | Metálico |
-| `4873` | Modelo | AGK2 | Metálico |
-| `4887` | Modelo | GA1 | Metálico |
-| `4890` | Modelo | GA1 | Metálico |
-| `4891` | Modelo | GA | Metálico |
-| `4892` | Modelo | GA | Metálico |
-| `4896` | Modelo | GA | Metálico |
-| `4906` | Modelo | GA | Metálico |
-| `4908` | Modelo | GA | Metálico |
-| `4909` | Modelo | GA | Metálico |
-| `4910` | Modelo | GA | Metálico |
-| `4911` | Modelo | GA | Metálico |
-| `4912` | Modelo | AGK2 | Metálico |
-| `4913` | Modelo | GAE | Metálico |
-| `4914` | Modelo | GA | Metálico |
-| `4915` | Modelo | GA | Metálico |
-| `4916` | Modelo | GA | Metálico |
-| `4917` | Modelo | AGK2 | Metálico |
-| `4918` | Modelo | AGK2 | Metálico |
-| `4926` | Modelo | AGK2 | Metálico |
-| `4927` | Modelo | GA | Metálico |
-| `4928` | Modelo | GA | Metálico |
-| `4929` | Modelo | GA | Metálico |
-| `4930` | Modelo | GA | Metálico |
-| `4931` | Modelo | GA | Metálico |
-| `4936` | Modelo | GAE | Metálico |
-| `4942` | Modelo | GA | Metálico |
-| `4944` | Modelo | GA1 | Metálico |
-| `4946` | Modelo | GAE | Metálico |
-| `4948` | Modelo | GA | Metálico |
-| `4949` | Modelo | GA | Metálico |
-| `4955` | Modelo | GA | Metálico |
-| `4963` | Modelo | GA | Metálico |
-| `4964` | Modelo | GA | Metálico |
-| `4965` | Modelo | GA | Metálico |
-| `4967` | Modelo | AGK2 | Metálico |
-| `4968` | Modelo | GA | Metálico |
-| `4973` | Modelo | GA1 | Metálico |
-| `4974` | Modelo | GA | Metálico |
-| `4975` | Modelo | GA | Metálico |
-| `4976` | Modelo | GA | Metálico |
-| `4978` | Modelo | AGK2 | Metálico |
-| `4979` | Modelo | AGK2 | Metálico |
-| `4980` | Modelo | AGK2 | Metálico |
-| `4981` | Modelo | AGK2 | Metálico |
-| `4982` | Modelo | AGK2 | Metálico |
-| `4983` | Modelo | AGK2 | Metálico |
-| `4984` | Modelo | AGK2 | Metálico |
-| `4986` | Modelo | GA | Metálico |
-| `4987` | Modelo | AGK2 | Metálico |
-| `4988` | Modelo | GA | Metálico |
-| `4995` | Modelo | GA | Metálico |
-| `5170` | Modelo | GA | Metálico |
-| `5171` | Modelo | GA | Metálico |
-| `5218` | Modelo | GAE | Metálico |
-| `5220` | Modelo | GA | Metálico |
-| `5231` | Modelo | GA | Metálico |
-| `5470` | Modelo | GA | Metálico |
-| `5608` | Modelo | GA | Metálico |
-| `5633` | Modelo | GAE | Metálico |
-| `5663` | Modelo | GA | Metálico |
-| `5715` | Modelo | GA | Metálico |
-| `5845` | Modelo | GA | Metálico |
-| `5877` | Modelo | GA | Metálico |
-| `5931` | Modelo | GA | Metálico |
-| `5939` | Modelo | GA | Metálico |
-| `5940` | Modelo | GA | Metálico |
-| `5941` | Modelo | GA | Metálico |
-| `5960` | Modelo | GA | Metálico |
-| `5985` | Modelo | AGK1 | Metálico |
-| `6000` | Modelo | GA | Metálico |
-| `6050` | Modelo | GA | Metálico |
-| `6071` | Modelo | GA | Metálico |
-| `6112` | Modelo | GA | Metálico |
-| `6123` | Modelo | GAE | Metálico |
-| `6164` | Modelo | GAE | Metálico |
-| `6190` | Modelo | GA | Metálico |
-| `6196` | Modelo | GAE | Metálico |
-| `6197` | Modelo | GA | Metálico |
-| `6198` | Modelo | GA | Metálico |
-| `6209` | Modelo | GA | Metálico |
-| `6211` | Modelo | GA | Metálico |
-| `6535` | Modelo | GA | Metálico |
-| `6809` | Modelo | GA | Metálico |
-| `6830` | Modelo | GA | Metálico |
-| `6904` | Modelo | GA | Metálico |
-| `9094` | Modelo | GAE | Metálico |
-| `9097` | Modelo | GAE | Metálico |
-| `9180` | Modelo | GA | Metálico |
-| `9278` | Modelo | GAE | Metálico |
-| `9558` | Modelo | GAE | Metálico |
-| `9718` | Modelo | GAE | Metálico |
-| `9719` | Modelo | GAE | Metálico |
-| `9778` | Modelo | GA | Metálico |
-| `9782` | Modelo | GA | Metálico |
-| `9800` | Modelo | GA | Metálico |
-| `9826` | Modelo | GAE | Metálico |
-| `9882` | Modelo | GA | Metálico |
-| `9998` | Modelo | GA | Metálico |
-| `AG7009` | Modelo | GA | Metálico |
-| `AG7050` | Modelo | GA | Metálico |
-| `AG7052` | Modelo | GA | Metálico |
-| `AG7157` | Modelo | GAE | Metálico |
-| `AG7204` | Modelo | GA | Metálico |
-| `AG7293` | Modelo | GAE | Metálico |
-| `AG7346` | Modelo | GA | Metálico |
-| `AG7433` | Modelo | GA | Metálico |
-| `AG7467` | Modelo | GAE | Metálico |
-| `AG7471` | Modelo | GAE | Metálico |
-| `AG7484` | Modelo | GA | Metálico |
-| `AG7502` | Modelo | GA | Metálico |
-| `AG7515` | Modelo | GA | Metálico |
-| `AG7563` | Modelo | GA | Metálico |
-| `AG7576` | Modelo | GA | Metálico |
-| `AG7578` | Modelo | GAE | Metálico |
-| `AG7579` | Modelo | GAE | Metálico |
-| `AG7580` | Modelo | GAE | Metálico |
-| `AG7589` | Modelo | GA | Metálico |
-| `AG7668` | Modelo | GA | Metálico |
-| `AG7671` | Modelo | GAE | Metálico |
-| `AG7676` | Modelo | GAE | Metálico |
-| `AG7681` | Modelo | GA | Metálico |
-| `AG7783` | Modelo | GA | Metálico |
-| `AG7784` | Modelo | GA | Metálico |
-| `AG7803` | Modelo | GA | Metálico |
-| `AG7826` | Modelo | GA | Metálico |
-| `AG7857` | Modelo | GA | Metálico |
-| `AG7859` | Modelo | GA | Metálico |
-| `AG8018` | Modelo | GAE | Metálico |
-| `AG8045` | Modelo | GA | Metálico |
-| `AG8093` | Modelo | GAE | Metálico |
-| `AG8153` | Modelo | GA | Metálico |
-| `AG8243` | Modelo | GAE | Metálico |
-| `AG8291` | Modelo | GA | Metálico |
-| `AG8293` | Modelo | GA | Metálico |
-| `AG8296` | Modelo | GA | Metálico |
-| `AG8392` | Modelo | GA | Metálico |
-| `AG8412` | Modelo | GA | Metálico |
-| `AG8470` | Modelo | GA | Metálico |
-| `AX0019` | Modelo | GA1 | Metálico |
-| `AX0037` | Modelo | AGK1 | Metálico |
-| `AX0079` | Modelo | GA1 | Metálico |
-| `AX0091` | Modelo | GA | Metálico |
-| `AX0092` | Modelo | GA | Metálico |
-| `AX0112` | Modelo | GA | Metálico |
-| `AX0118` | Modelo | GA1 | Metálico |
-| `AX0119` | Modelo | GA1 | Metálico |
-| `AX0120` | Modelo | GA1 | Metálico |
-| `AX0121` | Modelo | GA1 | Metálico |
-| `AX0122` | Modelo | GA1 | Metálico |
-| `AX0123` | Modelo | GA1 | Metálico |
-| `AX0149` | Modelo | GA | Metálico |
-| `AX0178` | Modelo | GA | Metálico |
-| `AX0181` | Modelo | AGK1 | Metálico |
-| `AX0193` | Modelo | GA | Metálico |
-| `AX0212` | Modelo | GA1 | Metálico |
-| `AX0243` | Modelo | GAE | Metálico |
-| `AX0245` | Modelo | GAE | Metálico |
-| `AX0248` | Modelo | GA | Metálico |
-| `AX0250` | Modelo | GA | Metálico |
-| `AX0272` | Modelo | GA1 | Metálico |
-| `AX0276` | Modelo | GA | Metálico |
-| `AX0277` | Modelo | GA1 | Metálico |
-| `AX0280` | Modelo | GAE | Metálico |
-| `CX6984` | Modelo | GA | Metálico |
-| `CX7866` | Modelo | GA | Metálico |
-| `CX8585` | Modelo | GA | Metálico |
-| `CX8589` | Modelo | GA | Metálico |
-| `CX8594` | Modelo | GAE | Metálico |
-| `RT0868` | Modelo | GA | Metálico |
-| `RT0908` | Modelo | GA | Metálico |
-| `RT1012` | Modelo | GA | Metálico |
-| `TCS0094` | Modelo | GA | Metálico |
-| `TCS0278` | Modelo | GA | Metálico |
-| `TCS0329` | Modelo | GA | Metálico |
-| `TCS0450` | Modelo | GA | Metálico |
-| `TCS0477` | Modelo | GA | Metálico |
-| `TCS0609` | Modelo | GA | Metálico |
-| `TCS0822` | Modelo | GA | Metálico |
-| `TCS0825` | Modelo | GA | Metálico |
-| `TCS0868` | Modelo | GA | Metálico |
-| `TCS0908` | Modelo | GA | Metálico |
-| `TCS0995` | Modelo | GAE | Metálico |
-| `TCS1011` | Modelo | GA | Metálico |
-| `TCS1012` | Modelo | GA | Metálico |
+| `1117` | Modelo | Metálico | GA |
+| `1117` | Tipo | Raspador | Raspador metálico |
+| `1335` | Modelo | Metálico | AGK1 |
+| `1335` | Tipo | Raspador | Raspador metálico |
+| `1337` | Modelo | Metálico | GA |
+| `1337` | Tipo | Raspador | Raspador metálico |
+| `1338` | Modelo | Metálico | GA |
+| `1338` | Tipo | Raspador | Raspador metálico |
+| `1340` | Modelo | Metálico | GA |
+| `1340` | Tipo | Raspador | Raspador metálico |
+| `1341` | Modelo | Metálico | GA |
+| `1341` | Tipo | Raspador | Raspador metálico |
+| `1342` | Modelo | Metálico | GA |
+| `1342` | Tipo | Raspador | Raspador metálico |
+| `1344` | Modelo | Metálico | GA |
+| `1344` | Tipo | Raspador | Raspador metálico |
+| `1347` | Modelo | Metálico | GA |
+| `1347` | Tipo | Raspador | Raspador metálico |
+| `1357` | Modelo | Metálico | AGK1 |
+| `1357` | Tipo | Raspador | Raspador metálico |
+| `1364` | Modelo | Metálico | GA |
+| `1364` | Tipo | Raspador | Raspador metálico |
+| `1384` | Modelo | Metálico | GA |
+| `1384` | Tipo | Raspador | Raspador metálico |
+| `1388` | Modelo | Metálico | GA |
+| `1388` | Tipo | Raspador | Raspador metálico |
+| `1448` | Modelo | Metálico | GA |
+| `1448` | Tipo | Raspador | Raspador metálico |
+| `1450` | Modelo | Metálico | GA |
+| `1450` | Tipo | Raspador | Raspador metálico |
+| `1451` | Modelo | Metálico | GA |
+| `1451` | Tipo | Raspador | Raspador metálico |
+| `1452` | Modelo | Metálico | GA |
+| `1452` | Tipo | Raspador | Raspador metálico |
+| `1453` | Modelo | Metálico | GA |
+| `1453` | Tipo | Raspador | Raspador metálico |
+| `1454` | Modelo | Metálico | GA |
+| `1454` | Tipo | Raspador | Raspador metálico |
+| `1455` | Modelo | Metálico | GA |
+| `1455` | Tipo | Raspador | Raspador metálico |
+| `1505` | Modelo | Metálico | GA |
+| `1505` | Tipo | Raspador | Raspador metálico |
+| `1509` | Modelo | Metálico | GAE |
+| `1509` | Tipo | Raspador | Raspador metálico |
+| `1511` | Modelo | Metálico | GA |
+| `1511` | Tipo | Raspador | Raspador metálico |
+| `1514` | Modelo | Metálico | GA |
+| `1514` | Tipo | Raspador | Raspador metálico |
+| `1520` | Modelo | Metálico | GAE |
+| `1520` | Tipo | Raspador | Raspador metálico |
+| `1523` | Modelo | Metálico | GAE |
+| `1523` | Tipo | Raspador | Raspador metálico |
+| `1525` | Modelo | Metálico | GAE |
+| `1525` | Tipo | Raspador | Raspador metálico |
+| `1529` | Modelo | Metálico | GAE |
+| `1529` | Tipo | Raspador | Raspador metálico |
+| `1531` | Modelo | Metálico | GA |
+| `1531` | Tipo | Raspador | Raspador metálico |
+| `1536` | Modelo | Metálico | GA |
+| `1536` | Tipo | Raspador | Raspador metálico |
+| `1537` | Modelo | Metálico | GA |
+| `1537` | Tipo | Raspador | Raspador metálico |
+| `1540` | Modelo | Metálico | GAE |
+| `1540` | Tipo | Raspador | Raspador metálico |
+| `1545` | Modelo | Metálico | GAE |
+| `1545` | Tipo | Raspador | Raspador metálico |
+| `1655` | Modelo | Metálico | GA |
+| `1655` | Tipo | Raspador | Raspador metálico |
+| `1656` | Modelo | Metálico | GAE |
+| `1656` | Tipo | Raspador | Raspador metálico |
+| `1686` | Modelo | Metálico | GA |
+| `1686` | Tipo | Raspador | Raspador metálico |
+| `1717` | Modelo | Metálico | GA |
+| `1717` | Tipo | Raspador | Raspador metálico |
+| `1803` | Modelo | Metálico | GA |
+| `1803` | Tipo | Raspador | Raspador metálico |
+| `1827` | Modelo | Metálico | GA |
+| `1827` | Tipo | Raspador | Raspador metálico |
+| `1842` | Modelo | Metálico | GA |
+| `1842` | Tipo | Raspador | Raspador metálico |
+| `1917` | Modelo | Metálico | GA |
+| `1917` | Tipo | Raspador | Raspador metálico |
+| `1923` | Modelo | Metálico | GA |
+| `1923` | Tipo | Raspador | Raspador metálico |
+| `1925` | Modelo | Metálico | GA |
+| `1925` | Tipo | Raspador | Raspador metálico |
+| `1926` | Modelo | Metálico | GA |
+| `1926` | Tipo | Raspador | Raspador metálico |
+| `1947` | Modelo | Metálico | GA |
+| `1947` | Tipo | Raspador | Raspador metálico |
+| `1950` | Modelo | Metálico | GA |
+| `1950` | Tipo | Raspador | Raspador metálico |
+| `1969` | Modelo | Metálico | GA |
+| `1969` | Tipo | Raspador | Raspador metálico |
+| `1983` | Modelo | Metálico | GA |
+| `1983` | Tipo | Raspador | Raspador metálico |
+| `1986` | Modelo | Metálico | GA |
+| `1986` | Tipo | Raspador | Raspador metálico |
+| `3115` | Modelo | Metálico | GAE |
+| `3115` | Tipo | Raspador | Raspador metálico |
+| `3145` | Modelo | Metálico | GAE |
+| `3145` | Tipo | Raspador | Raspador metálico |
+| `3190` | Modelo | Metálico | GA |
+| `3190` | Tipo | Raspador | Raspador metálico |
+| `3191` | Modelo | Metálico | GA |
+| `3191` | Tipo | Raspador | Raspador metálico |
+| `3241` | Modelo | Metálico | GAE |
+| `3241` | Tipo | Raspador | Raspador metálico |
+| `3242` | Modelo | Metálico | GAE |
+| `3242` | Tipo | Raspador | Raspador metálico |
+| `3273` | Modelo | Metálico | GA |
+| `3273` | Tipo | Raspador | Raspador metálico |
+| `3284` | Modelo | Metálico | GA |
+| `3284` | Tipo | Raspador | Raspador metálico |
+| `3341` | Modelo | Metálico | GAE |
+| `3341` | Tipo | Raspador | Raspador metálico |
+| `3362` | Modelo | Metálico | GAE |
+| `3362` | Tipo | Raspador | Raspador metálico |
+| `3395` | Modelo | Metálico | GAE |
+| `3395` | Tipo | Raspador | Raspador metálico |
+| `3396` | Modelo | Metálico | GAE |
+| `3396` | Tipo | Raspador | Raspador metálico |
+| `3397` | Modelo | Metálico | GAE |
+| `3397` | Tipo | Raspador | Raspador metálico |
+| `3401` | Modelo | Metálico | GAE |
+| `3401` | Tipo | Raspador | Raspador metálico |
+| `3417` | Modelo | Metálico | GAE |
+| `3417` | Tipo | Raspador | Raspador metálico |
+| `3477` | Modelo | Metálico | GA |
+| `3477` | Tipo | Raspador | Raspador metálico |
+| `3478` | Modelo | Metálico | GA |
+| `3478` | Tipo | Raspador | Raspador metálico |
+| `3479` | Modelo | Metálico | GA |
+| `3479` | Tipo | Raspador | Raspador metálico |
+| `3480` | Modelo | Metálico | GA |
+| `3480` | Tipo | Raspador | Raspador metálico |
+| `3483` | Modelo | Metálico | GA |
+| `3483` | Tipo | Raspador | Raspador metálico |
+| `3504` | Modelo | Metálico | GA |
+| `3504` | Tipo | Raspador | Raspador metálico |
+| `3505` | Modelo | Metálico | GA |
+| `3505` | Tipo | Raspador | Raspador metálico |
+| `3506` | Modelo | Metálico | GA |
+| `3506` | Tipo | Raspador | Raspador metálico |
+| `3509` | Modelo | Metálico | GA |
+| `3509` | Tipo | Raspador | Raspador metálico |
+| `3515` | Modelo | Metálico | GA |
+| `3515` | Tipo | Raspador | Raspador metálico |
+| `3516-2` | Modelo | Metálico | GA |
+| `3516-2` | Tipo | Raspador | Raspador metálico |
+| `3540` | Modelo | Metálico | GAE |
+| `3540` | Tipo | Raspador | Raspador metálico |
+| `3541` | Modelo | Metálico | GAE |
+| `3541` | Tipo | Raspador | Raspador metálico |
+| `3542` | Modelo | Metálico | GA |
+| `3542` | Tipo | Raspador | Raspador metálico |
+| `3543` | Modelo | Metálico | GAE |
+| `3543` | Tipo | Raspador | Raspador metálico |
+| `3544` | Modelo | Metálico | GA |
+| `3544` | Tipo | Raspador | Raspador metálico |
+| `3679` | Modelo | Metálico | GA |
+| `3679` | Tipo | Raspador | Raspador metálico |
+| `3685` | Modelo | Metálico | GA |
+| `3685` | Tipo | Raspador | Raspador metálico |
+| `3733` | Modelo | Metálico | GA |
+| `3733` | Tipo | Raspador | Raspador metálico |
+| `3775` | Modelo | Metálico | GA |
+| `3775` | Tipo | Raspador | Raspador metálico |
+| `3820` | Modelo | Metálico | GA |
+| `3820` | Tipo | Raspador | Raspador metálico |
+| `3859` | Modelo | Metálico | GA |
+| `3859` | Tipo | Raspador | Raspador metálico |
+| `3886` | Modelo | Metálico | GAE |
+| `3886` | Tipo | Raspador | Raspador metálico |
+| `4242` | Modelo | Metálico | AGK1 |
+| `4242` | Tipo | Raspador | Raspador metálico |
+| `4331` | Modelo | Metálico | GA |
+| `4331` | Tipo | Raspador | Raspador metálico |
+| `4336` | Modelo | Metálico | GA |
+| `4336` | Tipo | Raspador | Raspador metálico |
+| `4339` | Modelo | Metálico | GAE |
+| `4339` | Tipo | Raspador | Raspador metálico |
+| `4362` | Modelo | Metálico | GA |
+| `4362` | Tipo | Raspador | Raspador metálico |
+| `4363` | Modelo | Metálico | GA |
+| `4363` | Tipo | Raspador | Raspador metálico |
+| `4392` | Modelo | Metálico | GAE |
+| `4392` | Tipo | Raspador | Raspador metálico |
+| `4451` | Modelo | Metálico | GA |
+| `4451` | Tipo | Raspador | Raspador metálico |
+| `4461` | Modelo | Metálico | GA |
+| `4461` | Tipo | Raspador | Raspador metálico |
+| `4462` | Modelo | Metálico | GA |
+| `4462` | Tipo | Raspador | Raspador metálico |
+| `4479` | Modelo | Metálico | AGK1 |
+| `4479` | Tipo | Raspador | Raspador metálico |
+| `4493` | Modelo | Metálico | GAE |
+| `4493` | Tipo | Raspador | Raspador metálico |
+| `4611` | Modelo | Metálico | GA |
+| `4611` | Tipo | Raspador | Raspador metálico |
+| `4639` | Modelo | Metálico | GA |
+| `4639` | Tipo | Raspador | Raspador metálico |
+| `4643` | Modelo | Metálico | GA |
+| `4643` | Tipo | Raspador | Raspador metálico |
+| `4645` | Modelo | Metálico | GA |
+| `4645` | Tipo | Raspador | Raspador metálico |
+| `4666` | Modelo | Metálico | GA |
+| `4666` | Tipo | Raspador | Raspador metálico |
+| `4676` | Modelo | Metálico | GA |
+| `4676` | Tipo | Raspador | Raspador metálico |
+| `4699` | Modelo | Metálico | AGK1 |
+| `4699` | Tipo | Raspador | Raspador metálico |
+| `4784` | Modelo | Metálico | GAE |
+| `4784` | Tipo | Raspador | Raspador metálico |
+| `4785` | Modelo | Metálico | GAE |
+| `4785` | Tipo | Raspador | Raspador metálico |
+| `4809` | Modelo | Metálico | GA1 |
+| `4809` | Tipo | Raspador | Raspador metálico |
+| `4810` | Modelo | Metálico | GA1 |
+| `4810` | Tipo | Raspador | Raspador metálico |
+| `4811` | Modelo | Metálico | GA |
+| `4811` | Tipo | Raspador | Raspador metálico |
+| `4817` | Modelo | Metálico | GA1 |
+| `4817` | Tipo | Raspador | Raspador metálico |
+| `4836` | Modelo | Metálico | GA |
+| `4836` | Tipo | Raspador | Raspador metálico |
+| `4846` | Modelo | Metálico | AGK1 |
+| `4846` | Tipo | Raspador | Raspador metálico |
+| `4860` | Modelo | Metálico | AGK2 |
+| `4860` | Tipo | Raspador | Raspador metálico |
+| `4861` | Modelo | Metálico | AGK2 |
+| `4861` | Tipo | Raspador | Raspador metálico |
+| `4862` | Modelo | Metálico | AGK2 |
+| `4862` | Tipo | Raspador | Raspador metálico |
+| `4863` | Modelo | Metálico | GA |
+| `4863` | Tipo | Raspador | Raspador metálico |
+| `4873` | Modelo | Metálico | AGK2 |
+| `4873` | Tipo | Raspador | Raspador metálico |
+| `4887` | Modelo | Metálico | GA1 |
+| `4887` | Tipo | Raspador | Raspador metálico |
+| `4890` | Modelo | Metálico | GA1 |
+| `4890` | Tipo | Raspador | Raspador metálico |
+| `4891` | Modelo | Metálico | GA |
+| `4891` | Tipo | Raspador | Raspador metálico |
+| `4892` | Modelo | Metálico | GA |
+| `4892` | Tipo | Raspador | Raspador metálico |
+| `4896` | Modelo | Metálico | GA |
+| `4896` | Tipo | Raspador | Raspador metálico |
+| `4906` | Modelo | Metálico | GA |
+| `4906` | Tipo | Raspador | Raspador metálico |
+| `4908` | Modelo | Metálico | GA |
+| `4908` | Tipo | Raspador | Raspador metálico |
+| `4909` | Modelo | Metálico | GA |
+| `4909` | Tipo | Raspador | Raspador metálico |
+| `4910` | Modelo | Metálico | GA |
+| `4910` | Tipo | Raspador | Raspador metálico |
+| `4911` | Modelo | Metálico | GA |
+| `4911` | Tipo | Raspador | Raspador metálico |
+| `4912` | Modelo | Metálico | AGK2 |
+| `4912` | Tipo | Raspador | Raspador metálico |
+| `4913` | Modelo | Metálico | GAE |
+| `4913` | Tipo | Raspador | Raspador metálico |
+| `4914` | Modelo | Metálico | GA |
+| `4914` | Tipo | Raspador | Raspador metálico |
+| `4915` | Modelo | Metálico | GA |
+| `4915` | Tipo | Raspador | Raspador metálico |
+| `4916` | Modelo | Metálico | GA |
+| `4916` | Tipo | Raspador | Raspador metálico |
+| `4917` | Modelo | Metálico | AGK2 |
+| `4917` | Tipo | Raspador | Raspador metálico |
+| `4918` | Modelo | Metálico | AGK2 |
+| `4918` | Tipo | Raspador | Raspador metálico |
+| `4926` | Modelo | Metálico | AGK2 |
+| `4926` | Tipo | Raspador | Raspador metálico |
+| `4927` | Modelo | Metálico | GA |
+| `4927` | Tipo | Raspador | Raspador metálico |
+| `4928` | Modelo | Metálico | GA |
+| `4928` | Tipo | Raspador | Raspador metálico |
+| `4929` | Modelo | Metálico | GA |
+| `4929` | Tipo | Raspador | Raspador metálico |
+| `4930` | Modelo | Metálico | GA |
+| `4930` | Tipo | Raspador | Raspador metálico |
+| `4931` | Modelo | Metálico | GA |
+| `4931` | Tipo | Raspador | Raspador metálico |
+| `4936` | Modelo | Metálico | GAE |
+| `4936` | Tipo | Raspador | Raspador metálico |
+| `4942` | Modelo | Metálico | GA |
+| `4942` | Tipo | Raspador | Raspador metálico |
+| `4944` | Modelo | Metálico | GA1 |
+| `4944` | Tipo | Raspador | Raspador metálico |
+| `4946` | Modelo | Metálico | GAE |
+| `4946` | Tipo | Raspador | Raspador metálico |
+| `4948` | Modelo | Metálico | GA |
+| `4948` | Tipo | Raspador | Raspador metálico |
+| `4949` | Modelo | Metálico | GA |
+| `4949` | Tipo | Raspador | Raspador metálico |
+| `4955` | Modelo | Metálico | GA |
+| `4955` | Tipo | Raspador | Raspador metálico |
+| `4963` | Modelo | Metálico | GA |
+| `4963` | Tipo | Raspador | Raspador metálico |
+| `4964` | Modelo | Metálico | GA |
+| `4964` | Tipo | Raspador | Raspador metálico |
+| `4965` | Modelo | Metálico | GA |
+| `4965` | Tipo | Raspador | Raspador metálico |
+| `4967` | Modelo | Metálico | AGK2 |
+| `4967` | Tipo | Raspador | Raspador metálico |
+| `4968` | Modelo | Metálico | GA |
+| `4968` | Tipo | Raspador | Raspador metálico |
+| `4973` | Modelo | Metálico | GA1 |
+| `4973` | Tipo | Raspador | Raspador metálico |
+| `4974` | Modelo | Metálico | GA |
+| `4974` | Tipo | Raspador | Raspador metálico |
+| `4975` | Modelo | Metálico | GA |
+| `4975` | Tipo | Raspador | Raspador metálico |
+| `4976` | Modelo | Metálico | GA |
+| `4976` | Tipo | Raspador | Raspador metálico |
+| `4978` | Modelo | Metálico | AGK2 |
+| `4978` | Tipo | Raspador | Raspador metálico |
+| `4979` | Modelo | Metálico | AGK2 |
+| `4979` | Tipo | Raspador | Raspador metálico |
+| `4980` | Modelo | Metálico | AGK2 |
+| `4980` | Tipo | Raspador | Raspador metálico |
+| `4981` | Modelo | Metálico | AGK2 |
+| `4981` | Tipo | Raspador | Raspador metálico |
+| `4982` | Modelo | Metálico | AGK2 |
+| `4982` | Tipo | Raspador | Raspador metálico |
+| `4983` | Modelo | Metálico | AGK2 |
+| `4983` | Tipo | Raspador | Raspador metálico |
+| `4984` | Modelo | Metálico | AGK2 |
+| `4984` | Tipo | Raspador | Raspador metálico |
+| `4986` | Modelo | Metálico | GA |
+| `4986` | Tipo | Raspador | Raspador metálico |
+| `4987` | Modelo | Metálico | AGK2 |
+| `4987` | Tipo | Raspador | Raspador metálico |
+| `4988` | Modelo | Metálico | GA |
+| `4988` | Tipo | Raspador | Raspador metálico |
+| `4995` | Modelo | Metálico | GA |
+| `4995` | Tipo | Raspador | Raspador metálico |
+| `5170` | Modelo | Metálico | GA |
+| `5170` | Tipo | Raspador | Raspador metálico |
+| `5171` | Modelo | Metálico | GA |
+| `5171` | Tipo | Raspador | Raspador metálico |
+| `5218` | Modelo | Metálico | GAE |
+| `5218` | Tipo | Raspador | Raspador metálico |
+| `5220` | Modelo | Metálico | GA |
+| `5220` | Tipo | Raspador | Raspador metálico |
+| `5231` | Modelo | Metálico | GA |
+| `5231` | Tipo | Raspador | Raspador metálico |
+| `5470` | Modelo | Metálico | GA |
+| `5470` | Tipo | Raspador | Raspador metálico |
+| `5608` | Modelo | Metálico | GA |
+| `5608` | Tipo | Raspador | Raspador metálico |
+| `5633` | Modelo | Metálico | GAE |
+| `5633` | Tipo | Raspador | Raspador metálico |
+| `5663` | Modelo | Metálico | GA |
+| `5663` | Tipo | Raspador | Raspador metálico |
+| `5715` | Modelo | Metálico | GA |
+| `5715` | Tipo | Raspador | Raspador metálico |
+| `5845` | Modelo | Metálico | GA |
+| `5845` | Tipo | Raspador | Raspador metálico |
+| `5877` | Modelo | Metálico | GA |
+| `5877` | Tipo | Raspador | Raspador metálico |
+| `5931` | Modelo | Metálico | GA |
+| `5931` | Tipo | Raspador | Raspador metálico |
+| `5939` | Modelo | Metálico | GA |
+| `5939` | Tipo | Raspador | Raspador metálico |
+| `5940` | Modelo | Metálico | GA |
+| `5940` | Tipo | Raspador | Raspador metálico |
+| `5941` | Modelo | Metálico | GA |
+| `5941` | Tipo | Raspador | Raspador metálico |
+| `5960` | Modelo | Metálico | GA |
+| `5960` | Tipo | Raspador | Raspador metálico |
+| `5985` | Modelo | Metálico | AGK1 |
+| `5985` | Tipo | Raspador | Raspador metálico |
+| `6000` | Modelo | Metálico | GA |
+| `6000` | Tipo | Raspador | Raspador metálico |
+| `6050` | Modelo | Metálico | GA |
+| `6050` | Tipo | Raspador | Raspador metálico |
+| `6071` | Modelo | Metálico | GA |
+| `6071` | Tipo | Raspador | Raspador metálico |
+| `6112` | Modelo | Metálico | GA |
+| `6112` | Tipo | Raspador | Raspador metálico |
+| `6123` | Modelo | Metálico | GAE |
+| `6123` | Tipo | Raspador | Raspador metálico |
+| `6164` | Modelo | Metálico | GAE |
+| `6164` | Tipo | Raspador | Raspador metálico |
+| `6190` | Modelo | Metálico | GA |
+| `6190` | Tipo | Raspador | Raspador metálico |
+| `6196` | Modelo | Metálico | GAE |
+| `6196` | Tipo | Raspador | Raspador metálico |
+| `6197` | Modelo | Metálico | GA |
+| `6197` | Tipo | Raspador | Raspador metálico |
+| `6198` | Modelo | Metálico | GA |
+| `6198` | Tipo | Raspador | Raspador metálico |
+| `6209` | Modelo | Metálico | GA |
+| `6209` | Tipo | Raspador | Raspador metálico |
+| `6211` | Modelo | Metálico | GA |
+| `6211` | Tipo | Raspador | Raspador metálico |
+| `6535` | Modelo | Metálico | GA |
+| `6535` | Tipo | Raspador | Raspador metálico |
+| `6809` | Modelo | Metálico | GA |
+| `6809` | Tipo | Raspador | Raspador metálico |
+| `6830` | Modelo | Metálico | GA |
+| `6830` | Tipo | Raspador | Raspador metálico |
+| `6904` | Modelo | Metálico | GA |
+| `6904` | Tipo | Raspador | Raspador metálico |
+| `9094` | Modelo | Metálico | GAE |
+| `9094` | Tipo | Raspador | Raspador metálico |
+| `9097` | Modelo | Metálico | GAE |
+| `9097` | Tipo | Raspador | Raspador metálico |
+| `9180` | Modelo | Metálico | GA |
+| `9180` | Tipo | Raspador | Raspador metálico |
+| `9278` | Modelo | Metálico | GAE |
+| `9278` | Tipo | Raspador | Raspador metálico |
+| `9558` | Modelo | Metálico | GAE |
+| `9558` | Tipo | Raspador | Raspador metálico |
+| `9718` | Modelo | Metálico | GAE |
+| `9718` | Tipo | Raspador | Raspador metálico |
+| `9719` | Modelo | Metálico | GAE |
+| `9719` | Tipo | Raspador | Raspador metálico |
+| `9778` | Modelo | Metálico | GA |
+| `9778` | Tipo | Raspador | Raspador metálico |
+| `9782` | Modelo | Metálico | GA |
+| `9782` | Tipo | Raspador | Raspador metálico |
+| `9800` | Modelo | Metálico | GA |
+| `9800` | Tipo | Raspador | Raspador metálico |
+| `9826` | Modelo | Metálico | GAE |
+| `9826` | Tipo | Raspador | Raspador metálico |
+| `9882` | Modelo | Metálico | GA |
+| `9882` | Tipo | Raspador | Raspador metálico |
+| `9998` | Modelo | Metálico | GA |
+| `9998` | Tipo | Raspador | Raspador metálico |
+| `AG7009` | Modelo | Metálico | GA |
+| `AG7009` | Tipo | Raspador | Raspador metálico |
+| `AG7050` | Modelo | Metálico | GA |
+| `AG7050` | Tipo | Raspador | Raspador metálico |
+| `AG7052` | Modelo | Metálico | GA |
+| `AG7052` | Tipo | Raspador | Raspador metálico |
+| `AG7157` | Modelo | Metálico | GAE |
+| `AG7157` | Tipo | Raspador | Raspador metálico |
+| `AG7204` | Modelo | Metálico | GA |
+| `AG7204` | Tipo | Raspador | Raspador metálico |
+| `AG7293` | Modelo | Metálico | GAE |
+| `AG7293` | Tipo | Raspador | Raspador metálico |
+| `AG7346` | Modelo | Metálico | GA |
+| `AG7346` | Tipo | Raspador | Raspador metálico |
+| `AG7433` | Modelo | Metálico | GA |
+| `AG7433` | Tipo | Raspador | Raspador metálico |
+| `AG7467` | Modelo | Metálico | GAE |
+| `AG7467` | Tipo | Raspador | Raspador metálico |
+| `AG7471` | Modelo | Metálico | GAE |
+| `AG7471` | Tipo | Raspador | Raspador metálico |
+| `AG7484` | Modelo | Metálico | GA |
+| `AG7484` | Tipo | Raspador | Raspador metálico |
+| `AG7502` | Modelo | Metálico | GA |
+| `AG7502` | Tipo | Raspador | Raspador metálico |
+| `AG7515` | Modelo | Metálico | GA |
+| `AG7515` | Tipo | Raspador | Raspador metálico |
+| `AG7563` | Modelo | Metálico | GA |
+| `AG7563` | Tipo | Raspador | Raspador metálico |
+| `AG7576` | Modelo | Metálico | GA |
+| `AG7576` | Tipo | Raspador | Raspador metálico |
+| `AG7578` | Modelo | Metálico | GAE |
+| `AG7578` | Tipo | Raspador | Raspador metálico |
+| `AG7579` | Modelo | Metálico | GAE |
+| `AG7579` | Tipo | Raspador | Raspador metálico |
+| `AG7580` | Modelo | Metálico | GAE |
+| `AG7580` | Tipo | Raspador | Raspador metálico |
+| `AG7589` | Modelo | Metálico | GA |
+| `AG7589` | Tipo | Raspador | Raspador metálico |
+| `AG7668` | Modelo | Metálico | GA |
+| `AG7668` | Tipo | Raspador | Raspador metálico |
+| `AG7671` | Modelo | Metálico | GAE |
+| `AG7671` | Tipo | Raspador | Raspador metálico |
+| `AG7676` | Modelo | Metálico | GAE |
+| `AG7676` | Tipo | Raspador | Raspador metálico |
+| `AG7681` | Modelo | Metálico | GA |
+| `AG7681` | Tipo | Raspador | Raspador metálico |
+| `AG7783` | Modelo | Metálico | GA |
+| `AG7783` | Tipo | Raspador | Raspador metálico |
+| `AG7784` | Modelo | Metálico | GA |
+| `AG7784` | Tipo | Raspador | Raspador metálico |
+| `AG7803` | Modelo | Metálico | GA |
+| `AG7803` | Tipo | Raspador | Raspador metálico |
+| `AG7826` | Modelo | Metálico | GA |
+| `AG7826` | Tipo | Raspador | Raspador metálico |
+| `AG7857` | Modelo | Metálico | GA |
+| `AG7857` | Tipo | Raspador | Raspador metálico |
+| `AG7859` | Modelo | Metálico | GA |
+| `AG7859` | Tipo | Raspador | Raspador metálico |
+| `AG8018` | Modelo | Metálico | GAE |
+| `AG8018` | Tipo | Raspador | Raspador metálico |
+| `AG8045` | Modelo | Metálico | GA |
+| `AG8045` | Tipo | Raspador | Raspador metálico |
+| `AG8093` | Modelo | Metálico | GAE |
+| `AG8093` | Tipo | Raspador | Raspador metálico |
+| `AG8153` | Modelo | Metálico | GA |
+| `AG8153` | Tipo | Raspador | Raspador metálico |
+| `AG8243` | Modelo | Metálico | GAE |
+| `AG8243` | Tipo | Raspador | Raspador metálico |
+| `AG8291` | Modelo | Metálico | GA |
+| `AG8291` | Tipo | Raspador | Raspador metálico |
+| `AG8293` | Modelo | Metálico | GA |
+| `AG8293` | Tipo | Raspador | Raspador metálico |
+| `AG8296` | Modelo | Metálico | GA |
+| `AG8296` | Tipo | Raspador | Raspador metálico |
+| `AG8392` | Modelo | Metálico | GA |
+| `AG8392` | Tipo | Raspador | Raspador metálico |
+| `AG8412` | Modelo | Metálico | GA |
+| `AG8412` | Tipo | Raspador | Raspador metálico |
+| `AG8470` | Modelo | Metálico | GA |
+| `AG8470` | Tipo | Raspador | Raspador metálico |
+| `AX0019` | Modelo | Metálico | GA1 |
+| `AX0019` | Tipo | Raspador | Raspador metálico |
+| `AX0037` | Modelo | Metálico | AGK1 |
+| `AX0037` | Tipo | Raspador | Raspador metálico |
+| `AX0079` | Modelo | Metálico | GA1 |
+| `AX0079` | Tipo | Raspador | Raspador metálico |
+| `AX0091` | Modelo | Metálico | GA |
+| `AX0091` | Tipo | Raspador | Raspador metálico |
+| `AX0092` | Modelo | Metálico | GA |
+| `AX0092` | Tipo | Raspador | Raspador metálico |
+| `AX0112` | Modelo | Metálico | GA |
+| `AX0112` | Tipo | Raspador | Raspador metálico |
+| `AX0118` | Modelo | Metálico | GA1 |
+| `AX0118` | Tipo | Raspador | Raspador metálico |
+| `AX0119` | Modelo | Metálico | GA1 |
+| `AX0119` | Tipo | Raspador | Raspador metálico |
+| `AX0120` | Modelo | Metálico | GA1 |
+| `AX0120` | Tipo | Raspador | Raspador metálico |
+| `AX0121` | Modelo | Metálico | GA1 |
+| `AX0121` | Tipo | Raspador | Raspador metálico |
+| `AX0122` | Modelo | Metálico | GA1 |
+| `AX0122` | Tipo | Raspador | Raspador metálico |
+| `AX0123` | Modelo | Metálico | GA1 |
+| `AX0123` | Tipo | Raspador | Raspador metálico |
+| `AX0149` | Modelo | Metálico | GA |
+| `AX0149` | Tipo | Raspador | Raspador metálico |
+| `AX0178` | Modelo | Metálico | GA |
+| `AX0178` | Tipo | Raspador | Raspador metálico |
+| `AX0181` | Modelo | Metálico | AGK1 |
+| `AX0181` | Tipo | Raspador | Raspador metálico |
+| `AX0193` | Modelo | Metálico | GA |
+| `AX0193` | Tipo | Raspador | Raspador metálico |
+| `AX0212` | Modelo | Metálico | GA1 |
+| `AX0212` | Tipo | Raspador | Raspador metálico |
+| `AX0243` | Modelo | Metálico | GAE |
+| `AX0243` | Tipo | Raspador | Raspador metálico |
+| `AX0245` | Modelo | Metálico | GAE |
+| `AX0245` | Tipo | Raspador | Raspador metálico |
+| `AX0248` | Modelo | Metálico | GA |
+| `AX0248` | Tipo | Raspador | Raspador metálico |
+| `AX0250` | Modelo | Metálico | GA |
+| `AX0250` | Tipo | Raspador | Raspador metálico |
+| `AX0272` | Modelo | Metálico | GA1 |
+| `AX0272` | Tipo | Raspador | Raspador metálico |
+| `AX0276` | Modelo | Metálico | GA |
+| `AX0276` | Tipo | Raspador | Raspador metálico |
+| `AX0277` | Modelo | Metálico | GA1 |
+| `AX0277` | Tipo | Raspador | Raspador metálico |
+| `AX0280` | Modelo | Metálico | GAE |
+| `AX0280` | Tipo | Raspador | Raspador metálico |
+| `CX6984` | Modelo | Metálico | GA |
+| `CX6984` | Tipo | Raspador | Raspador metálico |
+| `CX7866` | Modelo | Metálico | GA |
+| `CX7866` | Tipo | Raspador | Raspador metálico |
+| `CX8585` | Modelo | Metálico | GA |
+| `CX8585` | Tipo | Raspador | Raspador metálico |
+| `CX8589` | Modelo | Metálico | GA |
+| `CX8589` | Tipo | Raspador | Raspador metálico |
+| `CX8594` | Modelo | Metálico | GAE |
+| `CX8594` | Tipo | Raspador | Raspador metálico |
+| `RT0868` | Modelo | Metálico | GA |
+| `RT0868` | Tipo | Raspador | Raspador metálico |
+| `RT0908` | Modelo | Metálico | GA |
+| `RT0908` | Tipo | Raspador | Raspador metálico |
+| `RT1012` | Modelo | Metálico | GA |
+| `RT1012` | Tipo | Raspador | Raspador metálico |
+| `TCS0094` | Modelo | Metálico | GA |
+| `TCS0094` | Tipo | Raspador | Raspador metálico |
+| `TCS0278` | Modelo | Metálico | GA |
+| `TCS0278` | Tipo | Raspador | Raspador metálico |
+| `TCS0329` | Modelo | Metálico | GA |
+| `TCS0329` | Tipo | Raspador | Raspador metálico |
+| `TCS0450` | Modelo | Metálico | GA |
+| `TCS0450` | Tipo | Raspador | Raspador metálico |
+| `TCS0477` | Modelo | Metálico | GA |
+| `TCS0477` | Tipo | Raspador | Raspador metálico |
+| `TCS0609` | Modelo | Metálico | GA |
+| `TCS0609` | Tipo | Raspador | Raspador metálico |
+| `TCS0822` | Modelo | Metálico | GA |
+| `TCS0822` | Tipo | Raspador | Raspador metálico |
+| `TCS0825` | Modelo | Metálico | GA |
+| `TCS0825` | Tipo | Raspador | Raspador metálico |
+| `TCS0868` | Modelo | Metálico | GA |
+| `TCS0868` | Tipo | Raspador | Raspador metálico |
+| `TCS0908` | Modelo | Metálico | GA |
+| `TCS0908` | Tipo | Raspador | Raspador metálico |
+| `TCS0995` | Modelo | Metálico | GAE |
+| `TCS0995` | Tipo | Raspador | Raspador metálico |
+| `TCS1011` | Modelo | Metálico | GA |
+| `TCS1011` | Tipo | Raspador | Raspador metálico |
+| `TCS1012` | Modelo | Metálico | GA |
+| `TCS1012` | Tipo | Raspador | Raspador metálico |
 
 
 ## Código da referência × valor impresso (> 0,05 mm)
@@ -1183,275 +1490,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `3368` | raspador-metalico.csv | Raspador GAG PU |
 | `4839` | raspador-metalico.csv | Raspador GAG PU |
 | `AG7567` | anel-quad-arruela.csv | Raspador GRG NBR |
-| `AG7681` | raspador-metalico.csv | Raspador Metálico MVQ |
-| `9882` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7676` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7579` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9718` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7580` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9782` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8296` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9719` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7157` | anel-teflon.csv | Raspador Metálico NBR |
-| `AG7157` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5220` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7204` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9180` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0278` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7563` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7578` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6000` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9278` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5608` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7502` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7671` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0329` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7803` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5170` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8293` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8293` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8293` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8293` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7668` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5960` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0094` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9778` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6904` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5663` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5231` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0825` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6830` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5940` | raspador-metalico.csv | Raspador Metálico NBR |
-| `CX7866` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0822` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6164` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6209` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5845` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0908` | raspador-metalico.csv | Raspador Metálico NBR |
-| `9826` | raspador-metalico.csv | Raspador Metálico NBR |
-| `4493` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5941` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6197` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1523` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0450` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5470` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5931` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1537` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0868` | raspador-metalico.csv | Raspador Metálico NBR |
-| `TCS0477` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7589` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1536` | raspador-metalico.csv | Raspador Metálico NBR |
-| `5171` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3775` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6211` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6112` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6809` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6198` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1520` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1505` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1531` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1950` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1656` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1117` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3886` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7857` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG7826` | raspador-metalico.csv | Raspador Metálico NBR |
-| `6535` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1509` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1947` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AX0149` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1803` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8018` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3191` | raspador-metalico.csv | Raspador Metálico NBR |
-| `4639` | raspador-metalico.csv | Raspador Metálico NBR |
-| `1364` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3401` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3190` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3284` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3241` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3509` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3145` | raspador-metalico.csv | Raspador Metálico NBR |
-| `4975` | raspador-metalico.csv | Raspador Metálico NBR |
-| `3242` | raspador-metalico.csv | Raspador Metálico NBR |
-| `4976` | raspador-metalico.csv | Raspador Metálico NBR |
-| `AG8153` | raspador-metalico.csv | Raspador Metálico PU |
-| `5633` | raspador-metalico.csv | Raspador Metálico PU |
-| `5877` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8291` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7467` | raspador-metalico.csv | Raspador Metálico PU |
-| `4362` | raspador-metalico.csv | Raspador Metálico PU |
-| `5939` | raspador-metalico.csv | Raspador Metálico PU |
-| `1514` | raspador-metalico.csv | Raspador Metálico PU |
-| `9998` | raspador-metalico.csv | Raspador Metálico PU |
-| `9800` | raspador-metalico.csv | Raspador Metálico PU |
-| `4963` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8243` | raspador-metalico.csv | Raspador Metálico PU |
-| `1384` | raspador-metalico.csv | Raspador Metálico PU |
-| `1455` | raspador-metalico.csv | Raspador Metálico PU |
-| `1340` | raspador-metalico.csv | Raspador Metálico PU |
-| `4908` | raspador-metalico.csv | Raspador Metálico PU |
-| `3395` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8045` | raspador-metalico.csv | Raspador Metálico PU |
-| `1342` | raspador-metalico.csv | Raspador Metálico PU |
-| `4887` | raspador-metalico.csv | Raspador Metálico PU |
-| `1986` | raspador-metalico.csv | Raspador Metálico PU |
-| `4336` | raspador-metalico.csv | Raspador Metálico PU |
-| `1454` | raspador-metalico.csv | Raspador Metálico PU |
-| `4891` | raspador-metalico.csv | Raspador Metálico PU |
-| `1529` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7471` | raspador-metalico.csv | Raspador Metálico PU |
-| `4909` | raspador-metalico.csv | Raspador Metálico PU |
-| `1969` | raspador-metalico.csv | Raspador Metálico PU |
-| `1545` | raspador-metalico.csv | Raspador Metálico PU |
-| `TCS0609` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7484` | raspador-metalico.csv | Raspador Metálico PU |
-| `4836` | raspador-metalico.csv | Raspador Metálico PU |
-| `3396` | raspador-metalico.csv | Raspador Metálico PU |
-| `3273` | raspador-metalico.csv | Raspador Metálico PU |
-| `4916` | raspador-metalico.csv | Raspador Metálico PU |
-| `4931` | raspador-metalico.csv | Raspador Metálico PU |
-| `1923` | raspador-metalico.csv | Raspador Metálico PU |
-| `4479` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7346` | raspador-metalico.csv | Raspador Metálico PU |
-| `3477` | raspador-metalico.csv | Raspador Metálico PU |
-| `1344` | raspador-metalico.csv | Raspador Metálico PU |
-| `1453` | raspador-metalico.csv | Raspador Metálico PU |
-| `1337` | raspador-metalico.csv | Raspador Metálico PU |
-| `6071` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7576` | raspador-metalico.csv | Raspador Metálico PU |
-| `6190` | raspador-metalico.csv | Raspador Metálico PU |
-| `4913` | raspador-metalico.csv | Raspador Metálico PU |
-| `1540` | raspador-metalico.csv | Raspador Metálico PU |
-| `4964` | raspador-metalico.csv | Raspador Metálico PU |
-| `6196` | raspador-metalico.csv | Raspador Metálico PU |
-| `4645` | raspador-metalico.csv | Raspador Metálico PU |
-| `CX6984` | raspador-metalico.csv | Raspador Metálico PU |
-| `1452` | raspador-metalico.csv | Raspador Metálico PU |
-| `4946` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7515` | raspador-metalico.csv | Raspador Metálico PU |
-| `1448` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7009` | raspador-metalico.csv | Raspador Metálico PU |
-| `4462` | raspador-metalico.csv | Raspador Metálico PU |
-| `3478` | raspador-metalico.csv | Raspador Metálico PU |
-| `AX0112` | raspador-metalico.csv | Raspador Metálico PU |
-| `3820` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8470` | raspador-metalico.csv | Raspador Metálico PU |
-| `4949` | raspador-metalico.csv | Raspador Metálico PU |
-| `4955` | raspador-metalico.csv | Raspador Metálico PU |
-| `1341` | raspador-metalico.csv | Raspador Metálico PU |
-| `4915` | raspador-metalico.csv | Raspador Metálico PU |
-| `3397` | raspador-metalico.csv | Raspador Metálico PU |
-| `1451` | raspador-metalico.csv | Raspador Metálico PU |
-| `1827` | raspador-metalico.csv | Raspador Metálico PU |
-| `1338` | raspador-metalico.csv | Raspador Metálico PU |
-| `1983` | raspador-metalico.csv | Raspador Metálico PU |
-| `3479` | raspador-metalico.csv | Raspador Metálico PU |
-| `6123` | raspador-metalico.csv | Raspador Metálico PU |
-| `4363` | raspador-metalico.csv | Raspador Metálico PU |
-| `4331` | raspador-metalico.csv | Raspador Metálico PU |
-| `4862` | raspador-metalico.csv | Raspador Metálico PU |
-| `4862` | raspador-metalico.csv | Raspador Metálico PU |
-| `4862` | raspador-metalico.csv | Raspador Metálico PU |
-| `4862` | raspador-metalico.csv | Raspador Metálico PU |
-| `4914` | raspador-metalico.csv | Raspador Metálico PU |
-| `AX0092` | raspador-metalico.csv | Raspador Metálico PU |
-| `4918` | raspador-metalico.csv | Raspador Metálico PU |
-| `4643` | raspador-metalico.csv | Raspador Metálico PU |
-| `1347` | raspador-metalico.csv | Raspador Metálico PU |
-| `1842` | raspador-metalico.csv | Raspador Metálico PU |
-| `1335` | raspador-metalico.csv | Raspador Metálico PU |
-| `4930` | raspador-metalico.csv | Raspador Metálico PU |
-| `3504` | raspador-metalico.csv | Raspador Metálico PU |
-| `3480` | raspador-metalico.csv | Raspador Metálico PU |
-| `3540` | raspador-metalico.csv | Raspador Metálico PU |
-| `4896` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7052` | raspador-metalico.csv | Raspador Metálico PU |
-| `4861` | raspador-metalico.csv | Raspador Metálico PU |
-| `4861` | raspador-metalico.csv | Raspador Metálico PU |
-| `4861` | raspador-metalico.csv | Raspador Metálico PU |
-| `4861` | raspador-metalico.csv | Raspador Metálico PU |
-| `1717` | raspador-metalico.csv | Raspador Metálico PU |
-| `4810` | raspador-metalico.csv | Raspador Metálico PU |
-| `4926` | raspador-metalico.csv | Raspador Metálico PU |
-| `4846` | raspador-metalico.csv | Raspador Metálico PU |
-| `1917` | raspador-metalico.csv | Raspador Metálico PU |
-| `4968` | raspador-metalico.csv | Raspador Metálico PU |
-| `4784` | raspador-metalico.csv | Raspador Metálico PU |
-| `4910` | raspador-metalico.csv | Raspador Metálico PU |
-| `4917` | raspador-metalico.csv | Raspador Metálico PU |
-| `1450` | raspador-metalico.csv | Raspador Metálico PU |
-| `4242` | raspador-metalico.csv | Raspador Metálico PU |
-| `4873` | raspador-metalico.csv | Raspador Metálico PU |
-| `AX0091` | raspador-metalico.csv | Raspador Metálico PU |
-| `3541` | raspador-metalico.csv | Raspador Metálico PU |
-| `3542` | raspador-metalico.csv | Raspador Metálico PU |
-| `3341` | raspador-metalico.csv | Raspador Metálico PU |
-| `1655` | raspador-metalico.csv | Raspador Metálico PU |
-| `4860` | raspador-metalico.csv | Raspador Metálico PU |
-| `4860` | raspador-metalico.csv | Raspador Metálico PU |
-| `4860` | raspador-metalico.csv | Raspador Metálico PU |
-| `4860` | raspador-metalico.csv | Raspador Metálico PU |
-| `4967` | raspador-metalico.csv | Raspador Metálico PU |
-| `4809` | raspador-metalico.csv | Raspador Metálico PU |
-| `4912` | raspador-metalico.csv | Raspador Metálico PU |
-| `1926` | raspador-metalico.csv | Raspador Metálico PU |
-| `1388` | raspador-metalico.csv | Raspador Metálico PU |
-| `4666` | raspador-metalico.csv | Raspador Metálico PU |
-| `1357` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8392` | raspador-metalico.csv | Raspador Metálico PU |
-| `3115` | raspador-metalico.csv | Raspador Metálico PU |
-| `1525` | raspador-metalico.csv | Raspador Metálico PU |
-| `4461` | raspador-metalico.csv | Raspador Metálico PU |
-| `3483` | raspador-metalico.csv | Raspador Metálico PU |
-| `3417` | raspador-metalico.csv | Raspador Metálico PU |
-| `4892` | raspador-metalico.csv | Raspador Metálico PU |
-| `4863` | raspador-metalico.csv | Raspador Metálico PU |
-| `3515` | raspador-metalico.csv | Raspador Metálico PU |
-| `4676` | raspador-metalico.csv | Raspador Metálico PU |
-| `3679` | raspador-metalico.csv | Raspador Metálico PU |
-| `3544` | raspador-metalico.csv | Raspador Metálico PU |
-| `3543` | raspador-metalico.csv | Raspador Metálico PU |
-| `3362` | raspador-metalico.csv | Raspador Metálico PU |
-| `4929` | raspador-metalico.csv | Raspador Metálico PU |
-| `4451` | raspador-metalico.csv | Raspador Metálico PU |
-| `4978` | raspador-metalico.csv | Raspador Metálico PU |
-| `3505` | raspador-metalico.csv | Raspador Metálico PU |
-| `4988` | raspador-metalico.csv | Raspador Metálico PU |
-| `4911` | raspador-metalico.csv | Raspador Metálico PU |
-| `4973` | raspador-metalico.csv | Raspador Metálico PU |
-| `4995` | raspador-metalico.csv | Raspador Metálico PU |
-| `1925` | raspador-metalico.csv | Raspador Metálico PU |
-| `4979` | raspador-metalico.csv | Raspador Metálico PU |
-| `4974` | raspador-metalico.csv | Raspador Metálico PU |
-| `1686` | raspador-metalico.csv | Raspador Metálico PU |
-| `1511` | raspador-metalico.csv | Raspador Metálico PU |
-| `4980` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7783` | raspador-metalico.csv | Raspador Metálico PU |
-| `4785` | raspador-metalico.csv | Raspador Metálico PU |
-| `4944` | raspador-metalico.csv | Raspador Metálico PU |
-| `4965` | raspador-metalico.csv | Raspador Metálico PU |
-| `4811` | raspador-metalico.csv | Raspador Metálico PU |
-| `4611` | raspador-metalico.csv | Raspador Metálico PU |
-| `4986` | raspador-metalico.csv | Raspador Metálico PU |
-| `4981` | raspador-metalico.csv | Raspador Metálico PU |
-| `4942` | raspador-metalico.csv | Raspador Metálico PU |
-| `4339` | raspador-metalico.csv | Raspador Metálico PU |
-| `4928` | raspador-metalico.csv | Raspador Metálico PU |
-| `4982` | raspador-metalico.csv | Raspador Metálico PU |
-| `4927` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG8093` | raspador-metalico.csv | Raspador Metálico PU |
-| `4890` | raspador-metalico.csv | Raspador Metálico PU |
-| `4987` | raspador-metalico.csv | Raspador Metálico PU |
-| `4983` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7784` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7784` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7784` | raspador-metalico.csv | Raspador Metálico PU |
-| `AG7784` | raspador-metalico.csv | Raspador Metálico PU |
-| `4984` | raspador-metalico.csv | Raspador Metálico PU |
-| `4948` | raspador-metalico.csv | Raspador Metálico PU |
-| `3685` | raspador-metalico.csv | Raspador Metálico PU |
-| `3506` | raspador-metalico.csv | Raspador Metálico PU |
-| `4699` | raspador-metalico.csv | Raspador Metálico PU |
 | `6621` | raspador-azul.csv | Raspador RP-25 PU |
 | `6855` | raspador-azul.csv | Raspador RP-25 PU |
 | `5639` | raspador-azul.csv | Raspador RP-25 PU |
@@ -1499,6 +1537,275 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `6275` | raspador-azul.csv | Raspador RP-25  |
 | `6274` | raspador-azul.csv | Raspador RP-25  |
 | `6273` | raspador-azul.csv | Raspador RP-25  |
+| `4479` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4862` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4862` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `1335` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4861` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4861` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4846` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4242` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4860` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4860` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `1357` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4699` | raspador-metalico.csv | Raspador metálico AGK1 PU |
+| `4862` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4862` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4918` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4861` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4861` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4926` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4917` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4873` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4860` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4860` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4967` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4912` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4978` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4979` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4980` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4981` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4982` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4987` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4983` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `4984` | raspador-metalico.csv | Raspador metálico AGK2 PU |
+| `AG7681` | raspador-metalico.csv | Raspador metálico GA MVQ |
+| `9882` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `9782` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8296` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5220` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7204` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `9180` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0278` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7563` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6000` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5608` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7502` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0329` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7803` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5170` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8293` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8293` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8293` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8293` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7668` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5960` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0094` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `9778` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6904` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5663` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5231` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0825` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6830` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5940` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `CX7866` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0822` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6209` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5845` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0908` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5941` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6197` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0450` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5470` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5931` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1537` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0868` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `TCS0477` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7589` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1536` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `5171` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `3775` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6211` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6112` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6809` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6198` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1505` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1531` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1950` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1117` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7857` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG7826` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `6535` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1947` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AX0149` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1803` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `3191` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `4639` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `1364` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `3190` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `3284` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `3509` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `4975` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `4976` | raspador-metalico.csv | Raspador metálico GA NBR |
+| `AG8153` | raspador-metalico.csv | Raspador metálico GA PU |
+| `5877` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG8291` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4362` | raspador-metalico.csv | Raspador metálico GA PU |
+| `5939` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1514` | raspador-metalico.csv | Raspador metálico GA PU |
+| `9998` | raspador-metalico.csv | Raspador metálico GA PU |
+| `9800` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4963` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1384` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1455` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1340` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4908` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG8045` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1342` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1986` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4336` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1454` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4891` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4909` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1969` | raspador-metalico.csv | Raspador metálico GA PU |
+| `TCS0609` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7484` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4836` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3273` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4916` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4931` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1923` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7346` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3477` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1344` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1453` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1337` | raspador-metalico.csv | Raspador metálico GA PU |
+| `6071` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7576` | raspador-metalico.csv | Raspador metálico GA PU |
+| `6190` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4964` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4645` | raspador-metalico.csv | Raspador metálico GA PU |
+| `CX6984` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1452` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7515` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1448` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7009` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4462` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3478` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AX0112` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3820` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG8470` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4949` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4955` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1341` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4915` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1451` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1827` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1338` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1983` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3479` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4363` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4331` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4914` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AX0092` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4643` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1347` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1842` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4930` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3504` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3480` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4896` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7052` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1717` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1917` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4968` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4910` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1450` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AX0091` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3542` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1655` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1926` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1388` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4666` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG8392` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4461` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3483` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4892` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4863` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3515` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4676` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3679` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3544` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4929` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4451` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3505` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4988` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4911` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4995` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1925` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4974` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1686` | raspador-metalico.csv | Raspador metálico GA PU |
+| `1511` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7783` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4965` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4811` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4611` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4986` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4942` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4928` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4927` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7784` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7784` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7784` | raspador-metalico.csv | Raspador metálico GA PU |
+| `AG7784` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4948` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3685` | raspador-metalico.csv | Raspador metálico GA PU |
+| `3506` | raspador-metalico.csv | Raspador metálico GA PU |
+| `4887` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `4810` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `4809` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `4973` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `4944` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `4890` | raspador-metalico.csv | Raspador metálico GA1 PU |
+| `AG7676` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG7579` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `9718` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG7580` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `9719` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG7157` | anel-teflon.csv | Raspador metálico GAE NBR |
+| `AG7157` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG7578` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `9278` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG7671` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `6164` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `9826` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `4493` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `1523` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `1520` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `1656` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `3886` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `1509` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `AG8018` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `3401` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `3241` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `3145` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `3242` | raspador-metalico.csv | Raspador metálico GAE NBR |
+| `5633` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `AG7467` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `AG8243` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3395` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `1529` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `AG7471` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `1545` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3396` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `4913` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `1540` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `6196` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `4946` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3397` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `6123` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3540` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `4784` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3541` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3341` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3115` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `1525` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3417` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3543` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `3362` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `4785` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `4339` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `AG8093` | raspador-metalico.csv | Raspador metálico GAE PU |
 | `AG8455` | anel-teflon.csv | Retentor AGFB NBR |
 | `AG7501` | anel-teflon.csv | Retentor BA NBR |
 | `AG7705` | anel-teflon.csv | Retentor BR MVQ |
@@ -1999,8 +2306,10 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | Catálogo | Tipo | Itens |
 |---|---|---|
 | gaxetas-2022 | Gaxeta | 10 |
-| gaxetas-2022 | Raspador | 22 |
-| retentores-2021 | Raspador | 50 |
+| gaxetas-2022 | Raspador | 12 |
+| gaxetas-2022 | Raspador metálico | 10 |
+| retentores-2021 | Raspador | 45 |
+| retentores-2021 | Raspador metálico | 5 |
 | retentores-2021 | Retentor | 484 |
 
 | Código | Catálogo | Tipo | Modelo | Material | Medidas (mm) | CSV antiga |
@@ -2020,16 +2329,6 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `4950PM` | gaxetas-2022 | Raspador | DG | Polymax | 60,00 × 68,00 × 4,00 | — |
 | `4951PM` | gaxetas-2022 | Raspador | DG | Polymax | 90,00 × 98,00 × 4,00 | — |
 | `TCS0133` | gaxetas-2022 | Raspador | GAG | NBR | 17,80 × 32,15 × 5,50 | raspador-metalico.csv |
-| `3190` | gaxetas-2022 | Raspador | Metálico | NBR | 96,00 × 109,00 × 8,00 | raspador-metalico.csv |
-| `AG7157` | gaxetas-2022 | Raspador | Metálico | NBR | 18,00 × 32,30 × 6,80 | anel-teflon.csv, raspador-metalico.csv |
-| `TCS0477` | gaxetas-2022 | Raspador | Metálico | NBR | 43,66 × 65,05 × 12,70 | raspador-metalico.csv |
-| `TCS0609` | gaxetas-2022 | Raspador | Metálico | PU | 47,00 × 63,00 × 6,00 | raspador-metalico.csv |
-| `TCS0822` | gaxetas-2022 | Raspador | Metálico | NBR | 32,00 × 42,00 × 6,00 | raspador-metalico.csv |
-| `TCS0825` | gaxetas-2022 | Raspador | Metálico | NBR | 30,20 × 42,00 × 6,00 | raspador-metalico.csv |
-| `TCS0868` | gaxetas-2022 | Raspador | Metálico | NBR | 43,00 × 52,00 × 6,50 | raspador-metalico.csv |
-| `TCS0908` | gaxetas-2022 | Raspador | Metálico | NBR | 35,00 × 42,00 × 4,00 | raspador-metalico.csv |
-| `TCS1011` | gaxetas-2022 | Raspador | Metálico | NBR | 36,00 × 46,00 × 7,00 | — |
-| `TCS1012` | gaxetas-2022 | Raspador | Metálico | NBR | 7,95 × 15,88 × 3,96 | — |
 | `9471` | gaxetas-2022 | Raspador | RP-27 | Polymax | 60,00 × 70,00 × 6,00 | — |
 | `9808` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | anel-teflon.csv |
 | `AG8502` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | — |
@@ -2037,6 +2336,16 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `8126PM` | gaxetas-2022 | Raspador | RP-28 | Polymax | 59,00 × 69,00 × 6,00 | — |
 | `8127PM` | gaxetas-2022 | Raspador | RP-28 | Polymax | 77,70 × 87,70 × 6,00 | — |
 | `8128PM` | gaxetas-2022 | Raspador | RP-28 | Polymax | 96,30 × 106,30 × 6,00 | — |
+| `3190` | gaxetas-2022 | Raspador metálico | GA | NBR | 96,00 × 109,00 × 8,00 | raspador-metalico.csv |
+| `TCS0477` | gaxetas-2022 | Raspador metálico | GA | NBR | 43,66 × 65,05 × 12,70 | raspador-metalico.csv |
+| `TCS0609` | gaxetas-2022 | Raspador metálico | GA | PU | 47,00 × 63,00 × 6,00 | raspador-metalico.csv |
+| `TCS0822` | gaxetas-2022 | Raspador metálico | GA | NBR | 32,00 × 42,00 × 6,00 | raspador-metalico.csv |
+| `TCS0825` | gaxetas-2022 | Raspador metálico | GA | NBR | 30,20 × 42,00 × 6,00 | raspador-metalico.csv |
+| `TCS0868` | gaxetas-2022 | Raspador metálico | GA | NBR | 43,00 × 52,00 × 6,50 | raspador-metalico.csv |
+| `TCS0908` | gaxetas-2022 | Raspador metálico | GA | NBR | 35,00 × 42,00 × 4,00 | raspador-metalico.csv |
+| `TCS1011` | gaxetas-2022 | Raspador metálico | GA | NBR | 36,00 × 46,00 × 7,00 | — |
+| `TCS1012` | gaxetas-2022 | Raspador metálico | GA | NBR | 7,95 × 15,88 × 3,96 | — |
+| `AG7157` | gaxetas-2022 | Raspador metálico | GAE | NBR | 18,00 × 32,30 × 6,80 | anel-teflon.csv, raspador-metalico.csv |
 | `5325` | retentores-2021 | Raspador | AGFU | NBR | 19,00 × 26,00 × 5,50 | — |
 | `CX1258` | retentores-2021 | Raspador | BRXE | NBR | 50,00 × 65,10 × 10,00 | — |
 | `4163` | retentores-2021 | Raspador | GR | FPM | 80,00 × 105,00 × 13,00 | — |
@@ -2082,11 +2391,11 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `4635` | retentores-2021 | Raspador | GRG | NBR | 30,00 × 62,00 × 18,00 | — |
 | `AG7566` | retentores-2021 | Raspador | GRG | NBR | 20,00 × 47,00 × 15,00 | — |
 | `AG7567` | retentores-2021 | Raspador | GRG | NBR | 25,00 × 62,00 × 18,00 | anel-quad-arruela.csv |
-| `3191` | retentores-2021 | Raspador | Metálico | NBR | 80,00 × 94,00 × 8,00 | raspador-metalico.csv |
-| `9558` | retentores-2021 | Raspador | Metálico | FPM | 16,00 × 26,00 × 8,00 | — |
-| `AG7050` | retentores-2021 | Raspador | Metálico | PU | 69,50 × 82,55 × 7,90 | — |
-| `CX8585` | retentores-2021 | Raspador | Metálico | NBR | 44,45 × 57,15 × 3,20 | — |
-| `CX8589` | retentores-2021 | Raspador | Metálico | NBR | 27,00 × 32,00 × 3,20 | — |
+| `3191` | retentores-2021 | Raspador metálico | GA | NBR | 80,00 × 94,00 × 8,00 | raspador-metalico.csv |
+| `AG7050` | retentores-2021 | Raspador metálico | GA | PU | 69,50 × 82,55 × 7,90 | — |
+| `CX8585` | retentores-2021 | Raspador metálico | GA | NBR | 44,45 × 57,15 × 3,20 | — |
+| `CX8589` | retentores-2021 | Raspador metálico | GA | NBR | 27,00 × 32,00 × 3,20 | — |
+| `9558` | retentores-2021 | Raspador metálico | GAE | FPM | 16,00 × 26,00 × 8,00 | — |
 | `3481` | retentores-2021 | Retentor | AGA | NBR | 60,00 × 96,00 × 11,00 | — |
 | `4482` | retentores-2021 | Retentor | AGA | NBR | 40,15 × 69,30 × 10,70 | — |
 | `TCS0154` | retentores-2021 | Retentor | AGBF | NBR | 121,10 × 160,20 × 35,00 | — |

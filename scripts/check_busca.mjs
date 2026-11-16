@@ -111,7 +111,7 @@ assert.equal(apc("1023").altura, 7);
 assert.equal(apc("1307").perfil, "BRG");
 assert.equal(apc("1307").material, "FPM");
 // Raspadores do catálogo de retentores vão na haste
-assert.equal(apc("1117").tipo, "Raspador");
+assert.equal(apc("1117").tipo, "Raspador metálico");
 assert.deepEqual(apc("1117").aplicacoes, ["haste"]);
 // "B" do retentor não se mistura com o Tipo B da gaxeta no funil
 assert.ok(db.produtos.filter((p) => p.modelo === "B").every((p) => p.tipo === "Gaxeta"));
@@ -132,13 +132,18 @@ assert.equal(apc("3531").material, "FPM");
 assert.equal(apc("5508-2").material, "FPM");
 // Mesmo código em duas tabelas do catálogo: a lista vale para as duas linhas
 assert.ok(db.buscar({ codigo: "7044PM" }).some((p) => p.modelo === "AG 14"));
-assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.extras[0].value).sort(), ["AGK1", "AGK2"]);
-// Raspadores GA/GAE/AGK1/GA1/AGK2 têm carcaça metálica: Perfil "Metálico", perfil APC em Extras; GAG continua
-for (const m of ["GA", "GAE", "AGK1", "GA1", "AGK2"]) assert.ok(!db.produtos.some((p) => p.tipo === "Raspador" && p.perfil === m), m);
-assert.equal(apc("1117").modelo, "Metálico");
-assert.deepEqual(apc("1117").extras[0], { label: "Perfil APC", value: "GA" });
-assert.ok(db.produtos.some((p) => p.perfil === "GAG"));
-assert.ok(db.produtos.some((p) => p.origem !== "apc" && p.modelo === "Metálico"));
+assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.modelo).sort(), ["AGK1", "AGK2"]);
+// Raspadores GA/GAE/AGK1/GA1/AGK2 têm carcaça metálica: Tipo "Raspador metálico", perfil/material/aplicação mantidos
+for (const m of ["GA", "GAE", "AGK1", "GA1", "AGK2"]) {
+  const ps = db.produtos.filter((p) => p.origem === "apc" && p.perfil === m);
+  assert.ok(ps.length > 0 && ps.every((p) => p.tipo === "Raspador metálico" && p.modelo === m), m);
+}
+assert.equal(apc("1117").material, "NBR");
+assert.ok(db.produtos.filter((p) => p.perfil === "GAG").every((p) => p.tipo === "Raspador"));
+// A CSV antiga raspador-metalico.csv entra no mesmo Tipo, com o Perfil "Metálico"
+const legMet = db.produtos.filter((p) => p.origem === "raspador-metalico.csv");
+assert.ok(legMet.length > 0 && legMet.every((p) => p.tipo === "Raspador metálico" && p.modelo === "Metálico"));
+assert.ok(!db.produtos.some((p) => p.tipo === "Raspador" && p.modelo === "Metálico"));
 // Código da lista com erro de dígito na Referência casa pela medida; "STD.GAXETA" não vira código
 assert.ok(apc("5720") && apc("5749") && apc("6566") && apc("6187") && apc("6268"));
 assert.equal(db.produtos.filter((p) => p.codigo.startsWith("625002874")).length, 0);
