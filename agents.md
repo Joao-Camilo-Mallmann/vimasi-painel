@@ -142,6 +142,11 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
 - Botões: `hover:scale-105 active:scale-95` + shimmer opcional.
 - Transições: mínimo `duration-300`, preferencialmente `duration-700` para elementos maiores.
 
+### Skills de UI (Claude Code)
+- `ui-ux-pro-max` e `frontend-design` ficam em `.claude/skills/` como arquivos reais (links para `.agents/skills/` não funcionam no Windows com `core.symlinks=false`).
+- São consultivas: o [.agents/DESIGN.md](.agents/DESIGN.md) e as regras deste arquivo prevalecem sobre paleta, fonte ou estilo que elas sugerirem.
+- Busca da `ui-ux-pro-max`, a partir da raiz: `python .claude/skills/ui-ux-pro-max/scripts/search.py "<consulta>" --domain ux` (ou `--stack react`).
+
 ---
 
 ## 🧩 Catálogo, Facetas & Medidas

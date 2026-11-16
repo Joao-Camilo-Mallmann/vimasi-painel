@@ -26,6 +26,9 @@ dist-ssr
 package-lock.json
 bun.lock
 
+# Python (scripts/ e skills em .claude/skills)
+__pycache__/
+
 # Lista de preços (comercial, não versionar)
 docs/catalogos/precos/
 docs/Gaxetas 2026.pdf
