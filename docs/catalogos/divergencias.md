@@ -313,14 +313,9 @@ Total: **7605** itens (gaxetas-2022: 2226, lista-2025: 3476, retentores-2021: 19
 
 ## Mudanças em relação ao CSV do último commit
 
-- Saíram: **0** · Entraram: **3123** · Campos alterados: **0**
+- Saíram: **0** · Entraram: **0** · Campos alterados: **0**
 - Viraram Referência de uma peça do catálogo (continuam pesquisáveis pela peça): **0**
 
-### Entraram (por catálogo e tipo)
-
-| Catálogo | Tipo | Itens |
-|---|---|---|
-| lista-2025 | Anel | 3123 |
 
 ## Anéis O-ring (lista 01/2025)
 
@@ -797,7 +792,7 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 
 ## Sobreposição com as CSVs antigas (o APC prevalece no painel)
 
-433 códigos.
+426 códigos.
 
 | Código | CSV antiga | APC |
 |---|---|---|
@@ -805,7 +800,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `3193` | gaxeta-diversas.csv | Gaxeta AG 11 PU |
 | `3176` | gaxeta-diversas.csv | Gaxeta AG 11 PU |
 | `3187` | gaxeta-diversas.csv | Gaxeta AG 11 PU |
-| `3471` | anel-quad-arruela.csv | Gaxeta AG 12 PU |
 | `8016PM` | gaxeta-diversas.csv | Gaxeta AG 13 Polymax |
 | `9053PM` | gaxeta-diversas.csv | Gaxeta AG 13 Polymax |
 | `7587PM` | gaxeta-diversas.csv | Gaxeta AG 14 Polymax |
@@ -914,7 +908,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `3491` | raspador-metalico.csv | Raspador GAG PU |
 | `3368` | raspador-metalico.csv | Raspador GAG PU |
 | `4839` | raspador-metalico.csv | Raspador GAG PU |
-| `AG7567` | anel-quad-arruela.csv | Raspador GRG NBR |
 | `6621` | raspador-azul.csv | Raspador RP-25 PU |
 | `6855` | raspador-azul.csv | Raspador RP-25 PU |
 | `5639` | raspador-azul.csv | Raspador RP-25 PU |
@@ -950,7 +943,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `7617PM` | raspador-azul.csv | Raspador RP-25 Polymax |
 | `7958PM` | raspador-azul.csv | Raspador RP-25 Polymax |
 | `8509PM` | raspador-azul.csv | Raspador RP-25 Polymax |
-| `9808` | anel-teflon.csv | Raspador RP-27 Polymax |
 | `6303` | raspador-azul.csv | Raspador KDG  |
 | `6302` | raspador-azul.csv | Raspador KDG  |
 | `6301` | raspador-azul.csv | Raspador KDG  |
@@ -1187,7 +1179,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `9718` | raspador-metalico.csv | Raspador metálico GAE NBR |
 | `AG7580` | raspador-metalico.csv | Raspador metálico GAE NBR |
 | `9719` | raspador-metalico.csv | Raspador metálico GAE NBR |
-| `AG7157` | anel-teflon.csv | Raspador metálico GAE NBR |
 | `AG7157` | raspador-metalico.csv | Raspador metálico GAE NBR |
 | `AG7578` | raspador-metalico.csv | Raspador metálico GAE NBR |
 | `9278` | raspador-metalico.csv | Raspador metálico GAE NBR |
@@ -1231,9 +1222,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `4785` | raspador-metalico.csv | Raspador metálico GAE PU |
 | `4339` | raspador-metalico.csv | Raspador metálico GAE PU |
 | `AG8093` | raspador-metalico.csv | Raspador metálico GAE PU |
-| `AG8455` | anel-teflon.csv | Retentor AGFB NBR |
-| `AG7501` | anel-teflon.csv | Retentor BA NBR |
-| `AG7705` | anel-teflon.csv | Retentor BR MVQ |
 
 ## Listas 2025 × catálogos
 
@@ -1755,7 +1743,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `4951PM` | gaxetas-2022 | Raspador | DG | Polymax | 90,00 × 98,00 × 4,00 | — |
 | `TCS0133` | gaxetas-2022 | Raspador | GAG | NBR | 17,80 × 32,15 × 5,50 | raspador-metalico.csv |
 | `9471` | gaxetas-2022 | Raspador | RP-27 | Polymax | 60,00 × 70,00 × 6,00 | — |
-| `9808` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | anel-teflon.csv |
+| `9808` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | — |
 | `AG8502` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | — |
 | `AG8508` | gaxetas-2022 | Raspador | RP-27 | Polymax | 75,00 × 85,00 × 6,00 | — |
 | `8126PM` | gaxetas-2022 | Raspador | RP-28 | Polymax | 59,00 × 69,00 × 6,00 | — |
@@ -1770,7 +1758,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `TCS0908` | gaxetas-2022 | Raspador metálico | GA | NBR | 35,00 × 42,00 × 4,00 | raspador-metalico.csv |
 | `TCS1011` | gaxetas-2022 | Raspador metálico | GA | NBR | 36,00 × 46,00 × 7,00 | — |
 | `TCS1012` | gaxetas-2022 | Raspador metálico | GA | NBR | 7,95 × 15,88 × 3,96 | — |
-| `AG7157` | gaxetas-2022 | Raspador metálico | GAE | NBR | 18,00 × 32,30 × 6,80 | anel-teflon.csv, raspador-metalico.csv |
+| `AG7157` | gaxetas-2022 | Raspador metálico | GAE | NBR | 18,00 × 32,30 × 6,80 | raspador-metalico.csv |
 | `5325` | retentores-2021 | Raspador | AGFU | NBR | 19,00 × 26,00 × 5,50 | — |
 | `CX1258` | retentores-2021 | Raspador | BRXE | NBR | 50,00 × 65,10 × 10,00 | — |
 | `4163` | retentores-2021 | Raspador | GR | FPM | 80,00 × 105,00 × 13,00 | — |
@@ -1815,7 +1803,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `CX7157` | retentores-2021 | Raspador | GRE1 | NBR | 18,00 × 32,30 × 6,80 | — |
 | `4635` | retentores-2021 | Raspador | GRG | NBR | 30,00 × 62,00 × 18,00 | — |
 | `AG7566` | retentores-2021 | Raspador | GRG | NBR | 20,00 × 47,00 × 15,00 | — |
-| `AG7567` | retentores-2021 | Raspador | GRG | NBR | 25,00 × 62,00 × 18,00 | anel-quad-arruela.csv |
+| `AG7567` | retentores-2021 | Raspador | GRG | NBR | 25,00 × 62,00 × 18,00 | — |
 | `3191` | retentores-2021 | Raspador metálico | GA | NBR | 80,00 × 94,00 × 8,00 | raspador-metalico.csv |
 | `AG7050` | retentores-2021 | Raspador metálico | GA | PU | 69,50 × 82,55 × 7,90 | — |
 | `CX8585` | retentores-2021 | Raspador metálico | GA | NBR | 44,45 × 57,15 × 3,20 | — |
@@ -1826,7 +1814,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `TCS0154` | retentores-2021 | Retentor | AGBF | NBR | 121,10 × 160,20 × 35,00 | — |
 | `AG7211` | retentores-2021 | Retentor | AGBT | NBR | 17,60 × 29,80 × 4,40 | — |
 | `6085` | retentores-2021 | Retentor | AGD | FPM | 19,00 × 46,50 × 6,50 | — |
-| `AG8455` | retentores-2021 | Retentor | AGFB | NBR | 28,00 × 44,00 × 6,00 | anel-teflon.csv |
+| `AG8455` | retentores-2021 | Retentor | AGFB | NBR | 28,00 × 44,00 × 6,00 | — |
 | `CX9504` | retentores-2021 | Retentor | AGFB | NBR | 28,50 × 43,00 × 6,50 | — |
 | `CX9807` | retentores-2021 | Retentor | AGFB | NBR | 24,00 × 38,00 × 7,00 | — |
 | `3324` | retentores-2021 | Retentor | AGFE | NBR | 32,00 × 53,00 × 6,50 | — |
@@ -1863,7 +1851,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `TCS0938` | retentores-2021 | Retentor | B | NBR | 15,90 × 23,80 × 4,80 | — |
 | `TCS0968` | retentores-2021 | Retentor | B | NBR | 133,35 × 158,75 × 12,70 | — |
 | `4171` | retentores-2021 | Retentor | BA | NBR | 170,00 × 200,00 × 13,00 | — |
-| `AG7501` | retentores-2021 | Retentor | BA | NBR | 15,00 × 32,00 × 7,00 | anel-teflon.csv |
+| `AG7501` | retentores-2021 | Retentor | BA | NBR | 15,00 × 32,00 × 7,00 | — |
 | `CX9147` | retentores-2021 | Retentor | BA | NBR | 20,00 × 36,00 × 6,50 | — |
 | `TCS0001` | retentores-2021 | Retentor | BA | FPM | 17,00 × 36,00 × 6,60 | — |
 | `TCS0068` | retentores-2021 | Retentor | BA | NBR | 25,00 × 42,00 × 8,00 | — |
@@ -1961,7 +1949,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `6604` | retentores-2021 | Retentor | BR | FPM PT | 45,00 × 62,00 × 7,00 | — |
 | `9455` | retentores-2021 | Retentor | BR | NBR | 75,00 × 100,00 × 10,00 | — |
 | `9527` | retentores-2021 | Retentor | BR | MVQ | 12,00 × 28,00 × 7,00 | — |
-| `AG7705` | retentores-2021 | Retentor | BR | MVQ | 25,00 × 35,00 × 7,00 | anel-teflon.csv |
+| `AG7705` | retentores-2021 | Retentor | BR | MVQ | 25,00 × 35,00 × 7,00 | — |
 | `AG8192` | retentores-2021 | Retentor | BR | FPM | 140,00 × 170,00 × 15,00 | — |
 | `AG8266` | retentores-2021 | Retentor | BR | MVQ | 45,00 × 62,00 × 7,00 | — |
 | `CX5927` | retentores-2021 | Retentor | BR | NBR | 24,00 × 33,00 × 7,00 | — |

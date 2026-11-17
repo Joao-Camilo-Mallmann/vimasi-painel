@@ -19,7 +19,8 @@ const DICAS_PADRAO = {
 };
 
 const DICAS_POR_TIPO = {
-  "O-ring": {
+  // Tipo Anel = anéis O-ring
+  Anel: {
     secao: "Espessura do cordão",
     altura: "Igual à espessura do cordão",
   },

@@ -42,46 +42,6 @@ function arcoToro(rMed, zCentro, raioCorda, a0, a1, passos = 6) {
   return faixas(pts);
 }
 
-/** Gera faixas de superfície para o anel guia partido por um corte em bisel na parte de trás. */
-function geometriaAnelBisel(ri, re, h) {
-  const passos = 24;
-  const tL = (z) => 1.43 * Math.PI + (z / h) * 0.1 * Math.PI;
-  const tR = (z) => tL(z) + 0.05 * Math.PI;
-
-  const seq = (r, z, t0, t1) =>
-    Array.from({ length: passos + 1 }, (_, i) => ponto(r, z, t0 + ((t1 - t0) * i) / passos));
-
-  const topoEsq = `M${seq(re, h, Math.PI, tL(h)).join("L")}L${seq(ri, h, tL(h), Math.PI).join("L")}Z`;
-  const furoEsq = `M${seq(ri, h, Math.PI, tL(h)).join("L")}L${ponto(ri, 0, tL(0))}L${seq(ri, 0, tL(0), Math.PI).join("L")}Z`;
-
-  const faceBiselDir = `M${[
-    ponto(ri, 0, tR(0)),
-    ponto(re, 0, tR(0)),
-    ponto(re, h, tR(h)),
-    ponto(ri, h, tR(h)),
-  ].join("L")}Z`;
-
-  const topoDir = `M${seq(re, h, tR(h), 2 * Math.PI).join("L")}L${seq(ri, h, 2 * Math.PI, tR(h)).join("L")}Z`;
-  const furoDir = `M${seq(ri, h, tR(h), 2 * Math.PI).join("L")}L${seq(ri, 0, 2 * Math.PI, tR(0)).join("L")}L${ponto(ri, h, tR(h))}Z`;
-
-  return {
-    topoEsq,
-    furoEsq,
-    faceBiselDir,
-    topoDir,
-    furoDir,
-    bordaExt: curva(re, h, [Math.PI, tL(h)], passos) + curva(re, h, [tR(h), 2 * Math.PI], passos),
-    bordaInt:
-      curva(ri, h, [Math.PI, tL(h)], passos) +
-      curva(ri, 0, [Math.PI, tL(0)], passos) +
-      curva(ri, h, [tR(h), 2 * Math.PI], passos) +
-      curva(ri, 0, [tR(0), 2 * Math.PI], passos),
-    linhasBisel: `M${ponto(re, h, tL(h))}L${ponto(ri, h, tL(h))}L${ponto(ri, 0, tL(0))}M${ponto(re, h, tR(h))}L${ponto(ri, h, tR(h))}L${ponto(ri, 0, tR(0))}`,
-  };
-}
-
-const ANEL_BISEL = geometriaAnelBisel(60, 80, 22);
-
 // ── Definições por Tipo ─────────────────────────────────────────
 const GAXETA = {
   chave: "Gaxeta",
@@ -356,30 +316,6 @@ const BUFFER_SEAL = {
   },
 };
 
-const ANEL = {
-  chave: "Anel",
-  ariaLabel: "Anel guia em 3D cortado ao meio, com corte em bisel e cotas das medidas",
-  ri: 60,
-  re: 80,
-  h: 22,
-  cotas: ["interno", "externo", "secao", "altura"],
-  perfil: [[60, 0], [80, 0], [80, 22], [60, 22]],
-  extras: { bisel: true },
-  renderFundo: ({ ids, borda, realce }) => (
-    <>
-      <path d={ANEL_BISEL.topoEsq} fill="#f1dfcb" />
-      <path d={ANEL_BISEL.furoEsq} fill={`url(#${ids.furo})`} />
-      <path d={ANEL_BISEL.faceBiselDir} fill="#b89876" {...borda} />
-      <path d={ANEL_BISEL.topoDir} fill="#f1dfcb" />
-      <path d={ANEL_BISEL.furoDir} fill={`url(#${ids.furo})`} />
-
-      <path d={ANEL_BISEL.linhasBisel} {...borda} strokeWidth="0.85" />
-      <path d={ANEL_BISEL.bordaExt} {...borda} {...realce("externo")} />
-      <path d={ANEL_BISEL.bordaInt} {...borda} {...realce("interno")} />
-    </>
-  ),
-};
-
 const ARRUELA = {
   chave: "Arruela",
   ariaLabel: "Arruela em 3D cortada ao meio, com as cotas das medidas",
@@ -400,8 +336,9 @@ const ARRUELA = {
   ),
 };
 
-const ORING = {
-  chave: "O-ring",
+// Tipo Anel = anéis O-ring (único Perfil do Tipo)
+const ANEL = {
+  chave: "Anel",
   ariaLabel: "O-ring em 3D cortado ao meio, com as cotas de diâmetros e espessura do cordão",
   ri: 58,
   re: 82,
@@ -484,7 +421,6 @@ const DESENHOS = {
   "Buffer seal": BUFFER_SEAL,
   Anel: ANEL,
   Arruela: ARRUELA,
-  "O-ring": ORING,
   "V-Ring": VRING,
   "Fita guia": GAXETA,
   "Reparo pneumático": GAXETA,

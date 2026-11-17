@@ -5,7 +5,7 @@
  * - O catálogo APC (src/data/catalogo_apc.csv) já vem com as facetas,
  *   geradas por scripts/ingest_catalogos.py a partir dos catálogos de
  *   gaxetas/raspadores e de retentores + listas AGEL 2025.
- * - As CSVs antigas (src/data/<tipo>-<perfil>.csv, ex.: anel-teflon.csv) recebem as facetas por LEGACY_MAP.
+ * - As CSVs antigas (src/data/<tipo>-<perfil>.csv, ex.: conjunto-zo.csv) recebem as facetas por LEGACY_MAP.
  *
  * Cores de badge são hex fixos aplicados via style inline
  * (nunca interpolar classes Tailwind).
@@ -21,7 +21,6 @@ export const TIPOS = {
   "Buffer seal": { bg: "#fb923c", text: "#050505", border: "#f97316" },
   Anel: { bg: "#fbbf24", text: "#050505", border: "#f59e0b" },
   Arruela: { bg: "#2dd4bf", text: "#050505", border: "#14b8a6" },
-  "O-ring": { bg: "#a78bfa", text: "#050505", border: "#8b5cf6" },
   "V-Ring": { bg: "#22d3ee", text: "#050505", border: "#06b6d4" },
   "Fita guia": { bg: "#ffffff", text: "#050505", border: "#e5e5e5" },
   "Reparo pneumático": { bg: "#3b82f6", text: "#ffffff", border: "#2563eb" },
@@ -62,6 +61,9 @@ export const CAMPOS_MEDIDA = [
   { key: "secao", label: "Seção" },
 ];
 
+// Perfil dos anéis O-ring, o único do Tipo Anel: Ø externo e altura saem da seção quando a fonte só traz D.I. e cordão
+export const PERFIL_ORING = "O-ring";
+
 // ── CSVs antigas → facetas ──────────────────────────────────────
 // colunas: coluna do CSV → campo do produto. Campos de medida:
 // interno, externo, altura, alturaBase, secao. Demais viram "extras".
@@ -69,12 +71,8 @@ export const CAMPOS_MEDIDA = [
 const DIM_PADRAO = { Interno: "interno", Externo: "externo", Altura: "altura", AlturaBase: "alturaBase" };
 
 export const LEGACY_MAP = {
-  "anel-quad-arruela.csv": { tipo: "Anel", modelo: "Quad / Arruela", material: "Borracha", aplicacoes: [] },
-  "anel-gt.csv": { tipo: "Anel", modelo: "GT", material: "", aplicacoes: [] },
-  "anel-teflon.csv": { tipo: "Anel", modelo: "Teflon", material: "PTFE", aplicacoes: [] },
   "arruela-ov.csv": { tipo: "Arruela", modelo: "OV", material: "PU", aplicacoes: [] },
   "arruela-std.csv": { tipo: "Arruela", modelo: "STD", material: "PU", aplicacoes: [] },
-  "anel-backup.csv": { tipo: "Anel", modelo: "Backup", material: "", aplicacoes: [] },
   "buffer-seal-od.csv": { tipo: "Buffer seal", modelo: "OD", material: "", aplicacoes: ["haste"] },
   "buffer-seal-oe.csv": { tipo: "Buffer seal", modelo: "OE", material: "", aplicacoes: ["haste"] },
   "conjunto-capped-t.csv": { tipo: "Conjunto", modelo: "Capped T", material: "", aplicacoes: ["embolo"] },
@@ -95,8 +93,9 @@ export const LEGACY_MAP = {
   },
   "gaxeta-gsk.csv": { tipo: "Gaxeta", modelo: "GSK", material: "GSK", aplicacoes: [] },
   "o-ring-pu.csv": {
-    tipo: "O-ring", modelo: "PU", material: "PU", aplicacoes: [],
-    // O-ring: Diametro = Ø interno, Espessura = seção (corda)
+    // O-ring não é Tipo: é o Perfil do Tipo Anel, junto com os O-rings da lista 01/2025 (catalogo_apc.csv)
+    tipo: "Anel", modelo: PERFIL_ORING, material: "PU", aplicacoes: [],
+    // Diametro = Ø interno, Espessura = seção (corda)
     colunas: { Diametro: "interno", Espessura: "secao" },
   },
   "raspador-azul.csv": { tipo: "Raspador", modelo: "Azul", material: "", aplicacoes: ["haste"] },

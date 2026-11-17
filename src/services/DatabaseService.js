@@ -1,5 +1,5 @@
 import Papa from 'papaparse';
-import { LEGACY_MAP, getColunasLegado } from '../config/taxonomia';
+import { LEGACY_MAP, PERFIL_ORING, getColunasLegado } from '../config/taxonomia';
 import { secao as calcSecao } from '../utils/units';
 
 // ── Importar TODOS os CSVs via Vite raw ─────────────────────────
@@ -48,11 +48,26 @@ function desambiguarPerfis(produtos) {
   }
 }
 
+/**
+ * Linha repetida na mesma fonte (mesmo código, facetas e medidas) vira um cartão só.
+ * Linhas gêmeas de perfil diferente (ex.: 7044PM em AG 14 e AG 4 (BS)) continuam as duas.
+ */
+function semRepetidos(produtos) {
+  const vistos = new Set();
+  return produtos.filter((p) => {
+    const chave = [p.origem, p.busca, p.tipo, p.perfil, p.material, p.aplicacoes.join(','),
+      p.interno, p.externo, p.altura, p.alturaBase].join('|');
+    if (vistos.has(chave)) return false;
+    vistos.add(chave);
+    return true;
+  });
+}
+
 function finalizar(p) {
   if (p.secao === null || p.secao === undefined) p.secao = calcSecao(p.interno, p.externo);
-  // O-ring: Ø externo e altura derivados da seção
-  if (p.externo === null && p.interno !== null && p.secao !== null && p.tipo === 'O-ring') {
-    p.externo = p.interno + 2 * p.secao;
+  // O-ring (Perfil do Tipo Anel): Ø externo e altura derivados da seção
+  if (p.externo === null && p.interno !== null && p.secao !== null && p.perfil === PERFIL_ORING) {
+    p.externo = Math.round((p.interno + 2 * p.secao) * 1e4) / 1e4;
     p.altura = p.secao;
   }
   p.busca = chaveCodigo(p.codigo);
@@ -141,6 +156,7 @@ class DatabaseService {
     this.produtos = [];
     this.sobrepostos = 0;
     this.ocultos = 0;
+    this.repetidos = 0;
     this.loaded = false;
   }
 
@@ -178,8 +194,10 @@ class DatabaseService {
       }
     }
 
-    desambiguarPerfis([...apc, ...legado]);
-    this.produtos = [...apc, ...legado]
+    const unicos = semRepetidos([...apc, ...legado]);
+    this.repetidos = apc.length + legado.length - unicos.length;
+    desambiguarPerfis(unicos);
+    this.produtos = unicos
       .sort((a, b) => collator.compare(a.codigo, b.codigo))
       .map((p, i) => ({ ...p, id: i }));
     this.loaded = true;

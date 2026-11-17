@@ -70,7 +70,7 @@ src/
 │
 └── data/
     ├── catalogo_apc.csv     # GERADO por scripts/ingest_catalogos.py — não editar à mão
-    └── <tipo>-<perfil>.csv  # CSVs antigas (anel-teflon.csv, conjunto-zo.csv…; facetas via LEGACY_MAP)
+    └── <tipo>-<perfil>.csv  # CSVs antigas (conjunto-zo.csv, arruela-std.csv…; facetas via LEGACY_MAP)
 
 scripts/                     # Ferramentas de dev (não entram no bundle)
 docs/catalogos/              # PDFs brutos + divergencias.md (ver README da pasta)
@@ -169,6 +169,8 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
   - Mesmo código nos dois catálogos → o de gaxetas prevalece.
   - Raspadores **GA, GAE, AGK1, GA1 e AGK2** (carcaça metálica) saem com Tipo **Raspador metálico**; Perfil, Material e Aplicação ficam como no catálogo. A troca é feita no fim do script (`PERFIS_METALICOS`), então o resto da ingestão os trata como Raspador. **GAG** continua Raspador. A CSV antiga `raspador-metalico.csv` também é Tipo Raspador metálico (Perfil "Metálico", em `LEGACY_MAP`).
   - **Anéis O-ring** (lista 01/2025, 3.123 itens) saem com Tipo **Anel**, Perfil **O-ring**, Material = nome da seção da lista (`Nitrílica Dureza 70`, `FPM marrom`, `Silicone`…) e **sem aplicação**. Standard × Milimétrico vai em `Extras` (`Série=`), não é faceta. `D.I.` = Ø interno e `W` = altura **e** seção, então ØEXT = D.I. + 2·W (calculado no script). Kit O-rings e Backup da lista ficam de fora. O PDF tem preço: fica em `docs/catalogos/precos/` (fora do git) e `scripts/extrair_lista_oring.py` gera o extrato versionado só com código e medidas. Substituiu a CSV antiga `anel-unitario.csv` (removida).
+  - **O-ring não é Tipo**: é o único Perfil do Tipo **Anel**. Os 25 O-rings de PU da CSV antiga `o-ring-pu.csv` também são Anel · O-ring (material PU; só trazem D.I. e cordão, e `finalizar` em `DatabaseService.js` calcula ØEXT e altura). As CSVs antigas de anel (Unitário, Quad / Arruela, Teflon, Backup, GT) foram removidas do painel. O desenho e as dicas do "Meça a peça" para o Tipo Anel são os do O-ring.
+  - **Linha repetida**: `semRepetidos` (`DatabaseService.js`) junta num cartão só as linhas idênticas da mesma fonte (mesmo código, facetas e medidas). Linhas gêmeas de perfil diferente continuam as duas.
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
   - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
 - **Medidas**:

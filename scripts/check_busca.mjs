@@ -37,7 +37,7 @@ const { parseInch } = await import(url("src/utils/units.js"));
 
 db.loadData();
 console.log(
-  `produtos: ${db.produtos.length} (legado sobreposto pelo APC: ${db.sobrepostos}; APC fora da lista 2025: ${db.ocultos})`
+  `produtos: ${db.produtos.length} (legado sobreposto pelo APC: ${db.sobrepostos}; APC fora da lista 2025: ${db.ocultos}; linhas repetidas: ${db.repetidos})`
 );
 
 // Lista 2025 = fonte mestra: item dos catálogos fora dela não aparece, nem pela CSV antiga que o repetia
@@ -166,17 +166,28 @@ const retMm = db.buscar({ tolerancia: 0.05, medidas: { interno: 25.4 } }).filter
 const retPol = db.buscar({ tolerancia: 0.05, medidas: { interno: parseInch("1") } }).filter((p) => p.tipo === "Retentor");
 assert.ok(retMm.length > 0 && retMm.length === retPol.length);
 
-// Legado agora pesquisável (Teflon)
-assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "anel-teflon.csv"));
+// CSVs antigas pesquisáveis por medida (Arruela STD)
+assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "arruela-std.csv"));
 
 // Anéis O-ring (lista 01/2025): Tipo Anel, Perfil O-ring, material da seção, sem aplicação
-const orings = db.produtos.filter((p) => p.tipo === "Anel" && p.perfil === "O-ring");
+const aneis = db.produtos.filter((p) => p.tipo === "Anel");
+const orings = aneis.filter((p) => p.origem === "apc");
 assert.equal(orings.length, 3123);
-assert.ok(orings.every((p) => p.origem === "apc" && p.modelo === "O-ring" && p.aplicacoes.length === 0));
+assert.ok(orings.every((p) => p.modelo === "O-ring" && p.aplicacoes.length === 0));
 assert.deepEqual(
   [...new Set(orings.map((p) => p.material))].sort(),
   ["EPDM", "FPM marrom", "FPM preto", "FPM verde", "Nitrílica Dureza 70", "Nitrílica Dureza 90", "Silicone", "Silicone Dureza 70"]
 );
+// O-ring não é Tipo: o Tipo Anel só tem o Perfil O-ring (lista 01/2025 + os 25 de PU da CSV antiga), sem código repetido
+assert.ok(!db.produtos.some((p) => p.tipo === "O-ring"));
+assert.ok(aneis.every((p) => p.perfil === "O-ring"));
+const oringPu = aneis.filter((p) => p.origem === "o-ring-pu.csv");
+assert.equal(oringPu.length, 25);
+assert.ok(oringPu.every((p) => p.material === "PU"));
+assert.equal(new Set(aneis.map((p) => p.busca)).size, aneis.length);
+// PU só traz D.I. e cordão: Ø externo e altura saem da seção
+const pu5598 = oringPu.find((p) => p.codigo === "5598");
+assert.deepEqual([pu5598.interno, pu5598.externo, pu5598.altura, pu5598.secao], [47.35, 50.91, 1.78, 1.78]);
 // D.I. = Ø interno; W = altura e seção; ØEXT = D.I. + 2·W
 const o2002 = apc("2002");
 assert.equal(o2002.material, "Nitrílica Dureza 70");
@@ -192,8 +203,13 @@ for (const [aplic, esperado] of [["haste", true], ["embolo", true], ["eixo", fal
   const sel = { ...SELECAO_VAZIA, tipo: ["Anel"], modelo: ["O-ring"], material: ["FPM verde"], aplicacao: [aplic] };
   assert.equal(aplicarFacetas(db.produtos, sel).some((p) => p.codigo === "V2005"), esperado, `O-ring em ${aplic}`);
 }
-// A CSV antiga "Unitário" saiu; Backup continua pela CSV dele (a lista de O-rings não o traz)
-assert.ok(!db.produtos.some((p) => p.perfil === "Unitário" || p.origem === "anel-unitario.csv"));
-assert.equal(db.produtos.find((p) => p.codigo === "8006").perfil, "Backup");
+// As CSVs antigas de anel (Unitário, Quad / Arruela, Teflon, Backup, GT) saíram do painel
+assert.ok(!db.produtos.some((p) => /^anel-/.test(p.origem)));
+assert.equal(db.buscar({ codigo: "8006" }).filter((p) => p.codigo === "8006").length, 0);
+
+// Linha repetida idêntica vira um cartão só; gêmeas de perfil diferente continuam as duas
+assert.ok(db.repetidos > 0);
+assert.equal(db.produtos.filter((p) => p.codigo === "4730PM").length, 1);
+assert.equal(db.produtos.filter((p) => p.codigo === "7044PM").length, 2);
 
 console.log("busca/funil: todos os cenários OK");
