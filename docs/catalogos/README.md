@@ -8,12 +8,27 @@
 | `retentores/catalogo-retentores-2021.pdf` | "catalogo-retentores-digital2.pdf" | **Retentores** (ref. 2021, 112 págs.). Perfis nas págs. 10–76; referência de mercado nas 77–83; índice "REFERÊNCIA AGEL" (todos os códigos) nas 84–111. |
 | `listas/lista-gaxetas-raspadores-2025.pdf` | AGEL 2025 | Código + descrição de gaxetas, raspadores, Polymax, GSK e pneumática. |
 | `listas/lista-retentores-2025.pdf` | AGEL 2025 | Código + descrição de retentores. |
+| `listas/lista-oring-2025.csv` | Extrato de `precos/lista-oring-2025-01.pdf` (AGEL ref. 01/2025) | **Anéis O-ring**: código, D.I., W, série (Standard/Milimétrico), material e página. Sem preço nem Qtd Min. |
 
 As listas 2025 têm só código, descrição, UN e % IPI (sem preço). O script lê apenas código e descrição.
 
 As listas 2025 são a **fonte mestra** do que está em linha: item dos catálogos 2021/2022 que não está nelas fica no CSV com `NaLista` vazio e **não aparece no painel** (`DatabaseService.loadData`). Item que só existe na lista entra com `Catalogo=lista-2025`.
 
 O catálogo 2022 substituiu o APC ref. 02/2019, e as listas 2025 substituíram a lista AGEL 2026. Os dois arquivos antigos continuam no histórico do git.
+
+## Anéis O-ring (lista 01/2025)
+
+A lista de O-rings da AGEL traz preço, então o PDF **não é versionado**: fica em `precos/lista-oring-2025-01.pdf` (pasta no `.gitignore`). O que entra no git é o extrato `listas/lista-oring-2025.csv`, gerado por:
+
+```bash
+python -I scripts/extrair_lista_oring.py   # só quando a lista mudar
+```
+
+- Lê só Código, D.I. e W das págs. 4–43. Kit O-rings (pág. 3) e Backup (págs. 44–46) ficam de fora.
+- Série e material vêm do manifesto `SECOES` no topo do script (conferido contra o título de cada página, com a contagem de linhas esperada por seção).
+- No painel: Tipo **Anel**, Perfil **O-ring**, material = seção da lista, sem aplicação.
+- `D.I.` = Ø interno; `W` = altura **e** seção; ØEXT = D.I. + 2·W.
+- Todos entram com `NaLista=S` e `Catalogo=lista-2025`.
 
 ## Como regenerar os dados
 

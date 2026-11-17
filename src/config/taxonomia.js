@@ -72,7 +72,6 @@ export const LEGACY_MAP = {
   "anel-quad-arruela.csv": { tipo: "Anel", modelo: "Quad / Arruela", material: "Borracha", aplicacoes: [] },
   "anel-gt.csv": { tipo: "Anel", modelo: "GT", material: "", aplicacoes: [] },
   "anel-teflon.csv": { tipo: "Anel", modelo: "Teflon", material: "PTFE", aplicacoes: [] },
-  "anel-unitario.csv": { tipo: "Anel", modelo: "Unitário", material: "", aplicacoes: [] },
   "arruela-ov.csv": { tipo: "Arruela", modelo: "OV", material: "PU", aplicacoes: [] },
   "arruela-std.csv": { tipo: "Arruela", modelo: "STD", material: "PU", aplicacoes: [] },
   "anel-backup.csv": { tipo: "Anel", modelo: "Backup", material: "", aplicacoes: [] },
