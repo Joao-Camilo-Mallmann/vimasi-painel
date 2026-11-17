@@ -169,4 +169,31 @@ assert.ok(retMm.length > 0 && retMm.length === retPol.length);
 // Legado agora pesquisável (Teflon)
 assert.ok(db.buscar({ tolerancia: 0.5, medidas: { interno: 25.4 } }).some((p) => p.origem === "anel-teflon.csv"));
 
+// Anéis O-ring (lista 01/2025): Tipo Anel, Perfil O-ring, material da seção, sem aplicação
+const orings = db.produtos.filter((p) => p.tipo === "Anel" && p.perfil === "O-ring");
+assert.equal(orings.length, 3123);
+assert.ok(orings.every((p) => p.origem === "apc" && p.modelo === "O-ring" && p.aplicacoes.length === 0));
+assert.deepEqual(
+  [...new Set(orings.map((p) => p.material))].sort(),
+  ["EPDM", "FPM marrom", "FPM preto", "FPM verde", "Nitrílica Dureza 70", "Nitrílica Dureza 90", "Silicone", "Silicone Dureza 70"]
+);
+// D.I. = Ø interno; W = altura e seção; ØEXT = D.I. + 2·W
+const o2002 = apc("2002");
+assert.equal(o2002.material, "Nitrílica Dureza 70");
+assert.deepEqual([o2002.interno, o2002.externo, o2002.altura], [1.07, 3.61, 1.27]);
+assert.ok(Math.abs(o2002.secao - 1.27) < 1e-9);
+assert.ok(orings.every((p) => Math.abs(p.secao - p.altura) < 1e-3 && p.externo > p.interno));
+assert.equal(apc("92003").material, "Nitrílica Dureza 90");
+assert.equal(apc("M7581").material, "FPM marrom");
+assert.equal(apc("S7526").material, "Silicone");
+assert.ok(db.buscar({ tolerancia: 0, medidas: { interno: 1.07, secao: 1.27 } }).some((p) => p.codigo === "2002"));
+// Sem aplicação = genérico: aparece em Haste e em Êmbolo, nunca em Eixo
+for (const [aplic, esperado] of [["haste", true], ["embolo", true], ["eixo", false]]) {
+  const sel = { ...SELECAO_VAZIA, tipo: ["Anel"], modelo: ["O-ring"], material: ["FPM verde"], aplicacao: [aplic] };
+  assert.equal(aplicarFacetas(db.produtos, sel).some((p) => p.codigo === "V2005"), esperado, `O-ring em ${aplic}`);
+}
+// A CSV antiga "Unitário" saiu; Backup continua pela CSV dele (a lista de O-rings não o traz)
+assert.ok(!db.produtos.some((p) => p.perfil === "Unitário" || p.origem === "anel-unitario.csv"));
+assert.equal(db.produtos.find((p) => p.codigo === "8006").perfil, "Backup");
+
 console.log("busca/funil: todos os cenários OK");

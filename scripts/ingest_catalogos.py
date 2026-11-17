@@ -1,5 +1,5 @@
-"""Ingestão dos catálogos APC (gaxetas/raspadores 2022 + retentores 2021)
-e cruzamento com as listas AGEL 2025.
+"""Ingestão dos catálogos APC (gaxetas/raspadores 2022 + retentores 2021),
+cruzamento com as listas AGEL 2025 e anéis O-ring da lista 01/2025.
 
 Uso (rodar da raiz do projeto):
     python -I scripts/ingest_catalogos.py
@@ -13,6 +13,8 @@ Regras:
   milésimos arredondados para 1/64").
 - Das listas só código e descrição são cruzados (UN e % IPI são descartados).
 - Mesmo código nos dois catálogos: o de gaxetas prevalece.
+- Anéis O-ring: vêm do extrato sem preço gerado por scripts/extrair_lista_oring.py
+  (Tipo Anel, Perfil O-ring; D.I. = Ø interno, W = altura e seção, ØEXT = D.I. + 2·W).
 """
 
 import argparse
@@ -33,6 +35,7 @@ LISTAS_PDF = [
     ROOT / "docs/catalogos/listas/lista-gaxetas-raspadores-2025.pdf",
     ROOT / "docs/catalogos/listas/lista-retentores-2025.pdf",
 ]
+ORING_CSV = ROOT / "docs/catalogos/listas/lista-oring-2025.csv"  # extrato sem preço (extrair_lista_oring.py)
 OUT_CSV = ROOT / "src/data/catalogo_apc.csv"
 OUT_REPORT = ROOT / "docs/catalogos/divergencias.md"
 LEGACY_DIR = ROOT / "src/data"
@@ -1152,6 +1155,32 @@ def agrupar_metalicos(saida):
     return saida
 
 
+TIPO_ANEL, PERFIL_ORING = "Anel", "O-ring"
+
+
+def ler_oring(saida, caminho=ORING_CSV):
+    """Anéis O-ring da lista 01/2025: D.I. = Ø interno, W = altura e seção; sem aplicação (genérico)."""
+    existentes = {chave(s["Codigo"]) for s in saida}
+    with open(caminho, encoding="utf-8", newline="") as fh:
+        linhas = list(csv.DictReader(fh, delimiter=";"))
+    repetidos = sorted(r["Codigo"] for r in linhas if chave(r["Codigo"]) in existentes)
+    if repetidos:
+        sys.exit(f"O-ring com código que já existe nos catálogos/listas: {repetidos[:20]}")
+    aneis = []
+    for r in linhas:
+        di, w = float(r["DI"]), float(r["W"])
+        aneis.append({
+            "Codigo": r["Codigo"], "Referencia": "", "Tipo": TIPO_ANEL, "Modelo": PERFIL_ORING,
+            "Material": r["Material"], "Aplicacao": "", "Linha": "",
+            "Interno": r4(di), "Externo": r4(di + 2 * w), "Altura": r4(w), "UnidadeNominal": "mm",
+            "PressaoPsi": "", "TempMin": "", "TempMax": "", "VelocidadeMs": "",
+            "Extras": f"Série={r['Serie']}",
+            "Descricao": f"O-RING {r['Serie'].upper()} {fmt(di)} X {fmt(w)}",
+            "NaLista": "S", "Fonte": "lista2025", "Catalogo": CAT_LISTA, "Pagina": r["Pagina"],
+        })
+    return aneis
+
+
 def escrever_csv(saida):
     saida.sort(key=lambda s: (s["Tipo"], s["Linha"], s["Modelo"], s["Material"], s["Fonte"],
                               float(s["Interno"] or 0), float(s["Externo"] or 0), float(s["Altura"] or 0), s["Codigo"]))
@@ -1198,7 +1227,8 @@ def escrever_relatorio(saida, problemas, legado, anterior):
     L = ["# Relatório de ingestão — catálogos APC", "",
          "Gerado por `scripts/ingest_catalogos.py`. Não editar à mão.", "",
          "Fontes: catálogo de gaxetas e raspadores ref. 2022 (`gaxetas-2022`), catálogo de retentores "
-         "ref. 2021 (`retentores-2021`) e listas AGEL 2025 (`lista-2025`).", ""]
+         "ref. 2021 (`retentores-2021`) e listas AGEL 2025 (`lista-2025`), incluindo a lista de anéis "
+         "O-ring ref. 01/2025 (extrato sem preço em `docs/catalogos/listas/lista-oring-2025.csv`).", ""]
     # contagens
     from collections import Counter
     cont = Counter((s["Tipo"], s["Modelo"], s["Material"] or "—", s["Linha"]) for s in saida)
@@ -1231,6 +1261,14 @@ def escrever_relatorio(saida, problemas, legado, anterior):
         cont_e = Counter((s["Catalogo"], s["Tipo"]) for s in entraram)
         L += ["### Entraram (por catálogo e tipo)", "", "| Catálogo | Tipo | Itens |", "|---|---|---|"]
         L += [f"| {c} | {t} | {n} |" for (c, t), n in sorted(cont_e.items())]
+
+    oring = [s for s in saida if s["Tipo"] == TIPO_ANEL and s["Modelo"] == PERFIL_ORING]
+    cont_o = Counter((s["Extras"].split("=", 1)[1], s["Material"]) for s in oring)
+    L += ["", "## Anéis O-ring (lista 01/2025)", "",
+          f"**{len(oring)}** anéis, todos em linha (`NaLista=S`). D.I. = Ø interno; W = altura e seção; "
+          "ØEXT = D.I. + 2·W. Sem aplicação (genéricos). Kit O-rings e Backup ficam de fora.", "",
+          "| Série | Material | Itens |", "|---|---|---|"]
+    L += [f"| {serie} | {mat} | {n} |" for (serie, mat), n in sorted(cont_o.items())]
 
     L += ["", f"## Código da referência × valor impresso (> {fmt(TOL_DIVERGENCIA)} mm)", "",
           "O CSV usa o valor do **código** (fonte da verdade).", ""]
@@ -1366,6 +1404,7 @@ def main():
     ap.add_argument("--catalogo", default=str(CATALOGO_PDF))
     ap.add_argument("--retentores", default=str(RETENTORES_PDF))
     ap.add_argument("--listas", nargs="*", default=[str(p) for p in LISTAS_PDF])
+    ap.add_argument("--oring", default=str(ORING_CSV))
     a = ap.parse_args()
 
     problemas = {"codigo_vs_impresso": [], "sem_agel": [], "nao_extraidas": [], "sem_manifesto": set(),
@@ -1383,6 +1422,7 @@ def main():
     itens = [it for f in a.listas for it in extrair_lista(f)]
     mods = {r["mod"] for r in indice + pag_rows}
     saida = agrupar_metalicos(cruzar_listas(saida, itens, perfis, mods, problemas))
+    saida += ler_oring(saida, a.oring)  # depois do cruzamento: a lista de O-rings não tem catálogo para casar
     escrever_csv(saida)
     escrever_relatorio(saida, problemas, ler_legado(), anterior)
 

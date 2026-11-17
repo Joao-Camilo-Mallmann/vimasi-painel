@@ -35,6 +35,7 @@ npm run lint      # ESLint
 npm run preview   # Preview da build
 
 python -I scripts/ingest_catalogos.py   # Regenera src/data/catalogo_apc.csv + docs/catalogos/divergencias.md
+python -I scripts/extrair_lista_oring.py # Só quando a lista de O-rings mudar: PDF com preço (precos/) → extrato sem preço (listas/)
 node scripts/check_units.mjs            # Auto-checagem mm ⇄ pol
 node scripts/check_busca.mjs            # Auto-checagem busca + funil de facetas
 ```
@@ -162,10 +163,12 @@ A estética é **Industrial Premium**: dark canvas pesado + detalhes em Gold e R
     - catálogo de gaxetas e raspadores ref. 2022
     - catálogo de retentores ref. 2021
     - listas AGEL 2025 de gaxetas/raspadores e de retentores
+    - lista AGEL 01/2025 de anéis O-ring, pelo extrato sem preço `docs/catalogos/listas/lista-oring-2025.csv`
   - Colunas `Catalogo` (`gaxetas-2022` | `retentores-2021` | `lista-2025`) e `NaLista` (`S` = o código está numa lista 2025).
   - **Lista 2025 = fonte mestra do que está em linha**: `DatabaseService.loadData` só carrega códigos com `NaLista=S` (estar na lista é propriedade do código: linhas gêmeas de um mesmo código, ex.: `7044PM` em AG 14 e AG 4 (BS), ficam as duas). Itens dos catálogos 2021/2022 fora das listas são fora de linha: continuam no CSV (`NaLista` vazio) para o histórico do relatório e para seguir sobrepondo as CSVs antigas (`codigosApc` usa todas as linhas), mas não entram em `produtos` (contador `ocultos`). Relatório: seção "Itens dos catálogos fora das listas 2025".
   - Mesmo código nos dois catálogos → o de gaxetas prevalece.
   - Raspadores **GA, GAE, AGK1, GA1 e AGK2** (carcaça metálica) saem com Tipo **Raspador metálico**; Perfil, Material e Aplicação ficam como no catálogo. A troca é feita no fim do script (`PERFIS_METALICOS`), então o resto da ingestão os trata como Raspador. **GAG** continua Raspador. A CSV antiga `raspador-metalico.csv` também é Tipo Raspador metálico (Perfil "Metálico", em `LEGACY_MAP`).
+  - **Anéis O-ring** (lista 01/2025, 3.123 itens) saem com Tipo **Anel**, Perfil **O-ring**, Material = nome da seção da lista (`Nitrílica Dureza 70`, `FPM marrom`, `Silicone`…) e **sem aplicação**. Standard × Milimétrico vai em `Extras` (`Série=`), não é faceta. `D.I.` = Ø interno e `W` = altura **e** seção, então ØEXT = D.I. + 2·W (calculado no script). Kit O-rings e Backup da lista ficam de fora. O PDF tem preço: fica em `docs/catalogos/precos/` (fora do git) e `scripts/extrair_lista_oring.py` gera o extrato versionado só com código e medidas. Substituiu a CSV antiga `anel-unitario.csv` (removida).
   - CSVs antigas recebem as facetas por `LEGACY_MAP` em `src/config/taxonomia.js`.
   - Mesmo `Codigo` no APC e numa CSV antiga → o APC prevalece.
 - **Medidas**:
@@ -221,7 +224,8 @@ openspec validate --specs                   # Validar specs
 | [.agents/DESIGN.md](.agents/DESIGN.md) | Design system completo e tokens visuais |
 | [src/config/taxonomia.js](src/config/taxonomia.js) | Tipos/badges, facetas, mapeamento das CSVs antigas |
 | [src/utils/units.js](src/utils/units.js) | Conversão e formatação mm ⇄ pol |
-| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão dos catálogos APC (gaxetas 2022 + retentores 2021) + cruzamento com as listas 2025 |
+| [scripts/ingest_catalogos.py](scripts/ingest_catalogos.py) | Ingestão dos catálogos APC (gaxetas 2022 + retentores 2021) + cruzamento com as listas 2025 + anéis O-ring |
+| [scripts/extrair_lista_oring.py](scripts/extrair_lista_oring.py) | Extrai código/D.I./W da lista de O-rings (PDF com preço) para o extrato sem preço |
 | [docs/catalogos/divergencias.md](docs/catalogos/divergencias.md) | Relatório gerado: divergências e cruzamentos |
 | [src/utils/supabase.js](src/utils/supabase.js) | Cliente Supabase inicializado |
 | [src/services/DatabaseService.js](src/services/DatabaseService.js) | Abstração de queries |
