@@ -133,13 +133,12 @@ assert.equal(apc("5508-2").material, "FPM");
 // Mesmo código em duas tabelas do catálogo: a lista vale para as duas linhas
 assert.ok(db.buscar({ codigo: "7044PM" }).some((p) => p.modelo === "AG 14"));
 assert.deepEqual(db.produtos.filter((p) => p.codigo === "4862").map((p) => p.modelo).sort(), ["AGK1", "AGK2"]);
-// Raspadores GA/GAE/AGK1/GA1/AGK2 têm carcaça metálica: Tipo "Raspador metálico", perfil/material/aplicação mantidos
-for (const m of ["GA", "GAE", "AGK1", "GA1", "AGK2"]) {
+// Raspadores GA/GAE/GAG/AGK1/GA1/AGK2 têm carcaça metálica: Tipo "Raspador metálico", perfil/material/aplicação mantidos
+for (const m of ["GA", "GAE", "GAG", "AGK1", "GA1", "AGK2"]) {
   const ps = db.produtos.filter((p) => p.origem === "apc" && p.perfil === m);
   assert.ok(ps.length > 0 && ps.every((p) => p.tipo === "Raspador metálico" && p.modelo === m), m);
 }
 assert.equal(apc("1117").material, "NBR");
-assert.ok(db.produtos.filter((p) => p.perfil === "GAG").every((p) => p.tipo === "Raspador"));
 // A CSV antiga raspador-metalico.csv entra no mesmo Tipo, com o Perfil "Metálico"
 const legMet = db.produtos.filter((p) => p.origem === "raspador-metalico.csv");
 assert.ok(legMet.length > 0 && legMet.every((p) => p.tipo === "Raspador metálico" && p.modelo === "Metálico"));
