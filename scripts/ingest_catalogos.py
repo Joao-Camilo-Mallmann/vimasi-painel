@@ -153,8 +153,7 @@ FICHA = {
 
 # Raspadores com carcaça metálica: Tipo "Raspador metálico"; Perfil, Material e Aplicação ficam
 # como no catálogo. Aplicado só na saída: o resto do script trata esses perfis como "Raspador".
-# GAG continua Raspador.
-PERFIS_METALICOS = {"GA", "GAE", "AGK1", "GA1", "AGK2"}
+PERFIS_METALICOS = {"GA", "GAE", "GAG", "AGK1", "GA1", "AGK2"}
 TIPO_RASPADOR_METALICO = "Raspador metálico"
 
 TIPO_POR_LINHA = {"gaxeta": "Gaxeta", "raspador": "Raspador", "pneumatica": "Gaxeta"}

@@ -5120,34 +5120,6 @@ AG8034;;Raspador;E;PU;haste;Hidráulica;90;102;7.2;mm;;-30;100;4;;RASPADOR TIPO 
 3625;;Raspador;E;PU;haste;Hidráulica;185;198;6.6;mm;;-30;100;4;;RASPADOR TIPO E 185,00 X 198,00 X 6,60;S;pdf;gaxetas-2022;53
 4195;;Raspador;E;PU;haste;Hidráulica;207;217;5;mm;;-30;100;4;;RASPADOR TIPO E 207,00 X 217,00 X 5,00;S;pdf;gaxetas-2022;53
 3619;;Raspador;E;PU;haste;Hidráulica;212;225;6.6;mm;;-30;100;4;;RASPADOR TIPO E 212,00 X 225,00 X 6,60;S;pdf;gaxetas-2022;53
-TCS0133;02216;Raspador;GAG;NBR;haste;Hidráulica;17.8;32.15;5.5;mm;;-30;100;1;H1/H2=5,5/8,5|Orientação do lábio=Liso;;;pdf;gaxetas-2022;58
-6194;;Raspador;GAG;NBR;haste;Hidráulica;35;45;6.5;mm;;-30;100;1;H1/H2=6,5/9,0|Orientação do lábio=Liso;RETENTOR 35,00 X 45,00 X 6,50 GAG NBR;S;pdf;gaxetas-2022;58
-6195;;Raspador;GAG;NBR;haste;Hidráulica;35;47;6.5;mm;;-30;100;1;H1/H2=6,5/9,0|Orientação do lábio=Liso;RETENTOR 35,00 X 47,00 X 6,50 GAG PU;S;pdf;gaxetas-2022;58
-3014;;Raspador;GAG;NBR;haste;Hidráulica;46;57;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 46,00 X 57,00 X 7,00/10,0 GAG NBR;S;pdf;gaxetas-2022;58
-4564;;Raspador;GAG;NBR;haste;Hidráulica;78;100;16;mm;;;;;Variante=GAG1|H1/H2=10,5/16,0|Orientação do lábio=Liso;RETENTOR 78,00 X 100,00 X 10,50/16,00 GAG1 NBR;S;pdf;retentores-2021;89
-9118;;Raspador;GAG;PU;haste;Hidráulica;36;50;13;mm;;;;;H1/H2=8,0/13,0;RETENTOR 36,00 X 50,00 X 8,0/13,0 GAG - PU;S;lista2025;lista-2025;
-4509;;Raspador;GAG;PU;haste;Hidráulica;56;70;13;mm;;;;;H1/H2=8,0/13,0;RETENTOR 56,00 X 70,00 X 8,0/13,0 GAG - PU;S;lista2025;lista-2025;
-AX0281;;Raspador;GAG;PU;haste;Hidráulica;105;121;12;mm;;;;;H1/H2=9,0/12,0;RETENTOR 105,00 X 121,00 X 9,0/12,0 GAG - PU;S;lista2025;lista-2025;
-4996;;Raspador;GAG;PU;haste;Hidráulica;115;131;12;mm;;;;;H1/H2=9,0/12,0;RETENTOR 115,00 X 131,00 X 9,0/12,0 GAG - PU;S;lista2025;lista-2025;
-AG8431;;Raspador;GAG;PU;haste;Hidráulica;40;54;8;mm;;-30;100;1;H1/H2=8,0/13,0|Orientação do lábio=Liso;RETENTOR 40,00 X 54,00 X 8,00/13,00 GAG - PU;S;pdf;gaxetas-2022;58
-9215;;Raspador;GAG;PU;haste;Hidráulica;45;59;13;mm;;;;;H1/H2=8,0/13|Orientação do lábio=Liso;RETENTOR 45,00 X 59,00 X 8,0/13,0 - GAG;S;pdf;retentores-2021;74
-1508;;Raspador;GAG;PU;haste;Hidráulica;50;60;7;mm;;-30;100;1;H1/H2=7,0/9,5|Orientação do lábio=Liso;RETENTOR 50,00 X 60,00 X 7,00/9,50 GAG-PU;S;pdf;gaxetas-2022;58
-6144;;Raspador;GAG;PU;haste;Hidráulica;50;62;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 50,00 X 62,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
-AG8381;;Raspador;GAG;PU;haste;Hidráulica;50;64;8;mm;;-30;100;1;H1/H2=8,0/13,0|Orientação do lábio=Liso;RETENTOR 50,00 X 64,00 X 8,0 / 13,0 GAG - PU;S;pdf;gaxetas-2022;58
-AG7767;;Raspador;GAG;PU;haste;Hidráulica;55;67;6.5;mm;;-30;100;1;H1/H2=6,5/10,0|Orientação do lábio=Liso;RETENTOR 55,00 X 67,00 X 6,50/9,50 GAG PU;S;pdf;gaxetas-2022;58
-3013;;Raspador;GAG;PU;haste;Hidráulica;55;69;8;mm;;-30;100;1;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 55,00 X 69,00 X 8,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
-AG7366;;Raspador;GAG;PU;haste;Hidráulica;56;68;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 56,00 X 68,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
-AG7380;;Raspador;GAG;PU;haste;Hidráulica;63;75;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 63,00 X 75,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
-AG7814;;Raspador;GAG;PU;haste;Hidráulica;65;79;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 65,00 X 79,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
-3015;;Raspador;GAG;PU;haste;Hidráulica;66;79;8;mm;;-30;100;1;H1/H2=8,0/9,5|Orientação do lábio=Liso;RETENTOR 66,00 X 79,00 X 8,00/9,50 GAG PU;S;pdf;gaxetas-2022;58
-3051;;Raspador;GAG;PU;haste;Hidráulica;70;84;8;mm;;-30;100;1;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 70,00 X 84,00 X 8,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
-3046;;Raspador;GAG;PU;haste;Hidráulica;75;89;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 75,00 X 89,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
-3052;;Raspador;GAG;PU;haste;Hidráulica;80;94;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 80,00 X 94,00 X 8,50/11,00 GAG PU;S;pdf;gaxetas-2022;58
-4408;;Raspador;GAG;PU;haste;Hidráulica;85;99;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 85,00 X 99,00 X 8,00/11,00 GAG - PU;S;pdf;gaxetas-2022;58
-3491;;Raspador;GAG;PU;haste;Hidráulica;95;109;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 95,00 X 109,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
-AX0075;;Raspador;GAG;PU;haste;Hidráulica;100;110;10;mm;;;;;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 100,00 X 110,00 X 7,0/10,0 GAG - PU;S;pdf;retentores-2021;74
-3368;;Raspador;GAG;PU;haste;Hidráulica;100;114;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RET.100,00 X 114,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
-4839;;Raspador;GAG;PU;haste;Hidráulica;112;124;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 112,00 X 124,00 X 7,0/10,0 GAG - PU;S;pdf;gaxetas-2022;58
 AG8281;;Raspador;GAGE;NBR;haste;Hidráulica;25;36.5;8;mm;;;;;H1/H2=6,0/8,0|Orientação do lábio=Liso;RETENTOR 25,00 X 36,50 X 6,0/8,0 GAGE NBR;S;pdf;retentores-2021;76
 AG7555;;Raspador;GAGE;NBR;haste;Hidráulica;28;40;9.6;mm;;;;;H1/H2=8,3/9,6|Orientação do lábio=Liso;RETENTOR 28,00 X 40,00 X 8,30 GAGE NBR;S;pdf;retentores-2021;76
 9104;;Raspador;GAGE;NBR;haste;Hidráulica;30;44;10;mm;;;;;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 30,00 X 44,00 X 8,00 GAGE NBR;S;pdf;retentores-2021;76
@@ -5686,6 +5658,34 @@ AG7471;;Raspador metálico;GAE;PU;haste;Hidráulica;45;57;7;mm;;-30;100;1;H1/H2=
 4785;;Raspador metálico;GAE;PU;haste;Hidráulica;100;116;8;mm;;-30;100;1;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 100,00 X 116,00 X 8,00/8,50 GA PU;S;pdf;gaxetas-2022;57
 4339;;Raspador metálico;GAE;PU;haste;Hidráulica;110;120;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 110,00 X 120,00 X 7,00/10,00 GAE - PU;S;pdf;gaxetas-2022;57
 AG8093;;Raspador metálico;GAE;PU;haste;Hidráulica;110;126;9;mm;;-30;100;1;H1/H2=9,0/12,0|Orientação do lábio=Liso;RETENTOR 110,00 X 126,00 X 9,00/12,00 GAE - PU;S;pdf;gaxetas-2022;57
+TCS0133;02216;Raspador metálico;GAG;NBR;haste;Hidráulica;17.8;32.15;5.5;mm;;-30;100;1;H1/H2=5,5/8,5|Orientação do lábio=Liso;;;pdf;gaxetas-2022;58
+6194;;Raspador metálico;GAG;NBR;haste;Hidráulica;35;45;6.5;mm;;-30;100;1;H1/H2=6,5/9,0|Orientação do lábio=Liso;RETENTOR 35,00 X 45,00 X 6,50 GAG NBR;S;pdf;gaxetas-2022;58
+6195;;Raspador metálico;GAG;NBR;haste;Hidráulica;35;47;6.5;mm;;-30;100;1;H1/H2=6,5/9,0|Orientação do lábio=Liso;RETENTOR 35,00 X 47,00 X 6,50 GAG PU;S;pdf;gaxetas-2022;58
+3014;;Raspador metálico;GAG;NBR;haste;Hidráulica;46;57;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 46,00 X 57,00 X 7,00/10,0 GAG NBR;S;pdf;gaxetas-2022;58
+4564;;Raspador metálico;GAG;NBR;haste;Hidráulica;78;100;16;mm;;;;;Variante=GAG1|H1/H2=10,5/16,0|Orientação do lábio=Liso;RETENTOR 78,00 X 100,00 X 10,50/16,00 GAG1 NBR;S;pdf;retentores-2021;89
+9118;;Raspador metálico;GAG;PU;haste;Hidráulica;36;50;13;mm;;;;;H1/H2=8,0/13,0;RETENTOR 36,00 X 50,00 X 8,0/13,0 GAG - PU;S;lista2025;lista-2025;
+4509;;Raspador metálico;GAG;PU;haste;Hidráulica;56;70;13;mm;;;;;H1/H2=8,0/13,0;RETENTOR 56,00 X 70,00 X 8,0/13,0 GAG - PU;S;lista2025;lista-2025;
+AX0281;;Raspador metálico;GAG;PU;haste;Hidráulica;105;121;12;mm;;;;;H1/H2=9,0/12,0;RETENTOR 105,00 X 121,00 X 9,0/12,0 GAG - PU;S;lista2025;lista-2025;
+4996;;Raspador metálico;GAG;PU;haste;Hidráulica;115;131;12;mm;;;;;H1/H2=9,0/12,0;RETENTOR 115,00 X 131,00 X 9,0/12,0 GAG - PU;S;lista2025;lista-2025;
+AG8431;;Raspador metálico;GAG;PU;haste;Hidráulica;40;54;8;mm;;-30;100;1;H1/H2=8,0/13,0|Orientação do lábio=Liso;RETENTOR 40,00 X 54,00 X 8,00/13,00 GAG - PU;S;pdf;gaxetas-2022;58
+9215;;Raspador metálico;GAG;PU;haste;Hidráulica;45;59;13;mm;;;;;H1/H2=8,0/13|Orientação do lábio=Liso;RETENTOR 45,00 X 59,00 X 8,0/13,0 - GAG;S;pdf;retentores-2021;74
+1508;;Raspador metálico;GAG;PU;haste;Hidráulica;50;60;7;mm;;-30;100;1;H1/H2=7,0/9,5|Orientação do lábio=Liso;RETENTOR 50,00 X 60,00 X 7,00/9,50 GAG-PU;S;pdf;gaxetas-2022;58
+6144;;Raspador metálico;GAG;PU;haste;Hidráulica;50;62;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 50,00 X 62,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
+AG8381;;Raspador metálico;GAG;PU;haste;Hidráulica;50;64;8;mm;;-30;100;1;H1/H2=8,0/13,0|Orientação do lábio=Liso;RETENTOR 50,00 X 64,00 X 8,0 / 13,0 GAG - PU;S;pdf;gaxetas-2022;58
+AG7767;;Raspador metálico;GAG;PU;haste;Hidráulica;55;67;6.5;mm;;-30;100;1;H1/H2=6,5/10,0|Orientação do lábio=Liso;RETENTOR 55,00 X 67,00 X 6,50/9,50 GAG PU;S;pdf;gaxetas-2022;58
+3013;;Raspador metálico;GAG;PU;haste;Hidráulica;55;69;8;mm;;-30;100;1;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 55,00 X 69,00 X 8,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
+AG7366;;Raspador metálico;GAG;PU;haste;Hidráulica;56;68;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 56,00 X 68,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
+AG7380;;Raspador metálico;GAG;PU;haste;Hidráulica;63;75;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 63,00 X 75,00 X 7,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
+AG7814;;Raspador metálico;GAG;PU;haste;Hidráulica;65;79;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 65,00 X 79,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
+3015;;Raspador metálico;GAG;PU;haste;Hidráulica;66;79;8;mm;;-30;100;1;H1/H2=8,0/9,5|Orientação do lábio=Liso;RETENTOR 66,00 X 79,00 X 8,00/9,50 GAG PU;S;pdf;gaxetas-2022;58
+3051;;Raspador metálico;GAG;PU;haste;Hidráulica;70;84;8;mm;;-30;100;1;H1/H2=8,0/10,0|Orientação do lábio=Liso;RETENTOR 70,00 X 84,00 X 8,00/10,00 GAG PU;S;pdf;gaxetas-2022;58
+3046;;Raspador metálico;GAG;PU;haste;Hidráulica;75;89;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 75,00 X 89,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
+3052;;Raspador metálico;GAG;PU;haste;Hidráulica;80;94;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 80,00 X 94,00 X 8,50/11,00 GAG PU;S;pdf;gaxetas-2022;58
+4408;;Raspador metálico;GAG;PU;haste;Hidráulica;85;99;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 85,00 X 99,00 X 8,00/11,00 GAG - PU;S;pdf;gaxetas-2022;58
+3491;;Raspador metálico;GAG;PU;haste;Hidráulica;95;109;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RETENTOR 95,00 X 109,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
+AX0075;;Raspador metálico;GAG;PU;haste;Hidráulica;100;110;10;mm;;;;;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 100,00 X 110,00 X 7,0/10,0 GAG - PU;S;pdf;retentores-2021;74
+3368;;Raspador metálico;GAG;PU;haste;Hidráulica;100;114;8;mm;;-30;100;1;H1/H2=8,0/11,0|Orientação do lábio=Liso;RET.100,00 X 114,00 X 8,00/11,00 GAG PU;S;pdf;gaxetas-2022;58
+4839;;Raspador metálico;GAG;PU;haste;Hidráulica;112;124;7;mm;;-30;100;1;H1/H2=7,0/10,0|Orientação do lábio=Liso;RETENTOR 112,00 X 124,00 X 7,0/10,0 GAG - PU;S;pdf;gaxetas-2022;58
 KCWU160-461;;Reparo pneumático;;;;Pneumática;;;;mm;;;;;;REPARO;S;lista2025;lista-2025;
 EM-0609-P5010;;Reparo pneumático;Componente;;;Pneumática;6;9;2.7;mm;;;;;;RASPADOR SÉRIE COMPACTA - TIPO RP-25;S;pdf;gaxetas-2022;66
 EM-0811-P5010;;Reparo pneumático;Componente;;;Pneumática;8;11.5;3;mm;;;;;;RASPADOR SÉRIE COMPACTA - TIPO RP-25;S;pdf;gaxetas-2022;66

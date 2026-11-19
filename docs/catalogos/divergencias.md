@@ -94,8 +94,6 @@ Total: **7605** itens (gaxetas-2022: 2226, lista-2025: 3476, retentores-2021: 19
 | Raspador | DG | PU | Hidráulica | 16 |
 | Raspador | DG | Polymax | Hidráulica | 3 |
 | Raspador | E | PU | Hidráulica | 16 |
-| Raspador | GAG | NBR | Hidráulica | 5 |
-| Raspador | GAG | PU | Hidráulica | 23 |
 | Raspador | GAGE | NBR | Hidráulica | 6 |
 | Raspador | GGGX | NBR | Hidráulica | 9 |
 | Raspador | GGGX1 | NBR | Hidráulica | 1 |
@@ -127,6 +125,8 @@ Total: **7605** itens (gaxetas-2022: 2226, lista-2025: 3476, retentores-2021: 19
 | Raspador metálico | GAE | NBR | Hidráulica | 26 |
 | Raspador metálico | GAE | PU | Hidráulica | 32 |
 | Raspador metálico | GAE | — | Hidráulica | 1 |
+| Raspador metálico | GAG | NBR | Hidráulica | 5 |
+| Raspador metálico | GAG | PU | Hidráulica | 23 |
 | Reparo pneumático |  | — | Pneumática | 1 |
 | Reparo pneumático | Componente | — | Pneumática | 9 |
 | Reparo pneumático | Kit de reparo | — | Pneumática | 14 |
@@ -313,8 +313,41 @@ Total: **7605** itens (gaxetas-2022: 2226, lista-2025: 3476, retentores-2021: 19
 
 ## Mudanças em relação ao CSV do último commit
 
-- Saíram: **0** · Entraram: **0** · Campos alterados: **0**
+- Saíram: **0** · Entraram: **0** · Campos alterados: **28**
 - Viraram Referência de uma peça do catálogo (continuam pesquisáveis pela peça): **0**
+
+### Campos alterados
+
+| Código | Campo | Antes | Agora |
+|---|---|---|---|
+| `1508` | Tipo | Raspador | Raspador metálico |
+| `3013` | Tipo | Raspador | Raspador metálico |
+| `3014` | Tipo | Raspador | Raspador metálico |
+| `3015` | Tipo | Raspador | Raspador metálico |
+| `3046` | Tipo | Raspador | Raspador metálico |
+| `3051` | Tipo | Raspador | Raspador metálico |
+| `3052` | Tipo | Raspador | Raspador metálico |
+| `3368` | Tipo | Raspador | Raspador metálico |
+| `3491` | Tipo | Raspador | Raspador metálico |
+| `4408` | Tipo | Raspador | Raspador metálico |
+| `4509` | Tipo | Raspador | Raspador metálico |
+| `4564` | Tipo | Raspador | Raspador metálico |
+| `4839` | Tipo | Raspador | Raspador metálico |
+| `4996` | Tipo | Raspador | Raspador metálico |
+| `6144` | Tipo | Raspador | Raspador metálico |
+| `6194` | Tipo | Raspador | Raspador metálico |
+| `6195` | Tipo | Raspador | Raspador metálico |
+| `9118` | Tipo | Raspador | Raspador metálico |
+| `9215` | Tipo | Raspador | Raspador metálico |
+| `AG7366` | Tipo | Raspador | Raspador metálico |
+| `AG7380` | Tipo | Raspador | Raspador metálico |
+| `AG7767` | Tipo | Raspador | Raspador metálico |
+| `AG7814` | Tipo | Raspador | Raspador metálico |
+| `AG8381` | Tipo | Raspador | Raspador metálico |
+| `AG8431` | Tipo | Raspador | Raspador metálico |
+| `AX0075` | Tipo | Raspador | Raspador metálico |
+| `AX0281` | Tipo | Raspador | Raspador metálico |
+| `TCS0133` | Tipo | Raspador | Raspador metálico |
 
 
 ## Anéis O-ring (lista 01/2025)
@@ -886,28 +919,6 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `5551PM` | gaxeta-diversas.csv | Gaxeta AG 5 Polymax |
 | `5887PM` | gaxeta-diversas.csv | Gaxeta AG 5 Polymax |
 | `7017PM` | gaxeta-diversas.csv | Gaxeta AG 5 Polymax |
-| `TCS0133` | raspador-metalico.csv | Raspador GAG NBR |
-| `6194` | raspador-metalico.csv | Raspador GAG NBR |
-| `6195` | raspador-metalico.csv | Raspador GAG NBR |
-| `3014` | raspador-metalico.csv | Raspador GAG NBR |
-| `9118` | arruela-std.csv | Raspador GAG PU |
-| `AG8431` | raspador-metalico.csv | Raspador GAG PU |
-| `1508` | raspador-metalico.csv | Raspador GAG PU |
-| `6144` | raspador-metalico.csv | Raspador GAG PU |
-| `AG8381` | raspador-metalico.csv | Raspador GAG PU |
-| `AG7767` | raspador-metalico.csv | Raspador GAG PU |
-| `3013` | raspador-metalico.csv | Raspador GAG PU |
-| `AG7366` | raspador-metalico.csv | Raspador GAG PU |
-| `AG7380` | raspador-metalico.csv | Raspador GAG PU |
-| `AG7814` | raspador-metalico.csv | Raspador GAG PU |
-| `3015` | raspador-metalico.csv | Raspador GAG PU |
-| `3051` | raspador-metalico.csv | Raspador GAG PU |
-| `3046` | raspador-metalico.csv | Raspador GAG PU |
-| `3052` | raspador-metalico.csv | Raspador GAG PU |
-| `4408` | raspador-metalico.csv | Raspador GAG PU |
-| `3491` | raspador-metalico.csv | Raspador GAG PU |
-| `3368` | raspador-metalico.csv | Raspador GAG PU |
-| `4839` | raspador-metalico.csv | Raspador GAG PU |
 | `6621` | raspador-azul.csv | Raspador RP-25 PU |
 | `6855` | raspador-azul.csv | Raspador RP-25 PU |
 | `5639` | raspador-azul.csv | Raspador RP-25 PU |
@@ -1222,6 +1233,28 @@ Variantes de material (sufixo F/S/P) seguem o perfil-base. Estes não têm base 
 | `4785` | raspador-metalico.csv | Raspador metálico GAE PU |
 | `4339` | raspador-metalico.csv | Raspador metálico GAE PU |
 | `AG8093` | raspador-metalico.csv | Raspador metálico GAE PU |
+| `TCS0133` | raspador-metalico.csv | Raspador metálico GAG NBR |
+| `6194` | raspador-metalico.csv | Raspador metálico GAG NBR |
+| `6195` | raspador-metalico.csv | Raspador metálico GAG NBR |
+| `3014` | raspador-metalico.csv | Raspador metálico GAG NBR |
+| `9118` | arruela-std.csv | Raspador metálico GAG PU |
+| `AG8431` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `1508` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `6144` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `AG8381` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `AG7767` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3013` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `AG7366` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `AG7380` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `AG7814` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3015` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3051` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3046` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3052` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `4408` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3491` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `3368` | raspador-metalico.csv | Raspador metálico GAG PU |
+| `4839` | raspador-metalico.csv | Raspador metálico GAG PU |
 
 ## Listas 2025 × catálogos
 
@@ -1719,8 +1752,8 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | Catálogo | Tipo | Itens |
 |---|---|---|
 | gaxetas-2022 | Gaxeta | 10 |
-| gaxetas-2022 | Raspador | 12 |
-| gaxetas-2022 | Raspador metálico | 10 |
+| gaxetas-2022 | Raspador | 11 |
+| gaxetas-2022 | Raspador metálico | 11 |
 | retentores-2021 | Raspador | 45 |
 | retentores-2021 | Raspador metálico | 5 |
 | retentores-2021 | Retentor | 484 |
@@ -1741,7 +1774,6 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `4940PM` | gaxetas-2022 | Raspador | DG | Polymax | 105,00 × 113,00 × 4,00 | — |
 | `4950PM` | gaxetas-2022 | Raspador | DG | Polymax | 60,00 × 68,00 × 4,00 | — |
 | `4951PM` | gaxetas-2022 | Raspador | DG | Polymax | 90,00 × 98,00 × 4,00 | — |
-| `TCS0133` | gaxetas-2022 | Raspador | GAG | NBR | 17,80 × 32,15 × 5,50 | raspador-metalico.csv |
 | `9471` | gaxetas-2022 | Raspador | RP-27 | Polymax | 60,00 × 70,00 × 6,00 | — |
 | `9808` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | — |
 | `AG8502` | gaxetas-2022 | Raspador | RP-27 | Polymax | 40,00 × 48,00 × 5,00 | — |
@@ -1759,6 +1791,7 @@ Tratados como fora de linha. Continuam no CSV para o histórico e para seguir so
 | `TCS1011` | gaxetas-2022 | Raspador metálico | GA | NBR | 36,00 × 46,00 × 7,00 | — |
 | `TCS1012` | gaxetas-2022 | Raspador metálico | GA | NBR | 7,95 × 15,88 × 3,96 | — |
 | `AG7157` | gaxetas-2022 | Raspador metálico | GAE | NBR | 18,00 × 32,30 × 6,80 | raspador-metalico.csv |
+| `TCS0133` | gaxetas-2022 | Raspador metálico | GAG | NBR | 17,80 × 32,15 × 5,50 | raspador-metalico.csv |
 | `5325` | retentores-2021 | Raspador | AGFU | NBR | 19,00 × 26,00 × 5,50 | — |
 | `CX1258` | retentores-2021 | Raspador | BRXE | NBR | 50,00 × 65,10 × 10,00 | — |
 | `4163` | retentores-2021 | Raspador | GR | FPM | 80,00 × 105,00 × 13,00 | — |
