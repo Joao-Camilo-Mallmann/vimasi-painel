@@ -67,20 +67,23 @@ node scripts/check_busca.mjs               # auto-checagem busca + funil
 
 ## Retentores
 
-- **Fonte primária:** o índice "REFERÊNCIA AGEL" (`CÓDIGO REF MOD. ØINT ØEXT H1/H2 MAT ORI`). As páginas de perfil conferem o índice e completam os códigos que faltam nele.
+- **Fonte primária:** o índice "REFERÊNCIA AGEL" (`CÓDIGO REF MOD. ØINT ØEXT H1/H2 MAT ORI`). As páginas de perfil conferem o índice e completam os códigos que faltam nele. Erros tipográficos confirmados no PDF 2021 (conferidos entre páginas de perfil, Ref. Mercado págs. 77–83 e lista 2025) ficam declarados em `RET_ERRATA` no script.
 - **Perfil:** é o da página onde o código aparece. O índice usa variantes de material, que ficam no perfil-base com `Variante=` em Extras:
   - `F` = FPM: `BRGF` → `BRG`
   - `S` = MVQ: `BAS` → `BA`
   - `P` = ACM (poliacrilato): `BRGP` → `BRG`
   - número: `AGGK1` → `AGGK`
 - **Tipo:** pela descrição da página do perfil.
-  - "RASPADOR…" → `Raspador` (aplicação Haste)
+  - "RASPADOR…" → `Raspador` (aplicação Haste; perfis `GA`, `GAE`, `GAG`, `AGK1`, `GA1`, `AGK2` viram `Raspador metálico`)
   - "RETENTOR…", "VEDADOR…" ou "GUARDA PÓ…" → `Retentor` (aplicação **Eixo**)
+- **Material e cor:** cores impressas junto ao elastômero (`FPM PT`, `FPM AZ`, `NBR AZ`/`AZUL`, `MVQ VR`) são separadas para `Extras` (`Cor=Preto|Azul|Vermelho`), deixando `Material` limpo no funil. Materiais compostos (`FPM/INOX`, `NBR/PU`, `NBR/NYLON`, `NBR/FPM`…) permanecem intactos.
 - **Altura:** `H1/H2` (ex.: `5,0/7,0`) → Altura = H2 (total); o texto original vai em Extras.
 - **ØEXT escalonado:** `110,0/154,0` → Externo = primeiro valor; o texto original vai em Extras.
-- **Colunas:** `REF` (referência de mercado) → `Referencia`. `ORI` (LI/H/AH/BI, legenda da pág. 6) → Extras "Orientação do lábio".
-- **Código nos dois catálogos** (raspadores GA, GAE, GAG, AGK1…): vale a linha do catálogo de gaxetas. Lá a coluna `h` é o H1; o `H1/H2` do de retentores vai em Extras.
-- **Só na lista 2025** (`Catalogo=lista-2025`): perfil = primeira sigla da descrição que é perfil do catálogo 2021 (variantes seguem o perfil-base). Se nenhuma for, vale a **única sigla entre as medidas e o material** (`… 8,50 AGNA NBR/NYLON` → `AGNA`; tipo inferido: GA/GR… raspador, o resto retentor) — listadas no relatório em "Perfis só na lista 2025"; se o catálogo arquiva a sigla noutro perfil (`BGO` → `BG`, aprendido nos itens casados), ela vira Variante desse perfil. Material pela sigla (NBR, FPM/VITON, MVQ, PTFE, PU…); se faltar, pela letra de variante do perfil (`BRF`, `BRGF`, `BRG-F` → FPM). Descrição com um `X` a menos (`20,00 X 28,00 6,00`) é tolerada.
+- **Colunas:** `REF` (referência de mercado, normalizada para 5 dígitos) → `Referencia`. `ORI` (LI/H/AH/BI, legenda da pág. 6) → Extras "Orientação do lábio".
+- **Código nos dois catálogos** (raspadores GA, GAE, GAG, AGK1…): vale a linha do catálogo de gaxetas, exceto quando o catálogo de retentores 2021 e a lista 2025 concordam contra o de gaxetas 2022 (consenso). Lá a coluna `h` é o H1; o `H1/H2` do de retentores vai em Extras.
+- **Códigos reutilizados na lista 2025** (`RET_LISTA_PREVALECE`): quando o ERP atual reutilizou um código do catálogo 2021 para outra peça diferente, prevalece a lista 2025.
+- **Equivalência `RTxxxx` ↔ `TCSxxxx`:** quando as medidas batem dentro da tolerância (0,05 mm), o `RTxxxx` herda perfil/material/orientação faltantes do `TCSxxxx`, a referência de mercado é completada nos dois sentidos, ambos recebem `Equivalente=` em Extras e o `TCSxxxx` equivalente também recebe `NaLista=S` para continuar pesquisável no painel.
+- **Só na lista 2025** (`Catalogo=lista-2025`): perfil = primeira sigla da descrição que é perfil do catálogo 2021 (variantes seguem o perfil-base). Se nenhuma for, vale a **única sigla entre as medidas e o material** (`… 8,50 AGNA NBR/NYLON` → `AGNA`; tipo inferido: GA/GR… raspador, o resto retentor) — listadas no relatório em "Perfis só na lista 2025"; se o catálogo arquiva a sigla noutro perfil (`BGO` → `BG`, aprendido nos itens casados), ela vira Variante desse perfil. Material pela sigla (NBR, FPM/VITON, MVQ, PTFE, PU, NBR/NYLON…); se faltar, pela letra de variante do perfil (`BRF`, `BRGF`, `BRG-F` → FPM). Descrição com um `X` a menos (`20,00 X 28,00 6,00`) é tolerada.
 
 ## Recortes antigos (Drive)
 

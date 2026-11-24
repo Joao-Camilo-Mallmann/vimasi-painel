@@ -149,6 +149,57 @@ assert.equal(db.produtos.filter((p) => p.codigo.startsWith("625002874")).length,
 // Sigla que o catálogo arquiva noutro perfil vira Variante dele (BGO → BG)
 assert.equal(apc("RT0911").perfil, "BG");
 
+// Erratas confirmadas no catálogo de retentores 2021
+const extra = (p, label) => p.extras.find((e) => e.label === label)?.value;
+assert.equal(apc("AG7677").catalogo, "retentores-2021");
+assert.deepEqual([apc("AG7677").interno, apc("AG7677").externo, apc("AG7677").altura], [5, 30, 14]);
+assert.equal(apc("4502").altura, 15);
+assert.equal(apc("1405").externo, 68.15);
+assert.equal(apc("AG8255").tipo, "Raspador");
+assert.equal(apc("AG8255").perfil, "GR");
+assert.equal(apc("AG8255").material, "HNBR");
+assert.deepEqual(apc("AG8255").aplicacoes, ["haste"]);
+assert.equal(apc("AG8307").material, "FPM");
+
+// Extração limpa da lista 2025 (sem "PC" colado, materiais compostos NBR/NYLON e NBR/FPM)
+assert.equal(apc("AX0347").material, "NBR/FPM");
+assert.equal(apc("TCS0681").perfil, "AGNA");
+assert.equal(apc("TCS0681").material, "NBR/NYLON");
+
+// Cor separada de Material para Extras nos retentores (O-rings mantêm nome da seção)
+assert.equal(apc("TCS0849").material, "NBR");
+assert.equal(extra(apc("TCS0849"), "Cor"), "Azul");
+assert.equal(apc("5839").material, "FPM");
+assert.equal(extra(apc("5839"), "Cor"), "Preto");
+assert.ok(db.produtos.filter((p) => p.tipo === "Retentor").every((p) => !p.material.includes(" ")));
+
+// Códigos reutilizados na lista 2025 prevalecem sobre o catálogo 2021
+assert.equal(apc("3994").catalogo, "lista-2025");
+assert.deepEqual([apc("3994").perfil, apc("3994").interno, apc("3994").externo, apc("3994").altura], ["BG", 60.32, 85.1, 11.1]);
+assert.equal(apc("4620").tipo, "Raspador metálico");
+assert.equal(apc("4620").perfil, "GA1");
+assert.equal(apc("6639").tipo, "Raspador metálico");
+assert.equal(apc("6639").perfil, "GAE");
+assert.equal(apc("TCS0910").catalogo, "lista-2025");
+assert.equal(apc("TCS0910").referencia, "03227");
+
+// Equivalência RTxxxx ↔ TCSxxxx: ambos permanecem em linha e pesquisáveis; divergente não vincula
+assert.equal(apc("RT0080").material, "NBR");
+assert.equal(extra(apc("RT0080"), "Equivalente"), "TCS0080");
+assert.equal(extra(apc("TCS0080"), "Equivalente"), "RT0080");
+assert.equal(extra(apc("RT0911"), "Equivalente"), "TCS0911");
+assert.equal(apc("TCS0544").referencia, "01181");
+assert.equal(extra(apc("RT0021"), "Equivalente"), undefined);
+assert.equal(apc("TCS0021"), undefined);
+assert.equal(extra(apc("RT1005"), "Equivalente"), undefined);
+
+// Consenso retentores 2021 + lista 2025 contra gaxetas 2022 nos raspadores compartilhados
+assert.equal(apc("9094").interno, 30);
+assert.equal(apc("1520").material, "PU");
+assert.equal(apc("1529").perfil, "GAG");
+assert.equal(apc("1529").tipo, "Raspador metálico");
+assert.equal(apc("4479").altura, 11);
+
 // Funil: Retentor → BR → NBR → Eixo (Ø15,90 ±0,1)
 const ret = db.buscar({ tolerancia: 0.1, medidas: { interno: 15.9 } });
 let selR = { ...SELECAO_VAZIA };
